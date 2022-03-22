@@ -1,0 +1,20 @@
+@import "~prismjs/plugins/toolbar/prism-toolbar.css";
+@import "~prismjs/themes/prism.css";
+
+html, body {
+  height: 100%;
+  margin: 0;
+  font-family: 'Monaco', sans-serif !important;
+}
+
+div.code-toolbar {
+  padding: 0 !important;
+}
+div.code-toolbar button {
+  position: absolute;
+  top: 12px;
+  right: 5px;
+  padding: 5px !important;
+  background: white !important;
+  color: black !important;
+}
