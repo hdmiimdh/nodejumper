@@ -8,5 +8,5 @@ footer .container {
   min-height: 70px;
   display: flex;
   align-items: center;
-  max-width: 1012px;
+  max-width: var(--max-width);;
 }

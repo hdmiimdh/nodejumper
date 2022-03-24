@@ -8,8 +8,13 @@ export class Chain {
   peer2: string;
   binaryName: string;
   homeDirectoryName: string;
+  twitter: string;
+  github: string;
+  globe: string;
+  medium: string;
+  coingekoCoinId: string;
 
-  constructor(chainName: string, chainId: string, snapshotServer: string, rpcServer1: string, rpcServer2: string, peer1: string, peer2: string, binaryName: string, homeDirectoryName: string) {
+  constructor(chainName: string, chainId: string, snapshotServer: string, rpcServer1: string, rpcServer2: string, peer1: string, peer2: string, binaryName: string, homeDirectoryName: string, twitter: string, github: string, globe: string, medium: string, coingekoCoinId: string) {
     this.chainName = chainName;
     this.chainId = chainId;
     this.snapshotServer = snapshotServer;
@@ -19,5 +24,10 @@ export class Chain {
     this.peer2 = peer2;
     this.binaryName = binaryName;
     this.homeDirectoryName = homeDirectoryName;
+    this.twitter = twitter;
+    this.github = github;
+    this.globe = globe;
+    this.medium = medium;
+    this.coingekoCoinId = coingekoCoinId;
   }
 }

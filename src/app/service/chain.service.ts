@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
-import {CHAINS} from "../data/data";
-import {Chain} from "../model/chain";
+import { CHAINS } from "../data/data";
+import { Chain } from "../model/chain";
 
 @Injectable({
   providedIn: 'root'
 })
 export class ChainService {
+
+  activeChain?: Chain;
 
   constructor() {
   }

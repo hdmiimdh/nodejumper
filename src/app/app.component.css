@@ -1,6 +1,6 @@
 /*Body container styles*/
 .body.container {
   padding-top: 100px;
-  max-width: 1012px;
+  max-width: var(--max-width);
   min-height: calc(100% - 100px);
 }

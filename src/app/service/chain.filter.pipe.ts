@@ -1,7 +1,7 @@
-import {Pipe, PipeTransform} from "@angular/core";
-import {Chain} from "../model/chain";
+import { Pipe, PipeTransform } from "@angular/core";
+import { Chain } from "../model/chain";
 
-@Pipe({ name: 'chainFilter' })
+@Pipe({name: 'chainFilter'})
 export class ChainFilterPipe implements PipeTransform {
 
   transform(items: Chain[], searchText: string): any[] {

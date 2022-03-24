@@ -1,7 +1,5 @@
-import {Injectable, Inject} from '@angular/core';
-
-import {PLATFORM_ID} from '@angular/core';
-import {isPlatformBrowser} from '@angular/common';
+import { Inject, Injectable, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 import 'prismjs';
 import 'prismjs/plugins/toolbar/prism-toolbar';

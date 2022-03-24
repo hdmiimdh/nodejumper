@@ -10,6 +10,7 @@ html, body {
 div.code-toolbar {
   padding: 0 !important;
 }
+
 div.code-toolbar button {
   position: absolute;
   top: 12px;
@@ -17,4 +18,9 @@ div.code-toolbar button {
   padding: 5px !important;
   background: white !important;
   color: black !important;
+}
+
+:root {
+  --max-width: 1212px;
+  --details-color: #57606a;
 }
