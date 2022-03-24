@@ -1,0 +1,21 @@
+.content {
+  display: inline-block;
+  max-width: calc(100% - 250px);
+  padding-left: 20px;
+}
+
+.left-hand-menu {
+  display: inline-block;
+  vertical-align: top;
+}
+
+@media (max-width: 576px) {
+  .content {
+    max-width: 100%;
+    padding-left: unset;
+  }
+
+  .left-hand-menu {
+    display: none;
+  }
+}

@@ -1,0 +1,20 @@
+<ng-container *ngIf="(chains | chainFilter: searchText) as result">
+  <div class="row search-row">
+    <div class="col-12 col-lg-6">
+      <button class="btn btn-outline-secondary border-0 rounded-pill ms-n3" type="button">
+        <i class="fa fa-search"></i>
+      </button>
+      <input [(ngModel)]="searchText" class="form-control rounded-pill shadow-none" placeholder="Search" type="search"/>
+    </div>
+    <div class="col-12 col-lg-6 chains">
+      <span>{{result.length}} chain(s)</span>
+    </div>
+  </div>
+  <div class="row">
+    <div *ngFor="let chain of result" [routerLink]="['/', chain.chainName | lowercase]"
+         class="col col-12 col-sm-6 col-md-4 col-lg-3">
+      <app-chain-card [chain]="chain"></app-chain-card>
+    </div>
+    <span *ngIf="result.length ==- 0" class="empty-result">Oops, we can't find any results.</span>
+  </div>
+</ng-container>

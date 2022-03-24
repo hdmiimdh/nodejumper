@@ -1,0 +1,25 @@
+<div *ngIf="chain" class="card">
+  <div>
+    <img alt="{{chain.chainName}}" src="assets/img/chain/{{chain.chainName | lowercase }}.png">
+    <span class="title">{{chain.chainName}}</span>
+    <span class="details">{{chain.chainId}}</span>
+  </div>
+  <div class="menu">
+    <span [routerLinkActiveOptions]="{exact: true}" [routerLink]="['./']" class="menu-item" routerLinkActive="active">Synchronization scripts</span>
+    <span [routerLink]="['./about']" class="menu-item" routerLinkActive="active">About</span>
+  </div>
+  <div class="social">
+    <a href="{{chain.twitter}}" target="_blank">
+      <span class="fa fa-twitter"></span>
+    </a>
+    <a href="{{chain.github}}" target="_blank">
+      <span class="fa fa-github"></span>
+    </a>
+    <a href="{{chain.globe}}" target="_blank">
+      <span class="fa fa-globe"></span>
+    </a>
+    <a href="{{chain.medium}}" target="_blank">
+      <span class="fa fa-medium"></span>
+    </a>
+  </div>
+</div>

@@ -1,0 +1,61 @@
+<ng-container *ngIf="this.chainService.activeChain as chain">
+  <div class="row"><span class="title"><b>1. RPC Servers</b></span></div>
+  <div class="row code">
+    <pre><code class="language-bash">{{chain.rpcServer1}}
+{{chain.rpcServer2}}</code></pre>
+  </div>
+  <div class="row"><span class="title"><b>2. Persistent Peers</b></span></div>
+  <div class="row code">
+    <pre><code class="language-bash">{{chain.peer1}}
+{{chain.peer2}}</code>
+    </pre>
+    <pre><code class="language-bash">peers="{{chain.peer1 + ',' + chain.peer2}}"
+sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/{{chain.homeDirectoryName}}/config/config.toml</code>
+    </pre>
+  </div>
+  <div class="row">
+    <span class="title"><b>3. Snapshot</b></span>
+    <span>(height: {{snapshotHeight | number: '2.'}}; size: {{snapshotSize}}; pruning: custom/100/0/10, indexer: null)</span>
+  </div>
+  <div class="row code">
+    <pre>
+      <code class="language-bash">#Install lz4, if needed
+sudo apt update && sudo apt install snapd -y && sudo snap install lz4</code>
+    </pre>
+    <pre>
+      <code class="language-bash">sudo systemctl stop {{chain.binaryName}} && {{chain.binaryName}} unsafe-reset-all
+
+rm -rf ~/{{chain.homeDirectoryName}}/data && cd ~/{{chain.homeDirectoryName}}
+
+SNAP_NAME=$(curl -s {{chain.snapshotServer}}/{{chain.chainName | lowercase}}/ | egrep -o ">{{chain.chainId}}.*\.tar.lz4" | tr -d ">")
+wget -O - {{chain.snapshotServer}}/{{chain.chainName | lowercase}}/${{ '{' }}SNAP_NAME{{ '}' }} | lz4 -dc - | tar -xf -
+sudo systemctl restart {{chain.binaryName}} && sudo journalctl -u {{chain.binaryName}} -f --no-hostname -o cat</code>
+    </pre>
+  </div>
+  <div class="row"><span class="title"><b>4. Fast Sync</b></span></div>
+  <div class="row code">
+    <pre>
+      <code class="language-bash">sudo systemctl stop {{chain.binaryName}} && {{chain.binaryName}} unsafe-reset-all
+
+SNAP_RPC="{{chain.rpcServer1}}"
+SNAP_RPC2="{{chain.rpcServer2}}"
+
+LATEST_HEIGHT=$(curl -s $SNAP_RPC/block | jq -r .result.block.header.height); \
+BLOCK_HEIGHT=$((LATEST_HEIGHT - 2000)); \
+TRUST_HASH=$(curl -s "$SNAP_RPC/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
+
+echo $LATEST_HEIGHT $BLOCK_HEIGHT $TRUST_HASH
+
+peers="{{chain.peer1 + ',' + chain.peer2}}"
+sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/{{chain.homeDirectoryName}}/config/config.toml
+
+sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
+s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$SNAP_RPC,$SNAP_RPC2\"| ; \
+s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
+s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"| ; \
+s|^(seeds[[:space:]]+=[[:space:]]+).*$|\1\"\"|" $HOME/{{chain.homeDirectoryName}}/config/config.toml
+
+sudo systemctl restart {{chain.binaryName}} && sudo journalctl -u {{chain.binaryName}} -f --no-hostname -o cat</code>
+    </pre>
+  </div>
+</ng-container>
