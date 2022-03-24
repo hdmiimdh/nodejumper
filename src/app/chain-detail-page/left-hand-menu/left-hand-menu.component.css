@@ -35,6 +35,7 @@
   padding: 10px;
   width: 100%;
   border-left: 3px solid transparent;
+  outline: none;
 }
 
 .card .menu-item:hover {
