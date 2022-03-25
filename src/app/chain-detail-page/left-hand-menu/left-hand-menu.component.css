@@ -54,11 +54,12 @@
 
 .card .social span {
   font-size: 24px;
-  color: #57606a;
+  color: #212529;
   padding: 10px;
+  opacity: 0.8;
 }
 
 .card .social span:hover {
   cursor: pointer;
-  opacity: 0.8;
+  opacity: 0.6;
 }

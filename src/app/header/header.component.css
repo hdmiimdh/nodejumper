@@ -1,4 +1,3 @@
-/*Header styles*/
 header {
   position: fixed;
   top: 0;
@@ -35,4 +34,9 @@ header .container .btn-social {
 
 header .container .btn-social span {
   font-size: 30px;
+}
+
+header .container .btn-social span:hover {
+  cursor: pointer;
+  opacity: 0.8;
 }
