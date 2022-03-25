@@ -1,6 +1,11 @@
 @import "~prismjs/plugins/toolbar/prism-toolbar.css";
 @import "~prismjs/themes/prism.css";
 
+@font-face {
+  font-family: Monaco;
+  src: url(src/assets/font/Monaco.woff) format("opentype");
+}
+
 html, body {
   height: 100%;
   margin: 0;

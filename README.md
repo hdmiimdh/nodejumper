@@ -1,27 +1,9 @@
 # Nodejumper
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 13.2.6.
+The project is intended to provide snapshot and state sync via RPC’s services for cosmos blockchains. It relies on dedicated server infrastructure.
 
-## Development server
+Snapshots are taken every day and zipped to minimize the size as much as possible. From time to time we are going to state sync snapshot machines when the size reaches 50-100GB.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+State sync is done with 2000 block interval so in worse case scenario you’ll need to catch up 2000 blocks which takes you only a few minutes.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+We are glad to become a part of the blockchain community, let’s make the blockchain world a better place together.
