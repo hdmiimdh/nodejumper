@@ -27,8 +27,8 @@ export class SynchronizationScriptsComponent implements OnInit {
   ngAfterViewInit(): void {
     this.chain = this.chainService.activeChain;
     if (this.chain) {
-      let chainName = this.chain.chainName.toLowerCase();
-      let snapshotStateFileLocation = this.chain?.snapshotServer + '/' + chainName + '/current_state.json';
+      let id = this.chain.id;
+      let snapshotStateFileLocation = this.chain?.snapshotServer + '/' + id + '/current_state.json';
       this.http.get(snapshotStateFileLocation)
         .subscribe((data: any) => {
           this.snapshotHeight = data.snapshotHeight;

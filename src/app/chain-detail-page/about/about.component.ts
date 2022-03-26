@@ -26,7 +26,6 @@ export class AboutComponent implements OnInit {
   ngAfterViewInit(): void {
     this.chain = this.chainService.activeChain;
     if (this.chain) {
-      let chainName = this.chain.chainName.toLowerCase();
       let coingekoUrl = 'https://api.coingecko.com/api/v3/coins/' + this.chain.coingekoCoinId;
       this.http.get(coingekoUrl)
         .subscribe((data: any) => {

@@ -1,4 +1,5 @@
 export class Chain {
+  id: string;
   chainName: string;
   chainId: string;
   snapshotServer: string;
@@ -11,10 +12,12 @@ export class Chain {
   twitter: string;
   github: string;
   globe: string;
-  medium: string;
+  medium?: string;
+  discord?: string;
   coingekoCoinId: string;
 
-  constructor(chainName: string, chainId: string, snapshotServer: string, rpcServer1: string, rpcServer2: string, peer1: string, peer2: string, binaryName: string, homeDirectoryName: string, twitter: string, github: string, globe: string, medium: string, coingekoCoinId: string) {
+  constructor(id: string, chainName: string, chainId: string, snapshotServer: string, rpcServer1: string, rpcServer2: string, peer1: string, peer2: string, binaryName: string, homeDirectoryName: string, twitter: string, github: string, globe: string, medium: string, coingekoCoinId: string) {
+    this.id = id;
     this.chainName = chainName;
     this.chainId = chainId;
     this.snapshotServer = snapshotServer;

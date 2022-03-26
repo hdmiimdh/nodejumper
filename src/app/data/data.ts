@@ -2,6 +2,7 @@ import { Chain } from "../model/chain";
 
 export const CHAINS: Chain[] = [
   {
+    id: "rizon",
     chainName: "Rizon",
     chainId: "titan-1",
     snapshotServer: "https://snapshots.nodejumper.io",
@@ -15,9 +16,11 @@ export const CHAINS: Chain[] = [
     github: "https://github.com/rizon-world",
     globe: "https://rizon.world",
     medium: "https://medium.com/hdac",
+    discord: "https://discord.com/invite/DvZFA7mpuX",
     coingekoCoinId: "rizon"
   },
   {
+    id: "bitcanna",
     chainName: "Bitcanna",
     chainId: "bitcanna-1",
     snapshotServer: "https://snapshots.nodejumper.io",
@@ -31,10 +34,12 @@ export const CHAINS: Chain[] = [
     github: "https://github.com/BitCannaGlobal",
     globe: "https://www.bitcanna.io",
     medium: "https://medium.com/@bitcannaglobal",
+    discord: "https://discord.com/invite/Bq9tRju6",
     coingekoCoinId: "bitcanna"
   },
   {
-    chainName: "Kichain",
+    id: "kichain",
+    chainName: "Ki Chain",
     chainId: "kichain-2",
     snapshotServer: "https://snapshots.nodejumper.io",
     rpcServer1: "http://rpc1.nodejumper.io:28657",
@@ -47,6 +52,42 @@ export const CHAINS: Chain[] = [
     github: "https://github.com/KiFoundation",
     globe: "https://foundation.ki",
     medium: "https://medium.com/ki-foundation",
+    discord: "https://discord.gg/pJJhxPK6",
     coingekoCoinId: "ki"
+  },
+  {
+    id: "chihuahua",
+    chainName: "Chihuahua",
+    chainId: "chihuahua-1",
+    snapshotServer: "https://snapshots.nodejumper.io",
+    rpcServer1: "http://rpc1.nodejumper.io:29657",
+    rpcServer2: "http://rpc2.nodejumper.io:29657",
+    peer1: "c9b1385f81bec76dd6a84311de997d1e783dba53@rpc1.nodejumper.io:29656",
+    peer2: "584ab034cafa8e9229c2b2fa2eda9ab0bb4e399e@rpc2.nodejumper.io:29656",
+    binaryName: "chihuahuad",
+    homeDirectoryName: ".chihuahua",
+    twitter: "https://twitter.com/ChihuahuaChain",
+    github: "https://github.com/chihuahuachain",
+    globe: "https://www.chihuahua.wtf",
+    medium: "https://medium.com/@chihuahuachain",
+    discord: "https://discord.com/invite/AR38BTh4X8",
+    coingekoCoinId: "chihuahua-token"
+  },
+  {
+    id: "akash",
+    chainName: "Akash Network",
+    chainId: "kichain-2",
+    snapshotServer: "https://snapshots.nodejumper.io",
+    rpcServer1: "http://rpc1.nodejumper.io:28657",
+    rpcServer2: "http://rpc2.nodejumper.io:28657",
+    peer1: "766ed622c79fa9cfd668db9741a1f72a5751e0cd@rpc1.nodejumper.io:28656",
+    peer2: "9f825f1be8d3d4944f64e37b955f08877a964003@rpc2.nodejumper.io:28656",
+    binaryName: "kid",
+    homeDirectoryName: ".kid",
+    twitter: "https://twitter.com/akashnet_",
+    github: "https://github.com/ovrclk",
+    globe: "https://akash.network",
+    discord: "https://discord.com/invite/DxftX67",
+    coingekoCoinId: "akash-network"
   }
 ]

@@ -10,7 +10,7 @@ import { AboutComponent } from "./chain-detail-page/about/about.component";
 const routes: Routes = [
   {path: '', component: HomePageComponent},
   {
-    path: ':chainName', component: ChainDetailPageComponent,
+    path: ':id', component: ChainDetailPageComponent,
     children: [
       {path: '', component: SynchronizationScriptsComponent},
       {path: 'about', component: AboutComponent}

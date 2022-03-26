@@ -20,8 +20,8 @@ export class ChainDetailPageComponent implements OnInit {
   ngOnInit(): void {
     this.chainService.activeChain = undefined;
     this.route.params.subscribe((params) => {
-      let chainName = params['chainName'];
-      this.chain = this.chainService.getChains().find(it => it.chainName.toLocaleLowerCase() === chainName);
+      let id = params['id'];
+      this.chain = this.chainService.getChains().find(it => it.id === id);
       this.chainService.activeChain = this.chain;
       if (!this.chain) {
         this.router.navigateByUrl('/');

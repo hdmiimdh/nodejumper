@@ -27,12 +27,12 @@ sudo apt update && sudo apt install snapd -y && sudo snap install lz4</code>
 
 rm -rf ~/{{chain.homeDirectoryName}}/data && cd ~/{{chain.homeDirectoryName}}
 
-SNAP_NAME=$(curl -s {{chain.snapshotServer}}/{{chain.chainName | lowercase}}/ | egrep -o ">{{chain.chainId}}.*\.tar.lz4" | tr -d ">")
-wget -O - {{chain.snapshotServer}}/{{chain.chainName | lowercase}}/${{ '{' }}SNAP_NAME{{ '}' }} | lz4 -dc - | tar -xf -
+SNAP_NAME=$(curl -s {{chain.snapshotServer}}/{{chain.id}}/ | egrep -o ">{{chain.chainId}}.*\.tar.lz4" | tr -d ">")
+wget -O - {{chain.snapshotServer}}/{{chain.id}}/${{ '{' }}SNAP_NAME{{ '}' }} | lz4 -dc - | tar -xf -
 sudo systemctl restart {{chain.binaryName}} && sudo journalctl -u {{chain.binaryName}} -f --no-hostname -o cat</code>
     </pre>
   </div>
-  <div class="row"><span class="title"><b>4. Fast Sync</b></span></div>
+  <div class="row"><span class="title"><b>4. State Sync</b></span></div>
   <div class="row code">
     <pre>
       <code class="language-bash">sudo systemctl stop {{chain.binaryName}} && {{chain.binaryName}} unsafe-reset-all
@@ -45,9 +45,6 @@ BLOCK_HEIGHT=$((LATEST_HEIGHT - 2000)); \
 TRUST_HASH=$(curl -s "$SNAP_RPC/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
 
 echo $LATEST_HEIGHT $BLOCK_HEIGHT $TRUST_HASH
-
-peers="{{chain.peer1 + ',' + chain.peer2}}"
-sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/{{chain.homeDirectoryName}}/config/config.toml
 
 sed -i.bak -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
 s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$SNAP_RPC,$SNAP_RPC2\"| ; \
