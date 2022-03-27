@@ -73,21 +73,21 @@ export const CHAINS: Chain[] = [
     discord: "https://discord.com/invite/AR38BTh4X8",
     coingekoCoinId: "chihuahua-token"
   },
-  {
-    id: "akash",
-    chainName: "Akash Network",
-    chainId: "kichain-2",
-    snapshotServer: "https://snapshots.nodejumper.io",
-    rpcServer1: "http://rpc1.nodejumper.io:28657",
-    rpcServer2: "http://rpc2.nodejumper.io:28657",
-    peer1: "766ed622c79fa9cfd668db9741a1f72a5751e0cd@rpc1.nodejumper.io:28656",
-    peer2: "9f825f1be8d3d4944f64e37b955f08877a964003@rpc2.nodejumper.io:28656",
-    binaryName: "kid",
-    homeDirectoryName: ".kid",
-    twitter: "https://twitter.com/akashnet_",
-    github: "https://github.com/ovrclk",
-    globe: "https://akash.network",
-    discord: "https://discord.com/invite/DxftX67",
-    coingekoCoinId: "akash-network"
-  }
+  // {
+  //   id: "akash",
+  //   chainName: "Akash Network",
+  //   chainId: "kichain-2",
+  //   snapshotServer: "https://snapshots.nodejumper.io",
+  //   rpcServer1: "http://rpc1.nodejumper.io:28657",
+  //   rpcServer2: "http://rpc2.nodejumper.io:28657",
+  //   peer1: "766ed622c79fa9cfd668db9741a1f72a5751e0cd@rpc1.nodejumper.io:28656",
+  //   peer2: "9f825f1be8d3d4944f64e37b955f08877a964003@rpc2.nodejumper.io:28656",
+  //   binaryName: "kid",
+  //   homeDirectoryName: ".kid",
+  //   twitter: "https://twitter.com/akashnet_",
+  //   github: "https://github.com/ovrclk",
+  //   globe: "https://akash.network",
+  //   discord: "https://discord.com/invite/DxftX67",
+  //   coingekoCoinId: "akash-network"
+  // }
 ]
