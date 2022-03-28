@@ -10,11 +10,13 @@
   position: relative;
 }
 
-.row.search-row button {
+.row.search-row .magnifying-glass {
   position: absolute;
-  left: 0;
+  left: 10px;
+  top: 8px;
   z-index: 10;
   color: #111111;
+  cursor: pointer;
 }
 
 .row.search-row input {

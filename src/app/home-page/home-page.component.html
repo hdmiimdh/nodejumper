@@ -1,9 +1,7 @@
 <ng-container *ngIf="(chains | chainFilter: searchText) as result">
   <div class="row search-row">
     <div class="col-12 col-lg-6">
-      <button class="btn btn-outline-secondary border-0 rounded-pill ms-n3" type="button">
-        <i class="fa fa-search"></i>
-      </button>
+      <span class="magnifying-glass"><i class="fa-solid fa-magnifying-glass"></i></span>
       <input [(ngModel)]="searchText" class="form-control rounded-pill shadow-none" placeholder="Search" type="search"/>
     </div>
     <div class="col-12 col-lg-6 chains">
