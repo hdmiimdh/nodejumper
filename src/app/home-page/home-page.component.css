@@ -10,7 +10,7 @@
   position: relative;
 }
 
-.row.search-row .magnifying-glass {
+.row.search-row .search-col span {
   position: absolute;
   left: 10px;
   top: 8px;
@@ -23,8 +23,7 @@
   padding-left: 35px;
 }
 
-.row.search-row input:hover,
-.row.search-row input:focus {
+.row.search-row .search-col:hover > input {
   cursor: pointer !important;
   border-color: #111111 !important;
 }
