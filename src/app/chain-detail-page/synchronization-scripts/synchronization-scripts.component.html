@@ -23,19 +23,19 @@ sed -i.bak -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/{{
 sudo apt update && sudo apt install snapd -y && sudo snap install lz4</code>
     </pre>
     <pre>
-      <code class="language-bash">sudo systemctl stop {{chain.binaryName}} && {{chain.binaryName}} unsafe-reset-all
+      <code class="language-bash">sudo systemctl stop {{chain.serviceName}} && {{chain.binaryName || chain.serviceName}} unsafe-reset-all
 
 rm -rf ~/{{chain.homeDirectoryName}}/data && cd ~/{{chain.homeDirectoryName}}
 
 SNAP_NAME=$(curl -s {{chain.snapshotServer}}/{{chain.id}}/ | egrep -o ">{{chain.chainId}}.*\.tar.lz4" | tr -d ">")
 wget -O - {{chain.snapshotServer}}/{{chain.id}}/${{ '{' }}SNAP_NAME{{ '}' }} | lz4 -dc - | tar -xf -
-sudo systemctl restart {{chain.binaryName}} && sudo journalctl -u {{chain.binaryName}} -f --no-hostname -o cat</code>
+sudo systemctl restart {{chain.serviceName}} && sudo journalctl -u {{chain.serviceName}} -f --no-hostname -o cat</code>
     </pre>
   </div>
   <div class="row"><span class="title"><b>4. State Sync</b></span></div>
   <div class="row code">
     <pre>
-      <code class="language-bash">sudo systemctl stop {{chain.binaryName}} && {{chain.binaryName}} unsafe-reset-all
+      <code class="language-bash">sudo systemctl stop {{chain.serviceName}} && {{chain.binaryName || chain.serviceName}} unsafe-reset-all
 
 SNAP_RPC="{{chain.rpcServer1}}"
 SNAP_RPC2="{{chain.rpcServer2}}"
@@ -55,7 +55,7 @@ s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
 s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"| ; \
 s|^(seeds[[:space:]]+=[[:space:]]+).*$|\1\"\"|" $HOME/{{chain.homeDirectoryName}}/config/config.toml
 
-sudo systemctl restart {{chain.binaryName}} && sudo journalctl -u {{chain.binaryName}} -f --no-hostname -o cat</code>
+sudo systemctl restart {{chain.serviceName}} && sudo journalctl -u {{chain.serviceName}} -f --no-hostname -o cat</code>
     </pre>
   </div>
 </ng-container>
