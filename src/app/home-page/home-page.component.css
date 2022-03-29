@@ -28,6 +28,10 @@
   border-color: #111111 !important;
 }
 
+.row.search-row .search-col .form-control:focus {
+  border-color: unset;
+}
+
 .row.search-row .chains {
   color: var(--details-color);
   text-align: right;
