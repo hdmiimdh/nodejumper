@@ -5,7 +5,7 @@ import { HttpClient } from "@angular/common/http";
 import { ChainService } from "../../service/chain.service";
 
 @Component({
-  selector: 'app-synchronization-scripts',
+  selector: 'app-synchronization-data',
   templateUrl: './synchronization-scripts.component.html',
   styleUrls: ['./synchronization-scripts.component.css']
 })

@@ -1,0 +1,6 @@
+cd && wget https://raw.githubusercontent.com/nodejumper-org/cosmos-utils/main/installation-scripts/bitcanna_install.sh
+mkdir -p installation-scripts && mv -f bitcanna_install.sh && cd installation-scripts
+chmod +x bitcanna_install.sh
+
+# replace nodejumper with your own moniker, if you'd like
+./bitcanna_install.sh nodejumper

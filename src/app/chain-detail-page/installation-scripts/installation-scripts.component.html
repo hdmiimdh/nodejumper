@@ -1,0 +1,10 @@
+<ng-container *ngIf="this.chainService.activeChain as chain">
+  <div class="row"><span class="title"><b>1. Automatic Installation (pruning: custom/100/0/10)</b></span></div>
+  <div class="row code">
+    <pre><code class="language-bash">{{autoInstallationScriptContent}}</code></pre>
+  </div>
+  <div class="row"><span class="title"><b>2. Manual Installation</b></span></div>
+  <div class="row code">
+    <pre><code class="language-bash">{{manualInstallationScriptContent}}</code></pre>
+  </div>
+</ng-container>

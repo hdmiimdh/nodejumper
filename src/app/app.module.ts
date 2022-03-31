@@ -18,6 +18,7 @@ import {
   SynchronizationScriptsComponent
 } from './chain-detail-page/synchronization-scripts/synchronization-scripts.component';
 import { AboutComponent } from './chain-detail-page/about/about.component';
+import { InstallationScriptsComponent } from './chain-detail-page/installation-scripts/installation-scripts.component';
 
 @NgModule({
   declarations: [
@@ -30,7 +31,8 @@ import { AboutComponent } from './chain-detail-page/about/about.component';
     ChainFilterPipe,
     LeftHandMenuComponent,
     SynchronizationScriptsComponent,
-    AboutComponent
+    AboutComponent,
+    InstallationScriptsComponent
   ],
   imports: [
     BrowserModule,

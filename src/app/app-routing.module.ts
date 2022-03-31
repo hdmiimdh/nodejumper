@@ -6,13 +6,15 @@ import {
   SynchronizationScriptsComponent
 } from "./chain-detail-page/synchronization-scripts/synchronization-scripts.component";
 import { AboutComponent } from "./chain-detail-page/about/about.component";
+import { InstallationScriptsComponent } from "./chain-detail-page/installation-scripts/installation-scripts.component";
 
 const routes: Routes = [
   {path: '', component: HomePageComponent},
   {
     path: ':id', component: ChainDetailPageComponent,
     children: [
-      {path: '', component: SynchronizationScriptsComponent},
+      {path: '', component: InstallationScriptsComponent},
+      {path: 'sync', component: SynchronizationScriptsComponent},
       {path: 'about', component: AboutComponent}
     ]
   },
