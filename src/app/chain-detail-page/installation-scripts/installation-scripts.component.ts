@@ -37,7 +37,7 @@ export class InstallationScriptsComponent implements OnInit {
   }
 
   ngAfterViewChecked() {
-    if (this.manualInstallationScriptContent && !this.highlighted) {
+    if (this.manualInstallationScriptContent && this.autoInstallationScriptContent && !this.highlighted) {
       this.highlightService.highlightAll();
       this.highlighted = true;
     }
