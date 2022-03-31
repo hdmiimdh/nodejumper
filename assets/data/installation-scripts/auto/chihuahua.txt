@@ -1,0 +1,6 @@
+cd && wget https://raw.githubusercontent.com/nodejumper-org/cosmos-utils/main/installation-scripts/chihuahua_install.sh
+mkdir -p installation-scripts && mv -f chihuahua_install.sh installation-scripts/ && cd installation-scripts
+chmod +x chihuahua_install.sh
+
+# replace nodejumper with your own moniker, if you'd like
+./chihuahua_install.sh nodejumper
