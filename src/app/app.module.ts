@@ -19,6 +19,7 @@ import {
 } from './chain-detail-page/synchronization-scripts/synchronization-scripts.component';
 import { AboutComponent } from './chain-detail-page/about/about.component';
 import { InstallationScriptsComponent } from './chain-detail-page/installation-scripts/installation-scripts.component';
+import { NgxGoogleAnalyticsModule, NgxGoogleAnalyticsRouterModule } from "ngx-google-analytics";
 
 @NgModule({
   declarations: [
@@ -38,7 +39,9 @@ import { InstallationScriptsComponent } from './chain-detail-page/installation-s
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    NgxGoogleAnalyticsModule.forRoot('G-J46ZYRRDQD'),
+    NgxGoogleAnalyticsRouterModule
   ],
   providers: [ChainService, HighlightService],
   bootstrap: [AppComponent]
