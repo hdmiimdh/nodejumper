@@ -17,7 +17,8 @@ export const CHAINS: Chain[] = [
     globe: "https://rizon.world",
     medium: "https://medium.com/hdac",
     discord: "https://discord.com/invite/DvZFA7mpuX",
-    coingekoCoinId: "rizon"
+    coingekoCoinId: "rizon",
+    validatorUrl: "https://ping.pub/rizon/staking/rizonvaloper1hy3em3nfngyntk7tre9d0626mj9swhu9ughurh"
   },
   {
     id: "bitcanna",
@@ -35,7 +36,8 @@ export const CHAINS: Chain[] = [
     globe: "https://www.bitcanna.io",
     medium: "https://medium.com/@bitcannaglobal",
     discord: "https://discord.com/invite/Bq9tRju6",
-    coingekoCoinId: "bitcanna"
+    coingekoCoinId: "bitcanna",
+    validatorUrl: "https://ping.pub/bitcanna/staking/bcnavaloper1nlyurpgk5zcg6f6dcpdt2mq9khv27ajg4px45y"
   },
   {
     id: "kichain",
@@ -53,7 +55,8 @@ export const CHAINS: Chain[] = [
     globe: "https://foundation.ki",
     medium: "https://medium.com/ki-foundation",
     discord: "https://discord.gg/pJJhxPK6",
-    coingekoCoinId: "ki"
+    coingekoCoinId: "ki",
+    validatorUrl: "https://ping.pub/kichain/staking/kivaloper1q5vfka8z05t27jf4fuawpec99mvv9df90yc57a"
   },
   {
     id: "chihuahua",
@@ -71,7 +74,8 @@ export const CHAINS: Chain[] = [
     globe: "https://www.chihuahua.wtf",
     medium: "https://medium.com/@chihuahuachain",
     discord: "https://discord.com/invite/AR38BTh4X8",
-    coingekoCoinId: "chihuahua-token"
+    coingekoCoinId: "chihuahua-token",
+    validatorUrl: "https://ping.pub/chihuahua/staking/chihuahuavaloper1vdsd7zqpl3af46l08xkkc2zh6qhfhk6fp3s9pu"
   },
   {
     id: "desmos",
@@ -90,7 +94,8 @@ export const CHAINS: Chain[] = [
     globe: "https://www.desmos.network/",
     medium: "https://medium.com/desmosnetwork",
     discord: "https://discord.com/invite/ckFcU5vxxc",
-    coingekoCoinId: "desmos"
+    coingekoCoinId: "desmos",
+    validatorUrl: "https://ping.pub/desmos/staking/desmosvaloper184nr4azm7kwas40yzftfxy9ma2lrm5pp5q795x"
   },
   // {
   //   id: "akash",

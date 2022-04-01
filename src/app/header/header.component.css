@@ -49,3 +49,10 @@ header .container .btn-social span:hover {
   cursor: pointer;
   opacity: 0.8;
 }
+
+@media (max-width: 576px) {
+  header .container span,
+  header .container .btn-social span {
+    font-size: 20px;
+  }
+}
