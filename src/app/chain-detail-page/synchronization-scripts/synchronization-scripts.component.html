@@ -1,15 +1,13 @@
 <ng-container *ngIf="this.chainService.activeChain as chain">
-  <div class="row"><span class="title"><b>1. RPC Servers</b></span></div>
+  <div class="row"><span class="title"><b>1. RPC Server</b></span></div>
   <div class="row code">
-    <pre><code class="language-bash">{{chain.rpcServer1}}
-{{chain.rpcServer2}}</code></pre>
+    <pre><code class="language-bash">{{chain.rpcServer}}</code></pre>
   </div>
-  <div class="row"><span class="title"><b>2. Peers</b></span></div>
+  <div class="row"><span class="title"><b>2. Peer</b></span></div>
   <div class="row code">
-    <pre><code class="language-bash">{{chain.peer1}}
-{{chain.peer2}}</code>
+    <pre><code class="language-bash">{{chain.peer}}</code>
     </pre>
-    <pre><code class="language-bash">peers="{{chain.peer1 + ',' + chain.peer2}}"
+    <pre><code class="language-bash">peers="{{chain.peer}}"
 sed -i -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" ~/{{chain.homeDirectoryName}}/config/config.toml</code>
     </pre>
   </div>
@@ -37,8 +35,7 @@ sudo systemctl restart {{chain.serviceName}} && sudo journalctl -u {{chain.servi
     <pre>
       <code class="language-bash">sudo systemctl stop {{chain.serviceName}} && {{chain.binaryName || chain.serviceName}} unsafe-reset-all
 
-SNAP_RPC="{{chain.rpcServer1}}"
-SNAP_RPC2="{{chain.rpcServer2}}"
+SNAP_RPC="{{chain.rpcServer}}"
 
 LATEST_HEIGHT=$(curl -s $SNAP_RPC/block | jq -r .result.block.header.height); \
 BLOCK_HEIGHT=$((LATEST_HEIGHT - 2000)); \
@@ -46,14 +43,13 @@ TRUST_HASH=$(curl -s "$SNAP_RPC/block?height=$BLOCK_HEIGHT" | jq -r .result.bloc
 
 echo $LATEST_HEIGHT $BLOCK_HEIGHT $TRUST_HASH
 
-peers="{{chain.peer1 + ',' + chain.peer2}}"
+peers="{{chain.peer}}"
 sed -i -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" ~/{{chain.homeDirectoryName}}/config/config.toml
 
 sed -i -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
-s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$SNAP_RPC,$SNAP_RPC2\"| ; \
+s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$SNAP_RPC,$SNAP_RPC\"| ; \
 s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
-s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"| ; \
-s|^(seeds[[:space:]]+=[[:space:]]+).*$|\1\"\"|" ~/{{chain.homeDirectoryName}}/config/config.toml
+s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" ~/{{chain.homeDirectoryName}}/config/config.toml
 
 sudo systemctl restart {{chain.serviceName}} && sudo journalctl -u {{chain.serviceName}} -f --no-hostname -o cat</code>
     </pre>
