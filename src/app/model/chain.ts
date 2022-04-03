@@ -14,9 +14,10 @@ export class Chain {
   medium?: string;
   discord?: string;
   coingekoCoinId: string;
-  validatorUrl: string;
+  validatorUrl?: string;
+  projectOverview?: string;
 
-  constructor(id: string, chainName: string, chainId: string, snapshotServer: string, rpcServer: string, peer: string, serviceName: string, homeDirectoryName: string, twitter: string, github: string, globe: string, medium: string, coingekoCoinId: string, validatorUrl: string) {
+  constructor(id: string, chainName: string, chainId: string, snapshotServer: string, rpcServer: string, peer: string, serviceName: string, homeDirectoryName: string, twitter: string, github: string, globe: string, medium: string, coingekoCoinId: string) {
     this.id = id;
     this.chainName = chainName;
     this.chainId = chainId;
@@ -30,6 +31,5 @@ export class Chain {
     this.globe = globe;
     this.medium = medium;
     this.coingekoCoinId = coingekoCoinId;
-    this.validatorUrl = validatorUrl;
   }
 }

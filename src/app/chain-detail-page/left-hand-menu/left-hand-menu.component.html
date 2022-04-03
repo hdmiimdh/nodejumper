@@ -28,7 +28,7 @@
       </a>
     </div>
   </div>
-  <a class="support-us btn btn-block shadow-none" href="{{chain.validatorUrl}}" target="_blank">
+  <a *ngIf="chain.validatorUrl" class="support-us btn btn-block shadow-none" href="{{chain.validatorUrl}}" target="_blank">
     <span>Support Us</span>
   </a>
 </div>
