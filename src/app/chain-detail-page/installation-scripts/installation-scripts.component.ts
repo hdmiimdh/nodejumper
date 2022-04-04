@@ -11,8 +11,7 @@ import { ChainService } from "../../service/chain.service";
 })
 export class InstallationScriptsComponent implements OnInit {
 
-  autoInstallationScriptContent?: String;
-  manualInstallationScriptContent?: String;
+  manualInstallationScriptContent?: string;
   chain?: Chain;
   highlighted = false;
 
@@ -27,17 +26,24 @@ export class InstallationScriptsComponent implements OnInit {
   ngAfterViewInit(): void {
     this.chain = this.chainService.activeChain;
     if (this.chain) {
-      this.http.get(`assets/data/installation-scripts/auto/${this.chain.id}.txt`, {responseType: 'text'}).subscribe(data => {
-        this.autoInstallationScriptContent = data || 'TBD';
-      });
       this.http.get(`assets/data/installation-scripts/manual/${this.chain.id}.txt`, {responseType: 'text'}).subscribe(data => {
         this.manualInstallationScriptContent = data || 'TBD';
+        if (this.chain) {
+          this.manualInstallationScriptContent = this.manualInstallationScriptContent
+            .replace(new RegExp('\\$chainName', 'g'), this.chain.chainName)
+            .replace(new RegExp('\\$chainId', 'g'), this.chain.chainId)
+            .replace(new RegExp('\\$rpcServer', 'g'), this.chain.rpcServer)
+            .replace(new RegExp('\\$rpcPeer', 'g'), this.chain.rpcPeer)
+            .replace(new RegExp('\\$homeDirectoryName', 'g'), this.chain.homeDirectoryName)
+            .replace(new RegExp('\\$binaryName', 'g'), this.chain.binaryName || this.chain.serviceName)
+            .replace(new RegExp('\\$serviceName', 'g'), this.chain.serviceName);
+        }
       });
     }
   }
 
   ngAfterViewChecked() {
-    if (this.manualInstallationScriptContent && this.autoInstallationScriptContent && !this.highlighted) {
+    if (this.manualInstallationScriptContent && !this.highlighted) {
       this.highlightService.highlightAll();
       this.highlighted = true;
     }

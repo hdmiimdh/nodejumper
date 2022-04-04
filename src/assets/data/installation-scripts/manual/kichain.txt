@@ -17,32 +17,32 @@ cd
 git clone https://github.com/KiFoundation/ki-tools.git
 cd ki-tools && git checkout -b v2.0.1 tags/2.0.1 && make install
 
-kid version # Mainnet-IBC-v2.0.1-889c4a2ca6b228247f5cb9366c3c0c894592da27
+$binaryName version # Mainnet-IBC-v2.0.1-889c4a2ca6b228247f5cb9366c3c0c894592da27
 
 # replace nodejumper with your own moniker, if you'd like
-kid init nodejumper --chain-id kichain-2
+$binaryName init nodejumper --chain-id $chainId
 
 cd && wget https://raw.githubusercontent.com/KiFoundation/ki-networks/v0.1/Mainnet/kichain-2/genesis.json
-mv -f genesis.json ~/.kid/config/genesis.json
-jq -S -c -M '' ~/.kid/config/genesis.json | shasum -a 256 # 99855fdf89f5c697f8be2ecc587d79c77259e05d68268928797083bdaa614a80  -
+mv -f genesis.json ~/$homeDirectoryName/config/genesis.json
+jq -S -c -M '' ~/$homeDirectoryName/config/genesis.json | shasum -a 256 # 99855fdf89f5c697f8be2ecc587d79c77259e05d68268928797083bdaa614a80  -
 
-sed -i 's/^minimum-gas-prices *=.*/minimum-gas-prices = "0.0001uxki"/g' ~/.kid/config/app.toml
+sed -i 's/^minimum-gas-prices *=.*/minimum-gas-prices = "0.0001uxki"/g' ~/$homeDirectoryName/config/app.toml
 seeds="24cbccfa8813accd0ebdb09e7cdb54cff2e8fcd9@51.89.166.197:26656"
-peers="766ed622c79fa9cfd668db9741a1f72a5751e0cd@rpc1.nodejumper.io:28656"
-sed -i -e "s/^seeds *=.*/seeds = \"$seeds\"/; s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" ~/.kid/config/config.toml
+peers="$rpcPeer"
+sed -i -e "s/^seeds *=.*/seeds = \"$seeds\"/; s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" ~/$homeDirectoryName/config/config.toml
 
 # in case of pruning
-sed -i 's/pruning = "default"/pruning = "custom"/g' ~/.kid/config/app.toml
-sed -i 's/pruning-keep-recent = "0"/pruning-keep-recent = "100"/g' ~/.kid/config/app.toml
-sed -i 's/pruning-interval = "0"/pruning-interval = "10"/g' ~/.kid/config/app.toml
+sed -i 's/pruning = "default"/pruning = "custom"/g' ~/$homeDirectoryName/config/app.toml
+sed -i 's/pruning-keep-recent = "0"/pruning-keep-recent = "100"/g' ~/$homeDirectoryName/config/app.toml
+sed -i 's/pruning-interval = "0"/pruning-interval = "10"/g' ~/$homeDirectoryName/config/app.toml
 
-sudo tee <<EOF >/dev/null /etc/systemd/system/kid.service
+sudo tee <<EOF >/dev/null /etc/systemd/system/$serviceName.service
 [Unit]
-Description=Kichain Node
+Description=$chainName Node
 After=network-online.target
 [Service]
 User=$USER
-ExecStart=$(which kid) start
+ExecStart=$(which $binaryName) start
 Restart=on-failure
 RestartSec=10
 LimitNOFILE=10000
@@ -50,9 +50,9 @@ LimitNOFILE=10000
 WantedBy=multi-user.target
 EOF
 
-kid unsafe-reset-all
+$binaryName unsafe-reset-all
 
-SNAP_RPC="http://rpc1.nodejumper.io:28657"
+SNAP_RPC="$rpcServer"
 
 LATEST_HEIGHT=$(curl -s $SNAP_RPC/block | jq -r .result.block.header.height); \
 BLOCK_HEIGHT=$((LATEST_HEIGHT - 2000)); \
@@ -63,7 +63,7 @@ echo $LATEST_HEIGHT $BLOCK_HEIGHT $TRUST_HASH
 sed -i -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
 s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$SNAP_RPC,$SNAP_RPC\"| ; \
 s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
-s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" ~/.kid/config/config.toml
+s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" ~/$homeDirectoryName/config/config.toml
 
-sudo systemctl daemon-reload && sudo systemctl enable kid \
-&& sudo systemctl restart kid && sudo journalctl -u kid -f --no-hostname -o cat
+sudo systemctl daemon-reload && sudo systemctl enable $serviceName \
+&& sudo systemctl restart $serviceName && sudo journalctl -u $serviceName -f --no-hostname -o cat

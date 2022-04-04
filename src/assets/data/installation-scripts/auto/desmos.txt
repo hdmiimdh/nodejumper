@@ -1,6 +1,0 @@
-cd && wget https://raw.githubusercontent.com/nodejumper-org/cosmos-utils/main/installation-scripts/desmos_install.sh
-mkdir -p installation-scripts && mv -f desmos_install.sh installation-scripts/ && cd installation-scripts
-chmod +x desmos_install.sh
-
-# replace nodejumper with your own moniker, if you'd like
-./desmos_install.sh nodejumper

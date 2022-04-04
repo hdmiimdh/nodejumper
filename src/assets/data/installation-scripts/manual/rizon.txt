@@ -17,32 +17,32 @@ cd
 git clone https://github.com/rizon-world/rizon.git
 cd rizon && git checkout v0.3.0 && make install
 
-rizond version # v0.3.0
+$binaryName version # v0.3.0
 
 # replace nodejumper with your own moniker, if you'd like
-rizond init nodejumper --chain-id titan-1
+$binaryName init nodejumper --chain-id $chainId
 
 cd && wget https://raw.githubusercontent.com/rizon-world/mainnet/master/genesis.json
-mv -f genesis.json ~/.rizon/config/genesis.json
-jq -S -c -M '' ~/.rizon/config/genesis.json | shasum -a 256 # 5f00af49e86f5388203b8681f4482673e96acf028a449c0894aa08b69ef58bcb  -
+mv -f genesis.json ~/$homeDirectoryName/config/genesis.json
+jq -S -c -M '' ~/$homeDirectoryName/config/genesis.json | shasum -a 256 # 5f00af49e86f5388203b8681f4482673e96acf028a449c0894aa08b69ef58bcb  -
 
-sed -i 's/^minimum-gas-prices *=.*/minimum-gas-prices = "0.0001uatolo"/g' ~/.rizon/config/app.toml
-seeds="83c9cdc2db2b4eff4acc9cd7d664ad5ae6191080@seed-1.mainnet.rizon.world:26656,ae1476777536e2be26507c4fbcf86b67540adb64@seed-2.mainnet.rizon.world:26656,8abf316257a264dc8744dee6be4981cfbbcaf4e4@seed-3.mainnet.rizon.world:26656"
-peers="0d51e8b9eb24f412dffc855c7bd854a8ecb3dff5@rpc1.nodejumper.io:26656"
-sed -i -e "s/^seeds *=.*/seeds = \"$seeds\"/; s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" ~/.rizon/config/config.toml
+sed -i 's/^minimum-gas-prices *=.*/minimum-gas-prices = "0.0001uatolo"/g' ~/$homeDirectoryName/config/app.toml
+seeds="83c9cdc2db2b4eff4acc9cd7d664ad5ae6191080@seed-1.mainnet$homeDirectoryName.world:26656,ae1476777536e2be26507c4fbcf86b67540adb64@seed-2.mainnet$homeDirectoryName.world:26656,8abf316257a264dc8744dee6be4981cfbbcaf4e4@seed-3.mainnet$homeDirectoryName.world:26656"
+peers="$rpcPeer"
+sed -i -e "s/^seeds *=.*/seeds = \"$seeds\"/; s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" ~/$homeDirectoryName/config/config.toml
 
 # in case of pruning
-sed -i 's/pruning = "default"/pruning = "custom"/g' ~/.rizon/config/app.toml
-sed -i 's/pruning-keep-recent = "0"/pruning-keep-recent = "100"/g' ~/.rizon/config/app.toml
-sed -i 's/pruning-interval = "0"/pruning-interval = "10"/g' ~/.rizon/config/app.toml
+sed -i 's/pruning = "default"/pruning = "custom"/g' ~/$homeDirectoryName/config/app.toml
+sed -i 's/pruning-keep-recent = "0"/pruning-keep-recent = "100"/g' ~/$homeDirectoryName/config/app.toml
+sed -i 's/pruning-interval = "0"/pruning-interval = "10"/g' ~/$homeDirectoryName/config/app.toml
 
-sudo tee <<EOF >/dev/null /etc/systemd/system/rizond.service
+sudo tee <<EOF >/dev/null /etc/systemd/system/$serviceName.service
 [Unit]
-Description=Rizon Node
+Description=$chainName Node
 After=network-online.target
 [Service]
 User=$USER
-ExecStart=$(which rizond) start
+ExecStart=$(which $binaryName) start
 Restart=on-failure
 RestartSec=10
 LimitNOFILE=10000
@@ -50,9 +50,9 @@ LimitNOFILE=10000
 WantedBy=multi-user.target
 EOF
 
-rizond unsafe-reset-all
+$binaryName unsafe-reset-all
 
-SNAP_RPC="http://rpc1.nodejumper.io:26657"
+SNAP_RPC="$rpcServer"
 
 LATEST_HEIGHT=$(curl -s $SNAP_RPC/block | jq -r .result.block.header.height); \
 BLOCK_HEIGHT=$((LATEST_HEIGHT - 2000)); \
@@ -63,7 +63,7 @@ echo $LATEST_HEIGHT $BLOCK_HEIGHT $TRUST_HASH
 sed -i -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
 s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$SNAP_RPC,$SNAP_RPC\"| ; \
 s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
-s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" ~/.rizon/config/config.toml
+s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" ~/$homeDirectoryName/config/config.toml
 
-sudo systemctl daemon-reload && sudo systemctl enable rizond \
-&& sudo systemctl restart rizond && sudo journalctl -u rizond -f --no-hostname -o cat
+sudo systemctl daemon-reload && sudo systemctl enable $serviceName \
+&& sudo systemctl restart $serviceName && sudo journalctl -u $serviceName -f --no-hostname -o cat

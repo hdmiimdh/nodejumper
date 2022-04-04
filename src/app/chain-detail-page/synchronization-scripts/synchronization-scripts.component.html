@@ -5,9 +5,9 @@
   </div>
   <div class="row"><span class="title"><b>2. Peer</b></span></div>
   <div class="row code">
-    <pre><code class="language-bash">{{chain.peer}}</code>
+    <pre><code class="language-bash">{{chain.rpcPeer}}</code>
     </pre>
-    <pre><code class="language-bash">peers="{{chain.peer}}"
+    <pre><code class="language-bash">peers="{{chain.rpcPeer}}"
 sed -i -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" ~/{{chain.homeDirectoryName}}/config/config.toml</code>
     </pre>
   </div>
@@ -43,7 +43,7 @@ TRUST_HASH=$(curl -s "$SNAP_RPC/block?height=$BLOCK_HEIGHT" | jq -r .result.bloc
 
 echo $LATEST_HEIGHT $BLOCK_HEIGHT $TRUST_HASH
 
-peers="{{chain.peer}}"
+peers="{{chain.rpcPeer}}"
 sed -i -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" ~/{{chain.homeDirectoryName}}/config/config.toml
 
 sed -i -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
