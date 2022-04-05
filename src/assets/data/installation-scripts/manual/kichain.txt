@@ -13,8 +13,7 @@ go version # go version go1.17.2 linux/amd64
 
 sudo apt install -y make gcc jq
 
-cd
-git clone https://github.com/KiFoundation/ki-tools.git
+cd && git clone https://github.com/KiFoundation/ki-tools.git
 cd ki-tools && git checkout -b v2.0.1 tags/2.0.1 && make install
 
 $binaryName version # Mainnet-IBC-v2.0.1-889c4a2ca6b228247f5cb9366c3c0c894592da27
