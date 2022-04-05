@@ -13,36 +13,35 @@ go version # go version go1.17.2 linux/amd64
 
 sudo apt install -y make gcc jq
 
-cd
-git clone https://github.com/ChihuahuaChain/chihuahua.git
+cd && git clone https://github.com/ChihuahuaChain/chihuahua.git
 cd chihuahua && git checkout v1.1.1 && make install
 
-chihuahuad version # v1.1.1
+$binaryName version # v1.1.1
 
 # replace nodejumper with your own moniker, if you'd like
-chihuahuad init nodejumper --chain-id chihuahua-1
+$binaryName init nodejumper --chain-id $chainId
 
 cd && wget https://raw.githubusercontent.com/ChihuahuaChain/mainnet/main/genesis.json
-mv -f genesis.json ~/.chihuahua/config/genesis.json
-jq -S -c -M '' ~/.chihuahua/config/genesis.json | shasum -a 256 # 2d0709eeb6610fc41584d2d76ec5c83ba8537dc6615f36c520966eb43dc0b386  -
+mv -f genesis.json ~/$homeDirectoryName/config/genesis.json
+jq -S -c -M '' ~/$homeDirectoryName/config/genesis.json | shasum -a 256 # 2d0709eeb6610fc41584d2d76ec5c83ba8537dc6615f36c520966eb43dc0b386  -
 
-sed -i 's/^minimum-gas-prices *=.*/minimum-gas-prices = "0.0001uhuahua"/g' ~/.chihuahua/config/app.toml
+sed -i 's/^minimum-gas-prices *=.*/minimum-gas-prices = "0.0001uhuahua"/g' ~/$homeDirectoryName/config/app.toml
 seeds="4936e377b4d4f17048f8961838a5035a4d21240c@chihuahua-seed-01.mercury-nodes.net:29540"
-peers="c9b1385f81bec76dd6a84311de997d1e783dba53@rpc1.nodejumper.io:29656"
-sed -i -e "s/^seeds *=.*/seeds = \"$seeds\"/; s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" ~/.chihuahua/config/config.toml
+peers="$rpcPeer"
+sed -i -e "s/^seeds *=.*/seeds = \"$seeds\"/; s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" ~/$homeDirectoryName/config/config.toml
 
 # in case of pruning
-sed -i 's/pruning = "default"/pruning = "custom"/g' ~/.chihuahua/config/app.toml
-sed -i 's/pruning-keep-recent = "0"/pruning-keep-recent = "100"/g' ~/.chihuahua/config/app.toml
-sed -i 's/pruning-interval = "0"/pruning-interval = "10"/g' ~/.chihuahua/config/app.toml
+sed -i 's/pruning = "default"/pruning = "custom"/g' ~/$homeDirectoryName/config/app.toml
+sed -i 's/pruning-keep-recent = "0"/pruning-keep-recent = "100"/g' ~/$homeDirectoryName/config/app.toml
+sed -i 's/pruning-interval = "0"/pruning-interval = "10"/g' ~/$homeDirectoryName/config/app.toml
 
-sudo tee <<EOF >/dev/null /etc/systemd/system/chihuahuad.service
+sudo tee <<EOF >/dev/null /etc/systemd/system/$serviceName.service
 [Unit]
-Description=Chihuahua Node
+Description=$chainName Node
 After=network-online.target
 [Service]
 User=$USER
-ExecStart=$(which chihuahuad) start
+ExecStart=$(which $binaryName) start
 Restart=on-failure
 RestartSec=10
 LimitNOFILE=10000
@@ -50,9 +49,9 @@ LimitNOFILE=10000
 WantedBy=multi-user.target
 EOF
 
-chihuahuad unsafe-reset-all
+$binaryName unsafe-reset-all
 
-SNAP_RPC="http://rpc1.nodejumper.io:29657"
+SNAP_RPC="$rpcServer"
 
 LATEST_HEIGHT=$(curl -s $SNAP_RPC/block | jq -r .result.block.header.height); \
 BLOCK_HEIGHT=$((LATEST_HEIGHT - 2000)); \
@@ -63,7 +62,7 @@ echo $LATEST_HEIGHT $BLOCK_HEIGHT $TRUST_HASH
 sed -i -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
 s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$SNAP_RPC,$SNAP_RPC\"| ; \
 s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
-s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" ~/.chihuahua/config/config.toml
+s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" ~/$homeDirectoryName/config/config.toml
 
-sudo systemctl daemon-reload && sudo systemctl enable chihuahuad \
-&& sudo systemctl restart chihuahuad && sudo journalctl -u chihuahuad -f --no-hostname -o cat
+sudo systemctl daemon-reload && sudo systemctl enable $serviceName \
+&& sudo systemctl restart $serviceName && sudo journalctl -u $serviceName -f --no-hostname -o cat

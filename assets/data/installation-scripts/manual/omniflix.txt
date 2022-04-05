@@ -13,20 +13,20 @@ go version # go version go1.17.2 linux/amd64
 
 sudo apt install -y make gcc jq
 
-cd && git clone https://github.com/rizon-world/rizon.git
-cd rizon && git checkout v0.3.0 && make install
+cd && git clone https://github.com/Omniflix/omniflixhub.git
+cd omniflixhub && git checkout v0.4.0 && make install
 
-$binaryName version # v0.3.0
+$binaryName version # 0.4.0
 
 # replace nodejumper with your own moniker, if you'd like
 $binaryName init nodejumper --chain-id $chainId
 
-cd && wget https://raw.githubusercontent.com/rizon-world/mainnet/master/genesis.json
+cd && wget https://raw.githubusercontent.com/OmniFlix/mainnet/main/omniflixhub-1/genesis.json
 mv -f genesis.json ~/$homeDirectoryName/config/genesis.json
-jq -S -c -M '' ~/$homeDirectoryName/config/genesis.json | shasum -a 256 # 5f00af49e86f5388203b8681f4482673e96acf028a449c0894aa08b69ef58bcb  -
+jq -S -c -M '' ~/$homeDirectoryName/config/genesis.json | shasum -a 256 # 3c01dd89ae10f3dc247648831ef9e8168afd020946a13055d92a7fe2f50050a0  -
 
-sed -i 's/^minimum-gas-prices *=.*/minimum-gas-prices = "0.0001uatolo"/g' ~/$homeDirectoryName/config/app.toml
-seeds="83c9cdc2db2b4eff4acc9cd7d664ad5ae6191080@seed-1.mainnet$homeDirectoryName.world:26656,ae1476777536e2be26507c4fbcf86b67540adb64@seed-2.mainnet$homeDirectoryName.world:26656,8abf316257a264dc8744dee6be4981cfbbcaf4e4@seed-3.mainnet$homeDirectoryName.world:26656"
+sed -i 's/^minimum-gas-prices *=.*/minimum-gas-prices = "0.0001uflix"/g' ~/$homeDirectoryName/config/app.toml
+seeds="9d75a06ebd3732a041df459849c21b87b2c55cde@35.187.240.195:26656,19feae28207474eb9f168fff9720fd4d418df1ed@35.240.196.102:26656"
 peers="$rpcPeer"
 sed -i -e "s/^seeds *=.*/seeds = \"$seeds\"/; s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" ~/$homeDirectoryName/config/config.toml
 
