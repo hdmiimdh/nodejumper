@@ -30,8 +30,8 @@ wget -O - {{chain.snapshotServer}}/{{chain.id}}/${{ '{' }}SNAP_NAME{{ '}' }} | l
 sudo systemctl restart {{chain.serviceName}} && sudo journalctl -u {{chain.serviceName}} -f --no-hostname -o cat</code>
     </pre>
   </div>
-  <div class="row"><span class="title"><b>4. State Sync</b></span></div>
-  <div class="row code">
+  <div class="row" *ngIf="!chain.stateSyncDisabled"><span class="title"><b>4. State Sync</b></span></div>
+  <div class="row code" *ngIf="!chain.stateSyncDisabled">
     <pre>
       <code class="language-bash">sudo systemctl stop {{chain.serviceName}} && {{chain.binaryName || chain.serviceName}} unsafe-reset-all
 

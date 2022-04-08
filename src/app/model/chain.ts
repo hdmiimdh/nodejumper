@@ -16,6 +16,7 @@ export class Chain {
   coingekoCoinId: string;
   validatorUrl?: string;
   projectOverview?: string;
+  stateSyncDisabled?: boolean;
 
   constructor(id: string, chainName: string, chainId: string, snapshotServer: string, rpcServer: string, rpcPeer: string, serviceName: string, homeDirectoryName: string, twitter: string, github: string, globe: string, medium: string, coingekoCoinId: string) {
     this.id = id;

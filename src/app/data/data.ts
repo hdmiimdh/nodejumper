@@ -105,22 +105,23 @@ export const CHAINS: Chain[] = [
     validatorUrl: "",
     projectOverview: "OmniFlix is a peer-to-peer network designed for creators and communities/DAOs to to mint, manage and monetize NFTs and social tokens across blockchain networks. Independent artists & communities can create Media Studios (Record Labels, Agencies or even your own band)& Media Communities to coordinate and collaborate."
   },
-  // {
-  //   id: "starname",
-  //   chainName: "Starname",
-  //   chainId: "iov-mainnet-ibc",
-  //   snapshotServer: "https://snapshots2.nodejumper.io",
-  //   rpcServer: "http://135.181.214.121:34657",
-  //   rpcPeer: "0590f9ec4da3690e64c8f06224796372032f5f4a@135.181.214.121:34656",
-  //   serviceName: "starnamed",
-  //   homeDirectoryName: ".starnamed",
-  //   twitter: "https://twitter.com/starname_me",
-  //   github: "https://github.com/iov-one",
-  //   globe: "https://www.starname.me/",
-  //   medium: "https://medium.com/iov-internet-of-values",
-  //   discord: "https://discord.com/invite/vmScGQ7nUr",
-  //   coingekoCoinId: "starname",
-  //   validatorUrl: "",
-  //   projectOverview: "Starname is a fully decentralized, blockchain-based username platform, bridging the popular internet and the complex blockchain ecosystem by allowing users to create customised usernames that represent their blockchain wallet and identity."
-  // }
+  {
+    id: "starname",
+    chainName: "Starname",
+    chainId: "iov-mainnet-ibc",
+    snapshotServer: "https://snapshots2.nodejumper.io",
+    rpcServer: "http://rpc2.nodejumper.io:34657",
+    rpcPeer: "3180fdc5e477e675acd22e63477ce3a2db20edf9@rpc2.nodejumper.io:34656",
+    serviceName: "starnamed",
+    homeDirectoryName: ".starnamed",
+    twitter: "https://twitter.com/starname_me",
+    github: "https://github.com/iov-one",
+    globe: "https://www.starname.me/",
+    medium: "https://medium.com/iov-internet-of-values",
+    discord: "https://discord.com/invite/vmScGQ7nUr",
+    coingekoCoinId: "starname",
+    validatorUrl: "https://ping.pub/starname/staking/starvaloper1c8p90su0tdz67xdhx5470lzvs2lw8twqw9j0vf",
+    projectOverview: "Starname is a fully decentralized, blockchain-based username platform, bridging the popular internet and the complex blockchain ecosystem by allowing users to create customised usernames that represent their blockchain wallet and identity.",
+    stateSyncDisabled: true
+  }
 ]
