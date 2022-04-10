@@ -12,6 +12,7 @@ version="1.17.2" \
 go version # go version go1.17.2 linux/amd64
 
 sudo apt install -y make gcc jq
+sudo apt install snapd -y && sudo snap install lz4
 
 cd && wget https://github.com/CosmWasm/wasmvm/raw/v0.13.0/api/libwasmvm.so
 sudo mv -f libwasmvm.so /lib/libwasmvm.so
@@ -54,18 +55,10 @@ EOF
 
 $binaryName unsafe-reset-all
 
-SNAP_RPC="$rpcServer"
+rm -rf ~/$homeDirectoryName/data && cd ~/$homeDirectoryName
 
-LATEST_HEIGHT=$(curl -s $SNAP_RPC/block | jq -r .result.block.header.height); \
-BLOCK_HEIGHT=$((LATEST_HEIGHT - 2000)); \
-TRUST_HASH=$(curl -s "$SNAP_RPC/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
-
-echo $LATEST_HEIGHT $BLOCK_HEIGHT $TRUST_HASH
-
-sed -i -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
-s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$SNAP_RPC,$SNAP_RPC\"| ; \
-s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
-s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" ~/$homeDirectoryName/config/config.toml
+SNAP_NAME=$(curl -s https://snapshots2.nodejumper.io/starname/ | egrep -o ">iov-mainnet-ibc.*\.tar.lz4" | tr -d ">")
+wget -O - https://snapshots2.nodejumper.io/starname/${SNAP_NAME} | lz4 -dc - | tar -xf -
 
 sudo systemctl daemon-reload && sudo systemctl enable $serviceName \
 && sudo systemctl restart $serviceName && sudo journalctl -u $serviceName -f --no-hostname -o cat
