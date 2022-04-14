@@ -4,6 +4,7 @@
   border-radius: 0.5rem;
   justify-content: center;
   align-items: center;
+  box-shadow: rgb(100 100 111 / 20%) 0 7px 29px 0;
 }
 
 .card:hover {

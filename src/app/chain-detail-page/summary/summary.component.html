@@ -1,0 +1,58 @@
+<ng-container *ngIf="this.chainService.activeChain as chain">
+  <div class="row">
+    <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
+      <div class="block">
+        <span class="title">Price</span>
+        <span class="value">{{price}}</span>
+      </div>
+    </div>
+    <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
+      <div class="block">
+        <span class="title">Height</span>
+        <span class="value">{{summary?.blockHeight | number: '2.'}}</span>
+      </div>
+    </div>
+    <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
+      <div class="block">
+        <span class="title">Transactions</span>
+        <span class="value">{{summary?.totalTx | number: '2.'}}</span>
+      </div>
+    </div>
+    <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
+      <div class="block">
+        <span class="title">Bonded Tokens</span>
+        <span class="value" *ngIf="summary?.bondedTokens">{{summary?.bondedTokens + '/' + summary?.totalSupply}}</span>
+      </div>
+    </div>
+    <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
+      <div class="block">
+        <span class="title">Inflation</span>
+        <span class="value">{{summary?.inflation}}</span>
+      </div>
+    </div>
+    <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
+      <div class="block">
+        <span class="title">Block Time</span>
+        <span class="value">{{summary?.blockTime}}</span>
+      </div>
+    </div>
+    <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
+      <div class="block">
+        <span class="title">Total Validators</span>
+        <span class="value">{{summary?.totalValidators}}</span>
+      </div>
+    </div>
+    <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
+      <div class="block">
+        <span class="title">Active Validators</span>
+        <span class="value">{{summary?.activeValidators}}</span>
+      </div>
+    </div>
+    <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
+      <div class="block">
+        <span class="title">Jailed Validators</span>
+        <span class="value">{{summary?.jailedValidators}}</span>
+      </div>
+    </div>
+  </div>
+</ng-container>

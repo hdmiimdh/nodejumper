@@ -1,12 +1,12 @@
-.left-hand-menu-container {
-  position: fixed;
-}
-
 .card {
   width: 250px;
-  border: 1px solid #d0d7de;
+  border: none;
+  outline: 1px solid #d0d7de;
   border-radius: 0.75rem;
   background-color: white;
+  position: fixed;
+  box-shadow: rgb(100 100 111 / 20%) 0 7px 29px 0;
+  overflow: hidden;
 }
 
 .card div {
@@ -33,6 +33,10 @@
 .card .details {
   font-size: 18px;
   color: var(--details-color);
+}
+
+.card .menu {
+  padding-bottom: 0;
 }
 
 .card .menu-item {
@@ -68,20 +72,24 @@
   opacity: 0.6;
 }
 
-.support-us {
+.card .support-us {
+  padding-top: 10px;
+  padding-bottom: 0;
+}
+
+.support-us-btn {
   width: 250px;
-  margin-top: 10px;
-  border: 1px solid #d0d7de;
-  border-radius: 0.75rem;
+  border-top: 1px solid #d0d7de;
+  border-radius: 0;
   cursor: pointer;
   background-color: #f5f2f0;
 }
 
-.support-us:hover {
+.support-us-btn:hover {
   text-decoration: underline;
 }
 
-.support-us span {
+.support-us-btn span {
   font-size: 18px;
   font-weight: 600;
 }

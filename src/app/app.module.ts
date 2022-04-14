@@ -20,6 +20,7 @@ import {
 import { AboutComponent } from './chain-detail-page/about/about.component';
 import { InstallationScriptsComponent } from './chain-detail-page/installation-scripts/installation-scripts.component';
 import { NgxGoogleAnalyticsModule, NgxGoogleAnalyticsRouterModule } from "ngx-google-analytics";
+import { SummaryComponent } from './chain-detail-page/summary/summary.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { NgxGoogleAnalyticsModule, NgxGoogleAnalyticsRouterModule } from "ngx-go
     LeftHandMenuComponent,
     SynchronizationScriptsComponent,
     AboutComponent,
-    InstallationScriptsComponent
+    InstallationScriptsComponent,
+    SummaryComponent
   ],
   imports: [
     BrowserModule,

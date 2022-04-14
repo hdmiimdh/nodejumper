@@ -7,6 +7,7 @@ import {
 } from "./chain-detail-page/synchronization-scripts/synchronization-scripts.component";
 import { AboutComponent } from "./chain-detail-page/about/about.component";
 import { InstallationScriptsComponent } from "./chain-detail-page/installation-scripts/installation-scripts.component";
+import { SummaryComponent } from "./chain-detail-page/summary/summary.component";
 
 const routes: Routes = [
   {path: '', component: HomePageComponent},
@@ -15,7 +16,8 @@ const routes: Routes = [
     children: [
       {path: '', component: InstallationScriptsComponent},
       {path: 'sync', component: SynchronizationScriptsComponent},
-      {path: 'about', component: AboutComponent}
+      {path: 'about', component: AboutComponent},
+      {path: 'summary', component: SummaryComponent}
     ]
   },
   {path: '**', redirectTo: '/', pathMatch: 'full'},

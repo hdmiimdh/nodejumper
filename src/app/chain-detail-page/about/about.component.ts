@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChainService } from "../../service/chain.service";
 import { HighlightService } from "../../service/highlight.service";
-import { HttpClient } from "@angular/common/http";
 import { Chain } from "../../model/chain";
 
 @Component({
@@ -16,7 +15,6 @@ export class AboutComponent implements OnInit {
   highlighted = false;
 
   constructor(private highlightService: HighlightService,
-              private http: HttpClient,
               public chainService: ChainService) {
   }
 
@@ -26,8 +24,8 @@ export class AboutComponent implements OnInit {
   ngAfterViewInit(): void {
     this.chain = this.chainService.activeChain;
     if (this.chain) {
-      let coingekoUrl = 'https://api.coingecko.com/api/v3/coins/' + this.chain.coingekoCoinId;
-      this.http.get(coingekoUrl)
+      let coingekoCoinId = this.chain.coingekoCoinId || this.chain.id;
+      this.chainService.getCoingekoSummary(coingekoCoinId)
         .subscribe((data: any) => {
           this.data = data;
         });

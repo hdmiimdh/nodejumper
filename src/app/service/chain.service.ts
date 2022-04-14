@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { CHAINS } from "../data/data";
 import { Chain } from "../model/chain";
+import { environment } from "../../environments/environment";
+import { HttpClient } from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +11,7 @@ export class ChainService {
 
   activeChain?: Chain;
 
-  constructor() {
+  constructor(private http: HttpClient) {
   }
 
   getChains(): Chain[] {
@@ -20,5 +22,13 @@ export class ChainService {
       if (chainName1 < chainName2) { return -1; }
       return 0;
     });
+  }
+
+  getChainSummary(apiChainId: string) {
+    return this.http.get(`${environment.baseUrl}/api/v1/${apiChainId}/summary`)
+  }
+
+  getCoingekoSummary(coingekoCoinId: string) {
+    return this.http.get(`https://api.coingecko.com/api/v3/coins/${coingekoCoinId}`)
   }
 }

@@ -13,12 +13,15 @@ export class Chain {
   globe: string;
   medium?: string;
   discord?: string;
-  coingekoCoinId: string;
+  coingekoCoinId?: string;
   validatorUrl?: string;
   projectOverview?: string;
   stateSyncDisabled?: boolean;
+  denomName: string;
+  denomPow: number;
+  apiChainId?: string;
 
-  constructor(id: string, chainName: string, chainId: string, snapshotServer: string, rpcServer: string, rpcPeer: string, serviceName: string, homeDirectoryName: string, twitter: string, github: string, globe: string, medium: string, coingekoCoinId: string) {
+  constructor(id: string, chainName: string, chainId: string, snapshotServer: string, rpcServer: string, rpcPeer: string, serviceName: string, homeDirectoryName: string, twitter: string, github: string, globe: string, denomName: string, denomPow: number) {
     this.id = id;
     this.chainName = chainName;
     this.chainId = chainId;
@@ -30,7 +33,7 @@ export class Chain {
     this.twitter = twitter;
     this.github = github;
     this.globe = globe;
-    this.medium = medium;
-    this.coingekoCoinId = coingekoCoinId;
+    this.denomName = denomName;
+    this.denomPow = denomPow;
   }
 }

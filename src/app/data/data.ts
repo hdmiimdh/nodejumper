@@ -15,8 +15,9 @@ export const CHAINS: Chain[] = [
     globe: "https://rizon.world",
     medium: "https://medium.com/hdac",
     discord: "https://discord.com/invite/DvZFA7mpuX",
-    coingekoCoinId: "rizon",
-    validatorUrl: "https://ping.pub/rizon/staking/rizonvaloper1hy3em3nfngyntk7tre9d0626mj9swhu9ughurh"
+    validatorUrl: "https://ping.pub/rizon/staking/rizonvaloper1hy3em3nfngyntk7tre9d0626mj9swhu9ughurh",
+    denomName: "uatolo",
+    denomPow: 6
   },
   {
     id: "bitcanna",
@@ -32,8 +33,9 @@ export const CHAINS: Chain[] = [
     globe: "https://www.bitcanna.io",
     medium: "https://medium.com/@bitcannaglobal",
     discord: "https://discord.com/invite/Bq9tRju6",
-    coingekoCoinId: "bitcanna",
-    validatorUrl: "https://ping.pub/bitcanna/staking/bcnavaloper1nlyurpgk5zcg6f6dcpdt2mq9khv27ajg4px45y"
+    validatorUrl: "https://ping.pub/bitcanna/staking/bcnavaloper1nlyurpgk5zcg6f6dcpdt2mq9khv27ajg4px45y",
+    denomName: "ubcna",
+    denomPow: 6
   },
   {
     id: "kichain",
@@ -50,7 +52,9 @@ export const CHAINS: Chain[] = [
     medium: "https://medium.com/ki-foundation",
     discord: "https://discord.gg/pJJhxPK6",
     coingekoCoinId: "ki",
-    validatorUrl: "https://ping.pub/kichain/staking/kivaloper1q5vfka8z05t27jf4fuawpec99mvv9df90yc57a"
+    validatorUrl: "https://ping.pub/kichain/staking/kivaloper1q5vfka8z05t27jf4fuawpec99mvv9df90yc57a",
+    denomName: "uxki",
+    denomPow: 6
   },
   {
     id: "chihuahua",
@@ -67,7 +71,9 @@ export const CHAINS: Chain[] = [
     medium: "https://medium.com/@chihuahuachain",
     discord: "https://discord.com/invite/AR38BTh4X8",
     coingekoCoinId: "chihuahua-token",
-    validatorUrl: "https://ping.pub/chihuahua/staking/chihuahuavaloper1vdsd7zqpl3af46l08xkkc2zh6qhfhk6fp3s9pu"
+    validatorUrl: "https://ping.pub/chihuahua/staking/chihuahuavaloper1vdsd7zqpl3af46l08xkkc2zh6qhfhk6fp3s9pu",
+    denomName: "uhuahua",
+    denomPow: 6
   },
   {
     id: "desmos",
@@ -84,8 +90,9 @@ export const CHAINS: Chain[] = [
     globe: "https://www.desmos.network/",
     medium: "https://medium.com/desmosnetwork",
     discord: "https://discord.com/invite/ckFcU5vxxc",
-    coingekoCoinId: "desmos",
-    validatorUrl: "https://ping.pub/desmos/staking/desmosvaloper184nr4azm7kwas40yzftfxy9ma2lrm5pp5q795x"
+    validatorUrl: "https://ping.pub/desmos/staking/desmosvaloper184nr4azm7kwas40yzftfxy9ma2lrm5pp5q795x",
+    denomName: "udsm",
+    denomPow: 6
   },
   {
     id: "omniflix",
@@ -103,7 +110,9 @@ export const CHAINS: Chain[] = [
     discord: "https://discord.gg/9nY4zKvZ",
     coingekoCoinId: "omniflix-network",
     validatorUrl: "",
-    projectOverview: "OmniFlix is a peer-to-peer network designed for creators and communities/DAOs to to mint, manage and monetize NFTs and social tokens across blockchain networks. Independent artists & communities can create Media Studios (Record Labels, Agencies or even your own band)& Media Communities to coordinate and collaborate."
+    projectOverview: "OmniFlix is a peer-to-peer network designed for creators and communities/DAOs to to mint, manage and monetize NFTs and social tokens across blockchain networks. Independent artists & communities can create Media Studios (Record Labels, Agencies or even your own band)& Media Communities to coordinate and collaborate.",
+    denomName: "uflix",
+    denomPow: 6
   },
   {
     id: "starname",
@@ -119,9 +128,11 @@ export const CHAINS: Chain[] = [
     globe: "https://www.starname.me/",
     medium: "https://medium.com/iov-internet-of-values",
     discord: "https://discord.com/invite/vmScGQ7nUr",
-    coingekoCoinId: "starname",
     validatorUrl: "https://ping.pub/starname/staking/starvaloper1c8p90su0tdz67xdhx5470lzvs2lw8twqw9j0vf",
     projectOverview: "Starname is a fully decentralized, blockchain-based username platform, bridging the popular internet and the complex blockchain ecosystem by allowing users to create customised usernames that represent their blockchain wallet and identity.",
-    stateSyncDisabled: true
+    stateSyncDisabled: true,
+    denomName: "uiov",
+    denomPow: 6,
+    apiChainId: "iov"
   }
 ]

@@ -1,6 +1,6 @@
 .content {
   display: inline-block;
-  max-width: calc(100% - 250px);
+  width: calc(100% - 250px);
   padding-left: 20px;
   margin-left: 250px;
 }
@@ -12,7 +12,7 @@
 
 @media (max-width: 576px) {
   .content {
-    max-width: 100%;
+    width: 100%;
     padding-left: unset;
     margin-left: unset;
   }
