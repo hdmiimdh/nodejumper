@@ -390,7 +390,7 @@ export class SummaryComponent implements OnInit {
   }
 
   drawVotingPowerChart(validators: any, chain: Chain): void {
-    let top20validators = validators.slice(0, 19);
+    let top20validators = validators.slice(0, 9);
     let labels = top20validators.map((validator: any) => validator.moniker);
     let data = top20validators.map((validator: any) => validator.votingPower / Math.pow(10, chain.denomPow))
     let votingPowerChart = new Chart('votingPowerChart', {
@@ -412,7 +412,13 @@ export class SummaryComponent implements OnInit {
       options: {
         plugins: {
           legend: {
-            display: false
+            display: true,
+            labels: {
+              font: {
+                family: 'Monaco',
+                size: 15
+              }
+            }
           },
           tooltip: {
             titleFont: {
@@ -448,7 +454,7 @@ export class SummaryComponent implements OnInit {
     }
 
     sortableArray = sortableArray.sort((a: any, b: any) => b[1] - a[1]);
-    sortableArray = sortableArray.slice(0, 9);
+    sortableArray = sortableArray.slice(0, 5);
 
     let labels = sortableArray.map((res: any) => this.displayPercent(res[0]));
     let data = sortableArray.map((res: any) => res[1]);
@@ -471,7 +477,13 @@ export class SummaryComponent implements OnInit {
       options: {
         plugins: {
           legend: {
-            display: false
+            display: true,
+            labels: {
+              font: {
+                family: 'Monaco',
+                size: 15
+              }
+            }
           },
           tooltip: {
             titleFont: {
