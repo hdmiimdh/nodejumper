@@ -26,6 +26,7 @@
 
 .ratio-row {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .ratio-row .col:hover {
