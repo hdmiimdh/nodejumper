@@ -21,6 +21,7 @@ import { AboutComponent } from './chain-detail-page/about/about.component';
 import { InstallationScriptsComponent } from './chain-detail-page/installation-scripts/installation-scripts.component';
 import { NgxGoogleAnalyticsModule, NgxGoogleAnalyticsRouterModule } from "ngx-google-analytics";
 import { SummaryComponent } from './chain-detail-page/summary/summary.component';
+import { NgCircleProgressModule } from "ng-circle-progress";
 
 @NgModule({
   declarations: [
@@ -43,7 +44,17 @@ import { SummaryComponent } from './chain-detail-page/summary/summary.component'
     FormsModule,
     HttpClientModule,
     NgxGoogleAnalyticsModule.forRoot('G-J46ZYRRDQD'),
-    NgxGoogleAnalyticsRouterModule
+    NgxGoogleAnalyticsRouterModule,
+    NgCircleProgressModule.forRoot({
+      // set defaults here
+      outerStrokeWidth: 6,
+      innerStrokeWidth: 5,
+      outerStrokeColor: "rgba(120, 192, 0, 1)",
+      innerStrokeColor: "rgba(120, 192, 0, 0.4)",
+      animationDuration: 500,
+      animation: true,
+      responsive: true
+    })
   ],
   providers: [ChainService, HighlightService],
   bootstrap: [AppComponent]

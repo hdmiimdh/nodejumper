@@ -17,9 +17,25 @@ export class SummaryComponent implements OnInit {
   noPrices?: boolean;
   noVolumes?: boolean;
   noMissedBlocks?: boolean;
+  bondedTokensRatio?: any;
+  tokensDistributionRatio?: any;
+  athPriceRatio?: any;
+
+  innerStrokeColor_SUCCESS: string;
+  outerStrokeColor_SUCCESS: string;
+  innerStrokeColor_WARN: string;
+  outerStrokeColor_WARN: string;
+  innerStrokeColor_DANGER: string;
+  outerStrokeColor_DANGER: string;
 
   constructor(public chainService: ChainService) {
     this.CHART_INTERVAL_DAYS = 14;
+    this.innerStrokeColor_SUCCESS = 'rgba(120, 192, 0, 0.4)';
+    this.outerStrokeColor_SUCCESS = 'rgba(120, 192, 0, 1)';
+    this.innerStrokeColor_WARN = 'rgba(255, 193, 7, 0.4)';
+    this.outerStrokeColor_WARN = 'rgba(255, 193, 7, 1)';
+    this.innerStrokeColor_DANGER = 'rgba(220, 53, 69, 0.4)';
+    this.outerStrokeColor_DANGER = 'rgba(220, 53, 69, 1)';
   }
 
   ngOnInit(): void {
@@ -32,6 +48,12 @@ export class SummaryComponent implements OnInit {
       this.chainService.getChainSummary(apiChainId)
         .subscribe((summary: any) => {
           if (this.chain) {
+            let ratio = this.extractBondedTokensRatio(this.chain, summary);
+            this.bondedTokensRatio = {
+              ratio: ratio,
+              innerStrokeColor: this.innerStokeColorForRatio(ratio, 10, 25),
+              outerStrokeColor: this.outerStokeColorByRatio(ratio, 10, 25)
+            };
             this.summary = summary;
             this.summary.blockTime = this.extractBlockTime(summary);
             this.summary.inflation = this.extractInflation(summary);
@@ -44,6 +66,12 @@ export class SummaryComponent implements OnInit {
       this.chainService.getCoingekoSummary(coingekoCoinId)
         .subscribe((coingekoSummary: any) => {
           this.price = this.extractPrice(coingekoSummary);
+          let ratio = this.extractAthPriceRatio(coingekoSummary);
+          this.athPriceRatio = {
+            ratio: ratio,
+            innerStrokeColor: this.innerStokeColorForRatio(ratio, 10, 40),
+            outerStrokeColor: this.outerStokeColorByRatio(ratio, 10, 40)
+          };
         });
 
       this.chainService.getCoingekoMarketData(coingekoCoinId, this.CHART_INTERVAL_DAYS)
@@ -55,6 +83,12 @@ export class SummaryComponent implements OnInit {
       this.chainService.getChainValidators(apiChainId)
         .subscribe((validators: any) => {
           if (this.chain) {
+            let ratio = this.extractTokensDistributionRatio(validators);
+            this.tokensDistributionRatio = {
+              ratio: ratio,
+              innerStrokeColor: this.innerStokeColorForRatio(ratio, 10, 25),
+              outerStrokeColor: this.outerStokeColorByRatio(ratio, 10, 25)
+            };
             this.drawVotingPowerChart(validators, this.chain);
             this.drawCommissionDistributionChart(validators);
             this.drawMissedBlocksChart(validators);
@@ -101,14 +135,19 @@ export class SummaryComponent implements OnInit {
   }
 
   extractTotalSupply(chain: Chain, summary: any): string {
+    let totalSupply = this.findTotalSupply(chain, summary);
+    totalSupply = totalSupply / Math.pow(10, chain.denomPow);
+    return this.compactNumber(totalSupply);
+  }
+
+  findTotalSupply(chain: Chain, summary: any) {
     let totalSupply = 0;
     summary.totalSupply.supply.forEach(function (item: any) {
       if (item.denom === chain.denomName) {
         totalSupply = +item.amount;
       }
     });
-    totalSupply = totalSupply / Math.pow(10, chain.denomPow);
-    return this.compactNumber(totalSupply);
+    return totalSupply
   }
 
   extractCommunityPool(chain: Chain, summary: any): string {
@@ -120,6 +159,53 @@ export class SummaryComponent implements OnInit {
     });
     communityPool = communityPool / Math.pow(10, chain.denomPow);
     return this.compactNumber(communityPool);
+  }
+
+  extractBondedTokensRatio(chain: Chain, summary: any): number {
+    let bondedTokens = summary.bondedTokens;
+    let totalSupply = this.findTotalSupply(chain, summary);
+    return +(bondedTokens / totalSupply * 100).toFixed(2);
+  }
+
+  extractTokensDistributionRatio(validators: any): number {
+    let totalVotingPower = 0;
+    validators.forEach((validator: any) => {
+      totalVotingPower += validator.votingPower;
+    });
+    let validatorsNum = 0;
+    let tmpVotingPower = 0;
+    let percentage = 0;
+    for (let i = 0; i < validators.length && !percentage; i++) {
+      let validator = validators[i];
+      tmpVotingPower += validator.votingPower;
+      validatorsNum++;
+      if (tmpVotingPower / totalVotingPower * 100 >= 50) {
+        percentage = +(validatorsNum / validators.length * 100).toFixed(2);
+      }
+    }
+    return percentage;
+  }
+
+  extractAthPriceRatio(coingekoSummary: any): number {
+    let currentPrice = coingekoSummary?.market_data?.current_price?.usd;
+    let athPrice = coingekoSummary?.market_data?.ath?.usd;
+    return +(currentPrice / athPrice * 100).toFixed(2);
+  }
+
+  innerStokeColorForRatio(ratio: number, limit1: number, limit2: number) : string {
+    return ratio <= limit1
+      ? this.innerStrokeColor_DANGER
+      : ratio <= limit2
+        ? this.innerStrokeColor_WARN
+        : this.innerStrokeColor_SUCCESS;
+  }
+
+  outerStokeColorByRatio(ratio: number, limit1: number, limit2: number) : string {
+    return ratio <= limit1
+      ? this.outerStrokeColor_DANGER
+      : ratio <= limit2
+        ? this.outerStrokeColor_WARN
+        : this.outerStrokeColor_SUCCESS;
   }
 
   compactNumber(num: number): string {
