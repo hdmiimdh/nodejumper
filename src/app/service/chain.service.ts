@@ -28,7 +28,15 @@ export class ChainService {
     return this.http.get(`${environment.baseUrl}/api/v1/${apiChainId}/summary`)
   }
 
+  getChainValidators(apiChainId: string) {
+    return this.http.get(`${environment.baseUrl}/api/v1/${apiChainId}/validators`)
+  }
+
   getCoingekoSummary(coingekoCoinId: string) {
     return this.http.get(`https://api.coingecko.com/api/v3/coins/${coingekoCoinId}`)
+  }
+
+  getCoingekoMarketData(coingekoCoinId: string, timeIntervalDays: number) {
+    return this.http.get(`https://api.coingecko.com/api/v3/coins/${coingekoCoinId}/market_chart?vs_currency=usd&days=${timeIntervalDays}&interval=daily`)
   }
 }

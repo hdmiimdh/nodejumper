@@ -23,3 +23,48 @@
   right: 15px;
   font-size: 18px;
 }
+
+.charts .col {
+  position: relative;
+}
+
+.charts .title {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 15px 10px 0;
+  text-align: center;
+  width: 100%;
+  text-decoration: underline;
+}
+
+.charts .hide {
+  display: none;
+}
+
+.charts .no-data {
+  position: absolute;
+  left: 0;
+  top: 0;
+  padding: 40px 20px 20px;
+  text-align: center;
+  width: 100%;
+  height: 100%;
+}
+
+.charts .no-data span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: white;
+}
+
+.charts .chart {
+  width: 100%;
+  padding: 40px 10px 10px;
+  border: 1px solid #d0d7de;
+  box-shadow: rgb(100 100 111 / 20%) 0 7px 29px 0;
+}
+

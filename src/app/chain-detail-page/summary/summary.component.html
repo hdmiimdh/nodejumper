@@ -55,4 +55,29 @@
       </div>
     </div>
   </div>
+  <div class="row charts">
+    <div class="col col-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="title"><span>Price Chart ({{CHART_INTERVAL_DAYS}}d)</span></div>
+      <div [ngClass]="noPrices ? 'no-data': 'hide'"><span>No Market Data Yet</span></div>
+      <canvas id="priceChart" class="chart"></canvas>
+    </div>
+    <div class="col col-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="title"><span>Volume Chart ({{CHART_INTERVAL_DAYS}}d)</span></div>
+      <div [ngClass]="noVolumes ? 'no-data': 'hide'"><span>No Market Data Yet</span></div>
+      <canvas id="volumeChart" class="chart"></canvas>
+    </div>
+    <div class="col col-12 col-sm-12 col-md-12 col-lg-6">
+      <div class="title"><span>Voting Power (top 20)</span></div>
+      <canvas id="votingPowerChart" class="chart"></canvas>
+    </div>
+    <div class="col col-12 col-sm-12 col-md-12 col-lg-6">
+      <div class="title"><span>Commission Distribution (top 10)</span></div>
+      <canvas id="commissionChart" class="chart"></canvas>
+    </div>
+    <div class="col col-12 col-sm-12 col-md-12 col-lg-12">
+      <div class="title"><span>Missed Blocks (over last 100 blocks)</span></div>
+      <div [ngClass]="noMissedBlocks ? 'no-data': 'hide'"><span>No Missed Blocks Yet</span></div>
+      <canvas id="missedBlocksChart" class="chart"></canvas>
+    </div>
+  </div>
 </ng-container>

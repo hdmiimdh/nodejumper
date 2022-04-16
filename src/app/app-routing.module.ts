@@ -14,10 +14,10 @@ const routes: Routes = [
   {
     path: ':id', component: ChainDetailPageComponent,
     children: [
-      {path: '', component: InstallationScriptsComponent},
+      {path: '', component: SummaryComponent},
+      {path: 'installation', component: InstallationScriptsComponent},
       {path: 'sync', component: SynchronizationScriptsComponent},
-      {path: 'about', component: AboutComponent},
-      {path: 'summary', component: SummaryComponent}
+      {path: 'about', component: AboutComponent}
     ]
   },
   {path: '**', redirectTo: '/', pathMatch: 'full'},
