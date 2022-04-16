@@ -24,6 +24,14 @@
   font-size: 18px;
 }
 
+.ratio-row {
+  display: flex;
+}
+
+.ratio-row .col:hover {
+  cursor: pointer;
+}
+
 .charts .col {
   position: relative;
 }

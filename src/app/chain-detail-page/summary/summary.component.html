@@ -55,22 +55,22 @@
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col col-12 col-sm-12 col-md-4 col-lg-4">
-      <circle-progress [percent]="bondedTokensRatio?.ratio"
+  <div class="ratio-row">
+    <div class="col col-12 col-sm-12 col-md-4 col-lg-4" ngbTooltip="This ratio shows percentage of bonded tokens in total supply." tooltipClass="ratio-tooltip">
+      <circle-progress  [percent]="bondedTokensRatio?.ratio"
                        [subtitle]="'Bonded Tokens Ratio'"
                        [innerStrokeColor]="bondedTokensRatio?.innerStrokeColor || 'rgba(208, 215, 222, 1)'"
                        [outerStrokeColor]="bondedTokensRatio?.outerStrokeColor"
       ></circle-progress>
     </div>
-    <div class="col col-12 col-sm-12 col-md-4 col-lg-4">
+    <div class="col col-12 col-sm-12 col-md-4 col-lg-4" ngbTooltip="This ratio shows percentage of validators who own more than 50% of bonded tokens in total. The higher this ratio the safer is the chain." tooltipClass="ratio-tooltip">
       <circle-progress [percent]="tokensDistributionRatio?.ratio"
                        [subtitle]="'Tokens Distribution Ratio'"
                        [innerStrokeColor]="tokensDistributionRatio?.innerStrokeColor || 'rgba(208, 215, 222, 1)'"
                        [outerStrokeColor]="tokensDistributionRatio?.outerStrokeColor"
       ></circle-progress>
     </div>
-    <div class="col col-12 col-sm-12 col-md-4 col-lg-4">
+    <div class="col col-12 col-sm-12 col-md-4 col-lg-4" ngbTooltip="This ratio shows percentage of current price in ATH price." tooltipClass="ratio-tooltip">
       <circle-progress [percent]="athPriceRatio?.ratio"
                        [subtitle]="'ATH Price Ratio'"
                        [innerStrokeColor]="athPriceRatio?.innerStrokeColor || 'rgba(208, 215, 222, 1)'"

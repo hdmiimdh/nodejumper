@@ -25,6 +25,14 @@ div.code-toolbar button {
   color: black !important;
 }
 
+.ratio-tooltip {
+  font-size: 18px !important;
+  font-family: 'Monaco', sans-serif !important;
+}
+.tooltip-inner {
+  max-width: 400px !important;
+}
+
 :root {
   --max-width: 1212px;
   --details-color: #57606a;
