@@ -5,6 +5,7 @@
   justify-content: center;
   align-items: center;
   box-shadow: rgb(100 100 111 / 20%) 0 7px 29px 0;
+  transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
 }
 
 .card:hover {
