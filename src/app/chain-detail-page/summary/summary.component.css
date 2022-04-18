@@ -78,3 +78,7 @@
   box-shadow: rgb(100 100 111 / 20%) 0 7px 29px 0;
 }
 
+.charts i {
+  margin-left: 5px;
+  cursor: pointer;
+}
