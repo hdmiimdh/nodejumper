@@ -32,7 +32,7 @@ export const CHAINS: Chain[] = [
     github: "https://github.com/BitCannaGlobal",
     globe: "https://www.bitcanna.io",
     medium: "https://medium.com/@bitcannaglobal",
-    discord: "https://discord.com/invite/Bq9tRju6",
+    discord: "https://discord.gg/97wUcHqxxE",
     validatorUrl: "https://ping.pub/bitcanna/staking/bcnavaloper1nlyurpgk5zcg6f6dcpdt2mq9khv27ajg4px45y",
     denomName: "ubcna",
     denomPow: 6
