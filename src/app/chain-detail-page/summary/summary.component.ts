@@ -551,7 +551,17 @@ export class SummaryComponent implements OnInit {
             bodyFont: {
               size: 20,
               family: 'Monaco'
-            }
+            },
+            callbacks: {
+              title: function () {
+                return ''
+              },
+              label: function (context) {
+                let label = context.label || '';
+                let value = context.dataset.data[0];
+                return label  + ': ' + value;
+              },
+            },
           }
         },
         responsive: true,
@@ -565,6 +575,12 @@ export class SummaryComponent implements OnInit {
               font: {
                 size: 15,
                 family: 'Monaco'
+              },
+              callback: function (value, index) {
+                let label = this.getLabelForValue(index);
+                return label && label.length > 15
+                  ? label.substring(0, 11) + '...'
+                  : label;
               }
             }
           },
