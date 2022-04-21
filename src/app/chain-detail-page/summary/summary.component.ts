@@ -558,7 +558,7 @@ export class SummaryComponent implements OnInit {
               },
               label: function (context) {
                 let label = context.label || '';
-                let value = context.dataset.data[0];
+                let value = context.dataset.data[context.dataIndex];
                 return label  + ': ' + value;
               },
             },
