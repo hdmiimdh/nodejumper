@@ -130,9 +130,33 @@ export const CHAINS: Chain[] = [
     discord: "https://discord.com/invite/vmScGQ7nUr",
     validatorUrl: "https://ping.pub/starname/staking/starvaloper1c8p90su0tdz67xdhx5470lzvs2lw8twqw9j0vf",
     projectOverview: "Starname is a fully decentralized, blockchain-based username platform, bridging the popular internet and the complex blockchain ecosystem by allowing users to create customised usernames that represent their blockchain wallet and identity.",
-    stateSyncDisabled: true,
+    // stateSyncDisabled: true,
     denomName: "uiov",
     denomPow: 6,
     apiChainId: "iov"
+  },
+  {
+    id: "osmosis",
+    chainName: "Osmosis",
+    chainId: "osmosis-1",
+    snapshotServer: "https://snapshots2.nodejumper.io",
+    rpcServer: "http://rpc2.nodejumper.io:35657",
+    rpcPeer: "83c06bc290b6dffe05aa9cec720bedfc118afcbc@rpc2.nodejumper.io:35656",
+    serviceName: "osmosisd",
+    homeDirectoryName: ".osmosisd",
+    twitter: "https://twitter.com/osmosiszone",
+    github: "https://github.com/osmosis-labs",
+    globe: "https://osmosis.zone",
+    medium: "https://medium.com/osmosis",
+    discord: "https://discord.com/invite/osmosis",
+    validatorUrl: "https://www.mintscan.io/osmosis/validators/osmovaloper1vpqqry2dfrrrh33wrnxjj9k9xg928z646w97p6",
+    denomName: "uosmo",
+    denomPow: 6,
+    stateSyncExtraStep: '\n\n# wait for "wrong Block.Header.Version. Expected {11 0}, got {11 1}" error\n\n' +
+      'cd && git clone https://github.com/tendermint/tendermint\n' +
+      'cd tendermint && git checkout callum/app-version && make install\n' +
+      'tendermint set-app-version 1 --home ~/.osmosisd\n' +
+      '\n' +
+      'sudo systemctl restart osmosisd && sudo journalctl -u osmosisd -f --no-hostname -o cat'
   }
 ]

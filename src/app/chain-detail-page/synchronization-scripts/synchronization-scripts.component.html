@@ -51,7 +51,7 @@ s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$SNAP_RPC,$SNAP_RPC\"| ; \
 s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
 s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" ~/{{chain.homeDirectoryName}}/config/config.toml
 
-sudo systemctl restart {{chain.serviceName}} && sudo journalctl -u {{chain.serviceName}} -f --no-hostname -o cat</code>
+sudo systemctl restart {{chain.serviceName}} && sudo journalctl -u {{chain.serviceName}} -f --no-hostname -o cat{{chain.stateSyncExtraStep}}</code>
     </pre>
   </div>
 </ng-container>

@@ -67,11 +67,13 @@ export class SummaryComponent implements OnInit {
         .subscribe((coingekoSummary: any) => {
           this.price = this.extractPrice(coingekoSummary);
           let ratio = this.extractAthPriceRatio(coingekoSummary);
-          this.athPriceRatio = {
-            ratio: ratio,
-            innerStrokeColor: this.innerStokeColorForRatio(ratio, 10, 40),
-            outerStrokeColor: this.outerStokeColorByRatio(ratio, 10, 40)
-          };
+          if (ratio) {
+            this.athPriceRatio = {
+              ratio: ratio,
+              innerStrokeColor: this.innerStokeColorForRatio(ratio, 10, 40),
+              outerStrokeColor: this.outerStokeColorByRatio(ratio, 10, 40)
+            };
+          }
         });
 
       this.chainService.getCoingekoMarketData(coingekoCoinId, this.CHART_INTERVAL_DAYS)
@@ -104,10 +106,10 @@ export class SummaryComponent implements OnInit {
     }).format(summary.blockTime) + 's';
   }
 
-  extractPrice(coingekoData: any): string {
-    let price = coingekoData?.market_data?.current_price?.usd;
+  extractPrice(coingekoSummary: any): string {
+    let price = coingekoSummary?.market_data?.current_price?.usd;
     if (!price) {
-      return 'No Market Data Yet';
+      return '-';
     }
     return Intl.NumberFormat('en-US', {
       notation: 'compact',
@@ -118,6 +120,9 @@ export class SummaryComponent implements OnInit {
 
   extractInflation(summary: any): string {
     let inflation = summary.inflation;
+    if (!inflation) {
+      return '-';
+    }
     return this.displayPercent(inflation);
   }
 
@@ -186,9 +191,12 @@ export class SummaryComponent implements OnInit {
     return percentage;
   }
 
-  extractAthPriceRatio(coingekoSummary: any): number {
+  extractAthPriceRatio(coingekoSummary: any): any {
     let currentPrice = coingekoSummary?.market_data?.current_price?.usd;
     let athPrice = coingekoSummary?.market_data?.ath?.usd;
+    if (!currentPrice || !athPrice) {
+      return;
+    }
     return +(currentPrice / athPrice * 100).toFixed(2);
   }
 

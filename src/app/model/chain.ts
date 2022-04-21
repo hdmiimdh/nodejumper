@@ -20,6 +20,7 @@ export class Chain {
   denomName: string;
   denomPow: number;
   apiChainId?: string;
+  stateSyncExtraStep?: string;
 
   constructor(id: string, chainName: string, chainId: string, snapshotServer: string, rpcServer: string, rpcPeer: string, serviceName: string, homeDirectoryName: string, twitter: string, github: string, globe: string, denomName: string, denomPow: number) {
     this.id = id;
