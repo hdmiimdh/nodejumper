@@ -587,6 +587,7 @@ export class SummaryComponent implements OnInit {
           y: {
             display: true,
             ticks: {
+              precision: 0,
               font: {
                 size: 15,
                 family: 'Monaco'
