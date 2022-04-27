@@ -130,7 +130,7 @@ export const CHAINS: Chain[] = [
     discord: "https://discord.com/invite/vmScGQ7nUr",
     validatorUrl: "https://ping.pub/starname/staking/starvaloper1c8p90su0tdz67xdhx5470lzvs2lw8twqw9j0vf",
     projectOverview: "Starname is a fully decentralized, blockchain-based username platform, bridging the popular internet and the complex blockchain ecosystem by allowing users to create customised usernames that represent their blockchain wallet and identity.",
-    // stateSyncDisabled: true,
+    stateSyncDisabled: true,
     denomName: "uiov",
     denomPow: 6,
     apiChainId: "iov"
