@@ -102,11 +102,12 @@
   .card {
     position: fixed;
     top: 0;
-    right: -500px;
+    right: 0;
     z-index: 105;
     height: 100%;
     outline: none;
     border-radius: unset;
+    transform: translateX(500px);
     transition: all ease 150ms;
   }
 

@@ -54,6 +54,6 @@ div.code-toolbar button {
   }
 
   body.left-hand-menu-open .card {
-    right: 0;
+    transform: translateX(0);
   }
 }
