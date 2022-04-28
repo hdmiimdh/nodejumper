@@ -23,6 +23,7 @@ import { NgxGoogleAnalyticsModule, NgxGoogleAnalyticsRouterModule } from "ngx-go
 import { SummaryComponent } from './chain-detail-page/summary/summary.component';
 import { NgCircleProgressModule } from "ng-circle-progress";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
+import { LeftHandMenuService } from "./service/left-hand-menu.service";
 
 @NgModule({
   declarations: [
@@ -58,7 +59,7 @@ import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
     }),
     NgbModule
   ],
-  providers: [ChainService, HighlightService],
+  providers: [ChainService, HighlightService, LeftHandMenuService],
   bootstrap: [AppComponent]
 })
 export class AppModule {

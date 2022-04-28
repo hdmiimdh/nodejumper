@@ -28,6 +28,10 @@ export class SummaryComponent implements OnInit {
   innerStrokeColor_DANGER: string;
   outerStrokeColor_DANGER: string;
 
+  chainSummarySubscription: any;
+  coingekoMarketDataSubscription: any;
+  chainValidatorsSubscription: any;
+
   constructor(public chainService: ChainService) {
     this.CHART_INTERVAL_DAYS = 14;
     this.innerStrokeColor_SUCCESS = 'rgba(120, 192, 0, 0.4)';
@@ -63,7 +67,7 @@ export class SummaryComponent implements OnInit {
           }
         });
       let coingekoCoinId = this.chain.coingekoCoinId || this.chain.id;
-      this.chainService.getCoingekoSummary(coingekoCoinId)
+      this.chainSummarySubscription = this.chainService.getCoingekoSummary(coingekoCoinId)
         .subscribe((coingekoSummary: any) => {
           this.price = this.extractPrice(coingekoSummary);
           let ratio = this.extractAthPriceRatio(coingekoSummary);
@@ -76,13 +80,13 @@ export class SummaryComponent implements OnInit {
           }
         });
 
-      this.chainService.getCoingekoMarketData(coingekoCoinId, this.CHART_INTERVAL_DAYS)
+      this.coingekoMarketDataSubscription = this.chainService.getCoingekoMarketData(coingekoCoinId, this.CHART_INTERVAL_DAYS)
         .subscribe((coingekoMarketData: any) => {
           this.drawPriceChart(coingekoMarketData);
           this.drawVolumeChart(coingekoMarketData);
         });
 
-      this.chainService.getChainValidators(apiChainId)
+       this.chainValidatorsSubscription = this.chainService.getChainValidators(apiChainId)
         .subscribe((validators: any) => {
           if (this.chain) {
             let ratio = this.extractTokensDistributionRatio(validators);
@@ -96,6 +100,18 @@ export class SummaryComponent implements OnInit {
             this.drawMissedBlocksChart(validators);
           }
         });
+    }
+  }
+
+  ngOnDestroy(): void {
+    if (this.chainSummarySubscription) {
+      this.chainSummarySubscription.unsubscribe();
+    }
+    if (this.coingekoMarketDataSubscription) {
+      this.coingekoMarketDataSubscription.unsubscribe();
+    }
+    if (this.chainValidatorsSubscription) {
+      this.chainValidatorsSubscription.unsubscribe();
     }
   }
 

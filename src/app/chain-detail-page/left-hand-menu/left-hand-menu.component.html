@@ -1,14 +1,19 @@
-<div class="card" *ngIf="chain">
-  <div>
+<div id="left-hand-menu" class="card" *ngIf="chain">
+  <div class="mobile-menu-header">
+    <img src="assets/img/logo.svg" alt="NodeJumper">
+    <span class="title">NodeJumper</span>
+    <i class="fa-solid fa-xmark" (click)="closeLeftHandMenuForMobile()"></i>
+  </div>
+  <div class="chain-logo">
     <img alt="{{chain.chainName}}" src="assets/img/chain/{{chain.id}}.png">
     <span class="title">{{chain.chainName}}</span>
     <span class="details">{{chain.chainId}}</span>
   </div>
   <div class="menu">
-    <span [routerLinkActiveOptions]="{exact: true}" [routerLink]="['./']" class="menu-item" routerLinkActive="active">Summary</span>
-    <span [routerLink]="['./installation']" class="menu-item" routerLinkActive="active">Installation scripts</span>
-    <span [routerLink]="['./sync']" class="menu-item" routerLinkActive="active">Synchronization scripts</span>
-    <span [routerLink]="['./about']" class="menu-item" routerLinkActive="active">About</span>
+    <span [routerLinkActiveOptions]="{exact: true}" [routerLink]="['./']" class="menu-item" routerLinkActive="active" (click)="closeLeftHandMenuForMobile()">Summary</span>
+    <span [routerLink]="['./installation']" class="menu-item" routerLinkActive="active" (click)="closeLeftHandMenuForMobile()">Installation scripts</span>
+    <span [routerLink]="['./sync']" class="menu-item" routerLinkActive="active" (click)="closeLeftHandMenuForMobile()">Synchronization scripts</span>
+    <span [routerLink]="['./about']" class="menu-item" routerLinkActive="active" (click)="closeLeftHandMenuForMobile()">About</span>
   </div>
   <div class="social">
     <a *ngIf="chain.twitter" href="{{chain.twitter}}" target="_blank">

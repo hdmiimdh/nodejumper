@@ -4,14 +4,15 @@ header {
   width: 100%;
   border-bottom: 1px solid #d0d7de;
   z-index: 100;
-  background-color: white;
+  background: white;
 }
 
 header .container {
   min-height: 70px;
   display: flex;
   align-items: center;
-  max-width: var(--max-width);;
+  justify-content: space-between;
+  max-width: var(--max-width);
 }
 
 header .container span {
@@ -37,6 +38,10 @@ header .container img {
   margin-right: 10px;
 }
 
+header .container .btn-bars-menu {
+  display: none;
+}
+
 header .container .btn-social {
   padding-right: 0;
 }
@@ -54,5 +59,18 @@ header .container .btn-social span:hover {
   header .container span,
   header .container .btn-social span {
     font-size: 20px;
+  }
+
+  header .container .btn-bars-menu {
+    display: block;
+  }
+
+  header .container .btn-bars-menu span {
+    font-size: 32px;
+  }
+
+  header .container .btn-social.hide,
+  header .container .btn-bars-menu.hide {
+    display: none;
   }
 }

@@ -1,18 +1,21 @@
 <header>
   <div class="container">
-    <div class="col-6 logo" routerLink="/">
+    <div class="logo" routerLink="/">
       <img src="assets/img/logo.svg" alt="NodeJumper">
       <span class="title">NodeJumper</span>
     </div>
-    <div class="col-6" style="text-align: right">
+    <div>
       <a class="btn btn-block btn-social btn-twitter shadow-none" href="https://twitter.com/nodejumper" target="_blank">
         <span class="fa-brands fa-twitter"></span>
       </a>
       <a class="btn btn-block btn-social btn-github shadow-none" href="https://github.com/nodejumper-org" target="_blank">
         <span class="fa-brands fa-github"></span>
       </a>
-      <a class="btn btn-block btn-social btn-github shadow-none" href="https://t.me/nodejumper" target="_blank">
+      <a class="btn btn-block btn-social btn-telegram shadow-none" href="https://t.me/nodejumper" target="_blank">
         <span class="fa-brands fa-telegram"></span>
+      </a>
+      <a class="btn btn-block btn-bars-menu shadow-none hide" id="btn-bars-menu" (click)="openLeftHandMenuForMobile()">
+        <span class="fa-solid fa-bars"></span>
       </a>
     </div>
   </div>

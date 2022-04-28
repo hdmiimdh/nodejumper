@@ -1,7 +1,7 @@
 <ng-container *ngIf="this.chainService.activeChain as chain">
   <div class="row"><span class="title"><b>1. Automatic Installation (pruning: custom/100/0/10)</b></span></div>
   <div class="row code">
-    <pre><code class="language-bash">cd && wget https://raw.githubusercontent.com/nodejumper-org/cosmos-utils/main/installation-scripts/{{chain.id}}_install.sh
+    <pre><code class="language-bash" *ngIf="manualInstallationScriptContent">cd && wget https://raw.githubusercontent.com/nodejumper-org/cosmos-utils/main/installation-scripts/{{chain.id}}_install.sh
 mkdir -p installation-scripts && mv -f {{chain.id}}_install.sh installation-scripts/ && cd installation-scripts
 chmod +x {{chain.id}}_install.sh
 

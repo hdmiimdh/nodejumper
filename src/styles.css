@@ -29,6 +29,7 @@ div.code-toolbar button {
   font-size: 16px !important;
   font-family: 'Monaco', sans-serif !important;
 }
+
 .tooltip-inner {
   max-width: 400px !important;
 }
@@ -36,4 +37,23 @@ div.code-toolbar button {
 :root {
   --max-width: 1212px;
   --details-color: #57606a;
+}
+
+@media (max-width: 576px) {
+  body.left-hand-menu-open {
+    overflow: hidden;
+  }
+
+  body.left-hand-menu-open .bg-opacity {
+    opacity: 0.5;
+    background: white;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    z-index: 101; /*z-index 105 is for hand menu for mobile, this one should be less*/
+  }
+
+  body.left-hand-menu-open .card {
+    right: 0;
+  }
 }
