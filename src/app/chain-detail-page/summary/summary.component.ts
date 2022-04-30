@@ -128,9 +128,9 @@ export class SummaryComponent implements OnInit {
       return '-';
     }
     return Intl.NumberFormat('en-US', {
-      notation: 'compact',
       style: 'currency',
-      currency: 'USD'
+      currency: 'USD',
+      maximumSignificantDigits: 4
     }).format(price);
   }
 
@@ -277,11 +277,11 @@ export class SummaryComponent implements OnInit {
           },
           tooltip: {
             titleFont: {
-              size: 15,
+              size: 20,
               family: 'Monaco'
             },
             bodyFont: {
-              size: 15,
+              size: 20,
               family: 'Monaco'
             },
             callbacks: {
@@ -327,6 +327,7 @@ export class SummaryComponent implements OnInit {
   }
 
   drawVolumeChart(coingekoMarketData: any): void {
+    let _this = this;
     let volume = coingekoMarketData.total_volumes.slice(0, -1);
     if (!volume.length) {
       this.noVolumes = true;
@@ -364,11 +365,11 @@ export class SummaryComponent implements OnInit {
           },
           tooltip: {
             titleFont: {
-              size: 15,
+              size: 20,
               family: 'Monaco'
             },
             bodyFont: {
-              size: 15,
+              size: 20,
               family: 'Monaco'
             },
             callbacks: {
@@ -405,8 +406,11 @@ export class SummaryComponent implements OnInit {
               font: {
                 size: 15,
                 family: 'Monaco'
+              },
+              callback: function (value) {
+                return _this.compactNumber(parseInt(value.toString()));
               }
-            }
+            },
           }
         }
       }
@@ -414,11 +418,12 @@ export class SummaryComponent implements OnInit {
   }
 
   drawVotingPowerChart(validators: any, chain: Chain): void {
+    let _this = this;
     let top20validators = validators.slice(0, 9);
     let labels = top20validators.map((validator: any) => validator.moniker);
     let data = top20validators.map((validator: any) => validator.votingPower / Math.pow(10, chain.denomPow))
     let votingPowerChart = new Chart('votingPowerChart', {
-      type: 'pie',
+      type: 'bar',
       data: {
         labels: labels,
         datasets: [
@@ -434,15 +439,10 @@ export class SummaryComponent implements OnInit {
         ]
       },
       options: {
+        indexAxis: 'y',
         plugins: {
           legend: {
-            display: true,
-            labels: {
-              font: {
-                family: 'Monaco',
-                size: 15
-              }
-            }
+            display: false,
           },
           tooltip: {
             titleFont: {
@@ -452,12 +452,49 @@ export class SummaryComponent implements OnInit {
             bodyFont: {
               size: 20,
               family: 'Monaco'
-            }
+            },
+            callbacks: {
+              title: function () {
+                return ''
+              },
+              label: function (context) {
+                let label = context.label || '';
+                let value = context.dataset.data[context.dataIndex];
+                return label  + ': ' + value;
+              },
+            },
           }
         },
         responsive: true,
-        interaction: {
-          intersect: false,
+        scales: {
+          y: {
+            display: true,
+            ticks: {
+              font: {
+                size: 15,
+                family: 'Monaco'
+              },
+              callback: function (value, index) {
+                let label = this.getLabelForValue(index);
+                return label && label.length > 15
+                  ? label.substring(0, 11) + '...'
+                  : label;
+              }
+            }
+          },
+          x: {
+            display: true,
+            ticks: {
+              precision: 0,
+              font: {
+                size: 15,
+                family: 'Monaco'
+              },
+              callback: function (value) {
+                return _this.compactNumber(parseInt(value.toString()));
+              }
+            }
+          }
         }
       }
     });
@@ -483,7 +520,7 @@ export class SummaryComponent implements OnInit {
     let labels = sortableArray.map((res: any) => this.displayPercent(res[0]));
     let data = sortableArray.map((res: any) => res[1]);
     let commissionChart = new Chart('commissionChart', {
-      type: 'pie',
+      type: 'bar',
       data: {
         labels: labels,
         datasets: [
@@ -501,13 +538,7 @@ export class SummaryComponent implements OnInit {
       options: {
         plugins: {
           legend: {
-            display: true,
-            labels: {
-              font: {
-                family: 'Monaco',
-                size: 15
-              }
-            }
+            display: false,
           },
           tooltip: {
             titleFont: {
@@ -517,12 +548,43 @@ export class SummaryComponent implements OnInit {
             bodyFont: {
               size: 20,
               family: 'Monaco'
-            }
+            },
+            callbacks: {
+              title: function () {
+                return ''
+              },
+              label: function (context) {
+                let label = context.label || '';
+                let value = context.dataset.data[context.dataIndex];
+                return label  + ': ' + value;
+              },
+            },
           }
         },
         responsive: true,
         interaction: {
           intersect: false,
+        },
+        scales: {
+          x: {
+            display: true,
+            ticks: {
+              font: {
+                size: 15,
+                family: 'Monaco'
+              }
+            }
+          },
+          y: {
+            display: true,
+            ticks: {
+              precision: 0,
+              font: {
+                size: 15,
+                family: 'Monaco'
+              }
+            }
+          }
         }
       }
     });
