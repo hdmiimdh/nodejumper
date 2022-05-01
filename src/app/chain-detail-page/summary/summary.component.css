@@ -82,3 +82,9 @@
   margin-left: 5px;
   cursor: pointer;
 }
+
+.no-summary {
+  text-align: center;
+  font-size: 20px;
+  margin-top: 150px;
+}

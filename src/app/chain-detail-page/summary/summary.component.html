@@ -1,106 +1,119 @@
 <ng-container *ngIf="this.chainService.activeChain as chain">
-  <div class="row">
-    <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
-      <div class="block">
-        <span class="title">Price</span>
-        <span class="value">{{price}}</span>
+  <ng-container *ngIf="!this.chainService.activeChain.summaryDisabled">
+    <div class="row">
+      <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
+        <div class="block">
+          <span class="title">Price</span>
+          <span class="value">{{price}}</span>
+        </div>
+      </div>
+      <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
+        <div class="block">
+          <span class="title">Height</span>
+          <span class="value">{{summary?.blockHeight | number: '2.'}}</span>
+        </div>
+      </div>
+      <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
+        <div class="block">
+          <span class="title">Transactions</span>
+          <span class="value">{{summary?.totalTx | number: '2.'}}</span>
+        </div>
+      </div>
+      <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
+        <div class="block">
+          <span class="title">Bonded Tokens</span>
+          <span class="value"
+                *ngIf="summary?.bondedTokens">{{summary?.bondedTokens + '/' + summary?.totalSupply}}</span>
+        </div>
+      </div>
+      <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
+        <div class="block">
+          <span class="title">Inflation</span>
+          <span class="value">{{summary?.inflation}}</span>
+        </div>
+      </div>
+      <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
+        <div class="block">
+          <span class="title">Block Time</span>
+          <span class="value">{{summary?.blockTime}}</span>
+        </div>
+      </div>
+      <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
+        <div class="block">
+          <span class="title">Total Validators</span>
+          <span class="value">{{summary?.totalValidators}}</span>
+        </div>
+      </div>
+      <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
+        <div class="block">
+          <span class="title">Active Validators</span>
+          <span class="value">{{summary?.activeValidators}}</span>
+        </div>
+      </div>
+      <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
+        <div class="block">
+          <span class="title">Inactive Validators</span>
+          <span class="value">{{summary?.jailedValidators}}</span>
+        </div>
       </div>
     </div>
-    <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
-      <div class="block">
-        <span class="title">Height</span>
-        <span class="value">{{summary?.blockHeight | number: '2.'}}</span>
+    <div class="ratio-row">
+      <div class="col col-8 col-sm-8 col-md-4 col-lg-4"
+           ngbTooltip="This ratio shows percentage of bonded tokens in total supply. The higher this ratio the safer is the chain."
+           tooltipClass="ratio-tooltip">
+        <circle-progress [percent]="bondedTokensRatio?.ratio"
+                         [subtitle]="'Bonded Tokens Ratio'"
+                         [innerStrokeColor]="bondedTokensRatio?.innerStrokeColor || 'rgba(208, 215, 222, 1)'"
+                         [outerStrokeColor]="bondedTokensRatio?.outerStrokeColor"
+        ></circle-progress>
+      </div>
+      <div class="col col-8 col-sm-8 col-md-4 col-lg-4"
+           ngbTooltip="This ratio shows percentage of validators who own more than 50% of bonded tokens in total. The higher this ratio the more decentralized is the chain."
+           tooltipClass="ratio-tooltip">
+        <circle-progress [percent]="tokensDistributionRatio?.ratio"
+                         [subtitle]="'Tokens Distribution Ratio'"
+                         [innerStrokeColor]="tokensDistributionRatio?.innerStrokeColor || 'rgba(208, 215, 222, 1)'"
+                         [outerStrokeColor]="tokensDistributionRatio?.outerStrokeColor"
+        ></circle-progress>
+      </div>
+      <div class="col col-8 col-sm-8 col-md-4 col-lg-4"
+           ngbTooltip="This ratio shows percentage of current price in ATH price." tooltipClass="ratio-tooltip">
+        <circle-progress [percent]="athPriceRatio?.ratio"
+                         [subtitle]="'ATH Price Ratio'"
+                         [innerStrokeColor]="athPriceRatio?.innerStrokeColor || 'rgba(208, 215, 222, 1)'"
+                         [outerStrokeColor]="athPriceRatio?.outerStrokeColor"
+        ></circle-progress>
       </div>
     </div>
-    <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
-      <div class="block">
-        <span class="title">Transactions</span>
-        <span class="value">{{summary?.totalTx | number: '2.'}}</span>
+    <div class="row charts">
+      <div class="col col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="title"><span>Price Chart ({{CHART_INTERVAL_DAYS}}d)</span></div>
+        <div [ngClass]="noPrices ? 'no-data': 'hide'"><span>No Market Data Yet</span></div>
+        <canvas id="priceChart" class="chart"></canvas>
+      </div>
+      <div class="col col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="title"><span>Volume Chart ({{CHART_INTERVAL_DAYS}}d)</span></div>
+        <div [ngClass]="noVolumes ? 'no-data': 'hide'"><span>No Market Data Yet</span></div>
+        <canvas id="volumeChart" class="chart"></canvas>
+      </div>
+      <div class="col col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="title"><span>Voting Power (top 10)</span></div>
+        <canvas id="votingPowerChart" class="chart"></canvas>
+      </div>
+      <div class="col col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="title"><span>Commission Distribution (top 5)<i class="fa-solid fa-circle-question"
+                                                                   ngbTooltip="This chart shows top 5 the most frequently used commission rates among active validators."
+                                                                   tooltipClass="ratio-tooltip"></i></span></div>
+        <canvas id="commissionChart" class="chart"></canvas>
+      </div>
+      <div class="col col-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="title"><span>Missed Blocks (over last 100 blocks)</span></div>
+        <div [ngClass]="noMissedBlocks ? 'no-data': 'hide'"><span>No Missed Blocks Yet</span></div>
+        <canvas id="missedBlocksChart" class="chart"></canvas>
       </div>
     </div>
-    <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
-      <div class="block">
-        <span class="title">Bonded Tokens</span>
-        <span class="value" *ngIf="summary?.bondedTokens">{{summary?.bondedTokens + '/' + summary?.totalSupply}}</span>
-      </div>
-    </div>
-    <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
-      <div class="block">
-        <span class="title">Inflation</span>
-        <span class="value">{{summary?.inflation}}</span>
-      </div>
-    </div>
-    <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
-      <div class="block">
-        <span class="title">Block Time</span>
-        <span class="value">{{summary?.blockTime}}</span>
-      </div>
-    </div>
-    <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
-      <div class="block">
-        <span class="title">Total Validators</span>
-        <span class="value">{{summary?.totalValidators}}</span>
-      </div>
-    </div>
-    <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
-      <div class="block">
-        <span class="title">Active Validators</span>
-        <span class="value">{{summary?.activeValidators}}</span>
-      </div>
-    </div>
-    <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
-      <div class="block">
-        <span class="title">Inactive Validators</span>
-        <span class="value">{{summary?.jailedValidators}}</span>
-      </div>
-    </div>
-  </div>
-  <div class="ratio-row">
-    <div class="col col-8 col-sm-8 col-md-4 col-lg-4" ngbTooltip="This ratio shows percentage of bonded tokens in total supply. The higher this ratio the safer is the chain." tooltipClass="ratio-tooltip">
-      <circle-progress  [percent]="bondedTokensRatio?.ratio"
-                       [subtitle]="'Bonded Tokens Ratio'"
-                       [innerStrokeColor]="bondedTokensRatio?.innerStrokeColor || 'rgba(208, 215, 222, 1)'"
-                       [outerStrokeColor]="bondedTokensRatio?.outerStrokeColor"
-      ></circle-progress>
-    </div>
-    <div class="col col-8 col-sm-8 col-md-4 col-lg-4" ngbTooltip="This ratio shows percentage of validators who own more than 50% of bonded tokens in total. The higher this ratio the more decentralized is the chain." tooltipClass="ratio-tooltip">
-      <circle-progress [percent]="tokensDistributionRatio?.ratio"
-                       [subtitle]="'Tokens Distribution Ratio'"
-                       [innerStrokeColor]="tokensDistributionRatio?.innerStrokeColor || 'rgba(208, 215, 222, 1)'"
-                       [outerStrokeColor]="tokensDistributionRatio?.outerStrokeColor"
-      ></circle-progress>
-    </div>
-    <div class="col col-8 col-sm-8 col-md-4 col-lg-4" ngbTooltip="This ratio shows percentage of current price in ATH price." tooltipClass="ratio-tooltip">
-      <circle-progress [percent]="athPriceRatio?.ratio"
-                       [subtitle]="'ATH Price Ratio'"
-                       [innerStrokeColor]="athPriceRatio?.innerStrokeColor || 'rgba(208, 215, 222, 1)'"
-                       [outerStrokeColor]="athPriceRatio?.outerStrokeColor"
-      ></circle-progress>
-    </div>
-  </div>
-  <div class="row charts">
-    <div class="col col-12 col-sm-12 col-md-12 col-lg-12">
-      <div class="title"><span>Price Chart ({{CHART_INTERVAL_DAYS}}d)</span></div>
-      <div [ngClass]="noPrices ? 'no-data': 'hide'"><span>No Market Data Yet</span></div>
-      <canvas id="priceChart" class="chart"></canvas>
-    </div>
-    <div class="col col-12 col-sm-12 col-md-12 col-lg-12">
-      <div class="title"><span>Volume Chart ({{CHART_INTERVAL_DAYS}}d)</span></div>
-      <div [ngClass]="noVolumes ? 'no-data': 'hide'"><span>No Market Data Yet</span></div>
-      <canvas id="volumeChart" class="chart"></canvas>
-    </div>
-    <div class="col col-12 col-sm-12 col-md-12 col-lg-12">
-      <div class="title"><span>Voting Power (top 10)</span></div>
-      <canvas id="votingPowerChart" class="chart"></canvas>
-    </div>
-    <div class="col col-12 col-sm-12 col-md-12 col-lg-12">
-      <div class="title"><span>Commission Distribution (top 5)<i class="fa-solid fa-circle-question"  ngbTooltip="This chart shows top 5 the most frequently used commission rates among active validators." tooltipClass="ratio-tooltip"></i></span></div>
-      <canvas id="commissionChart" class="chart"></canvas>
-    </div>
-    <div class="col col-12 col-sm-12 col-md-12 col-lg-12">
-      <div class="title"><span>Missed Blocks (over last 100 blocks)</span></div>
-      <div [ngClass]="noMissedBlocks ? 'no-data': 'hide'"><span>No Missed Blocks Yet</span></div>
-      <canvas id="missedBlocksChart" class="chart"></canvas>
-    </div>
-  </div>
+  </ng-container>
+  <ng-container *ngIf="this.chainService.activeChain.summaryDisabled">
+    <div class="no-summary">Coming soon...</div>
+  </ng-container>
 </ng-container>

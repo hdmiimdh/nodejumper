@@ -47,7 +47,7 @@ export class SummaryComponent implements OnInit {
 
   ngAfterViewInit(): void {
     this.chain = this.chainService.activeChain;
-    if (this.chain) {
+    if (this.chain && !this.chain.summaryDisabled) {
       let apiChainId = this.chain.apiChainId || this.chain.id;
       this.chainService.getChainSummary(apiChainId)
         .subscribe((summary: any) => {

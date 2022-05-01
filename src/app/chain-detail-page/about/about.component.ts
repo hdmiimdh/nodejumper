@@ -26,8 +26,13 @@ export class AboutComponent implements OnInit {
     if (this.chain) {
       let coingekoCoinId = this.chain.coingekoCoinId || this.chain.id;
       this.chainService.getCoingekoSummary(coingekoCoinId)
-        .subscribe((data: any) => {
-          this.data = data;
+        .subscribe({
+          next: (data: any) => {
+            this.data = data;
+          },
+          error: (error: any) => {
+            this.data = {};
+          }
         });
     }
   }

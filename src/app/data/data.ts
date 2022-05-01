@@ -158,5 +158,25 @@ export const CHAINS: Chain[] = [
       'tendermint set-app-version 1 --home ~/.osmosisd\n' +
       '\n' +
       'sudo systemctl restart osmosisd && sudo journalctl -u osmosisd -f --no-hostname -o cat'
+  },
+  {
+    id: "galaxy",
+    chainName: "Galaxy",
+    chainId: "galaxy-1",
+    snapshotServer: "https://snapshots2.nodejumper.io",
+    rpcServer: "http://rpc2.nodejumper.io:30657",
+    rpcPeer: "1e9aa80732182fd7ea005fc138b05e361b9c040d@135.181.139.115:30656",
+    serviceName: "galaxyd",
+    homeDirectoryName: ".galaxy",
+    twitter: "https://twitter.com/glxuniverse",
+    github: "https://github.com/galaxies-labs",
+    globe: "https://galaxychain.zone",
+    medium: "https://medium.com/@galaxyuniverse",
+    discord: "https://discord.com/invite/DkPNtpJQ8C",
+    validatorUrl: "https://explorer.postcapitalist.io/galaxy/staking/galaxyvaloper18nlst8rzmj0m2r7d2fattr3qmn3pmzyg740978",
+    projectOverview: "The Galaxy protocol builds a base system for further advanced metaverse.",
+    summaryDisabled: true,
+    denomName: "uglx",
+    denomPow: 6
   }
 ]

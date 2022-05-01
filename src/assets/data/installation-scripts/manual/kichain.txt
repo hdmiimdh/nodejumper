@@ -25,7 +25,7 @@ cd && wget https://raw.githubusercontent.com/KiFoundation/ki-networks/v0.1/Mainn
 mv -f genesis.json ~/$homeDirectoryName/config/genesis.json
 jq -S -c -M '' ~/$homeDirectoryName/config/genesis.json | shasum -a 256 # 99855fdf89f5c697f8be2ecc587d79c77259e05d68268928797083bdaa614a80  -
 
-sed -i 's/^minimum-gas-prices *=.*/minimum-gas-prices = "0.0001uxki"/g' ~/$homeDirectoryName/config/app.toml
+sed -i 's/^minimum-gas-prices *=.*/minimum-gas-prices = "0.0001$denomName"/g' ~/$homeDirectoryName/config/app.toml
 seeds="24cbccfa8813accd0ebdb09e7cdb54cff2e8fcd9@51.89.166.197:26656"
 peers="$rpcPeer"
 sed -i -e "s/^seeds *=.*/seeds = \"$seeds\"/; s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" ~/$homeDirectoryName/config/config.toml

@@ -17,6 +17,7 @@ export class Chain {
   validatorUrl?: string;
   projectOverview?: string;
   stateSyncDisabled?: boolean;
+  summaryDisabled?: boolean;
   denomName: string;
   denomPow: number;
   apiChainId?: string;

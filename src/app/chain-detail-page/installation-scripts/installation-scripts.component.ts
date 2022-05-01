@@ -32,6 +32,7 @@ export class InstallationScriptsComponent implements OnInit {
           this.manualInstallationScriptContent = this.manualInstallationScriptContent
             .replace(new RegExp('\\$chainName', 'g'), this.chain.chainName)
             .replace(new RegExp('\\$chainId', 'g'), this.chain.chainId)
+            .replace(new RegExp('\\$denomName', 'g'), this.chain.denomName)
             .replace(new RegExp('\\$rpcServer', 'g'), this.chain.rpcServer)
             .replace(new RegExp('\\$rpcPeer', 'g'), this.chain.rpcPeer)
             .replace(new RegExp('\\$homeDirectoryName', 'g'), this.chain.homeDirectoryName)
