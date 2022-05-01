@@ -10,7 +10,7 @@
     <span class="details">{{chain.chainId}}</span>
   </div>
   <div class="menu">
-    <span [routerLinkActiveOptions]="{exact: true}" [routerLink]="['./']" class="menu-item" routerLinkActive="active" (click)="closeLeftHandMenuForMobile()">Summary</span>
+    <span *ngIf="!chain.summaryDisabled" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['./']" class="menu-item" routerLinkActive="active" (click)="closeLeftHandMenuForMobile()">Summary</span>
     <span [routerLink]="['./installation']" class="menu-item" routerLinkActive="active" (click)="closeLeftHandMenuForMobile()">Installation scripts</span>
     <span [routerLink]="['./sync']" class="menu-item" routerLinkActive="active" (click)="closeLeftHandMenuForMobile()">Synchronization scripts</span>
     <span [routerLink]="['./about']" class="menu-item" routerLinkActive="active" (click)="closeLeftHandMenuForMobile()">About</span>

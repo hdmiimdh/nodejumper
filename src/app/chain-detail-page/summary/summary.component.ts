@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ChainService } from "../../service/chain.service";
 import { Chain } from "../../model/chain";
 import Chart from 'chart.js/auto';
+import { ActivatedRoute, Router } from "@angular/router";
 
 @Component({
   selector: 'app-summary',
@@ -32,7 +33,9 @@ export class SummaryComponent implements OnInit {
   coingekoMarketDataSubscription: any;
   chainValidatorsSubscription: any;
 
-  constructor(public chainService: ChainService) {
+  constructor(private router: Router,
+              private route: ActivatedRoute,
+              public chainService: ChainService) {
     this.CHART_INTERVAL_DAYS = 14;
     this.innerStrokeColor_SUCCESS = 'rgba(120, 192, 0, 0.4)';
     this.outerStrokeColor_SUCCESS = 'rgba(120, 192, 0, 1)';
@@ -100,6 +103,8 @@ export class SummaryComponent implements OnInit {
             this.drawMissedBlocksChart(validators);
           }
         });
+    } else {
+      this.router.navigate(['./installation'], {relativeTo: this.route});
     }
   }
 
