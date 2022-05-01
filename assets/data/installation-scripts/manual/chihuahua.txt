@@ -25,7 +25,7 @@ cd && wget https://raw.githubusercontent.com/ChihuahuaChain/mainnet/main/genesis
 mv -f genesis.json ~/$homeDirectoryName/config/genesis.json
 jq -S -c -M '' ~/$homeDirectoryName/config/genesis.json | shasum -a 256 # 2d0709eeb6610fc41584d2d76ec5c83ba8537dc6615f36c520966eb43dc0b386  -
 
-sed -i 's/^minimum-gas-prices *=.*/minimum-gas-prices = "0.0001uhuahua"/g' ~/$homeDirectoryName/config/app.toml
+sed -i 's/^minimum-gas-prices *=.*/minimum-gas-prices = "0.0001$denomName"/g' ~/$homeDirectoryName/config/app.toml
 seeds="4936e377b4d4f17048f8961838a5035a4d21240c@chihuahua-seed-01.mercury-nodes.net:29540"
 peers="$rpcPeer"
 sed -i -e "s/^seeds *=.*/seeds = \"$seeds\"/; s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" ~/$homeDirectoryName/config/config.toml

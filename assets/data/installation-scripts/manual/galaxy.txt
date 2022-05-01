@@ -13,20 +13,20 @@ go version # go version go1.17.2 linux/amd64
 
 sudo apt install -y make gcc jq
 
-cd && git clone https://github.com/Omniflix/omniflixhub.git
-cd omniflixhub && git checkout v0.4.0 && make install
+cd && git clone https://github.com/galaxies-labs/galaxy
+cd galaxy && git checkout v1.0.0 && make install
 
-$binaryName version # 0.4.0
+$binaryName version # launch-gentxs
 
 # replace nodejumper with your own moniker, if you'd like
 $binaryName init nodejumper --chain-id $chainId
 
-cd && wget https://raw.githubusercontent.com/OmniFlix/mainnet/main/omniflixhub-1/genesis.json
+cd && wget https://media.githubusercontent.com/media/galaxies-labs/networks/main/galaxy-1/genesis.json
 mv -f genesis.json ~/$homeDirectoryName/config/genesis.json
-jq -S -c -M '' ~/$homeDirectoryName/config/genesis.json | shasum -a 256 # 3c01dd89ae10f3dc247648831ef9e8168afd020946a13055d92a7fe2f50050a0  -
+jq -S -c -M '' ~/$homeDirectoryName/config/genesis.json | shasum -a 256 # 6cc17dc54dab9a9636b2cd3c08804a52157e27c79cf44475118eb52911d4e17f  -
 
 sed -i 's/^minimum-gas-prices *=.*/minimum-gas-prices = "0.0001$denomName"/g' ~/$homeDirectoryName/config/app.toml
-seeds="9d75a06ebd3732a041df459849c21b87b2c55cde@35.187.240.195:26656,19feae28207474eb9f168fff9720fd4d418df1ed@35.240.196.102:26656"
+seeds=""
 peers="$rpcPeer"
 sed -i -e "s/^seeds *=.*/seeds = \"$seeds\"/; s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" ~/$homeDirectoryName/config/config.toml
 
