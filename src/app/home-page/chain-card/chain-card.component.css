@@ -30,3 +30,8 @@
   font-size: 18px;
   color: var(--details-color);
 }
+
+.card .project-support {
+  color: #ffc107;
+  font-size: 25px;
+}

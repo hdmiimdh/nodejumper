@@ -35,7 +35,8 @@ export const CHAINS: Chain[] = [
     discord: "https://discord.gg/97wUcHqxxE",
     validatorUrl: "https://ping.pub/bitcanna/staking/bcnavaloper1nlyurpgk5zcg6f6dcpdt2mq9khv27ajg4px45y",
     denomName: "ubcna",
-    denomPow: 6
+    denomPow: 6,
+    isProjectSupportUs: true
   },
   {
     id: "kichain",
@@ -92,7 +93,8 @@ export const CHAINS: Chain[] = [
     discord: "https://discord.com/invite/ckFcU5vxxc",
     validatorUrl: "https://ping.pub/desmos/staking/desmosvaloper184nr4azm7kwas40yzftfxy9ma2lrm5pp5q795x",
     denomName: "udsm",
-    denomPow: 6
+    denomPow: 6,
+    isProjectSupportUs: true
   },
   {
     id: "omniflix",

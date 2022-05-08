@@ -3,6 +3,7 @@ import { ChainService } from "../../service/chain.service";
 import { Chain } from "../../model/chain";
 import Chart from 'chart.js/auto';
 import { ActivatedRoute, Router } from "@angular/router";
+import { UtilsService } from "../../service/utils.service";
 
 @Component({
   selector: 'app-summary',
@@ -35,7 +36,8 @@ export class SummaryComponent implements OnInit {
 
   constructor(private router: Router,
               private route: ActivatedRoute,
-              public chainService: ChainService) {
+              public chainService: ChainService,
+              public utilsService: UtilsService) {
     this.CHART_INTERVAL_DAYS = 14;
     this.innerStrokeColor_SUCCESS = 'rgba(120, 192, 0, 0.4)';
     this.outerStrokeColor_SUCCESS = 'rgba(120, 192, 0, 1)';
@@ -157,13 +159,13 @@ export class SummaryComponent implements OnInit {
 
   extractBondedTokens(chain: Chain, summary: any): string {
     let bondedTokens = summary.bondedTokens / Math.pow(10, chain.denomPow);
-    return this.compactNumber(bondedTokens);
+    return this.utilsService.compactNumber(bondedTokens);
   }
 
   extractTotalSupply(chain: Chain, summary: any): string {
     let totalSupply = this.findTotalSupply(chain, summary);
     totalSupply = totalSupply / Math.pow(10, chain.denomPow);
-    return this.compactNumber(totalSupply);
+    return this.utilsService.compactNumber(totalSupply);
   }
 
   findTotalSupply(chain: Chain, summary: any) {
@@ -184,7 +186,7 @@ export class SummaryComponent implements OnInit {
       }
     });
     communityPool = communityPool / Math.pow(10, chain.denomPow);
-    return this.compactNumber(communityPool);
+    return this.utilsService.compactNumber(communityPool);
   }
 
   extractBondedTokensRatio(chain: Chain, summary: any): number {
@@ -235,13 +237,6 @@ export class SummaryComponent implements OnInit {
       : ratio <= limit2
         ? this.outerStrokeColor_WARN
         : this.outerStrokeColor_SUCCESS;
-  }
-
-  compactNumber(num: number): string {
-    return Intl.NumberFormat('en-US', {
-      notation: 'compact',
-      maximumFractionDigits: 0
-    }).format(num);
   }
 
   drawPriceChart(coingekoMarketData: any): void {
@@ -413,7 +408,7 @@ export class SummaryComponent implements OnInit {
                 family: 'Monaco'
               },
               callback: function (value) {
-                return _this.compactNumber(parseInt(value.toString()));
+                return _this.utilsService.compactNumber(parseInt(value.toString()));
               }
             },
           }
@@ -496,7 +491,7 @@ export class SummaryComponent implements OnInit {
                 family: 'Monaco'
               },
               callback: function (value) {
-                return _this.compactNumber(parseInt(value.toString()));
+                return _this.utilsService.compactNumber(parseInt(value.toString()));
               }
             }
           }

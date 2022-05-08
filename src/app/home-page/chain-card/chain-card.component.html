@@ -1,5 +1,9 @@
 <div *ngIf="chain" class="card">
   <img alt="{{chain.chainName}}" src="assets/img/chain/{{chain.id}}.png">
-  <span class="title">{{chain.chainName}}</span>
+  <span class="title">{{chain.chainName}}
+    <span class="project-support" *ngIf="chain.isProjectSupportUs"
+          ngbTooltip="{{chain.chainName}} supports us"
+          tooltipClass="ratio-tooltip">★</span>
+  </span>
   <span class="details">{{chain.chainId}}</span>
 </div>
