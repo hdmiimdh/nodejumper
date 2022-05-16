@@ -21,7 +21,7 @@ sed -i -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" ~/{{chain.ho
 sudo apt update && sudo apt install snapd -y && sudo snap install lz4</code>
     </pre>
     <pre>
-      <code class="language-bash">sudo systemctl stop {{chain.serviceName}} && {{chain.binaryName || chain.serviceName}} unsafe-reset-all
+      <code class="language-bash">sudo systemctl stop {{chain.serviceName}} && {{this.chainService.getUnsafeResetAllString(chain)}}
 
 rm -rf ~/{{chain.homeDirectoryName}}/data && cd ~/{{chain.homeDirectoryName}}
 
@@ -33,7 +33,7 @@ sudo systemctl restart {{chain.serviceName}} && sudo journalctl -u {{chain.servi
   <div class="row" *ngIf="!chain.stateSyncDisabled"><span class="title"><b>4. State Sync</b></span></div>
   <div class="row code" *ngIf="!chain.stateSyncDisabled">
     <pre>
-      <code class="language-bash">sudo systemctl stop {{chain.serviceName}} && {{chain.binaryName || chain.serviceName}} unsafe-reset-all
+      <code class="language-bash">sudo systemctl stop {{chain.serviceName}} && {{this.chainService.getUnsafeResetAllString(chain)}}
 
 SNAP_RPC="{{chain.rpcServer}}"
 

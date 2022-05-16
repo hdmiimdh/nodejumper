@@ -180,5 +180,24 @@ export const CHAINS: Chain[] = [
     summaryDisabled: true,
     denomName: "uglx",
     denomPow: 6
-  }
+  },
+  {
+    id: "evmos",
+    chainName: "Evmos",
+    chainId: "evmos_9001-2",
+    snapshotServer: "https://snapshots3.nodejumper.io",
+    rpcServer: "http://rpc3.nodejumper.io:36657",
+    rpcPeer: "b984dc3cb4c9d13546822942ac1213e133373ee6@135.181.139.171:36656",
+    serviceName: "evmosd",
+    homeDirectoryName: ".evmosd",
+    twitter: "https://twitter.com/EvmosOrg",
+    github: "https://github.com/tharsis",
+    globe: "https://evmos.org/",
+    medium: "https://medium.com/@TharsisHQ",
+    discord: "https://discord.com/invite/evmos",
+    validatorUrl: "https://ping.pub/evmos/staking/evmosvaloper1hm5elxdjfx4pltn00e0tde0avhpj03tynuhkk3",
+    denomName: "aevmos",
+    denomPow: 18,
+    newWayUnsafeResetAll: true
+  },
 ]

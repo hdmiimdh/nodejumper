@@ -23,6 +23,7 @@ export class Chain {
   apiChainId?: string;
   stateSyncExtraStep?: string;
   isProjectSupportUs?: boolean;
+  newWayUnsafeResetAll?: boolean;
 
   constructor(id: string, chainName: string, chainId: string, snapshotServer: string, rpcServer: string, rpcPeer: string, serviceName: string, homeDirectoryName: string, twitter: string, github: string, globe: string, denomName: string, denomPow: number) {
     this.id = id;
