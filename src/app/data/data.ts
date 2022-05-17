@@ -159,7 +159,8 @@ export const CHAINS: Chain[] = [
       'cd tendermint && git checkout callum/app-version && make install\n' +
       'tendermint set-app-version 1 --home ~/.osmosisd\n' +
       '\n' +
-      'sudo systemctl restart osmosisd && sudo journalctl -u osmosisd -f --no-hostname -o cat'
+      'sudo systemctl restart osmosisd && sudo journalctl -u osmosisd -f --no-hostname -o cat',
+    newWayUnsafeResetAll: true
   },
   {
     id: "galaxy",
