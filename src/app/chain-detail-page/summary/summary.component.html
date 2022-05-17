@@ -2,57 +2,57 @@
   <div class="row">
     <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
       <div class="block">
-        <span class="title">Price</span>
-        <span class="value">{{price}}</span>
+        <div class="title">Price</div>
+        <div class="value">{{price}}</div>
       </div>
     </div>
     <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
       <div class="block">
-        <span class="title">Height</span>
-        <span class="value">{{summary?.blockHeight | number: '2.'}}</span>
+        <div class="title">Height</div>
+        <div class="value">{{summary?.blockHeight | number: '2.'}}</div>
       </div>
     </div>
     <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
       <div class="block">
-        <span class="title">Transactions</span>
-        <span class="value">{{summary?.totalTx | number: '2.'}}</span>
+        <div class="title">Transactions</div>
+        <div class="value">{{summary?.totalTx | number: '2.'}}</div>
       </div>
     </div>
     <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
       <div class="block">
-        <span class="title">Bonded Tokens</span>
-        <span class="value"
-              *ngIf="summary?.bondedTokens">{{summary?.bondedTokens + '/' + summary?.totalSupply}}</span>
+        <div class="title">Bonded Tokens</div>
+        <div class="value"
+              *ngIf="summary?.bondedTokens">{{summary?.bondedTokens + '/' + summary?.totalSupply}}</div>
       </div>
     </div>
     <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
       <div class="block">
-        <span class="title">Inflation</span>
-        <span class="value">{{summary?.inflation}}</span>
+        <div class="title">Inflation</div>
+        <div class="value">{{summary?.inflation}}</div>
       </div>
     </div>
     <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
       <div class="block">
-        <span class="title">Block Time</span>
-        <span class="value">{{summary?.blockTime}}</span>
+        <div class="title">Block Time</div>
+        <div class="value">{{summary?.blockTime}}</div>
       </div>
     </div>
     <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
       <div class="block">
-        <span class="title">Total Validators</span>
-        <span class="value">{{summary?.totalValidators}}</span>
+        <div class="title">Total Validators</div>
+        <div class="value">{{summary?.totalValidators}}</div>
       </div>
     </div>
     <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
       <div class="block">
-        <span class="title">Active Validators</span>
-        <span class="value">{{summary?.activeValidators}}</span>
+        <div class="title">Active Validators</div>
+        <div class="value">{{summary?.activeValidators}}</div>
       </div>
     </div>
     <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
       <div class="block">
-        <span class="title">Inactive Validators</span>
-        <span class="value">{{summary?.jailedValidators}}</span>
+        <div class="title">Inactive Validators</div>
+        <div class="value">{{summary?.jailedValidators}}</div>
       </div>
     </div>
   </div>
