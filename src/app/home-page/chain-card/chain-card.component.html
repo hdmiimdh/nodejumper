@@ -1,4 +1,4 @@
-<div *ngIf="chain" class="card">
+<div *ngIf="chain" [ngClass]="chain.isProjectSupportUs ? 'supported-card' : ''" class="card">
   <img alt="{{chain.chainName}}" src="assets/img/chain/{{chain.id}}.png">
   <span class="title">{{chain.chainName}}
     <span class="project-support" *ngIf="chain.isProjectSupportUs"
