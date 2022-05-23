@@ -87,7 +87,7 @@
   margin-top: 150px;
 }
 
-@media (max-width: 500px) {
+@media (max-width: 576px) {
   .charts .title {
     font-size: 18px;
   }
