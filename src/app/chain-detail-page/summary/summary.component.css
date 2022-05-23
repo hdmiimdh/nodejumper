@@ -86,3 +86,9 @@
   font-size: 20px;
   margin-top: 150px;
 }
+
+@media (max-width: 500px) {
+  .charts .title {
+    font-size: 18px;
+  }
+}
