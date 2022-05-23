@@ -86,11 +86,20 @@
   border-top: 1px solid #d0d7de;
   border-radius: 0;
   cursor: pointer;
-  background-color: #f5f2f0;
+  color: #ffffff;
+  background-color: #000000;
+  opacity: 0.8;
+  transition: all 0.3s ease;
 }
 
 .card .support-us-btn:hover {
-  text-decoration: underline;
+  opacity: 0.6;
+}
+
+.card .support-us-btn:active {
+  color: #000000;
+  background-color: #fd8c73;
+  opacity: 0.8;
 }
 
 .card .support-us-btn span {
