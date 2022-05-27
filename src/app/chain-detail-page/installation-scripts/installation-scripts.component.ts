@@ -50,7 +50,7 @@ export class InstallationScriptsComponent implements OnInit {
     }
   }
 
-  getOneToken(chain: Chain): string {
-    return Math.pow(10, chain.denomPow).toString();
+  getOneToken(chain: Chain): number {
+    return Math.pow(10, chain.denomPow);
   }
 }
