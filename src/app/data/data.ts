@@ -202,4 +202,27 @@ export const CHAINS: Chain[] = [
     newWayUnsafeResetAll: true,
     summaryDisabled: true
   },
+  {
+    id: "another1-testnet",
+    chainName: "Another-1",
+    chainId: "anone-testnet-1",
+    snapshotServer: "https://snapshots1-testnet.nodejumper.io",
+    rpcServer: "http://rpc1-testnet.nodejumper.io:26657",
+    rpcPeer: "3137535a0d6cc552bd44512ac6a11f4a41c3b3e4@rpc1-testnet.nodejumper.io:26656",
+    serviceName: "anoned",
+    homeDirectoryName: ".anone",
+    twitter: "https://twitter.com/AN1official",
+    github: "https://github.com/notional-labs",
+    globe: "https://another-1.io",
+    medium: "https://medium.com/@TharsisHQ",
+    discord: "https://discord.com/invite/Hr5JrtGw9t",
+    validatorUrl: "https://test-anone.zenscan.io/validator.php?addr=onevaloper1fngfsax3w9mywln2njh5s3nf92nyfaueqg6jhy",
+    denomName: "uan1",
+    denomPow: 6,
+    summaryDisabled: true,
+    stateSyncDisabled: true,
+    isTestnet: true,
+    hardwareRequirements: "4CPU 8RAM 200GB",
+    projectOverview: "Another-1 platform is an ecosystem that aggregates users and markets using a hybrid approach making it seamless for non crypto native users. The AN1 front end is built in Vue.js and served via the browser or electron app."
+  },
 ]

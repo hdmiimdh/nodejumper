@@ -49,4 +49,8 @@ export class InstallationScriptsComponent implements OnInit {
       this.highlighted = true;
     }
   }
+
+  getOneToken(chain: Chain): string {
+    return Math.pow(10, chain.denomPow).toString();
+  }
 }

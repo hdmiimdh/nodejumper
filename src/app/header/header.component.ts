@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LeftHandMenuService } from "../service/left-hand-menu.service";
+import { StateService } from "../service/state.service";
 
 @Component({
   selector: 'app-header',
@@ -8,7 +9,8 @@ import { LeftHandMenuService } from "../service/left-hand-menu.service";
 })
 export class HeaderComponent implements OnInit {
 
-  constructor(private leftHandMenuService: LeftHandMenuService) {
+  constructor(private leftHandMenuService: LeftHandMenuService,
+              public stateService: StateService) {
   }
 
   ngOnInit(): void {

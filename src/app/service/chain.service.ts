@@ -14,14 +14,20 @@ export class ChainService {
   constructor(private http: HttpClient) {
   }
 
-  getChains(): Chain[] {
-    return CHAINS.sort((chain1, chain2) => {
-      const chainName1 = chain1.chainName.toLowerCase();
-      const chainName2 = chain2.chainName.toLowerCase();
-      if (chainName1 > chainName2) { return 1; }
-      if (chainName1 < chainName2) { return -1; }
-      return 0;
-    });
+  getChains(showTestnets?: boolean): Chain[] {
+    return CHAINS
+      .filter(chain => (chain.isTestnet || false) == (showTestnets || false))
+      .sort((chain1, chain2) => {
+        const chainName1 = chain1.chainName.toLowerCase();
+        const chainName2 = chain2.chainName.toLowerCase();
+        if (chainName1 > chainName2) { return 1; }
+        if (chainName1 < chainName2) { return -1; }
+        return 0;
+      });
+  }
+
+  getAllChains(): Chain[] {
+    return CHAINS;
   }
 
   getChainSummary(apiChainId: string) {

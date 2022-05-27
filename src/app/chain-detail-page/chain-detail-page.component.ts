@@ -21,7 +21,7 @@ export class ChainDetailPageComponent implements OnInit {
     this.chainService.activeChain = undefined;
     this.route.params.subscribe((params) => {
       let id = params['id'];
-      this.chain = this.chainService.getChains().find(it => it.id === id);
+      this.chain = this.chainService.getAllChains().find(it => it.id === id);
       this.chainService.activeChain = this.chain;
       if (!this.chain) {
         this.router.navigateByUrl('/');

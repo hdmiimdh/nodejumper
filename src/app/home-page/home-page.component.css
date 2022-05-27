@@ -10,6 +10,10 @@
   position: relative;
 }
 
+.row.search-row .search-col {
+  padding-right: 10px;
+}
+
 .row.search-row .search-col span {
   position: absolute;
   left: 10px;
@@ -30,6 +34,27 @@
 
 .row.search-row .search-col .form-control:focus {
   border-color: unset;
+}
+
+.row.search-row .testnets-toggle {
+  display: flex;
+  cursor: pointer;
+  min-height: 39px;
+  background-color: #707f8f;
+  border: 2px solid #707f8f;
+  overflow: hidden;
+}
+
+.row.search-row .testnets-toggle div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #ffffff;
+}
+
+.row.search-row .testnets-toggle div.active {
+  color: #ffffff;
+  background-color: #707f8f;
 }
 
 .row.search-row .chains {
@@ -58,9 +83,17 @@
 }
 
 @media (max-width: 992px) {
+  .row.search-row .chains,
+  .row.search-row .testnets-toggle {
+    margin-top: 15px;
+  }
+  .row.search-row .search-col {
+    padding-right: 0;
+  }
+}
+
+@media (max-width: 576px) {
   .row.search-row .chains {
-    padding-top: 10px;
-    padding-left: 10px;
     text-align: left;
   }
 }

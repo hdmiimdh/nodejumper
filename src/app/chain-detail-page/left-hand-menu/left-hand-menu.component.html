@@ -5,7 +5,7 @@
     <i class="fa-solid fa-xmark" (click)="closeLeftHandMenuForMobile()"></i>
   </div>
   <div class="chain-logo">
-    <img alt="{{chain.chainName}}" src="assets/img/chain/{{chain.id}}.png">
+    <img alt="{{chain.chainName}}" src="assets/img/chain/{{chain.id.split('-')[0]}}.png">
     <span class="title">{{chain.chainName}}</span>
     <span class="details">{{chain.chainId}}</span>
   </div>
