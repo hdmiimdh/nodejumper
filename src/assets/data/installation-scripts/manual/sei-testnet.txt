@@ -15,7 +15,7 @@ sudo apt install -y make gcc jq git
 
 cd && git clone https://github.com/sei-protocol/sei-chain.git
 cd sei-chain && git checkout 1.0.0beta && go build -o build/seid ./cmd/sei-chaind
-sudo mv build/seid $HOME/go/bin
+mkdir -p ~/go/bin && mv build/seid ~/go/bin
 
 $binaryName version
 
@@ -82,18 +82,18 @@ kite upset hip dirt pet winter thunder slice parent flag sand express suffer che
 # Wait util the node is synced, should return FALSE
 $binaryName status | jq .SyncInfo.catching_up
 
-# Go to discord channel #testnet-faucet and fill in google form to request the tokens
+# Go to discord channel #testnet-faucet and fill in google form to request tokens
 
 # Verify the balance
 $binaryName q bank balances <YOUR_WALLET_ADDRESS>
 
   balances:
-  - amount: "5000000"
-    denom: uan1
+  - amount: "1000000"
+    denom: usei
 
 #Create validator
 $binaryName tx staking create-validator \
---amount=4500000$denomName \
+--amount=1000000$denomName \
 --pubkey=$($binaryName tendermint show-validator) \
 --moniker=<YOUR_MONIKER_NAME> \
 --chain-id=$chainId \
@@ -101,6 +101,5 @@ $binaryName tx staking create-validator \
 --commission-max-rate=0.2 \
 --commission-max-change-rate=0.05 \
 --min-self-delegation=1 \
---fees=20000$denomName \
 --from=wallet \
 -y
