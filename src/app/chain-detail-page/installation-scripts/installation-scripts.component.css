@@ -1,6 +1,7 @@
 .row {
   border-bottom: 1px solid #d0d7de;
   margin: 10px;
+  z-index: 4;
 }
 
 .row.code {

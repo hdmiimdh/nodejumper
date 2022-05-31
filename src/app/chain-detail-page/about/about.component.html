@@ -1,17 +1,4 @@
 <ng-container *ngIf="this.chainService.activeChain as chain">
   <div class="row"><span class="title"><b>1. About</b></span></div>
   <div class="row details"><span>{{chain.projectOverview || data?.description?.en}}</span></div>
-  <div class="row"><span class="title"><b>2. Price Statistics</b></span></div>
-  <div class="row details" *ngIf="data">
-    <ng-container *ngIf="data?.market_data?.current_price?.usd">
-      <div>Current Price: ${{data?.market_data?.current_price?.usd}}</div>
-      <div>24h Low / 24h High: ${{data?.market_data?.low_24h?.usd}} / ${{data?.market_data?.high_24h?.usd}}</div>
-      <div>7d Low / 7d High: ${{data?.market_data?.low_24h?.usd}} / ${{data?.market_data?.high_24h?.usd}}</div>
-      <div>All-Time High: ${{data?.market_data?.ath?.usd}}</div>
-      <div>All-Time Low: ${{data?.market_data?.atl?.usd}}</div>
-    </ng-container>
-    <ng-container *ngIf="!data?.market_data?.current_price?.usd">
-      Coming soon...
-    </ng-container>
-  </div>
 </ng-container>

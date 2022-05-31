@@ -23,7 +23,7 @@ export class AboutComponent implements OnInit {
 
   ngAfterViewInit(): void {
     this.chain = this.chainService.activeChain;
-    if (this.chain) {
+    if (this.chain && !this.chain.projectOverview) {
       let coingekoCoinId = this.chain.coingekoCoinId || this.chain.id;
       this.chainService.getCoingekoSummary(coingekoCoinId)
         .subscribe({

@@ -6,7 +6,7 @@
   background-color: white;
   position: fixed;
   box-shadow: rgb(100 100 111 / 20%) 0 7px 29px 0;
-  overflow: hidden;
+  z-index: 5;
 }
 
 .card .mobile-menu-header {
@@ -84,12 +84,12 @@
 .card .support-us-btn {
   width: 250px;
   border-top: 1px solid #d0d7de;
-  border-radius: 0;
   cursor: pointer;
   color: #ffffff;
   background-color: #000000;
   opacity: 0.8;
   transition: all 0.3s ease;
+  border-radius: 0 0 0.75rem 0.75rem;
 }
 
 .card .support-us-btn:hover {

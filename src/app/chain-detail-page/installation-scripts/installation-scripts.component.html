@@ -1,8 +1,8 @@
 <ng-container *ngIf="this.chainService.activeChain as chain">
-  <ng-container *ngIf="!this.chain.isTestnet">
+  <ng-container *ngIf="!this.chain.isTestnet && manualInstallationScriptContent">
     <div class="row"><span class="title"><b>1. Automatic Installation (pruning: custom/100/0/10)</b></span></div>
     <div class="row code">
-      <pre><code class="language-bash" *ngIf="manualInstallationScriptContent">cd && wget https://raw.githubusercontent.com/nodejumper-org/cosmos-utils/main/installation-scripts/{{chain.id}}_install.sh
+      <pre><code class="language-bash">cd && wget https://raw.githubusercontent.com/nodejumper-org/cosmos-utils/main/installation-scripts/{{chain.id}}_install.sh
 mkdir -p installation-scripts && mv -f {{chain.id}}_install.sh installation-scripts/ && cd installation-scripts
 chmod +x {{chain.id}}_install.sh
 
@@ -11,51 +11,30 @@ chmod +x {{chain.id}}_install.sh
     </div>
     <div class="row"><span class="title"><b>2. Manual Installation</b></span></div>
     <div class="row code">
-      <pre><code class="language-bash">{{manualInstallationScriptContent}}</code></pre>
+      <pre><code class="language-bash">{{manualInstallationScriptContent.trim()}}</code></pre>
     </div>
   </ng-container>
-  <ng-container *ngIf="this.chain.isTestnet">
+  <ng-container *ngIf="this.chain.isTestnet && manualInstallationScriptContent">
     <div class="row"><span class="title"><b>1. Hardware Requirements</b></span></div>
-    <div class="row code" *ngIf="manualInstallationScriptContent">
+    <div class="row code">
       <pre><code class="language-bash">{{chain.hardwareRequirements}}</code></pre>
     </div>
     <div class="row"><span class="title"><b>2.a Automatic Installation (pruning: custom/100/0/10)</b></span></div>
     <div class="row code">
-      <pre><code class="language-bash" *ngIf="manualInstallationScriptContent">cd && wget https://raw.githubusercontent.com/nodejumper-org/cosmos-utils/main/installation-scripts/{{chain.id}}_install.sh
+      <pre><code class="language-bash">cd && wget https://raw.githubusercontent.com/nodejumper-org/cosmos-utils/main/installation-scripts/{{chain.id}}_install.sh
 mkdir -p installation-scripts && mv -f {{chain.id}}_install.sh installation-scripts/ && cd installation-scripts
 chmod +x {{chain.id}}_install.sh
 
 # replace nodejumper with your own moniker, if you'd like
-./{{chain.id}}_install.sh nodejumper</code></pre>
+./{{chain.id}}_install.sh nodejumper && source ~/.bash_profile</code></pre>
     </div>
     <div class="row"><span class="title"><b>2.b Manual Installation</b></span></div>
     <div class="row code">
-      <pre><code class="language-bash">{{manualInstallationScriptContent}}</code></pre>
+      <pre><code class="language-bash">{{manualInstallationScriptContent.split('Create Validator Delimiter')[0].trim()}}</code></pre>
     </div>
     <div class="row"><span class="title"><b>3. Create Validator</b></span></div>
-    <div class="row code" *ngIf="chain.isTestnet && manualInstallationScriptContent">
-    <pre><code class="language-bash">#!!! SAVE SEED PHRASE
-{{chain.binaryName || chain.serviceName}} keys add wallet
-
-# Wait util the node is synced, below command should return FALSE
-{{chain.binaryName || chain.serviceName}} status | jq .SyncInfo.catching_up
-
-# Request tokens with faucet and verify the balance
-{{chain.binaryName || chain.serviceName}} q bank balances &lt;YOUR_WALLET_ADDRESS&gt;
-
-#Create validator
-{{chain.binaryName || chain.serviceName}} tx staking create-validator \
---amount={{getOneToken(chain)}}{{chain.denomName}} \
---pubkey=$({{chain.binaryName || chain.serviceName}} tendermint show-validator) \
---moniker=&lt;YOUR_MONIKER_NAME&gt; \
---chain-id={{chain.chainId}} \
---commission-rate=0.1 \
---commission-max-rate=0.2 \
---commission-max-change-rate=0.05 \
---min-self-delegation=1 \
---fees=20000uan1 \
---from=wallet \
--y</code></pre>
+    <div class="row code">
+    <pre><code class="language-bash">{{manualInstallationScriptContent.split('Create Validator Delimiter')[1].trim()}}</code></pre>
     </div>
   </ng-container>
 </ng-container>

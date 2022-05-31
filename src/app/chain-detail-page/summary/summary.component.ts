@@ -105,8 +105,6 @@ export class SummaryComponent implements OnInit {
             this.drawMissedBlocksChart(validators);
           }
         });
-    } else {
-      this.router.navigate(['./installation'], {relativeTo: this.route});
     }
   }
 
