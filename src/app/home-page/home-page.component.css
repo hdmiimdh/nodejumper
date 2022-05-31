@@ -13,6 +13,7 @@
 
 .row.search-row .search-col {
   padding-right: 10px;
+  min-height: 40px;
 }
 
 .row.search-row .search-col span {
@@ -40,8 +41,7 @@
 .row.search-row .testnets-toggle {
   display: flex;
   cursor: pointer;
-  min-height: 39px;
-  background-color: #707f8f;
+  min-height: 40px;
   border: 1px solid #d0d7de;
   overflow: hidden;
   transition: all 0.3s ease;
@@ -55,7 +55,6 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: #ffffff;
 }
 
 .row.search-row .testnets-toggle div.active {
