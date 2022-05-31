@@ -1,5 +1,6 @@
 .row.search-row {
   padding: 0 10px 10px 10px;
+  align-items: center;
 }
 
 .row.search-row div {
