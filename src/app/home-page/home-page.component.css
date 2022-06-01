@@ -42,13 +42,13 @@
   display: flex;
   cursor: pointer;
   min-height: 40px;
-  border: 1px solid #d0d7de;
+  outline: 1px solid #d0d7de;
   overflow: hidden;
   transition: all 0.3s ease;
 }
 
 .row.search-row .testnets-toggle:hover {
-  border: 1px solid #000000;
+  outline: 1px solid #000000;
 }
 
 .row.search-row .testnets-toggle div {
