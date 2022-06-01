@@ -15,7 +15,7 @@
     </div>
   </div>
   <div class="row">
-    <div *ngFor="let chain of result" [routerLink]="['/' + chain.id + (chain.isTestnet ? '/installation' : '')]"
+    <div *ngFor="let chain of result" [routerLink]="['/' + chain.id + (chain.summaryDisabled ? '/installation' : '')]"
          class="col col-12 col-sm-6 col-md-4 col-lg-3">
       <app-chain-card [chain]="chain"></app-chain-card>
     </div>
