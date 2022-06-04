@@ -1,7 +1,7 @@
 .card {
   width: 250px;
   border: none;
-  outline: 1px solid #d0d7de;
+  outline: 1px solid var(--border-color);
   border-radius: 0.75rem;
   background-color: white;
   position: fixed;
@@ -83,7 +83,7 @@
 
 .card .support-us-btn {
   width: 250px;
-  border-top: 1px solid #d0d7de;
+  border-top: 1px solid var(--border-color);
   cursor: pointer;
   color: #ffffff;
   background-color: #000000;
@@ -127,7 +127,7 @@
     padding: 0;
     align-items: center;
     justify-content: flex-start;
-    outline: 1px solid #d0d7de;
+    outline: 1px solid var(--border-color);
   }
 
   .card .mobile-menu-header img {
@@ -161,7 +161,7 @@
   .card .menu-item.active {
     border-left: none;
     text-align: center;
-    border-bottom: 1px solid #d0d7de;
+    border-bottom: 1px solid var(--border-color);
     padding: 25px 0;
   }
 

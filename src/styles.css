@@ -37,6 +37,8 @@ div.code-toolbar button {
 :root {
   --max-width: 1212px;
   --details-color: #57606a;
+  --border-color: #d0d7de;
+  --border-active-color: #111111;
 }
 
 @media (max-width: 576px) {

@@ -1,17 +1,30 @@
 <ng-container *ngIf="(chains | chainFilter: searchText) as result">
-  <div class="row search-row">
-    <div class="col-12 col-lg-6 search-col">
-      <span><i class="fa-solid fa-magnifying-glass"></i></span>
-      <input [(ngModel)]="searchText" class="form-control rounded-pill shadow-none" placeholder="Search" type="search"/>
+  <div class="row">
+    <div class="col col-12 col-lg-12">
+      <div class="info-block rounded-pill">
+        Cosmos has never been so easy yet...
+      </div>
     </div>
-    <div class="col-12 col-sm-5 col-md-5 col-lg-3 testnets-toggle rounded-pill">
-      <div class="col-6" (click)="stateService.homePageShowTestnets.next(false)"
-           [ngClass]="!showTestnets ? 'active': ''">Mainnets</div>
-      <div class="col-6" (click)="stateService.homePageShowTestnets.next(true)"
-           [ngClass]="showTestnets ? 'active': ''">Testnets</div>
+  </div>
+  <div class="row">
+    <div class="col col-12 col-lg-6">
+      <div class="search-field">
+        <span class="search-icon">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </span>
+        <input [(ngModel)]="searchText" class="form-control shadow-none rounded-pill" placeholder="Search" type="search"/>
+      </div>
     </div>
-    <div class="col-12 col-sm-7 col-md-7 col-lg-3 chains">
-      <span>{{result.length}} chain(s)</span>
+    <div class="col col-12 col-sm-5 col-md-5 col-lg-3">
+      <div class="testnets-toggle rounded-pill">
+        <div class="toggle-button" (click)="stateService.homePageShowTestnets.next(false)"
+             [ngClass]="!showTestnets ? 'active': ''">Mainnets</div>
+        <div class="toggle-button" (click)="stateService.homePageShowTestnets.next(true)"
+             [ngClass]="showTestnets ? 'active': ''">Testnets</div>
+      </div>
+    </div>
+    <div class="col col-12 col-sm-7 col-md-7 col-lg-3">
+      <div class="chains-count">{{result.length}} chain(s)</div>
     </div>
   </div>
   <div class="row">
