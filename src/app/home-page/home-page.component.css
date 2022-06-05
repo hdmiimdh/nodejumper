@@ -2,21 +2,6 @@
   padding: 10px;
 }
 
-.info-block {
-  display: flex;
-  align-items: center;
-  padding: 6px 10px 6px 15px;
-  min-height: 40px;
-  border: 1px solid var(--border-color);
-  box-sizing: border-box;
-  transition: border-color 0.3s ease;
-  cursor: pointer;
-}
-
-.info-block:hover {
-  border-color: var(--border-active-color)
-}
-
 .search-field {
   position: relative;
 }
@@ -74,8 +59,7 @@
 }
 
 .testnets-toggle .toggle-button.active {
-  color: #ffffff;
-  background-color: #707f8f;
+  background-color: var(--button-color);
 }
 
 .chains-count {
