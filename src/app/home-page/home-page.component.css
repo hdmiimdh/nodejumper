@@ -42,13 +42,13 @@
   display: flex;
   cursor: pointer;
   min-height: 40px;
-  outline: 1px solid #d0d7de;
+  border: 1px solid #d0d7de;
   overflow: hidden;
-  transition: outline-color 0.3s ease;
+  transition: border-color 0.3s ease;
 }
 
 .row.search-row .testnets-toggle:hover {
-  outline: 1px solid #000000;
+  border: 1px solid #000000;
 }
 
 .row.search-row .testnets-toggle div {
@@ -79,7 +79,7 @@
 
 .col {
   padding: 10px;
-  outline: none !important;
+  border: none !important;
 }
 
 .empty-result {
