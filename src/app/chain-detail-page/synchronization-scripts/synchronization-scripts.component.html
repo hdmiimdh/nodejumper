@@ -6,8 +6,9 @@
   <div class="row">
     <p class="title">Peer</p>
     <pre><code class="language-bash">{{chain.rpcPeer}}</code></pre>
-    <pre><code class="language-bash">peers="{{chain.rpcPeer}}"
-sed -i -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" ~/{{chain.homeDirectoryName}}/config/config.toml</code></pre>
+    <pre><code class="language-bash"># add nodejumper peer
+nj_peer="{{chain.rpcPeer}}"
+sed -i 's|^\bpersistent_peers *=.*"\b|persistent_peers = \"'$nj_peer',|' ~/{{chain.homeDirectoryName}}/config/config.toml</code></pre>
   </div>
   <div class="row">
     <div>
