@@ -2,45 +2,35 @@
   <ng-container *ngIf="!this.chain.isTestnet && manualInstallationScriptContent">
     <div class="row">
       <p class="title">Automatic Installation (pruning: custom/100/0/10)</p>
-      <pre>
-        <code class="language-bash"># replace nodejumper with your own moniker, if you'd like
+      <pre><code class="language-bash"># replace nodejumper with your own moniker, if you'd like
 . <(curl -s https://raw.githubusercontent.com/nodejumper-org/cosmos-utils/main/installation-scripts/{{chain.id}}_install.sh) \
-nodejumper</code>
-      </pre>
+nodejumper
+
+sudo journalctl -u {{chain.serviceName}} -f --no-hostname -o cat</code></pre>
     </div>
     <div class="row">
       <p class="title">Manual Installation</p>
-        <pre>
-          <code class="language-bash">{{manualInstallationScriptContent.trim()}}</code>
-        </pre>
+        <pre><code class="language-bash">{{manualInstallationScriptContent.trim()}}</code></pre>
     </div>
   </ng-container>
   <ng-container *ngIf="this.chain.isTestnet && manualInstallationScriptContent">
     <div class="row">
       <p class="title">Hardware Requirements</p>
-      <pre>
-        <code class="language-bash">{{chain.hardwareRequirements}}</code>
-      </pre>
+      <pre><code class="language-bash">{{chain.hardwareRequirements}}</code></pre>
     </div>
     <div class="row">
       <p class="title">Automatic Installation (pruning: custom/100/0/10)</p>
-      <pre>
-        <code class="language-bash"># replace nodejumper with your own moniker, if you'd like
+      <pre><code class="language-bash"># replace nodejumper with your own moniker, if you'd like
 . <(curl -s https://raw.githubusercontent.com/nodejumper-org/cosmos-utils/main/installation-scripts/{{chain.id}}_install.sh) \
-nodejumper</code>
-      </pre>
+nodejumper</code></pre>
     </div>
     <div class="row">
       <p class="title">Manual Installation</p>
-      <pre>
-        <code class="language-bash">{{manualInstallationScriptContent.split('Create Validator Delimiter')[0].trim()}}</code>
-      </pre>
+      <pre><code class="language-bash">{{manualInstallationScriptContent.split('Create Validator Delimiter')[0].trim()}}</code></pre>
     </div>
     <div class="row">
       <p class="title">Create Validator</p>
-      <pre>
-        <code class="language-bash">{{manualInstallationScriptContent.split('Create Validator Delimiter')[1].trim()}}</code>
-      </pre>
+      <pre><code class="language-bash">{{manualInstallationScriptContent.split('Create Validator Delimiter')[1].trim()}}</code></pre>
     </div>
   </ng-container>
 </ng-container>
