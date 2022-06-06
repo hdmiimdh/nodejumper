@@ -1,17 +1,14 @@
-sudo apt update && sudo apt upgrade -y
+#!/bin/bash
 
-version="1.17.2" \
-&& cd
-&& wget "https://golang.org/dl/go$version.linux-amd64.tar.gz" \
-&& sudo rm -rf /usr/local/go \
-&& sudo tar -C /usr/local -xzf "go$version.linux-amd64.tar.gz" \
-&& rm "go$version.linux-amd64.tar.gz" \
-&& echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile \
-&& source $HOME/.bash_profile
+sudo apt update
+sudo apt install -y make gcc jq curl git
 
-go version # go version go1.17.2 linux/amd64
+if [ ! -f "/usr/local/go/bin/go" ]; then
+  . <(curl -s "https://raw.githubusercontent.com/nodejumper-org/cosmos-utils/main/installation-scripts/go_install.sh")
+  . .bash_profile
+fi
 
-sudo apt install -y make gcc jq git
+go version # go version goX.XX.X linux/amd64
 
 cd && git clone https://github.com/desmos-labs/desmos.git
 cd desmos && git checkout tags/v2.3.1 && make install
@@ -26,17 +23,17 @@ cd && wget https://raw.githubusercontent.com/desmos-labs/mainnet/main/genesis.js
 mv -f genesis.json $HOME/$homeDirectoryName/config/genesis.json
 sha256sum $HOME/$homeDirectoryName/config/genesis.json # 8301452877607c2637c21073066cf2ac6d1fa6b961ffb73ce974dadafeca7b5b
 
-sed -i 's/^minimum-gas-prices *=.*/minimum-gas-prices = "0.0001$denomName"/g' $HOME/$homeDirectoryName/config/app.toml
+sed -i 's|^minimum-gas-prices *=.*|minimum-gas-prices = "0.0001$denomName"|g' $HOME/$homeDirectoryName/config/app.toml
 seeds="9bde6ab4e0e00f721cc3f5b4b35f3a0e8979fab5@seed-1.mainnet.desmos.network:26656,5c86915026093f9a2f81e5910107cf14676b48fc@seed-2.mainnet.desmos.network:26656,45105c7241068904bdf5a32c86ee45979794637f@seed-3.mainnet.desmos.network:26656"
 peers="$rpcPeer"
-sed -i -e "s/^seeds *=.*/seeds = \"$seeds\"/; s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/$homeDirectoryName/config/config.toml
+sed -i -e 's|^seeds *=.*|seeds = "'$seeds'"|; s|^\bpersistent_peers *=.*"\b|persistent_peers = \"'$peers',|' $HOME/$homeDirectoryName/config/config.toml
 
 # in case of pruning
-sed -i 's/pruning = "default"/pruning = "custom"/g' $HOME/$homeDirectoryName/config/app.toml
-sed -i 's/pruning-keep-recent = "0"/pruning-keep-recent = "100"/g' $HOME/$homeDirectoryName/config/app.toml
-sed -i 's/pruning-interval = "0"/pruning-interval = "10"/g' $HOME/$homeDirectoryName/config/app.toml
+sed -i 's|pruning = "default"|pruning = "custom"|g' $HOME/$homeDirectoryName/config/app.toml
+sed -i 's|pruning-keep-recent = "0"|pruning-keep-recent = "100"|g' $HOME/$homeDirectoryName/config/app.toml
+sed -i 's|pruning-interval = "0"|pruning-interval = "10"|g' $HOME/$homeDirectoryName/config/app.toml
 
-sudo tee <<EOF >/dev/null /etc/systemd/system/$serviceName.service
+sudo tee /etc/systemd/system/$serviceName.service > /dev/null << EOF
 [Unit]
 Description=$chainName Node
 After=network-online.target
@@ -53,7 +50,6 @@ EOF
 $binaryName unsafe-reset-all
 
 SNAP_RPC="$rpcServer"
-
 LATEST_HEIGHT=$(curl -s $SNAP_RPC/block | jq -r .result.block.header.height); \
 BLOCK_HEIGHT=$((LATEST_HEIGHT - 2000)); \
 TRUST_HASH=$(curl -s "$SNAP_RPC/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
@@ -65,5 +61,8 @@ s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$SNAP_RPC,$SNAP_RPC\"| ; \
 s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
 s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" $HOME/$homeDirectoryName/config/config.toml
 
-sudo systemctl daemon-reload && sudo systemctl enable $serviceName \
-&& sudo systemctl restart $serviceName && sudo journalctl -u $serviceName -f --no-hostname -o cat
+sudo systemctl daemon-reload
+sudo systemctl enable $serviceName
+sudo systemctl restart $serviceName
+
+sudo journalctl -u $serviceName -f --no-hostname -o cat

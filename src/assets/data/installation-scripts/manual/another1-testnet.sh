@@ -1,17 +1,15 @@
-sudo apt update && sudo apt upgrade -y
+#!/bin/bash
 
-version="1.17.2" \
-&& cd
-&& wget "https://golang.org/dl/go$version.linux-amd64.tar.gz" \
-&& sudo rm -rf /usr/local/go \
-&& sudo tar -C /usr/local -xzf "go$version.linux-amd64.tar.gz" \
-&& rm "go$version.linux-amd64.tar.gz" \
-&& echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile \
-&& source $HOME/.bash_profile
+sudo apt update
+sudo apt install -y make gcc jq curl git snapd
+sudo snap install lz4
 
-go version # go version go1.17.2 linux/amd64
+if [ ! -f "/usr/local/go/bin/go" ]; then
+  . <(curl -s "https://raw.githubusercontent.com/nodejumper-org/cosmos-utils/main/installation-scripts/go_install.sh")
+  . .bash_profile
+fi
 
-sudo apt install -y make gcc jq git
+go version # go version goX.XX.X linux/amd64
 
 cd && git clone https://github.com/notional-labs/anone
 cd anone && git checkout testnet-1.0.3 && make install
@@ -22,21 +20,20 @@ $binaryName version # testnet-1.0.3
 $binaryName config chain-id $chainId
 $binaryName init nodejumper --chain-id $chainId
 
-cd && wget https://raw.githubusercontent.com/notional-labs/anone/master/networks/testnet-1/genesis.json
-mv -f genesis.json $HOME/$homeDirectoryName/config/genesis.json
+curl https://raw.githubusercontent.com/notional-labs/anone/master/networks/testnet-1/genesis.json > $HOME/$homeDirectoryName/config/genesis.json
 sha256sum $HOME/$homeDirectoryName/config/genesis.json # ba7bea692350ca8918542a26cabd5616dbebe1ff109092cb1e98c864da58dabf
 
-sed -i 's/^minimum-gas-prices *=.*/minimum-gas-prices = "0.0001$denomName"/g' $HOME/$homeDirectoryName/config/app.toml
+sed -i 's|^minimum-gas-prices *=.*|minimum-gas-prices = "0.0001$denomName"|g' $HOME/$homeDirectoryName/config/app.toml
 seeds=""
 peers="$rpcPeer"
-sed -i -e "s/^seeds *=.*/seeds = \"$seeds\"/; s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/$homeDirectoryName/config/config.toml
+sed -i -e 's|^seeds *=.*|seeds = "'$seeds'"|; s|^\bpersistent_peers *=.*"\b|persistent_peers = \"'$peers',|' $HOME/$homeDirectoryName/config/config.toml
 
 # in case of pruning
-sed -i 's/pruning = "default"/pruning = "custom"/g' $HOME/$homeDirectoryName/config/app.toml
-sed -i 's/pruning-keep-recent = "0"/pruning-keep-recent = "100"/g' $HOME/$homeDirectoryName/config/app.toml
-sed -i 's/pruning-interval = "0"/pruning-interval = "10"/g' $HOME/$homeDirectoryName/config/app.toml
+sed -i 's|pruning = "default"|pruning = "custom"|g' $HOME/$homeDirectoryName/config/app.toml
+sed -i 's|pruning-keep-recent = "0"|pruning-keep-recent = "100"|g' $HOME/$homeDirectoryName/config/app.toml
+sed -i 's|pruning-interval = "0"|pruning-interval = "10"|g' $HOME/$homeDirectoryName/config/app.toml
 
-sudo tee <<EOF >/dev/null /etc/systemd/system/$serviceName.service
+sudo tee /etc/systemd/system/$serviceName.service > /dev/null << EOF
 [Unit]
 Description=$chainName Node
 After=network-online.target
@@ -51,14 +48,16 @@ WantedBy=multi-user.target
 EOF
 
 $binaryName unsafe-reset-all
-
 rm -rf $HOME/$homeDirectoryName/data && cd $HOME/$homeDirectoryName
 
 SNAP_NAME=$(curl -s https://snapshots1-testnet.nodejumper.io/another1-testnet/ | egrep -o ">anone-testnet-1.*\.tar.lz4" | tr -d ">")
-wget -O - https://snapshots1-testnet.nodejumper.io/another1-testnet/${SNAP_NAME} | lz4 -dc - | tar -xf -
+curl https://snapshots1-testnet.nodejumper.io/another1-testnet/${SNAP_NAME} | lz4 -dc - | tar -xf -
 
-sudo systemctl daemon-reload && sudo systemctl enable $serviceName \
-&& sudo systemctl restart $serviceName && sudo journalctl -u $serviceName -f --no-hostname -o cat
+sudo systemctl daemon-reload
+sudo systemctl enable $serviceName
+sudo systemctl restart $serviceName
+
+sudo journalctl -u $serviceName -f --no-hostname -o cat
 
 Create Validator Delimiter
 

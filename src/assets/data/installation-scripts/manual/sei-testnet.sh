@@ -1,17 +1,15 @@
-sudo apt update && sudo apt upgrade -y
+#!/bin/bash
 
-version="1.17.2" \
-&& cd
-&& wget "https://golang.org/dl/go$version.linux-amd64.tar.gz" \
-&& sudo rm -rf /usr/local/go \
-&& sudo tar -C /usr/local -xzf "go$version.linux-amd64.tar.gz" \
-&& rm "go$version.linux-amd64.tar.gz" \
-&& echo "export PATH=$PATH:/usr/local/go/bin:$HOME/go/bin" >> $HOME/.bash_profile \
-&& source $HOME/.bash_profile
+sudo apt update
+sudo apt install -y make gcc jq curl git snapd
+sudo snap install lz4
 
-go version # go version go1.17.2 linux/amd64
+if [ ! -f "/usr/local/go/bin/go" ]; then
+  . <(curl -s "https://raw.githubusercontent.com/nodejumper-org/cosmos-utils/main/installation-scripts/go_install.sh")
+  . .bash_profile
+fi
 
-sudo apt install -y make gcc jq git
+go version # go version goX.XX.X linux/amd64
 
 cd && git clone https://github.com/sei-protocol/sei-chain.git
 cd sei-chain && git checkout 1.0.0beta && go build -o build/seid ./cmd/sei-chaind
@@ -23,25 +21,23 @@ $binaryName version
 $binaryName config chain-id $chainId
 $binaryName init nodejumper --chain-id $chainId
 
-cd && wget https://raw.githubusercontent.com/sei-protocol/testnet/master/sei-testnet-1/genesis.json
-mv -f genesis.json $HOME/$homeDirectoryName/config/genesis.json
+curl https://raw.githubusercontent.com/sei-protocol/testnet/master/sei-testnet-1/genesis.json > $HOME/$homeDirectoryName/config/genesis.json
 sha256sum $HOME/$homeDirectoryName/config/genesis.json # d212a915dcde84f1dc2208ca5ee890adfd6ffc5d4ff9a32332f50659b3b5ab1a
 
-cd && wget https://raw.githubusercontent.com/sei-protocol/testnet/master/sei-testnet-1/addrbook.json
-mv -f addrbook.json $HOME/$homeDirectoryName/config/addrbook.json
+curl https://raw.githubusercontent.com/sei-protocol/testnet/master/sei-testnet-1/addrbook.json > $HOME/$homeDirectoryName/config/addrbook.json
 sha256sum $HOME/$homeDirectoryName/config/addrbook.json # 2ff327d2ab89c9ec56f86c14fdc67cbfc12e4716ae8cecc3bb497d92c4d8411e
 
-sed -i 's/^minimum-gas-prices *=.*/minimum-gas-prices = "0.0001$denomName"/g' $HOME/$homeDirectoryName/config/app.toml
+sed -i 's|^minimum-gas-prices *=.*|minimum-gas-prices = "0.0001$denomName"|g' $HOME/$homeDirectoryName/config/app.toml
 seeds=""
 peers="$rpcPeer"
-sed -i -e "s/^seeds *=.*/seeds = \"$seeds\"/; s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/$homeDirectoryName/config/config.toml
+sed -i -e 's|^seeds *=.*|seeds = "'$seeds'"|; s|^\bpersistent_peers *=.*"\b|persistent_peers = \"'$peers',|' $HOME/$homeDirectoryName/config/config.toml
 
 # in case of pruning
-sed -i 's/pruning = "default"/pruning = "custom"/g' $HOME/$homeDirectoryName/config/app.toml
-sed -i 's/pruning-keep-recent = "0"/pruning-keep-recent = "100"/g' $HOME/$homeDirectoryName/config/app.toml
-sed -i 's/pruning-interval = "0"/pruning-interval = "10"/g' $HOME/$homeDirectoryName/config/app.toml
+sed -i 's|pruning = "default"|pruning = "custom"|g' $HOME/$homeDirectoryName/config/app.toml
+sed -i 's|pruning-keep-recent = "0"|pruning-keep-recent = "100"|g' $HOME/$homeDirectoryName/config/app.toml
+sed -i 's|pruning-interval = "0"|pruning-interval = "10"|g' $HOME/$homeDirectoryName/config/app.toml
 
-sudo tee <<EOF >/dev/null /etc/systemd/system/$serviceName.service
+sudo tee /etc/systemd/system/$serviceName.service > /dev/null << EOF
 [Unit]
 Description=$chainName Node
 After=network-online.target
@@ -56,14 +52,16 @@ WantedBy=multi-user.target
 EOF
 
 $binaryName unsafe-reset-all
-
 rm -rf $HOME/$homeDirectoryName/data && cd $HOME/$homeDirectoryName
 
 SNAP_NAME=$(curl -s https://snapshots1-testnet.nodejumper.io/sei-testnet/ | egrep -o ">sei-testnet-1.*\.tar.lz4" | tr -d ">")
 wget -O - https://snapshots1-testnet.nodejumper.io/sei-testnet/${SNAP_NAME} | lz4 -dc - | tar -xf -
 
-sudo systemctl daemon-reload && sudo systemctl enable $serviceName \
-&& sudo systemctl restart $serviceName && sudo journalctl -u $serviceName -f --no-hostname -o cat
+sudo systemctl daemon-reload
+sudo systemctl enable $serviceName
+sudo systemctl restart $serviceName
+
+sudo journalctl -u $serviceName -f --no-hostname -o cat
 
 Create Validator Delimiter
 

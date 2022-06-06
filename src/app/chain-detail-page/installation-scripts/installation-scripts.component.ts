@@ -26,7 +26,7 @@ export class InstallationScriptsComponent implements OnInit {
   ngAfterViewInit(): void {
     this.chain = this.chainService.activeChain;
     if (this.chain) {
-      this.http.get(`assets/data/installation-scripts/manual/${this.chain.id}.txt`, {responseType: 'text'}).subscribe(data => {
+      this.http.get(`assets/data/installation-scripts/manual/${this.chain.id}.sh`, {responseType: 'text'}).subscribe(data => {
         this.manualInstallationScriptContent = data || 'TBD';
         if (this.chain) {
           this.manualInstallationScriptContent = this.manualInstallationScriptContent
