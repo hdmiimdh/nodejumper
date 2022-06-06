@@ -1,4 +1,8 @@
 <ng-container *ngIf="this.chainService.activeChain as chain">
-  <div class="row"><span class="title"><b>1. About</b></span></div>
-  <div class="row details"><span>{{chain.projectOverview || data?.description?.en}}</span></div>
+  <div class="row">
+    <p class="title">About</p>
+    <div class="details">
+      <p>{{chain.projectOverview || data?.description?.en}}</p>
+    </div>
+  </div>
 </ng-container>
