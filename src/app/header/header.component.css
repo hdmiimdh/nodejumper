@@ -2,7 +2,7 @@ header {
   position: fixed;
   top: 0;
   width: 100%;
-  outline: 1px solid var(--border-color);
+  border-bottom: 1px solid var(--border-color);
   z-index: 100;
   background: white;
 }

@@ -1,29 +1,13 @@
 .row {
-  border-bottom: 1px solid var(--border-color);
-  margin: 10px;
-  z-index: 4;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
 
-.row.code {
-  border-bottom: 0;
-  margin-bottom: 40px;
-  position: relative;
+.title {
+  font-size: 20px;
+  font-weight: 800;
 }
 
-.row.code pre {
-  text-align: left;
-  white-space: pre-line;
-  margin-bottom: 0;
-  border-radius: 0.5rem;
-  outline: none !important;
-}
-
-.row span {
-  width: auto;
-  padding-left: 0;
-  padding-bottom: 2px;
-}
-
-.row .title {
-  font-size: 16px;
+pre {
+  border-radius: var(--border-radius);
 }

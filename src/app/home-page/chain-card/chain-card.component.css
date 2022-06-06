@@ -1,7 +1,7 @@
 .card {
   height: 270px;
   border: 1px solid var(--border-color);
-  border-radius: 0.5rem;
+  border-radius: var(--border-radius);
   justify-content: center;
   align-items: center;
   box-shadow: rgb(100 100 111 / 20%) 0 7px 29px 0;

@@ -2,11 +2,12 @@
   width: 250px;
   border: none;
   outline: 1px solid var(--border-color);
-  border-radius: 0.75rem;
+  border-radius: var(--border-radius);
   background-color: white;
   position: fixed;
   box-shadow: rgb(100 100 111 / 20%) 0 7px 29px 0;
   z-index: 5;
+  margin-top: 10px;
 }
 
 .card .mobile-menu-header {
@@ -89,7 +90,7 @@
   background-color: #000000;
   opacity: 0.8;
   transition: all 0.3s ease;
-  border-radius: 0 0 0.75rem 0.75rem;
+  border-radius: 0 0 var(--border-radius) var(--border-radius);
 }
 
 .card .support-us-btn:hover {
@@ -112,6 +113,7 @@
     position: fixed;
     top: 0;
     right: 0;
+    margin: 0;
     z-index: 105;
     height: 100%;
     outline: none;
@@ -127,7 +129,8 @@
     padding: 0;
     align-items: center;
     justify-content: flex-start;
-    outline: 1px solid var(--border-color);
+    border-bottom: 1px solid var(--border-color);
+    box-sizing: content-box;
   }
 
   .card .mobile-menu-header img {

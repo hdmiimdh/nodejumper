@@ -14,7 +14,7 @@
   text-align: left;
   white-space: pre-line;
   margin-bottom: 0;
-  border-radius: 0.5rem;
+  border-radius: var(--border-radius);
   outline: none !important;
 }
 

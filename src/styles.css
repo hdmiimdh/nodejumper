@@ -12,8 +12,8 @@ html, body {
   font-family: 'Monaco', sans-serif !important;
 }
 
-div.code-toolbar {
-  padding: 0 !important;
+body p {
+  margin-bottom: 0;
 }
 
 div.code-toolbar button {
@@ -36,10 +36,15 @@ div.code-toolbar button {
 
 :root {
   --max-width: 1212px;
-  --button-color: #e0e0e0;
   --details-color: #57606a;
+
+  /* button */
+  --button-color: #e0e0e0;
+
+  /* border */
   --border-color: #d0d7de;
   --border-active-color: #111111;
+  --border-radius: 0.5rem;
 }
 
 @media (max-width: 576px) {
