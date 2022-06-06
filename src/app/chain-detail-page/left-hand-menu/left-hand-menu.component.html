@@ -1,39 +1,39 @@
 <div id="left-hand-menu" class="card" *ngIf="chain">
   <div class="mobile-menu-header">
-    <img src="assets/img/logo.svg" alt="NodeJumper">
-    <span class="title">NodeJumper</span>
+    <img class="logo-image" src="assets/img/logo.svg" alt="NodeJumper">
+    <p class="title">NodeJumper</p>
   </div>
-  <div class="chain-logo">
-    <img alt="{{chain.chainName}}" src="assets/img/chain/{{chain.id.split('-')[0]}}.png">
-    <span class="title">{{chain.chainName}}</span>
-    <span class="details">{{chain.chainId}}</span>
+  <div class="chain-info">
+    <img class="logo-image" alt="{{chain.chainName}}" src="assets/img/chain/{{chain.id.split('-')[0]}}.png">
+    <p class="title">{{chain.chainName}}</p>
+    <p class="details">{{chain.chainId}}</p>
   </div>
   <div class="menu">
-    <span *ngIf="!chain.summaryDisabled" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['./']" class="menu-item" routerLinkActive="active" (click)="closeLeftHandMenuForMobile()">Summary</span>
-    <span [routerLink]="['./installation']" class="menu-item" routerLinkActive="active" (click)="closeLeftHandMenuForMobile()">Installation scripts</span>
-    <span [routerLink]="['./sync']" class="menu-item" routerLinkActive="active" (click)="closeLeftHandMenuForMobile()">Synchronization scripts</span>
-    <span [routerLink]="['./about']" class="menu-item" routerLinkActive="active" (click)="closeLeftHandMenuForMobile()">About</span>
+    <p *ngIf="!chain.summaryDisabled" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['./']" class="menu-item" routerLinkActive="active" (click)="closeLeftHandMenuForMobile()">Summary</p>
+    <p [routerLink]="['./installation']" class="menu-item" routerLinkActive="active" (click)="closeLeftHandMenuForMobile()">Installation scripts</p>
+    <p [routerLink]="['./sync']" class="menu-item" routerLinkActive="active" (click)="closeLeftHandMenuForMobile()">Synchronization scripts</p>
+    <p [routerLink]="['./about']" class="menu-item" routerLinkActive="active" (click)="closeLeftHandMenuForMobile()">About</p>
   </div>
   <div class="social">
     <a *ngIf="chain.twitter" href="{{chain.twitter}}" target="_blank">
-      <span class="fa-brands fa-twitter" ngbTooltip="Twitter" tooltipClass="ratio-tooltip" placement="top"></span>
+      <span class="btn-social fa-brands fa-twitter" ngbTooltip="Twitter" tooltipClass="ratio-tooltip" placement="top"></span>
     </a>
     <a *ngIf="chain.github" href="{{chain.github}}" target="_blank">
-      <span class="fa-brands fa-github" ngbTooltip="Github" tooltipClass="ratio-tooltip" placement="top"></span>
+      <span class="btn-social fa-brands fa-github" ngbTooltip="Github" tooltipClass="ratio-tooltip" placement="top"></span>
     </a>
     <a *ngIf="chain.globe" href="{{chain.globe}}" target="_blank">
-      <span class="fa fa-globe" ngbTooltip="Website" tooltipClass="ratio-tooltip" placement="top"></span>
+      <span class="btn-social fa fa-globe" ngbTooltip="Website" tooltipClass="ratio-tooltip" placement="top"></span>
     </a>
     <a *ngIf="chain.medium" href="{{chain.medium}}" target="_blank">
-      <span class="fa-brands fa-medium" ngbTooltip="Medium" tooltipClass="ratio-tooltip" placement="top"></span>
+      <span class="btn-social fa-brands fa-medium" ngbTooltip="Medium" tooltipClass="ratio-tooltip" placement="top"></span>
     </a>
     <a *ngIf="chain.discord" href="{{chain.discord}}" target="_blank">
-      <span class="fa-brands fa-discord" ngbTooltip="Discord" tooltipClass="ratio-tooltip" placement="top"></span>
+      <span class="btn-social fa-brands fa-discord" ngbTooltip="Discord" tooltipClass="ratio-tooltip" placement="top"></span>
     </a>
   </div>
   <div class="support-us">
     <a *ngIf="chain.validatorUrl" class="support-us-btn btn btn-block shadow-none" href="{{chain.validatorUrl}}" target="_blank">
-      <span>Stake With Us!</span>
+      <p>Stake With Us!</p>
     </a>
   </div>
 </div>

@@ -10,11 +10,11 @@
   margin-top: 15px;
 }
 
-.card .mobile-menu-header {
+.mobile-menu-header {
   display: none;
 }
 
-.card div {
+.chain-info {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -22,88 +22,94 @@
   padding: 30px 0;
 }
 
-.card img {
+.chain-info .logo-image {
   border-radius: 100%;
   margin-bottom: 20px;
   width: 82px;
   height: 82px;
 }
 
-.card .title {
+.chain-info .title {
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 10px;
 }
 
-.card .details {
+.chain-info .details {
   font-size: 18px;
   color: var(--details-color);
 }
 
-.card .menu {
-  padding-bottom: 0;
+.menu {
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 25px 0;
 }
 
-.card .menu-item {
+.menu .menu-item {
   padding: 10px;
   width: 100%;
   border-left: 3px solid transparent;
-  outline: none;
 }
 
-.card .menu-item:hover {
+.menu .menu-item:hover {
   cursor: pointer;
   text-decoration: underline;
 }
 
-.card .menu-item.active {
+.menu .menu-item.active {
   border-left: 3px solid #fd8c73;
 }
 
-.card .social {
-  flex-direction: row;
-  padding-bottom: 5px;
+.social {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.card .social span {
+.btn-social {
   font-size: 24px;
   color: #212529;
   padding: 10px;
-  opacity: 0.8;
-}
-
-.card .social span:hover {
   cursor: pointer;
-  opacity: 0.6;
+  opacity: var(--icon-button-opacity);
+  transition: opacity var(--animation-speed) ease;
 }
 
-.card .support-us {
+.btn-social:hover {
+  opacity: var(--icon-button-hover-opacity);
+}
+
+.btn-social:active {
+  opacity: var(--icon-button-active-opacity);
+}
+
+.support-us {
   padding-top: 10px;
   padding-bottom: 0;
 }
 
-.card .support-us-btn {
+.support-us-btn {
   width: 250px;
   border-top: 1px solid var(--border-color);
   cursor: pointer;
   color: #ffffff;
   background-color: #000000;
-  opacity: 0.8;
-  transition: all 0.3s ease;
+  opacity: var(--icon-button-opacity);
+  transition: opacity var(--animation-speed) ease;
   border-radius: 0 0 var(--border-radius) var(--border-radius);
 }
 
-.card .support-us-btn:hover {
-  opacity: 0.6;
+.support-us-btn:hover {
+  opacity: var(--icon-button-hover-opacity);
 }
 
-.card .support-us-btn:active {
-  color: #000000;
-  background-color: #fd8c73;
-  opacity: 0.8;
+.support-us-btn:active {
+  opacity: var(--icon-button-active-opacity);
 }
 
-.card .support-us-btn span {
+.support-us-btn p {
   font-size: 18px;
   font-weight: 600;
 }
@@ -122,7 +128,7 @@
     transition: all ease 150ms;
   }
 
-  .card .mobile-menu-header {
+  .mobile-menu-header {
     display: flex;
     min-height: 70px;
     flex-direction: row;
@@ -133,7 +139,7 @@
     box-sizing: content-box;
   }
 
-  .card .mobile-menu-header img {
+  .mobile-menu-header .logo-image {
     width: 50px;
     height: 50px;
     border-radius: 100%;
@@ -142,13 +148,13 @@
     margin-bottom: 0;
   }
 
-  .card .mobile-menu-header .title {
+  .chain-info .title {
     letter-spacing: 4px;
     margin-bottom: 0;
     font-size: 1rem;
   }
 
-  .card .mobile-menu-header .fa-xmark {
+  .fa-xmark {
     position: absolute;
     top: 5px;
     right: 10px;
@@ -156,21 +162,21 @@
     cursor: pointer;
   }
 
-  .card div {
+  .menu {
     padding-top: 0;
   }
 
-  .card .menu-item,
-  .card .menu-item.active {
+  .menu .menu-item,
+  .menu .menu-item.active {
     border-left: none;
     text-align: center;
     border-bottom: 1px solid var(--border-color);
     padding: 25px 0;
   }
 
-  .card .chain-logo,
-  .card .social,
-  .card .support-us {
+  .chain-info,
+  .social,
+  .support-us {
     display: none;
   }
 }
