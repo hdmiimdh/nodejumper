@@ -65,11 +65,12 @@ Create Validator Delimiter
 # Create wallet
 $binaryName keys add wallet
 
-- name: wallet
-  type: local
-  address: one1wpkxhzufzrmz6glt4sjp54k3umgvx5hv3rx6y7
-  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"Auq9WzVEs5pCoZgr2WctjI7fU+lJCH0I3r6GC1oa0tc0"}'
-  mnemonic: ""
+## Console output
+#- name: wallet
+#  type: local
+#  address: one1wpkxhzufzrmz6glt4sjp54k3umgvx5hv3rx6y7
+#  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"Auq9WzVEs5pCoZgr2WctjI7fU+lJCH0I3r6GC1oa0tc0"}'
+#  mnemonic: ""
 
 #!!! SAVE SEED PHRASE
 kite upset hip dirt pet winter thunder slice parent flag sand express suffer chest custom pencil mother bargain remember patient other curve cancel sweet
@@ -83,9 +84,10 @@ $request <YOUR_WALLET_ADDRESS>
 # Verify the balance
 $binaryName q bank balances <YOUR_WALLET_ADDRESS>
 
-  balances:
-  - amount: "5000000"
-    denom: uan1
+## Console output
+#  balances:
+#  - amount: "5000000"
+#    denom: uan1
 
 #Create validator
 $binaryName tx staking create-validator \
