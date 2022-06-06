@@ -125,7 +125,7 @@
     outline: none;
     border-radius: unset;
     transform: translateX(500px);
-    transition: all ease 150ms;
+    transition: all ease var(--animation-speed);
   }
 
   .mobile-menu-header {

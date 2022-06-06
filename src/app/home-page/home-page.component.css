@@ -19,7 +19,7 @@
   padding-left: 35px;
   height: 40px;
   box-sizing: border-box;
-  transition: border-color 0.3s ease;
+  transition: border-color var(--animation-speed) ease;
 }
 
 .search-field input:hover, .search-field input:focus {
@@ -43,7 +43,7 @@
   height: 40px;
   box-sizing: border-box;
   border: 1px solid var(--border-color);
-  transition: border-color 0.3s ease;
+  transition: border-color var(--animation-speed) ease;
 }
 
 .testnets-toggle:hover {
@@ -55,7 +55,7 @@
   justify-content: center;
   align-items: center;
   width: 50%;
-  transition: all 0.3s ease;
+  transition: all var(--animation-speed) ease;
 }
 
 .testnets-toggle .toggle-button.active {
