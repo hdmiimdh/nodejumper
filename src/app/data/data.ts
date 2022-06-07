@@ -199,8 +199,7 @@ export const CHAINS: Chain[] = [
     validatorUrl: "https://ping.pub/evmos/staking/evmosvaloper1hm5elxdjfx4pltn00e0tde0avhpj03tynuhkk3",
     denomName: "aevmos",
     denomPow: 18,
-    newWayUnsafeResetAll: true,
-    summaryDisabled: true
+    newWayUnsafeResetAll: true
   },
   {
     id: "another1-testnet",
