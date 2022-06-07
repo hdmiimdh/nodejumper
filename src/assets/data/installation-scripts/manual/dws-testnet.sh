@@ -58,7 +58,7 @@ $binaryName unsafe-reset-all
 rm -rf $HOME/$homeDirectoryName/data && cd $HOME/$homeDirectoryName
 
 SNAP_NAME=$(curl -s https://snapshots1-testnet.nodejumper.io/dws-testnet/ | egrep -o ">deweb-testnet-1.*\.tar.lz4" | tr -d ">")
-wget -O - https://snapshots1-testnet.nodejumper.io/dws-testnet/${SNAP_NAME} | lz4 -dc - | tar -xf -
+curl https://snapshots1-testnet.nodejumper.io/dws-testnet/${SNAP_NAME} | lz4 -dc - | tar -xf -
 
 sudo systemctl daemon-reload
 sudo systemctl enable $serviceName
