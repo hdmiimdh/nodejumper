@@ -4,7 +4,7 @@ sudo apt update
 sudo apt install -y make gcc jq curl git
 
 if [ ! -f "/usr/local/go/bin/go" ]; then
-  . <(curl -s "https://raw.githubusercontent.com/nodejumper-org/cosmos-utils/main/installation-scripts/go_install.sh")
+  . <(curl -s "https://raw.githubusercontent.com/nodejumper-org/cosmos-utils/main/utils/go_install.sh")
   . .bash_profile
 fi
 
