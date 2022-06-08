@@ -17,19 +17,26 @@ sed -i 's|^\bpersistent_peers *=.*"\b|persistent_peers = \"'$nj_peer',|' $HOME/{
         height: <strong>{{snapshotHeight | number: '2.'}}</strong>; size: <strong>{{snapshotSize}}</strong>; pruning: <strong>custom/100/0/10</strong>, indexer: <strong>null</strong>
       </p>
     </div>
-    <pre><code class="language-bash">#Install lz4, if needed
-sudo apt update && sudo apt install snapd -y && sudo snap install lz4</code></pre>
-    <pre><code class="language-bash">sudo systemctl stop {{chain.serviceName}} && {{this.chainService.getUnsafeResetAllString(chain)}}
+    <pre><code class="language-bash"># install lz4, if needed
+sudo apt update
+sudo apt install snapd -y
+sudo snap install lz4</code></pre>
+    <pre><code class="language-bash">sudo systemctl stop {{chain.serviceName}}
+{{this.chainService.getUnsafeResetAllString(chain)}}
 
-rm -rf $HOME/{{chain.homeDirectoryName}}/data && cd $HOME/{{chain.homeDirectoryName}}
+rm -rf $HOME/{{chain.homeDirectoryName}}/data
+cd $HOME/{{chain.homeDirectoryName}}
 
 SNAP_NAME=$(curl -s {{chain.snapshotServer}}/{{chain.id}}/ | egrep -o ">{{chain.chainId}}.*\.tar.lz4" | tr -d ">")
 curl {{chain.snapshotServer}}/{{chain.id}}/${{ '{' }}SNAP_NAME{{ '}' }} | lz4 -dc - | tar -xf -
-sudo systemctl restart {{chain.serviceName}} && sudo journalctl -u {{chain.serviceName}} -f --no-hostname -o cat</code></pre>
+
+sudo systemctl restart {{chain.serviceName}}
+sudo journalctl -u {{chain.serviceName}} -f --no-hostname -o cat</code></pre>
   </div>
   <div class="row code" *ngIf="!chain.stateSyncDisabled">
     <p class="title">State Sync</p>
-    <pre><code class="language-bash">sudo systemctl stop {{chain.serviceName}} && {{this.chainService.getUnsafeResetAllString(chain)}}
+    <pre><code class="language-bash">sudo systemctl stop {{chain.serviceName}}
+{{this.chainService.getUnsafeResetAllString(chain)}}
 
 SNAP_RPC="{{chain.rpcServer}}"
 
@@ -47,6 +54,7 @@ s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$SNAP_RPC,$SNAP_RPC\"| ; \
 s|^(trust_height[[:space:]]+=[[:space:]]+).*$|\1$BLOCK_HEIGHT| ; \
 s|^(trust_hash[[:space:]]+=[[:space:]]+).*$|\1\"$TRUST_HASH\"|" $HOME/{{chain.homeDirectoryName}}/config/config.toml
 
-sudo systemctl restart {{chain.serviceName}} && sudo journalctl -u {{chain.serviceName}} -f --no-hostname -o cat{{chain.stateSyncExtraStep}}</code></pre>
+sudo systemctl restart {{chain.serviceName}}
+sudo journalctl -u {{chain.serviceName}} -f --no-hostname -o cat{{chain.stateSyncExtraStep}}</code></pre>
   </div>
 </ng-container>
