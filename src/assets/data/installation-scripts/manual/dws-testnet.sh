@@ -13,9 +13,12 @@ go version # go version goX.XX.X linux/amd64
 
 sudo apt install -y make gcc jq git
 
-cd && git clone https://github.com/deweb-services/deweb.git
-cd deweb && git checkout v0.2 && make install
-
+cd || return
+rm -rf deweb
+git clone https://github.com/deweb-services/deweb.git
+cd deweb || return
+git checkout v0.2
+make install
 $binaryName version # 0.2
 
 # replace nodejumper with your own moniker, if you'd like

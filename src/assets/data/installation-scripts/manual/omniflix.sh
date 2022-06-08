@@ -10,9 +10,12 @@ fi
 
 go version # go version goX.XX.X linux/amd64
 
-cd && git clone https://github.com/Omniflix/omniflixhub.git
-cd omniflixhub && git checkout v0.4.0 && make install
-
+cd || return
+rm -rf omniflixhub
+git clone https://github.com/Omniflix/omniflixhub.git
+cd omniflixhub || return
+git checkout v0.4.0
+make install
 $binaryName version # 0.4.0
 
 # replace nodejumper with your own moniker, if you'd like

@@ -10,9 +10,12 @@ fi
 
 go version # go version goX.XX.X linux/amd64
 
-cd && git clone https://github.com/BitCannaGlobal/bcna.git
-cd bcna && git checkout v.1.3.1 && make install
-
+cd || return
+rm -rf bcna
+git clone https://github.com/BitCannaGlobal/bcna.git
+cd bcna || return
+git checkout v.1.3.1
+make install
 $binaryName version # .1.3.1
 
 # replace nodejumper with your own moniker, if you'd like

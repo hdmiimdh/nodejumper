@@ -11,12 +11,14 @@ fi
 
 go version # go version goX.XX.X linux/amd64
 
-cd && wget https://github.com/CosmWasm/wasmvm/raw/v0.13.0/api/libwasmvm.so
+cd || return
+curl https://github.com/CosmWasm/wasmvm/raw/v0.13.0/api/libwasmvm.so > libwasmvm.so
 sudo mv -f libwasmvm.so /lib/libwasmvm.so
-
+rm -rf starnamed
 git clone https://github.com/iov-one/starnamed.git
-cd starnamed && git checkout v0.10.13 && make install
-
+cd starnamed || return
+git checkout v0.10.13
+make install
 $binaryName version # v0.10.13
 
 # replace nodejumper with your own moniker, if you'd like

@@ -11,9 +11,12 @@ fi
 
 go version # go version goX.XX.X linux/amd64
 
-cd && git clone https://github.com/notional-labs/anone
-cd anone && git checkout testnet-1.0.3 && make install
-
+cd || return
+rm -rf anone
+git clone https://github.com/notional-labs/anone
+cd anone || return
+git checkout testnet-1.0.3
+make install
 $binaryName version # testnet-1.0.3
 
 # replace nodejumper with your own moniker, if you'd like

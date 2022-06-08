@@ -10,9 +10,12 @@ fi
 
 go version # go version goX.XX.X linux/amd64
 
-cd && git clone https://github.com/rizon-world/rizon.git
-cd rizon && git checkout v0.3.0 && make install
-
+cd || return
+rm -rf rizon
+git clone https://github.com/rizon-world/rizon.git
+cd rizon || return
+git checkout v0.3.0
+make install
 $binaryName version # v0.3.0
 
 # replace nodejumper with your own moniker, if you'd like

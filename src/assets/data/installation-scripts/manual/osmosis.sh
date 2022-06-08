@@ -14,9 +14,12 @@ go version # go version goX.XX.X linux/amd64
 sudo apt install -y make gcc jq git
 sudo apt install snapd -y && sudo snap install lz4
 
-cd && git clone https://github.com/osmosis-labs/osmosis
-cd osmosis && git checkout v9.0.0 && make install
-
+cd || return
+rm -rf osmosis
+git clone https://github.com/osmosis-labs/osmosis
+cd osmosis || return
+git checkout v9.0.0
+make install
 $binaryName version # v9.0.0
 
 # replace nodejumper with your own moniker, if you'd like

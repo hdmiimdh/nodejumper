@@ -10,9 +10,12 @@ fi
 
 go version # go version goX.XX.X linux/amd64
 
-cd && git clone https://github.com/galaxies-labs/galaxy
-cd galaxy && git checkout v1.0.0 && make install
-
+cd || return
+rm -rf galaxy
+git clone https://github.com/galaxies-labs/galaxy
+cd galaxy || return
+git checkout v1.0.0
+make install
 $binaryName version # launch-gentxs
 
 # replace nodejumper with your own moniker, if you'd like

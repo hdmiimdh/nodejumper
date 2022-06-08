@@ -11,10 +11,14 @@ fi
 
 go version # go version goX.XX.X linux/amd64
 
-cd && git clone https://github.com/sei-protocol/sei-chain.git
-cd sei-chain && git checkout 1.0.0beta && go build -o build/seid ./cmd/sei-chaind
-mkdir -p $HOME/go/bin && mv build/seid $HOME/go/bin
-
+cd || return
+rm -rf sei-chain
+git clone https://github.com/sei-protocol/sei-chain.git
+cd sei-chain || return
+git checkout 1.0.0beta
+go build -o build/seid ./cmd/sei-chaind
+mkdir -p $HOME/go/bin
+mv build/seid $HOME/go/bin
 $binaryName version
 
 # replace nodejumper with your own moniker, if you'd like

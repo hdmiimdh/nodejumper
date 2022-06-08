@@ -12,9 +12,12 @@ go version # go version goX.XX.X linux/amd64
 
 sudo apt install -y make gcc jq git unzip
 
-cd && git clone https://github.com/tharsis/evmos
-cd evmos && git checkout v4.0.1 && make install
-
+cd || return
+rm -rf evmos
+git clone https://github.com/tharsis/evmos
+cd evmos || return
+git checkout v4.0.1
+make install
 $binaryName version # 4.0.1
 
 # replace nodejumper with your own moniker, if you'd like

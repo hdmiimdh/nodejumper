@@ -10,9 +10,12 @@ fi
 
 go version # go version goX.XX.X linux/amd64
 
-cd && git clone https://github.com/desmos-labs/desmos.git
-cd desmos && git checkout tags/v2.3.1 && make install
-
+cd || return
+rm -rf desmos
+git clone https://github.com/desmos-labs/desmos.git
+cd desmos || return
+git checkout tags/v2.3.1
+make install
 $binaryName version # 2.3.1
 
 # replace nodejumper with your own moniker, if you'd like

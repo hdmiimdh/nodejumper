@@ -10,9 +10,12 @@ fi
 
 go version # go version goX.XX.X linux/amd64
 
-cd && git clone https://github.com/ChihuahuaChain/chihuahua.git
-cd chihuahua && git checkout v1.1.1 && make install
-
+cd || return
+rm -rf chihuahua
+git clone https://github.com/ChihuahuaChain/chihuahua.git
+cd chihuahua || return
+git checkout v1.1.1
+make install
 $binaryName version # v1.1.1
 
 # replace nodejumper with your own moniker, if you'd like
