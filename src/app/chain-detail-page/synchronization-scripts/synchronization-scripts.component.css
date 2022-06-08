@@ -10,6 +10,7 @@
 
 pre {
   border-radius: var(--border-radius);
+  outline: none;
 }
 
 .snap-info {
