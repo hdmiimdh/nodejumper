@@ -18,7 +18,7 @@ body p {
 
 div.code-toolbar > .toolbar > .toolbar-item > button {
   position: absolute;
-  top: 20px;
+  top: 15px;
   right: 25px;
   padding: 10px;
   background-color: white;
