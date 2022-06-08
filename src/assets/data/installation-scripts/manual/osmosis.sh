@@ -15,9 +15,9 @@ sudo apt install -y make gcc jq git
 sudo apt install snapd -y && sudo snap install lz4
 
 cd && git clone https://github.com/osmosis-labs/osmosis
-cd osmosis && git checkout v8.0.0 && make install
+cd osmosis && git checkout v9.0.0 && make install
 
-$binaryName version # v8.0.0
+$binaryName version # v9.0.0
 
 # replace nodejumper with your own moniker, if you'd like
 $binaryName config chain-id $chainId
