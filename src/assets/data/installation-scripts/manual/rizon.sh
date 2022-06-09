@@ -28,7 +28,7 @@ sha256sum $HOME/$homeDirectoryName/config/genesis.json # 6d5602e3746affea1096c72
 sed -i 's|^minimum-gas-prices *=.*|minimum-gas-prices = "0.0001$denomName"|g' $HOME/$homeDirectoryName/config/app.toml
 seeds="83c9cdc2db2b4eff4acc9cd7d664ad5ae6191080@seed-1.mainnet$homeDirectoryName.world:26656,ae1476777536e2be26507c4fbcf86b67540adb64@seed-2.mainnet$homeDirectoryName.world:26656,8abf316257a264dc8744dee6be4981cfbbcaf4e4@seed-3.mainnet$homeDirectoryName.world:26656"
 peers="$rpcPeer"
-sed -i -e 's|^seeds *=.*|seeds = "'$seeds'"|; s|^\bpersistent_peers *=.*"\b|persistent_peers = \"'$peers',|' $HOME/$homeDirectoryName/config/config.toml
+sed -i -e 's|^seeds *=.*|seeds = "'$seeds'"|; s|^persistent_peers *=.*|persistent_peers = "'$peers'"|' $HOME/$homeDirectoryName/config/config.toml
 
 # in case of pruning
 sed -i 's|pruning = "default"|pruning = "custom"|g' $HOME/$homeDirectoryName/config/app.toml
