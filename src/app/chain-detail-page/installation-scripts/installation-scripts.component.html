@@ -1,40 +1,42 @@
 <ng-container *ngIf="this.chainService.activeChain as chain">
   <ng-container *ngIf="!this.chain.isTestnet && manualInstallationScriptContent">
-    <div class="row"><span class="title"><b>1. Automatic Installation (pruning: custom/100/0/10)</b></span></div>
-    <div class="row code">
-      <pre><code class="language-bash">cd && wget https://raw.githubusercontent.com/nodejumper-org/cosmos-utils/main/installation-scripts/{{chain.id}}_install.sh
-mkdir -p installation-scripts && mv -f {{chain.id}}_install.sh installation-scripts/ && cd installation-scripts
-chmod +x {{chain.id}}_install.sh
+    <div class="row">
+      <div>
+        <p class="title">Automatic Installation</p>
+        <p class="snap-info">pruning: <strong>custom/100/0/10</strong></p>
+      </div>
+      <pre><code class="language-bash"># replace nodejumper with your own moniker, if you'd like
+. <(curl -s https://raw.githubusercontent.com/nodejumper-org/cosmos-utils/main/installation-scripts/{{chain.id}}_install.sh) \
+nodejumper
 
-# replace nodejumper with your own moniker, if you'd like
-./{{chain.id}}_install.sh nodejumper</code></pre>
+sudo journalctl -u {{chain.serviceName}} -f --no-hostname -o cat</code></pre>
     </div>
-    <div class="row"><span class="title"><b>2. Manual Installation</b></span></div>
-    <div class="row code">
-      <pre><code class="language-bash">{{manualInstallationScriptContent.trim()}}</code></pre>
+    <div class="row">
+      <p class="title">Manual Installation</p>
+        <pre><code class="language-bash">{{manualInstallationScriptContent.trim()}}</code></pre>
     </div>
   </ng-container>
   <ng-container *ngIf="this.chain.isTestnet && manualInstallationScriptContent">
-    <div class="row"><span class="title"><b>1. Hardware Requirements</b></span></div>
-    <div class="row code">
+    <div class="row">
+      <p class="title">Hardware Requirements</p>
       <pre><code class="language-bash">{{chain.hardwareRequirements}}</code></pre>
     </div>
-    <div class="row"><span class="title"><b>2.a Automatic Installation (pruning: custom/100/0/10)</b></span></div>
-    <div class="row code">
-      <pre><code class="language-bash">cd && wget https://raw.githubusercontent.com/nodejumper-org/cosmos-utils/main/installation-scripts/{{chain.id}}_install.sh
-mkdir -p installation-scripts && mv -f {{chain.id}}_install.sh installation-scripts/ && cd installation-scripts
-chmod +x {{chain.id}}_install.sh
-
-# replace nodejumper with your own moniker, if you'd like
-./{{chain.id}}_install.sh nodejumper</code></pre>
+    <div class="row">
+      <div>
+        <p class="title">Automatic Installation</p>
+        <p class="snap-info">pruning: <strong>custom/100/0/10</strong>; indexer: <strong>null</strong></p>
+      </div>
+      <pre><code class="language-bash"># replace nodejumper with your own moniker, if you'd like
+. <(curl -s https://raw.githubusercontent.com/nodejumper-org/cosmos-utils/main/installation-scripts/{{chain.id}}_install.sh) \
+nodejumper</code></pre>
     </div>
-    <div class="row"><span class="title"><b>2.b Manual Installation</b></span></div>
-    <div class="row code">
+    <div class="row">
+      <p class="title">Manual Installation</p>
       <pre><code class="language-bash">{{manualInstallationScriptContent.split('Create Validator Delimiter')[0].trim()}}</code></pre>
     </div>
-    <div class="row"><span class="title"><b>3. Create Validator</b></span></div>
-    <div class="row code">
-    <pre><code class="language-bash">{{manualInstallationScriptContent.split('Create Validator Delimiter')[1].trim()}}</code></pre>
+    <div class="row">
+      <p class="title">Create Validator</p>
+      <pre><code class="language-bash">{{manualInstallationScriptContent.split('Create Validator Delimiter')[1].trim()}}</code></pre>
     </div>
   </ng-container>
 </ng-container>

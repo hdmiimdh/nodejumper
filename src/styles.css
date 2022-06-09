@@ -12,17 +12,30 @@ html, body {
   font-family: 'Monaco', sans-serif !important;
 }
 
-div.code-toolbar {
-  padding: 0 !important;
+body p {
+  margin-bottom: 0;
 }
 
-div.code-toolbar button {
+div.code-toolbar > .toolbar > .toolbar-item > button {
   position: absolute;
-  top: 12px;
-  right: 5px;
-  padding: 5px !important;
-  background: white !important;
-  color: black !important;
+  top: 13px;
+  right: 22px;
+  padding: 10px;
+  background-color: white;
+  color: black;
+  border: 1px solid var(--border-color);
+  transition: all ease var(--animation-speed);
+  box-shadow: #64646f33 0 7px 29px;
+}
+
+div.code-toolbar > .toolbar > .toolbar-item > button:hover {
+  background-color: #f6f6f6;
+  border-color: var(--border-active-color);
+}
+
+div.code-toolbar > .toolbar > .toolbar-item > button:active {
+  background-color: white;
+  box-shadow: none;
 }
 
 .ratio-tooltip {
@@ -37,6 +50,20 @@ div.code-toolbar button {
 :root {
   --max-width: 1212px;
   --details-color: #57606a;
+  --animation-speed: 200ms;
+
+  /* button */
+  --button-color: #e0e0e0;
+
+  /* icon button */
+  --icon-button-opacity: 0.9;
+  --icon-button-hover-opacity: 0.7;
+  --icon-button-active-opacity: 1;
+
+  /* border */
+  --border-color: #d0d7de;
+  --border-active-color: #111111;
+  --border-radius: 0.5rem;
 }
 
 @media (max-width: 576px) {

@@ -1,19 +1,9 @@
 .content {
-  display: inline-block;
-  width: calc(100% - 250px);
-  padding-left: 20px;
-  margin-left: 250px;
-}
-
-.left-hand-menu {
-  display: inline-block;
-  vertical-align: top;
+  padding-left: 280px;
 }
 
 @media (max-width: 576px) {
   .content {
-    width: 100%;
-    padding-left: unset;
-    margin-left: unset;
+    padding-left: 0;
   }
 }

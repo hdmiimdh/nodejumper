@@ -157,7 +157,7 @@ export const CHAINS: Chain[] = [
     stateSyncExtraStep: '\n\n# wait for "wrong Block.Header.Version. Expected {11 0}, got {11 1}" error\n\n' +
       'cd && git clone https://github.com/tendermint/tendermint\n' +
       'cd tendermint && git checkout callum/app-version && make install\n' +
-      'tendermint set-app-version 1 --home ~/.osmosisd\n' +
+      'tendermint set-app-version 1 --home $HOME/.osmosisd\n' +
       '\n' +
       'sudo systemctl restart osmosisd && sudo journalctl -u osmosisd -f --no-hostname -o cat',
     newWayUnsafeResetAll: true
