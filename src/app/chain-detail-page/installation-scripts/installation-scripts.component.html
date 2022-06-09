@@ -28,7 +28,9 @@ sudo journalctl -u {{chain.serviceName}} -f --no-hostname -o cat</code></pre>
       </div>
       <pre><code class="language-bash"># replace nodejumper with your own moniker, if you'd like
 . <(curl -s https://raw.githubusercontent.com/nodejumper-org/cosmos-utils/main/installation-scripts/{{chain.id}}_install.sh) \
-nodejumper</code></pre>
+nodejumper
+
+sudo journalctl -u {{chain.serviceName}} -f --no-hostname -o cat</code></pre>
     </div>
     <div class="row">
       <p class="title">Manual Installation</p>
