@@ -230,7 +230,7 @@ export const CHAINS: Chain[] = [
     chainId: "sei-testnet-2",
     snapshotServer: "https://snapshots1-testnet.nodejumper.io",
     rpcServer: "http://rpc1-testnet.nodejumper.io:28657",
-    rpcPeer: "f36276cafd833d805f48ee0c3214b1d1b2f2193e@rpc1-testnet.nodejumper.io:28656",
+    rpcPeer: "f4b1aa3416073a4493de7889505fc19777326825@rpc1-testnet.nodejumper.io:28656",
     serviceName: "seid",
     homeDirectoryName: ".sei",
     twitter: "https://twitter.com/SeiNetwork",
