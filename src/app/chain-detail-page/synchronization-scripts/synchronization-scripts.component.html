@@ -24,8 +24,8 @@ sudo snap install lz4</code></pre>
     <pre><code class="language-bash">sudo systemctl stop {{chain.serviceName}}
 {{this.chainService.getUnsafeResetAllString(chain)}}
 
-rm -rf $HOME/{{chain.homeDirectoryName}}/data
 cd $HOME/{{chain.homeDirectoryName}}
+rm -rf data
 
 SNAP_NAME=$(curl -s {{chain.snapshotServer}}/{{chain.id}}/ | egrep -o ">{{chain.chainId}}.*\.tar.lz4" | tr -d ">")
 curl {{chain.snapshotServer}}/{{chain.id}}/${{ '{' }}SNAP_NAME{{ '}' }} | lz4 -dc - | tar -xf -
