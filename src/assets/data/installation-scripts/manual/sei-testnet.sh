@@ -15,21 +15,19 @@ cd || return
 rm -rf sei-chain
 git clone https://github.com/sei-protocol/sei-chain.git
 cd sei-chain || return
-git checkout 1.0.0beta
-go build -o build/seid ./cmd/sei-chaind
-mkdir -p $HOME/go/bin
-mv build/seid $HOME/go/bin
-$binaryName version
+git checkout 1.0.2beta
+make install
+$binaryName version # 1.0.2beta
 
 # replace nodejumper with your own moniker, if you'd like
 $binaryName config chain-id $chainId
-$binaryName init nodejumper --chain-id $chainId
+$binaryName init nodejumper --chain-id $chainId -o
 
-curl https://raw.githubusercontent.com/sei-protocol/testnet/master/sei-testnet-1/genesis.json > $HOME/$homeDirectoryName/config/genesis.json
-sha256sum $HOME/$homeDirectoryName/config/genesis.json # d212a915dcde84f1dc2208ca5ee890adfd6ffc5d4ff9a32332f50659b3b5ab1a
+curl https://raw.githubusercontent.com/sei-protocol/testnet/master/sei-testnet-2/genesis.json > ~/.sei/config/genesis.json
+sha256sum $HOME/$homeDirectoryName/config/genesis.json # aec481191276a4c5ada2c3b86ac6c8aad0cea5c4aa6440314470a2217520e2cc
 
-curl https://raw.githubusercontent.com/sei-protocol/testnet/master/sei-testnet-1/addrbook.json > $HOME/$homeDirectoryName/config/addrbook.json
-sha256sum $HOME/$homeDirectoryName/config/addrbook.json # 2ff327d2ab89c9ec56f86c14fdc67cbfc12e4716ae8cecc3bb497d92c4d8411e
+curl https://raw.githubusercontent.com/sei-protocol/testnet/master/sei-testnet-2/addrbook.json > ~/.sei/config/addrbook.json
+sha256sum $HOME/$homeDirectoryName/config/addrbook.json # 9058b83fca36c2c09fb2b7c04293382084df0960b4565090c21b65188816ffa6
 
 sed -i 's|^minimum-gas-prices *=.*|minimum-gas-prices = "0.0001$denomName"|g' $HOME/$homeDirectoryName/config/app.toml
 seeds=""
@@ -58,7 +56,7 @@ EOF
 $binaryName unsafe-reset-all
 rm -rf $HOME/$homeDirectoryName/data && cd $HOME/$homeDirectoryName
 
-SNAP_NAME=$(curl -s https://snapshots1-testnet.nodejumper.io/sei-testnet/ | egrep -o ">sei-testnet-1.*\.tar.lz4" | tr -d ">")
+SNAP_NAME=$(curl -s https://snapshots1-testnet.nodejumper.io/sei-testnet/ | egrep -o ">sei-testnet-2.*\.tar.lz4" | tr -d ">")
 curl https://snapshots1-testnet.nodejumper.io/sei-testnet/${SNAP_NAME} | lz4 -dc - | tar -xf -
 
 sudo systemctl daemon-reload
@@ -75,7 +73,7 @@ $binaryName keys add wallet
 ## Console output
 #- name: wallet
 #  type: local
-#  address: cosmos1lfpde6scf7ulzvuq2suavav6cpmpy0rzxne0pw
+#  address: sei1lfpde6scf7ulzvuq2suavav6cpmpy0rzxne0pw
 #  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"Auq9WzVEs5pCoZgr2WctjI7fU+lJCH0I3r6GC1oa0tc0"}'
 #  mnemonic: ""
 
