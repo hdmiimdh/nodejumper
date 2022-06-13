@@ -18,9 +18,9 @@ cd || return
 rm -rf osmosis
 git clone https://github.com/osmosis-labs/osmosis
 cd osmosis || return
-git checkout v9.0.0
+git checkout v10.0.0
 make install
-$binaryName version # v9.0.0
+$binaryName version # v10.0.0
 
 # replace nodejumper with your own moniker, if you'd like
 $binaryName config chain-id $chainId
