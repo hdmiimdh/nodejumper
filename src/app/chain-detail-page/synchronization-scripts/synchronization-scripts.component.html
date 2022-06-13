@@ -46,8 +46,8 @@ TRUST_HASH=$(curl -s "$SNAP_RPC/block?height=$BLOCK_HEIGHT" | jq -r .result.bloc
 
 echo $LATEST_HEIGHT $BLOCK_HEIGHT $TRUST_HASH
 
-peers="{{chain.rpcPeer}}"
-sed -i -e "s/^persistent_peers *=.*/persistent_peers = \"$peers\"/" $HOME/{{chain.homeDirectoryName}}/config/config.toml
+nj_peer="{{chain.rpcPeer}}"
+sed -i 's|^\bpersistent_peers *=.*"\b|persistent_peers = \"'$nj_peer',|' $HOME/{{chain.homeDirectoryName}}/config/config.toml
 
 sed -i -E "s|^(enable[[:space:]]+=[[:space:]]+).*$|\1true| ; \
 s|^(rpc_servers[[:space:]]+=[[:space:]]+).*$|\1\"$SNAP_RPC,$SNAP_RPC\"| ; \
