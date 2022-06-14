@@ -11,19 +11,22 @@ fi
 go version # go version goX.XX.X linux/amd64
 
 cd || return
-rm -rf anone
-git clone https://github.com/notional-labs/anone
-cd anone || return
-git checkout testnet-1.0.3
+rm -rf kujira-core
+git clone https://github.com/Team-Kujira/core kujira-core
+cd kujira-core || return
+git checkout v0.4.0
 make install
-$binaryName version # testnet-1.0.3
+$binaryName version # 0.4.0
 
 # replace nodejumper with your own moniker, if you'd like
 $binaryName config chain-id $chainId
-$binaryName init nodejumper --chain-id $chainId
+$binaryName init nodejumper --chain-id $chainId -o
 
-curl https://raw.githubusercontent.com/notional-labs/anone/master/networks/testnet-1/genesis.json > $HOME/$homeDirectoryName/config/genesis.json
-sha256sum $HOME/$homeDirectoryName/config/genesis.json # ba7bea692350ca8918542a26cabd5616dbebe1ff109092cb1e98c864da58dabf
+curl https://raw.githubusercontent.com/Team-Kujira/networks/master/testnet/harpoon-4.json > $HOME/.kujira/config/genesis.json
+sha256sum $HOME/.kujira/config/genesis.json # c5e258a28511b7f3f4e58993edd3b98ec7c716fe20b5c5813eec9babb696bd02
+
+curl https://raw.githubusercontent.com/Team-Kujira/networks/master/testnet/addrbook.json > $HOME/.kujira/config/addrbook.json
+sha256sum $HOME/.kujira/config/addrbook.json # 620fe1d5caf6544d61ea887c0c84664a1d3a0ea150a34dee21800c704262ba03
 
 sed -i 's|^minimum-gas-prices *=.*|minimum-gas-prices = "0.0001$denomName"|g' $HOME/$homeDirectoryName/config/app.toml
 seeds=""
@@ -49,7 +52,7 @@ LimitNOFILE=10000
 WantedBy=multi-user.target
 EOF
 
-$binaryName unsafe-reset-all
+$binaryName tendermint unsafe-reset-all --home $HOME/$homeDirectoryName
 
 SNAP_RPC="$rpcServer"
 LATEST_HEIGHT=$(curl -s $SNAP_RPC/block | jq -r .result.block.header.height); \
@@ -77,7 +80,7 @@ $binaryName keys add wallet
 ## Console output
 #- name: wallet
 #  type: local
-#  address: one1wpkxhzufzrmz6glt4sjp54k3umgvx5hv3rx6y7
+#  address: kujira1lfpde6scf7ulzvuq2suavav6cpmpy0rzxne0pw
 #  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"Auq9WzVEs5pCoZgr2WctjI7fU+lJCH0I3r6GC1oa0tc0"}'
 #  mnemonic: ""
 
@@ -87,27 +90,4 @@ kite upset hip dirt pet winter thunder slice parent flag sand express suffer che
 # Wait util the node is synced, should return FALSE
 $binaryName status | jq .SyncInfo.catching_up
 
-# Go to discord channel #faucet-testnet-1 and paste
-$request <YOUR_WALLET_ADDRESS>
-
-# Verify the balance
-$binaryName q bank balances <YOUR_WALLET_ADDRESS>
-
-## Console output
-#  balances:
-#  - amount: "5000000"
-#    denom: uan1
-
-#Create validator
-$binaryName tx staking create-validator \
---amount=4500000$denomName \
---pubkey=$($binaryName tendermint show-validator) \
---moniker=<YOUR_MONIKER_NAME> \
---chain-id=$chainId \
---commission-rate=0.1 \
---commission-max-rate=0.2 \
---commission-max-change-rate=0.05 \
---min-self-delegation=1 \
---fees=20000$denomName \
---from=wallet \
--y
+TBD

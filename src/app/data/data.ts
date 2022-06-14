@@ -219,7 +219,6 @@ export const CHAINS: Chain[] = [
     denomName: "uan1",
     denomPow: 6,
     summaryDisabled: true,
-    stateSyncDisabled: true,
     isTestnet: true,
     hardwareRequirements: "4CPU 8RAM 200GB",
     projectOverview: "Another-1 platform is an ecosystem that aggregates users and markets using a hybrid approach making it seamless for non crypto native users. The AN1 front end is built in Vue.js and served via the browser or electron app."
@@ -241,7 +240,6 @@ export const CHAINS: Chain[] = [
     denomName: "usei",
     denomPow: 6,
     summaryDisabled: true,
-    stateSyncDisabled: true,
     newWayUnsafeResetAll: true,
     isTestnet: true,
     hardwareRequirements: "4CPU 8RAM 200GB",
@@ -264,9 +262,31 @@ export const CHAINS: Chain[] = [
     denomName: "udws",
     denomPow: 6,
     summaryDisabled: true,
-    stateSyncDisabled: true,
     isTestnet: true,
     hardwareRequirements: "4CPU 8RAM 200GB",
     projectOverview: "DWS (Decentralized Web Services) is a decentralized cloud infrastructure management platform. DWS will take care of all the decentralized services health and will smoothly reinstantiate any service, which will go down, DWS will control funds spendings and will notify you in Slack/Telegram/Jami about any needed fundings. Also DWS will have a nice dashboard showing all the balances, spendings and incidents happen regarding the cloud infrastructure you use."
+  },
+  {
+    id: "kujira-testnet",
+    chainName: "Kujira",
+    chainId: "harpoon-4",
+    snapshotServer: "https://snapshots1-testnet.nodejumper.io",
+    rpcServer: "http://rpc1-testnet.nodejumper.io:29657",
+    rpcPeer: "eaa7e55efc03f23c5f461f71c06d444693d5352b@rpc1-testnet.nodejumper.io:29656",
+    serviceName: "kujirad",
+    homeDirectoryName: ".kujira",
+    twitter: "https://twitter.com/TeamKujira",
+    github: "https://github.com/Team-Kujira",
+    globe: "https://kujira.app",
+    medium: "https://teamkujira.medium.com",
+    discord: "https://discord.gg/teamkujira",
+    // validatorUrl: "https://dws.explorers.guru/validator/dewebvaloper1pdhaj6ct3wyfahn2u6zllxp3dq6dfuatwtkf6n",
+    denomName: "ukuji",
+    denomPow: 6,
+    summaryDisabled: true,
+    newWayUnsafeResetAll: true,
+    isTestnet: true,
+    hardwareRequirements: "4CPU 8RAM 200GB",
+    projectOverview: "The Cosmos Layer 1 platform for community selected projects creating true value."
   }
 ]

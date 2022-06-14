@@ -16,6 +16,7 @@ export class Chain {
   coingekoCoinId?: string;
   validatorUrl?: string;
   projectOverview?: string;
+  snapshotDisabled?: boolean;
   stateSyncDisabled?: boolean;
   summaryDisabled?: boolean;
   denomName: string;
