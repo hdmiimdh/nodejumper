@@ -14,9 +14,9 @@ cd || return
 rm -rf kid
 git clone https://github.com/KiFoundation/ki-tools.git
 cd ki-tools || return
-git checkout -b v2.0.1 tags/2.0.1
+git checkout 3.0.0
 make install
-$binaryName version # Mainnet-IBC-v2.0.1-889c4a2ca6b228247f5cb9366c3c0c894592da27
+$binaryName version # Mainnet-3.0.0
 
 # replace nodejumper with your own moniker, if you'd like
 $binaryName config chain-id $chainId
