@@ -109,5 +109,6 @@ $binaryName tx staking create-validator \
 --commission-max-change-rate=0.05 \
 --min-self-delegation=1 \
 --fees=20000$denomName \
+--gas=auto \
 --from=wallet \
 -y
