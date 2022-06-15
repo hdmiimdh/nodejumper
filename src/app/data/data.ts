@@ -303,7 +303,7 @@ export const CHAINS: Chain[] = [
     globe: "https://uptick.network",
     medium: "https://medium.com/@uptickproject",
     discord: "https://discord.gg/YgryMVXe",
-    // validatorUrl: "https://dws.explorers.guru/validator/dewebvaloper1pdhaj6ct3wyfahn2u6zllxp3dq6dfuatwtkf6n",
+    validatorUrl: "https://explorer.testnet.uptick.network/uptick-network-testnet/staking/uptickvaloper1krfszwgypy2pzzkh94juf4jcnyfkczzqr45l5u",
     denomName: "auptick",
     denomPow: 6,
     summaryDisabled: true,
