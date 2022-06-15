@@ -280,7 +280,7 @@ export const CHAINS: Chain[] = [
     globe: "https://kujira.app",
     medium: "https://teamkujira.medium.com",
     discord: "https://discord.gg/teamkujira",
-    // validatorUrl: "https://dws.explorers.guru/validator/dewebvaloper1pdhaj6ct3wyfahn2u6zllxp3dq6dfuatwtkf6n",
+    validatorUrl: "https://kujira.explorers.guru/validator/kujiravaloper1ucjzr4n3veafankyya7788nn2dsnvp83ags3zx",
     denomName: "ukuji",
     denomPow: 6,
     summaryDisabled: true,
@@ -288,5 +288,29 @@ export const CHAINS: Chain[] = [
     isTestnet: true,
     hardwareRequirements: "4CPU 8RAM 200GB",
     projectOverview: "The Cosmos Layer 1 platform for community selected projects creating true value."
+  },
+  {
+    id: "uptick-testnet",
+    chainName: "Uptick",
+    chainId: "uptick_7776-1",
+    snapshotServer: "https://snapshots1-testnet.nodejumper.io",
+    rpcServer: "http://rpc1-testnet.nodejumper.io:30657",
+    rpcPeer: "ef973b95ebd054ab38248349a5c822b997ed033e@rpc1-testnet.nodejumper.io:30656",
+    serviceName: "uptickd",
+    homeDirectoryName: ".uptickd",
+    twitter: "https://twitter.com/uptickproject",
+    github: "https://github.com/UptickNetwork",
+    globe: "https://uptick.network",
+    medium: "https://medium.com/@uptickproject",
+    discord: "https://discord.gg/YgryMVXe",
+    // validatorUrl: "https://dws.explorers.guru/validator/dewebvaloper1pdhaj6ct3wyfahn2u6zllxp3dq6dfuatwtkf6n",
+    denomName: "auptick",
+    denomPow: 6,
+    summaryDisabled: true,
+    snapshotDisabled: true,
+    newWayUnsafeResetAll: true,
+    isTestnet: true,
+    hardwareRequirements: "4CPU 8RAM 200GB",
+    projectOverview: "The Business Grade Multi-Chain NFT Infrastructure for Web 3.0."
   }
 ]
