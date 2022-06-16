@@ -23,7 +23,7 @@ jobs:
       - run: npm cache clean --force
       - run: npm install --legacy-peer-deps
       - run: npm install -g @angular/cli > /dev/null
-      - run: ng build
+      - run: ng build -base-href /
       - name: Archive build
         if: success()
         uses: actions/upload-artifact@v1
