@@ -24,7 +24,7 @@ jobs:
       - run: npm install --legacy-peer-deps
       - run: npm install -g @angular/cli > /dev/null
       - run: ng build --base-href /
-      - run: cp dist/index.html dist/404.html
+      - run: cp dist/nodejumper/index.html dist/nodejumper/404.html
       - name: Archive build
         if: success()
         uses: actions/upload-artifact@v1
