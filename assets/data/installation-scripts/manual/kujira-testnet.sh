@@ -90,4 +90,27 @@ kite upset hip dirt pet winter thunder slice parent flag sand express suffer che
 # Wait util the node is synced, should return FALSE
 $binaryName status | jq .SyncInfo.catching_up
 
-TBD
+# Go to discord channel, ask for a validator role, find #faucet-requests channel and paste
+!faucet <YOUR_WALLET_ADDRESS>
+
+# Verify the balance
+$binaryName q bank balances <YOUR_WALLET_ADDRESS>
+
+## Console output
+#  balances:
+#  - amount: "2000000"
+#    denom: ukuji
+
+#Create validator
+$binaryName tx staking create-validator \
+--amount=1990000$denomName \
+--pubkey=$($binaryName tendermint show-validator) \
+--moniker=<YOUR_MONIKER_NAME> \
+--chain-id=$chainId \
+--commission-rate=0.1 \
+--commission-max-rate=0.2 \
+--commission-max-change-rate=0.05 \
+--min-self-delegation=1 \
+--fees=2000$denomName \
+--from=wallet \
+-y
