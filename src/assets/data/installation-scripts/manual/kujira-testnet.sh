@@ -88,7 +88,7 @@ $binaryName keys add wallet
 kite upset hip dirt pet winter thunder slice parent flag sand express suffer chest custom pencil mother bargain remember patient other curve cancel sweet
 
 # Wait util the node is synced, should return FALSE
-$binaryName status | jq .SyncInfo.catching_up
+$binaryName status 2>&1 | jq .SyncInfo.catching_up
 
 # Go to discord channel, ask for a validator role, find #faucet-requests channel and paste
 !faucet <YOUR_WALLET_ADDRESS>
