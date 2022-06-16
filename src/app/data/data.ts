@@ -312,5 +312,29 @@ export const CHAINS: Chain[] = [
     isTestnet: true,
     hardwareRequirements: "4CPU 8RAM 200GB",
     projectOverview: "The Business Grade Multi-Chain NFT Infrastructure for Web 3.0."
+  },
+  {
+    id: "quicksilver-testnet",
+    chainName: "Quicksilver",
+    chainId: "rhapsody-5",
+    snapshotServer: "https://snapshots1-testnet.nodejumper.io",
+    rpcServer: "http://rpc1-testnet.nodejumper.io:31657",
+    rpcPeer: "4742e1b942acf17c31794cce80d199886d172c4f@rpc1-testnet.nodejumper.io:31656",
+    serviceName: "quicksilverd",
+    homeDirectoryName: ".quicksilverd",
+    twitter: "https://twitter.com/quicksilverzone",
+    github: "https://github.com/ingenuity-build",
+    globe: "https://quicksilver.zone/",
+    medium: "https://medium.com/quicksilverzone",
+    discord: "https://discord.com/invite/xrSmYMDVrQ",
+    validatorUrl: "https://quicksilver.explorers.guru/validator/quickvaloper1geexzkrerf2zggfck8lrflq7epv25avnadms78",
+    denomName: "uqck",
+    denomPow: 6,
+    summaryDisabled: true,
+    snapshotDisabled: false,
+    newWayUnsafeResetAll: false,
+    isTestnet: true,
+    hardwareRequirements: "4CPU 8RAM 200GB",
+    projectOverview: "THE COSMOS LIQUID STAKING ZONE"
   }
 ]
