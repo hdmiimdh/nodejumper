@@ -332,7 +332,7 @@ export const CHAINS: Chain[] = [
     denomPow: 6,
     summaryDisabled: true,
     snapshotDisabled: false,
-    newWayUnsafeResetAll: false,
+    newWayUnsafeResetAll: true,
     isTestnet: true,
     hardwareRequirements: "4CPU 8RAM 200GB",
     projectOverview: "THE COSMOS LIQUID STAKING ZONE"
