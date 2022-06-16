@@ -84,7 +84,7 @@ $binaryName keys add wallet
 reason crew zone unfold grain jungle shell before joke doll powder still aspect angle pepper nice canvas clinic one art rival lab wheat digital
 
 # Wait util the node is synced, should return FALSE
-$binaryName status | jq .SyncInfo.catching_up
+$binaryName status 2>&1 | jq .SyncInfo.catching_up
 
 # Go to discord channel #qck-tap and paste
 $request <YOUR_WALLET_ADDRESS> rhapsody
