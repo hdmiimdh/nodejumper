@@ -98,7 +98,7 @@ $binaryName q bank balances <YOUR_WALLET_ADDRESS>
 #  - amount: "5000000000000000000"
 #    denom: auptick
 
-#Create validator
+# Create validator
 $binaryName tx staking create-validator \
 --amount=4900000000000000000$denomName \
 --pubkey=$($binaryName tendermint show-validator) \

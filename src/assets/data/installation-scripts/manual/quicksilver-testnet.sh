@@ -97,7 +97,7 @@ $binaryName q bank balances <YOUR_WALLET_ADDRESS>
 #  - amount: "5000000"
 #    denom: uqck
 
-#Create validator
+# Create validator
 $binaryName tx staking create-validator \
 --amount=4990000$denomName \
 --pubkey=$($binaryName tendermint show-validator) \
