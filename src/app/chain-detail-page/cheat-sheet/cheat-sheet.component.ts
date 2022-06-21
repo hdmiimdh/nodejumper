@@ -35,14 +35,14 @@ export class CheatSheetComponent implements OnInit {
     setTimeout(function () {
       htmlElement.innerText = 'Copy';
     }, 5000);
-    let command = (event.target as HTMLInputElement).closest<HTMLInputElement>('.command')?.querySelector('.details')?.innerHTML || '';
-    command = this.unEscape(command);
+    let commandText = (event.target as HTMLInputElement).closest<HTMLInputElement>('.command')?.querySelector('.details')?.innerHTML || '';
+    commandText = this.unEscape(commandText);
     let selBox = document.createElement('textarea');
     selBox.style.position = 'fixed';
     selBox.style.left = '0';
     selBox.style.top = '0';
     selBox.style.opacity = '0';
-    selBox.value = command;
+    selBox.value = commandText;
     document.body.appendChild(selBox);
     selBox.focus();
     selBox.select();
