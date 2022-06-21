@@ -12,6 +12,7 @@
     <p *ngIf="!chain.summaryDisabled" [routerLinkActiveOptions]="{exact: true}" [routerLink]="['./']" class="menu-item" routerLinkActive="active" (click)="closeLeftHandMenuForMobile()">Summary</p>
     <p [routerLink]="['./installation']" class="menu-item" routerLinkActive="active" (click)="closeLeftHandMenuForMobile()">Installation scripts</p>
     <p [routerLink]="['./sync']" class="menu-item" routerLinkActive="active" (click)="closeLeftHandMenuForMobile()">Synchronization scripts</p>
+    <p [routerLink]="['./cheat-sheet']" class="menu-item" routerLinkActive="active" (click)="closeLeftHandMenuForMobile()">Cheat Sheet</p>
     <p [routerLink]="['./about']" class="menu-item" routerLinkActive="active" (click)="closeLeftHandMenuForMobile()">About</p>
   </div>
   <div class="social">

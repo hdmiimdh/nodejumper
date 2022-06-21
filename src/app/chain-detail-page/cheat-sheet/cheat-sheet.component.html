@@ -1,0 +1,300 @@
+<ng-container *ngIf="this.chain">
+  <div class="row">
+    <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
+      <div class="builder-block">
+        <label>Binary</label>
+        <input class="form-control shadow-none rounded-pill" placeholder="Binary name" type="text" [(ngModel)]="chain.binaryName" disabled/>
+      </div>
+    </div>
+    <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
+      <div class="builder-block">
+        <label>Chain id</label>
+        <input class="form-control shadow-none rounded-pill" placeholder="Chain id" type="text" [(ngModel)]="chain.chainId" disabled/>
+      </div>
+    </div>
+    <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
+      <div class="builder-block">
+        <label>Denom</label>
+        <input class="form-control shadow-none rounded-pill" placeholder="Denom name" type="text" [(ngModel)]="chain.denomName" disabled/>
+      </div>
+    </div>
+    <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
+      <div class="builder-block">
+        <label>Wallet</label>
+        <input class="form-control shadow-none rounded-pill" placeholder="Wallet name" type="text" [(ngModel)]="chain.walletName"/>
+      </div>
+    </div>
+    <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
+      <div class="builder-block">
+        <label>Fees</label>
+        <input class="form-control shadow-none rounded-pill" placeholder="Fees amount" type="text" [(ngModel)]="chain.fees"/>
+      </div>
+    </div>
+    <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
+      <div class="builder-block">
+        <label>Valoper</label>
+        <input class="form-control shadow-none rounded-pill" placeholder="Valoper address" type="text" [(ngModel)]="chain.valoperAddress"/>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <p class="title">Wallet</p>
+    <div class="command code-toolbar">
+      <p>Add New Wallet</p>
+      <div class="details">{{chain.binaryName}} keys add {{chain.walletName}}</div>
+      <div class="toolbar">
+        <div class="toolbar-item">
+          <button class="copy-to-clipboard-button" type="button" data-copy-state="copy" (click)="handleCopyClick($event)"><span>Copy</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="command code-toolbar">
+      <p>Recover Existing Wallet</p>
+      <div class="details">{{chain.binaryName}} keys add {{chain.walletName}} --recover</div>
+      <div class="toolbar">
+        <div class="toolbar-item">
+          <button class="copy-to-clipboard-button" type="button" data-copy-state="copy" (click)="handleCopyClick($event)"><span>Copy</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="command code-toolbar">
+      <p>List All Wallets</p>
+      <div class="details">{{chain.binaryName}} keys list</div>
+      <div class="toolbar">
+        <div class="toolbar-item">
+          <button class="copy-to-clipboard-button" type="button" data-copy-state="copy" (click)="handleCopyClick($event)"><span>Copy</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="command code-toolbar">
+      <p>Delete Wallet</p>
+      <div class="details">{{chain.binaryName}} keys delete {{chain.walletName}}</div>
+      <div class="toolbar">
+        <div class="toolbar-item">
+          <button class="copy-to-clipboard-button" type="button" data-copy-state="copy" (click)="handleCopyClick($event)"><span>Copy</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <p class="title">Validator</p>
+    <div class="command code-toolbar">
+      <p>Create New Validator</p>
+      <div class="details"><pre>{{chain.binaryName}} tx staking create-validator \
+--amount=1000000{{chain.denomName}} \
+--pubkey=$({{chain.binaryName}} tendermint show-validator) \
+--moniker=&lt;YOUR_MONIKER&gt; \
+--identity=&lt;YOUR_IDENTITY&gt; \
+--chain-id={{chain.chainId}} \
+--commission-max-change-rate=0.05 \
+--commission-max-rate=0.2 \
+--commission-rate=0.1 \
+--min-self-delegation=1 \
+--gas=auto \
+--from={{chain.walletName}} \
+--fees={{chain.fees + chain.denomName}} \
+-y</pre></div>
+      <div class="toolbar">
+        <div class="toolbar-item">
+          <button class="copy-to-clipboard-button" type="button" data-copy-state="copy" (click)="handleCopyClick($event)"><span>Copy</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="command code-toolbar">
+      <p>Edit Existing Validator</p>
+      <div class="details"><pre>{{chain.binaryName}} tx staking edit-validator \
+--chain-id={{chain.chainId}} \
+--identity=&lt;YOUR_IDENTITY&gt; \
+--commission-rate=0.1 \
+--gas=auto \
+--from={{chain.walletName}} \
+--fees={{chain.fees + chain.denomName}} \
+-y</pre></div>
+      <div class="toolbar">
+        <div class="toolbar-item">
+          <button class="copy-to-clipboard-button" type="button" data-copy-state="copy" (click)="handleCopyClick($event)"><span>Copy</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="command code-toolbar">
+      <p>Unjail Validator</p>
+      <div class="details">{{chain.binaryName}} tx slashing unjail --from {{chain.walletName}} --chain-id {{chain.chainId}} --fees {{chain.fees + chain.denomName}} -y</div>
+      <div class="toolbar">
+        <div class="toolbar-item">
+          <button class="copy-to-clipboard-button" type="button" data-copy-state="copy" (click)="handleCopyClick($event)"><span>Copy</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="command code-toolbar">
+      <p>Jail Reason</p>
+      <div class="details">{{chain.binaryName}} query slashing signing-info $({{chain.binaryName}} tendermint show-validator) -y</div>
+      <div class="toolbar">
+        <div class="toolbar-item">
+          <button class="copy-to-clipboard-button" type="button" data-copy-state="copy" (click)="handleCopyClick($event)"><span>Copy</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="command code-toolbar">
+      <p>List All Active Validators</p>
+      <div class="details">{{chain.binaryName}} q staking validators -oj --limit=3000 | jq '.validators[] | select(.status=="BOND_STATUS_BONDED")' | jq -r '(.tokens|tonumber/pow(10; 6)|floor|tostring) + " \t " + .description.moniker' | sort -gr | nl</div>
+      <div class="toolbar">
+        <div class="toolbar-item">
+          <button class="copy-to-clipboard-button" type="button" data-copy-state="copy" (click)="handleCopyClick($event)"><span>Copy</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="command code-toolbar">
+      <p>List All Inactive Validators</p>
+      <div class="details">{{chain.binaryName}} q staking validators -oj --limit=3000 | jq '.validators[] | select(.status=="BOND_STATUS_UNBONDED")' | jq -r '(.tokens|tonumber/pow(10; 6)|floor|tostring) + " \t " + .description.moniker' | sort -gr | nl</div>
+      <div class="toolbar">
+        <div class="toolbar-item">
+          <button class="copy-to-clipboard-button" type="button" data-copy-state="copy" (click)="handleCopyClick($event)"><span>Copy</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="command code-toolbar">
+      <p>View Validator Details</p>
+      <div class="details">{{chain.binaryName}} q staking validator $({{chain.binaryName}} keys show {{chain.walletName}} --bech val -a)</div>
+      <div class="toolbar">
+        <div class="toolbar-item">
+          <button class="copy-to-clipboard-button" type="button" data-copy-state="copy" (click)="handleCopyClick($event)"><span>Copy</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <p class="title">Tokens</p>
+    <div class="command code-toolbar">
+      <p>Withdraw Commission And Rewards</p>
+      <div class="details">{{chain.binaryName}} tx distribution withdraw-all-rewards --from {{chain.walletName}} --chain-id {{chain.chainId}} --fees {{chain.fees + chain.denomName}} -y</div>
+      <div class="toolbar">
+        <div class="toolbar-item">
+          <button class="copy-to-clipboard-button" type="button" data-copy-state="copy" (click)="handleCopyClick($event)"><span>Copy</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="command code-toolbar">
+      <p>Delegate</p>
+      <div class="details">{{chain.binaryName}} tx staking delegate {{chain.valoperAddress}} 1000000{{chain.denomName}} --from {{chain.walletName}} --chain-id {{chain.chainId}} --fees {{chain.fees + chain.denomName}} -y</div>
+      <div class="toolbar">
+        <div class="toolbar-item">
+          <button class="copy-to-clipboard-button" type="button" data-copy-state="copy" (click)="handleCopyClick($event)"><span>Copy</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="command code-toolbar">
+      <p>Redelegate</p>
+      <div class="details">{{chain.binaryName}} tx staking redelegate {{chain.valoperAddress}} &lt;TO_VALOPER_ADDRESS&gt; 1000000{{chain.denomName}} --from {{chain.walletName}} --chain-id {{chain.chainId}} --fees {{chain.fees + chain.denomName}} -y</div>
+      <div class="toolbar">
+        <div class="toolbar-item">
+          <button class="copy-to-clipboard-button" type="button" data-copy-state="copy" (click)="handleCopyClick($event)"><span>Copy</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="command code-toolbar">
+      <p>Unbond</p>
+      <div class="details">{{chain.binaryName}} tx staking unbond {{chain.valoperAddress}} 1000000{{chain.denomName}} --from {{chain.walletName}} --chain-id {{chain.chainId}} --fees {{chain.fees + chain.denomName}} -y</div>
+      <div class="toolbar">
+        <div class="toolbar-item">
+          <button class="copy-to-clipboard-button" type="button" data-copy-state="copy" (click)="handleCopyClick($event)"><span>Copy</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="command code-toolbar">
+      <p>Send</p>
+      <div class="details">{{chain.binaryName}} tx bank send {{chain.walletName}} &lt;TO_WALLET_ADDRESS&gt; 1000000{{chain.denomName}} --from {{chain.walletName}} --chain-id {{chain.chainId}} --fees {{chain.fees + chain.denomName}} -y</div>
+      <div class="toolbar">
+        <div class="toolbar-item">
+          <button class="copy-to-clipboard-button" type="button" data-copy-state="copy" (click)="handleCopyClick($event)"><span>Copy</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="command code-toolbar">
+      <p>Check Balance</p>
+      <div class="details">{{chain.binaryName}} q bank balances &lt;WALLET_ADDRESS&gt;</div>
+      <div class="toolbar">
+        <div class="toolbar-item">
+          <button class="copy-to-clipboard-button" type="button" data-copy-state="copy" (click)="handleCopyClick($event)"><span>Copy</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <p class="title">Governance</p>
+    <div class="command code-toolbar">
+      <p>List All Proposals</p>
+      <div class="details">{{chain.binaryName}} query gov proposals</div>
+      <div class="toolbar">
+        <div class="toolbar-item">
+          <button class="copy-to-clipboard-button" type="button" data-copy-state="copy" (click)="handleCopyClick($event)"><span>Copy</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="command code-toolbar">
+      <p>View Proposal By ID</p>
+      <div class="details">{{chain.binaryName}} query gov proposal &lt;PROPOSAL_ID&gt;</div>
+      <div class="toolbar">
+        <div class="toolbar-item">
+          <button class="copy-to-clipboard-button" type="button" data-copy-state="copy" (click)="handleCopyClick($event)"><span>Copy</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="command code-toolbar">
+      <p>Vote YES</p>
+      <div class="details">{{chain.binaryName}} tx gov vote &lt;PROPOSAL_ID&gt; yes --from {{chain.walletName}} --chain-id {{chain.chainId}} --fees {{chain.fees + chain.denomName}} -y</div>
+      <div class="toolbar">
+        <div class="toolbar-item">
+          <button class="copy-to-clipboard-button" type="button" data-copy-state="copy" (click)="handleCopyClick($event)"><span>Copy</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="command code-toolbar">
+      <p>Vote NO</p>
+      <div class="details">{{chain.binaryName}} tx gov vote &lt;PROPOSAL_ID&gt; no --from {{chain.walletName}} --chain-id {{chain.chainId}} --fees {{chain.fees + chain.denomName}} -y</div>
+      <div class="toolbar">
+        <div class="toolbar-item">
+          <button class="copy-to-clipboard-button" type="button" data-copy-state="copy" (click)="handleCopyClick($event)"><span>Copy</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="command code-toolbar">
+      <p>Vote ABSTAIN</p>
+      <div class="details">{{chain.binaryName}} tx gov vote &lt;PROPOSAL_ID&gt; abstain --from {{chain.walletName}} --chain-id {{chain.chainId}} --fees {{chain.fees + chain.denomName}} -y</div>
+      <div class="toolbar">
+        <div class="toolbar-item">
+          <button class="copy-to-clipboard-button" type="button" data-copy-state="copy" (click)="handleCopyClick($event)"><span>Copy</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <p class="title">Utility</p>
+    <div class="command code-toolbar">
+      <p>Get Catching Up</p>
+      <div class="details">{{chain.binaryName}} status 2>&1 | jq .SyncInfo.catching_up</div>
+      <div class="toolbar">
+        <div class="toolbar-item">
+          <button class="copy-to-clipboard-button" type="button" data-copy-state="copy" (click)="handleCopyClick($event)"><span>Copy</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="command code-toolbar">
+      <p>Get Latest Height</p>
+      <div class="details">{{chain.binaryName}} status 2>&1 | jq .SyncInfo.latest_block_height</div>
+      <div class="toolbar">
+        <div class="toolbar-item">
+          <button class="copy-to-clipboard-button" type="button" data-copy-state="copy" (click)="handleCopyClick($event)"><span>Copy</span></button>
+        </div>
+      </div>
+    </div>
+    <div class="command code-toolbar">
+      <p>Get Peer</p>
+      <div class="details">echo $({{chain.binaryName}} tendermint show-node-id)'@'$(curl -s ifconfig.me)':'$(cat $HOME/{{chain.homeDirectoryName}}/config/config.toml | sed -n '/Address to listen for incoming connection/&#123;n;p;&#125;' | sed 's/.*://; s/".*//')</div>
+      <div class="toolbar">
+        <div class="toolbar-item">
+          <button class="copy-to-clipboard-button" type="button" data-copy-state="copy" (click)="handleCopyClick($event)"><span>Copy</span></button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

@@ -36,7 +36,7 @@ export class InstallationScriptsComponent implements OnInit {
             .replace(new RegExp('\\$rpcServer', 'g'), this.chain.rpcServer)
             .replace(new RegExp('\\$rpcPeer', 'g'), this.chain.rpcPeer)
             .replace(new RegExp('\\$homeDirectoryName', 'g'), this.chain.homeDirectoryName)
-            .replace(new RegExp('\\$binaryName', 'g'), this.chain.binaryName || this.chain.serviceName)
+            .replace(new RegExp('\\$binaryName', 'g'), this.chainService.getChainBinaryName(this.chain))
             .replace(new RegExp('\\$serviceName', 'g'), this.chain.serviceName);
         }
       });
