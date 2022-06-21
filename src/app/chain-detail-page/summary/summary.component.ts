@@ -419,6 +419,7 @@ export class SummaryComponent implements OnInit {
 
   drawVotingPowerChart(validators: any, chain: Chain): void {
     let _this = this;
+    validators.sort((a: any, b: any) => b.votingPower - a.votingPower)
     let top20validators = validators.slice(0, 9);
     let labels = top20validators.map((validator: any) => validator.moniker);
     let data = top20validators.map((validator: any) => validator.votingPower / Math.pow(10, chain.denomPow))
