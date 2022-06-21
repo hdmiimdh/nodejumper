@@ -408,7 +408,7 @@ export class SummaryComponent implements OnInit {
                 family: 'Monaco'
               },
               callback: function (value) {
-                return _this.utilsService.compactNumber(parseInt(value.toString()));
+                return _this.utilsService.compactNumber(parseInt(value.toString()), 2);
               }
             },
           }
