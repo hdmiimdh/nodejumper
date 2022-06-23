@@ -22,7 +22,7 @@ $binaryName config chain-id $chainId
 $binaryName init nodejumper --chain-id $chainId
 
 curl https://raw.githubusercontent.com/ingenuity-build/testnets/main/killerqueen/genesis.json > $HOME/$homeDirectoryName/config/genesis.json
-sha256sum $HOME/$homeDirectoryName/config/genesis.json #
+sha256sum $HOME/$homeDirectoryName/config/genesis.json # 3510dd3310e3a127507a513b3e9c8b24147f549bac013a5130df4b704f1bac75
 
 sed -i 's|^minimum-gas-prices *=.*|minimum-gas-prices = "0.0001$denomName"|g' $HOME/$homeDirectoryName/config/app.toml
 seeds="dd3460ec11f78b4a7c4336f22a356fe00805ab64@seed.killerqueen-1.quicksilver.zone:26656,8603d0778bfe0a8d2f8eaa860dcdc5eb85b55982@seed02.killerqueen-1.quicksilver.zone:27676"
