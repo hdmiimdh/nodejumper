@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ChainService } from "../../service/chain.service";
+import {ChainCheatSheet} from "../../model/chainCheatSheet";
 
 @Component({
   selector: 'app-cheat-sheet',
@@ -8,25 +9,41 @@ import { ChainService } from "../../service/chain.service";
 })
 export class CheatSheetComponent implements OnInit {
 
-  chain?: any;
+  chain?: ChainCheatSheet;
 
   constructor(public chainService: ChainService) {
   }
 
   ngOnInit(): void {
     if (this.chainService.activeChain) {
-      this.chain = {
-        binaryName: this.chainService.getChainBinaryName(this.chainService.activeChain),
-        walletName: 'wallet',
-        chainId: this.chainService.activeChain.chainId,
-        denomName: this.chainService.activeChain.denomName,
-        homeDirectoryName: this.chainService.activeChain.homeDirectoryName,
-        fees: 200
-      }
+      const activeChain = this.chainService.activeChain
+
+      const savedChainInfo = JSON.parse(localStorage.getItem(activeChain.chainId) || "{}");
+
+      this.chain = new ChainCheatSheet(
+        activeChain.id,
+        activeChain.chainId,
+        activeChain.denomName,
+        this.chainService.getChainBinaryName(activeChain),
+        activeChain.homeDirectoryName,
+        savedChainInfo.walletName || "wallet",
+        savedChainInfo.valoperAddress || "",
+        savedChainInfo.fees || 200
+      )
     }
   }
 
   ngAfterViewInit(): void {
+  }
+
+  handleBlur(paramName: String): void {
+    const paramKey = paramName as keyof ChainCheatSheet;
+    const value = this.chain?.[paramKey];
+    const chainId = this.chain?.chainId || "default";
+
+    const savedChainInfo = JSON.parse(localStorage.getItem(chainId) || "{}");
+    savedChainInfo[paramKey] = value;
+    localStorage.setItem(chainId, JSON.stringify(savedChainInfo))
   }
 
   handleCopyClick(event: Event): void {
@@ -35,7 +52,7 @@ export class CheatSheetComponent implements OnInit {
     setTimeout(function () {
       htmlElement.innerText = 'Copy';
     }, 5000);
-    let commandText = (event.target as HTMLInputElement).closest<HTMLInputElement>('.command')?.querySelector('.details')?.innerHTML || '';
+    let commandText = (event.target as HTMLInputElement).closest<HTMLInputElement>('.copy-button-container')?.querySelector('.command')?.innerHTML || '';
     commandText = this.unEscape(commandText);
     let selBox = document.createElement('textarea');
     selBox.style.position = 'fixed';

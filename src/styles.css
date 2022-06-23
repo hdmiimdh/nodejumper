@@ -16,24 +16,30 @@ body p {
   margin-bottom: 0;
 }
 
-div.code-toolbar > .toolbar > .toolbar-item > button {
+div.code-toolbar > .toolbar > .toolbar-item > button,
+.copy-button {
   position: absolute;
   top: 13px;
   right: 22px;
   padding: 10px;
+  font-size: 14px;
+  line-height: 0.9;
   background-color: white;
   color: black;
   border: 1px solid var(--border-color);
-  transition: all ease var(--animation-speed);
+  border-radius: var(--border-radius);
+  transition: all .3s ease-in-out;
   box-shadow: #64646f33 0 7px 29px;
 }
 
-div.code-toolbar > .toolbar > .toolbar-item > button:hover {
+div.code-toolbar > .toolbar > .toolbar-item > button:hover,
+.copy-button:hover {
   background-color: #f6f6f6;
   border-color: var(--border-active-color);
 }
 
-div.code-toolbar > .toolbar > .toolbar-item > button:active {
+div.code-toolbar > .toolbar > .toolbar-item > button:active,
+.copy-button:active {
   background-color: white;
   box-shadow: none;
 }
@@ -64,6 +70,9 @@ div.code-toolbar > .toolbar > .toolbar-item > button:active {
   --border-color: #d0d7de;
   --border-active-color: #111111;
   --border-radius: 0.5rem;
+
+  /* code block */
+  --code-background-color: #f5f2f0
 }
 
 @media (max-width: 576px) {
