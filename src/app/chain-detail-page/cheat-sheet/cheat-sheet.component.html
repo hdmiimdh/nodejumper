@@ -1,0 +1,324 @@
+<ng-container *ngIf="this.chain">
+  <div class="row">
+    <p class="title">Parameters</p>
+    <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
+      <div class="param-container">
+        <p class="label">Binary</p>
+        <input
+          class="form-control rounded-pill input"
+          placeholder="binary"
+          [(ngModel)]="chain.binaryName"
+          disabled
+        />
+      </div>
+    </div>
+    <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
+      <div class="param-container">
+        <p class="label">Chain id</p>
+        <input
+          class="form-control rounded-pill input"
+          placeholder="Chain id"
+          [(ngModel)]="chain.chainId"
+          disabled
+        />
+      </div>
+    </div>
+    <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
+      <div class="param-container">
+        <p class="label">Denom</p>
+        <input
+          class="form-control rounded-pill input"
+          placeholder="Denom name"
+          [(ngModel)]="chain.denomName"
+          disabled
+        />
+      </div>
+    </div>
+    <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
+      <div class="param-container">
+        <p class="label">Wallet</p>
+        <input
+          class="form-control rounded-pill input"
+          placeholder="Wallet name"
+          [(ngModel)]="chain.walletName"
+          (blur)="handleBlur('walletName')"
+        />
+      </div>
+    </div>
+    <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
+      <div class="param-container">
+        <p class="label">Fees</p>
+        <input
+          class="form-control rounded-pill input"
+          placeholder="Fees amount"
+          [(ngModel)]="chain.fees"
+          (blur)="handleBlur('fees')"
+        />
+      </div>
+    </div>
+    <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
+      <div class="param-container">
+        <p class="label">Valoper</p>
+        <input
+          class="form-control rounded-pill input"
+          placeholder="Valoper address"
+          [(ngModel)]="chain.valoperAddress"
+          (blur)="handleBlur('valoperAddress')"
+        />
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <p class="title">Wallet</p>
+    <div class="command-container">
+      <p>Add New Wallet</p>
+      <div class="copy-button-container">
+        <div class="command">{{chain.binaryName}} keys add {{chain.walletName}}</div>
+        <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
+      </div>
+    </div>
+    <div class="command-container">
+      <p>Recover Existing Wallet</p>
+      <div class="copy-button-container">
+        <div class="command">{{chain.binaryName}} keys add {{chain.walletName}} --recover</div>
+        <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
+      </div>
+    </div>
+    <div class="command-container">
+      <p>List All Wallets</p>
+      <div class="copy-button-container">
+        <div class="command">{{chain.binaryName}} keys list</div>
+        <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
+      </div>
+    </div>
+    <div class="command-container">
+      <p>Delete Wallet</p>
+      <div class="copy-button-container">
+        <div class="command">{{chain.binaryName}} keys delete {{chain.walletName}}</div>
+        <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <p class="title">Validator</p>
+    <div class="command-container">
+      <p>Create New Validator</p>
+      <div class="copy-button-container">
+        <div class="command multiline">{{chain.binaryName}} tx staking create-validator \
+--amount=1000000{{chain.denomName}} \
+--pubkey=$({{chain.binaryName}} tendermint show-validator) \
+--moniker=&lt;YOUR_MONIKER&gt; \
+--identity=&lt;YOUR_IDENTITY&gt; \
+--chain-id={{chain.chainId}} \
+--commission-max-change-rate=0.05 \
+--commission-max-rate=0.2 \
+--commission-rate=0.1 \
+--min-self-delegation=1 \
+--gas=auto \
+--from={{chain.walletName}} \
+--fees={{chain.fees + chain.denomName}} \
+-y
+        </div>
+        <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
+      </div>
+    </div>
+    <div class="command-container">
+      <p>Edit Existing Validator</p>
+      <div class="copy-button-container">
+        <div class="command multiline">{{chain.binaryName}} tx staking edit-validator \
+--chain-id={{chain.chainId}} \
+--identity=&lt;YOUR_IDENTITY&gt; \
+--commission-rate=0.1 \
+--gas=auto \
+--from={{chain.walletName}} \
+--fees={{chain.fees + chain.denomName}} \
+-y
+        </div>
+        <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
+      </div>
+    </div>
+    <div class="command-container">
+      <p>Unjail Validator</p>
+      <div class="copy-button-container">
+        <div class="command">{{chain.binaryName}} tx slashing unjail --from {{chain.walletName}}
+          --chain-id {{chain.chainId}} --fees {{chain.fees + chain.denomName}} -y
+        </div>
+        <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
+      </div>
+    </div>
+    <div class="command-container">
+      <p>Jail Reason</p>
+      <div class="copy-button-container">
+        <div class="command">{{chain.binaryName}} query slashing signing-info $({{chain.binaryName}} tendermint
+          show-validator) -y
+        </div>
+        <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
+      </div>
+    </div>
+    <div class="command-container">
+      <p>List All Active Validators</p>
+      <div class="copy-button-container">
+        <div class="command">{{chain.binaryName}} q staking validators -oj --limit=3000 | jq '.validators[] |
+          select(.status=="BOND_STATUS_BONDED")' | jq -r '(.tokens|tonumber/pow(10; 6)|floor|tostring) + " \t " +
+          .description.moniker' | sort -gr | nl
+        </div>
+        <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
+      </div>
+    </div>
+    <div class="command-container">
+      <p>List All Inactive Validators</p>
+      <div class="copy-button-container">
+        <div class="command">{{chain.binaryName}} q staking validators -oj --limit=3000 | jq '.validators[] |
+          select(.status=="BOND_STATUS_UNBONDED")' | jq -r '(.tokens|tonumber/pow(10; 6)|floor|tostring) + " \t " +
+          .description.moniker' | sort -gr | nl
+        </div>
+        <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
+      </div>
+    </div>
+    <div class="command-container">
+      <p>View Validator command</p>
+      <div class="copy-button-container">
+        <div class="command">{{chain.binaryName}} q staking validator $({{chain.binaryName}} keys
+          show {{chain.walletName}} --bech val -a)
+        </div>
+        <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <p class="title">Tokens</p>
+    <div class="command-container">
+      <p>Withdraw Commission And Rewards</p>
+      <div class="copy-button-container">
+        <div class="command">{{chain.binaryName}} tx distribution withdraw-all-rewards --from {{chain.walletName}}
+          --chain-id {{chain.chainId}} --fees {{chain.fees + chain.denomName}} -y
+        </div>
+        <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
+      </div>
+    </div>
+    <div class="command-container">
+      <p>Delegate</p>
+      <div class="copy-button-container">
+        <div class="command">{{chain.binaryName}} tx staking delegate {{chain.valoperAddress}}
+          1000000{{chain.denomName}} --from {{chain.walletName}} --chain-id {{chain.chainId}}
+          --fees {{chain.fees + chain.denomName}} -y
+        </div>
+        <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
+      </div>
+    </div>
+    <div class="command-container">
+      <p>Redelegate</p>
+      <div class="copy-button-container">
+        <div class="command">{{chain.binaryName}} tx staking redelegate {{chain.valoperAddress}} &lt;TO_VALOPER_ADDRESS&gt;
+          1000000{{chain.denomName}} --from {{chain.walletName}} --chain-id {{chain.chainId}}
+          --fees {{chain.fees + chain.denomName}} -y
+        </div>
+        <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
+      </div>
+    </div>
+    <div class="command-container">
+      <p>Unbond</p>
+      <div class="copy-button-container">
+        <div class="command">{{chain.binaryName}} tx staking unbond {{chain.valoperAddress}} 1000000{{chain.denomName}}
+          --from {{chain.walletName}} --chain-id {{chain.chainId}} --fees {{chain.fees + chain.denomName}} -y
+        </div>
+        <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
+      </div>
+    </div>
+    <div class="command-container">
+      <p>Send</p>
+      <div class="copy-button-container">
+        <div class="command">{{chain.binaryName}} tx bank send {{chain.walletName}} &lt;TO_WALLET_ADDRESS&gt;
+          1000000{{chain.denomName}} --from {{chain.walletName}} --chain-id {{chain.chainId}}
+          --fees {{chain.fees + chain.denomName}} -y
+        </div>
+        <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
+      </div>
+    </div>
+    <div class="command-container">
+      <p>Check Balance</p>
+      <div class="copy-button-container">
+        <div class="command">{{chain.binaryName}} q bank balances &lt;WALLET_ADDRESS&gt;</div>
+        <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <p class="title">Governance</p>
+    <div class="command-container">
+      <p>List All Proposals</p>
+      <div class="copy-button-container">
+        <div class="command">{{chain.binaryName}} query gov proposals</div>
+        <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
+      </div>
+    </div>
+    <div class="command-container">
+      <p>View Proposal By ID</p>
+      <div class="copy-button-container">
+        <div class="command">{{chain.binaryName}} query gov proposal &lt;PROPOSAL_ID&gt;</div>
+        <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
+      </div>
+    </div>
+    <div class="command-container">
+      <p>Vote YES</p>
+      <div class="copy-button-container">
+        <div class="command">{{chain.binaryName}} tx gov vote &lt;PROPOSAL_ID&gt; yes --from {{chain.walletName}}
+          --chain-id {{chain.chainId}} --fees {{chain.fees + chain.denomName}} -y
+        </div>
+        <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
+      </div>
+    </div>
+    <div class="command-container">
+      <p>Vote NO</p>
+      <div class="copy-button-container">
+        <div class="command">{{chain.binaryName}} tx gov vote &lt;PROPOSAL_ID&gt; no --from {{chain.walletName}}
+          --chain-id {{chain.chainId}} --fees {{chain.fees + chain.denomName}} -y
+        </div>
+        <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
+      </div>
+    </div>
+    <div class="command-container">
+      <p>Vote ABSTAIN</p>
+      <div class="copy-button-container">
+        <div class="command">{{chain.binaryName}} tx gov vote &lt;PROPOSAL_ID&gt; abstain --from {{chain.walletName}}
+          --chain-id {{chain.chainId}} --fees {{chain.fees + chain.denomName}} -y
+        </div>
+        <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <p class="title">Utility</p>
+    <div class="command-container">
+      <p>Get Validator Info</p>
+      <div class="copy-button-container">
+        <div class="command">{{chain.binaryName}} status 2>&1 | jq .ValidatorInfo</div>
+        <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
+      </div>
+    </div>
+    <div class="command-container">
+      <p>Get Catching Up</p>
+      <div class="copy-button-container">
+        <div class="command">{{chain.binaryName}} status 2>&1 | jq .SyncInfo.catching_up</div>
+        <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
+      </div>
+    </div>
+    <div class="command-container">
+      <p>Get Latest Height</p>
+      <div class="copy-button-container">
+        <div class="command">{{chain.binaryName}} status 2>&1 | jq .SyncInfo.latest_block_height</div>
+        <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
+      </div>
+    </div>
+    <div class="command-container">
+      <p>Get Peer</p>
+      <div class="copy-button-container">
+        <div class="command">echo $({{chain.binaryName}} tendermint show-node-id)'@'$(curl -s ifconfig.me)':'$(cat
+          $HOME/{{chain.homeDirectoryName}}/config/config.toml | sed -n '/Address to listen for incoming connection/&#123;n;p;&#125;'
+          | sed 's/.*://; s/".*//')
+        </div>
+        <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
+      </div>
+    </div>
+  </div>
+</ng-container>

@@ -1,0 +1,76 @@
+.row {
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+
+.title {
+  font-size: 25px;
+}
+
+/* param */
+.param-container {
+  align-items: center;
+  padding-top: 15px;
+}
+
+.param-container .label {
+  user-select: none;
+  padding-left: 11px;
+  padding-bottom: 5px;
+  font-size: 14px;
+  opacity: 0.8;
+}
+
+.param-container .input {
+  transition: all var(--animation-speed) ease;
+}
+
+.param-container .input:hover,
+.param-container .input:focus {
+  border: 1px solid var(--border-active-color);
+}
+
+.param-container .input:focus {
+  box-shadow: none;
+}
+
+.param-container .input:disabled {
+  border: 1px solid var(--code-background-color);
+  background-color: var(--code-background-color);
+}
+
+/* command */
+.command-container {
+  margin-top: 15px;
+}
+
+.command-container p {
+  opacity: 0.8;
+}
+
+.command-container .command {
+  margin-top: 5px;
+  padding: 1em;
+  background: var(--code-background-color);
+  border-radius: var(--border-radius);
+  white-space: nowrap;
+  overflow-x: auto;
+}
+
+.command-container .command.multiline {
+  white-space: pre-wrap;
+}
+
+.command-container .copy-button-container {
+  position: relative;
+}
+
+.command-container .copy-button-container .copy-button {
+  top: 11px;
+  right: 13px;
+  opacity: 0;
+}
+
+.command-container .copy-button-container:hover .copy-button {
+  opacity: 1;
+}

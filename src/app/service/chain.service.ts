@@ -48,8 +48,12 @@ export class ChainService {
 
   getUnsafeResetAllString(chain: Chain): string {
     if (chain.newWayUnsafeResetAll) {
-      return (chain.binaryName || chain.serviceName) + ' tendermint unsafe-reset-all --home $HOME/' + chain.homeDirectoryName + " --keep-addr-book";
+      return this.getChainBinaryName(chain) + ' tendermint unsafe-reset-all --home $HOME/' + chain.homeDirectoryName + " --keep-addr-book";
     }
-    return (chain.binaryName || chain.serviceName) + ' unsafe-reset-all';
+    return this.getChainBinaryName(chain) + ' unsafe-reset-all';
+  }
+
+  getChainBinaryName(chain: Chain): string {
+    return chain.binaryName || chain.serviceName;
   }
 }

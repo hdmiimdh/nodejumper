@@ -24,6 +24,7 @@ import { SummaryComponent } from './chain-detail-page/summary/summary.component'
 import { NgCircleProgressModule } from "ng-circle-progress";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { LeftHandMenuService } from "./service/left-hand-menu.service";
+import { CheatSheetComponent } from './chain-detail-page/cheat-sheet/cheat-sheet.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { LeftHandMenuService } from "./service/left-hand-menu.service";
     SynchronizationScriptsComponent,
     AboutComponent,
     InstallationScriptsComponent,
-    SummaryComponent
+    SummaryComponent,
+    CheatSheetComponent
   ],
   imports: [
     BrowserModule,
