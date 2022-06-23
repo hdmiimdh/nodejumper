@@ -316,7 +316,7 @@ export const CHAINS: Chain[] = [
   {
     id: "quicksilver-testnet",
     chainName: "Quicksilver",
-    chainId: "rhapsody-5",
+    chainId: "killerqueen-1",
     snapshotServer: "https://snapshots1-testnet.nodejumper.io",
     rpcServer: "http://rpc1-testnet.nodejumper.io:31657",
     rpcPeer: "4742e1b942acf17c31794cce80d199886d172c4f@rpc1-testnet.nodejumper.io:31656",
