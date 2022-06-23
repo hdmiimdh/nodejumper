@@ -13,20 +13,20 @@ go version # go version goX.XX.X linux/amd64
 cd || return
 git clone https://github.com/ingenuity-build/quicksilver.git
 cd quicksilver || return
-git checkout v0.3.0
+git checkout v0.4.0
 make install
-quicksilverd version # v0.3.0
+quicksilverd version # v0.4.0
 
 # replace nodejumper with your own moniker, if you'd like
 $binaryName config chain-id $chainId
 $binaryName init nodejumper --chain-id $chainId
 
-curl https://raw.githubusercontent.com/ingenuity-build/testnets/main/rhapsody/genesis.json > $HOME/$homeDirectoryName/config/genesis.json
-sha256sum $HOME/$homeDirectoryName/config/genesis.json # 541a6546bbdfe96c6b0dbf38425430eb97e8bc026bd1e224ded757a21bfdde49
+curl https://raw.githubusercontent.com/ingenuity-build/testnets/main/killerqueen/genesis.json > $HOME/$homeDirectoryName/config/genesis.json
+sha256sum $HOME/$homeDirectoryName/config/genesis.json #
 
 sed -i 's|^minimum-gas-prices *=.*|minimum-gas-prices = "0.0001$denomName"|g' $HOME/$homeDirectoryName/config/app.toml
-seeds="dd3460ec11f78b4a7c4336f22a356fe00805ab64@seed.rhapsody-5.quicksilver.zone:26656,8603d0778bfe0a8d2f8eaa860dcdc5eb85b55982@seed.qscosmos-2.quicksilver.zone:27676"
-peers="$rpcPeer"
+seeds="dd3460ec11f78b4a7c4336f22a356fe00805ab64@seed.killerqueen-1.quicksilver.zone:26656,8603d0778bfe0a8d2f8eaa860dcdc5eb85b55982@seed02.killerqueen-1.quicksilver.zone:27676"
+peers="$rpcPeer,b281289df37c5180f9ff278be5e29964afa0c229@185.56.139.84:26656,4f35ab6008fc46cc50b103a337ec2266400eca2e@148.251.50.79:26656,90f4459126152d21983f42c8e86bc899cd618af6@116.202.15.183:11656,6ac91620bc5338e6f679835cc604769a213d362f@139.59.56.24:36366,f9d2dbf6c80f08d12d1bc8d07ffd3bafa4965160@95.214.55.43:26651,abe7397ff92a4ca61033ceac127b5fc3a9a4217f@65.108.98.218:25095,07bb0fd7af9dc819bb5bb850ea5d870281c3adfa@167.235.74.230:26656"
 sed -i -e 's|^seeds *=.*|seeds = "'$seeds'"|; s|^persistent_peers *=.*|persistent_peers = "'$peers'"|' $HOME/$homeDirectoryName/config/config.toml
 
 # in case of pruning
