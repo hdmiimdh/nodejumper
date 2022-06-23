@@ -11,6 +11,7 @@ fi
 go version # go version goX.XX.X linux/amd64
 
 cd || return
+rm -rf quicksilver
 git clone https://github.com/ingenuity-build/quicksilver.git
 cd quicksilver || return
 git checkout v0.4.0
