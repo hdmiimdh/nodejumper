@@ -18,7 +18,7 @@ export class CheatSheetComponent implements OnInit {
     if (this.chainService.activeChain) {
       const activeChain = this.chainService.activeChain
 
-      const savedChainInfo = JSON.parse(localStorage.getItem(activeChain.chainId) || "{}");
+      const savedChainInfo = JSON.parse(localStorage.getItem(activeChain.chainId) || '{}');
 
       this.chain = new ChainCheatSheet(
         activeChain.id,
@@ -26,9 +26,13 @@ export class CheatSheetComponent implements OnInit {
         activeChain.denomName,
         this.chainService.getChainBinaryName(activeChain),
         activeChain.homeDirectoryName,
-        savedChainInfo.walletName || "wallet",
-        savedChainInfo.valoperAddress || "",
-        savedChainInfo.fees || 200
+        savedChainInfo.walletName || 'wallet',
+        savedChainInfo.valoperAddress || '',
+        savedChainInfo.fees || 200,
+        savedChainInfo.moniker || 'Moniker',
+        savedChainInfo.identity || '7226E688B46B7022', // I created demo keybase
+        savedChainInfo.details || 'I\'m sexy and I know it 😉',
+        savedChainInfo.proposalId || 1
       )
     }
   }
@@ -39,9 +43,9 @@ export class CheatSheetComponent implements OnInit {
   handleBlur(paramName: String): void {
     const paramKey = paramName as keyof ChainCheatSheet;
     const value = this.chain?.[paramKey];
-    const chainId = this.chain?.chainId || "default";
+    const chainId = this.chain?.chainId || 'default';
 
-    const savedChainInfo = JSON.parse(localStorage.getItem(chainId) || "{}");
+    const savedChainInfo = JSON.parse(localStorage.getItem(chainId) || '{}');
     savedChainInfo[paramKey] = value;
     localStorage.setItem(chainId, JSON.stringify(savedChainInfo))
   }

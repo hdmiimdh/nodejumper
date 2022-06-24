@@ -101,14 +101,48 @@
   </div>
   <div class="row">
     <p class="title">Validator</p>
+    <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
+      <div class="param-container">
+        <p class="label">Moniker</p>
+        <input
+          class="form-control rounded-pill input"
+          placeholder="Moniker"
+          [(ngModel)]="chain.moniker"
+          (blur)="handleBlur('moniker')"
+        />
+      </div>
+    </div>
+    <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
+      <div class="param-container">
+        <p class="label">Identity</p>
+        <input
+          class="form-control rounded-pill input"
+          placeholder="Identity"
+          [(ngModel)]="chain.identity"
+          (blur)="handleBlur('identity')"
+        />
+      </div>
+    </div>
+    <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
+      <div class="param-container">
+        <p class="label">Details</p>
+        <input
+          class="form-control rounded-pill input"
+          placeholder="Details"
+          [(ngModel)]="chain.details"
+          (blur)="handleBlur('details')"
+        />
+      </div>
+    </div>
     <div class="command-container">
       <p>Create New Validator</p>
       <div class="copy-button-container">
         <div class="command multiline">{{chain.binaryName}} tx staking create-validator \
 --amount=1000000{{chain.denomName}} \
 --pubkey=$({{chain.binaryName}} tendermint show-validator) \
---moniker=&lt;YOUR_MONIKER&gt; \
---identity=&lt;YOUR_IDENTITY&gt; \
+--moniker="{{chain.moniker}}" \
+--identity={{chain.identity}} \
+--details="{{chain.details}}" \
 --chain-id={{chain.chainId}} \
 --commission-max-change-rate=0.05 \
 --commission-max-rate=0.2 \
@@ -127,7 +161,8 @@
       <div class="copy-button-container">
         <div class="command multiline">{{chain.binaryName}} tx staking edit-validator \
 --chain-id={{chain.chainId}} \
---identity=&lt;YOUR_IDENTITY&gt; \
+--identity={{chain.identity}} \
+--details="{{chain.details}}" \
 --commission-rate=0.1 \
 --gas=auto \
 --from={{chain.walletName}} \
@@ -245,6 +280,17 @@
   </div>
   <div class="row">
     <p class="title">Governance</p>
+    <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
+      <div class="param-container">
+        <p class="label">Proposal id</p>
+        <input
+          class="form-control rounded-pill input"
+          placeholder="Proposal id"
+          [(ngModel)]="chain.proposalId"
+          (blur)="handleBlur('proposalId')"
+        />
+      </div>
+    </div>
     <div class="command-container">
       <p>List All Proposals</p>
       <div class="copy-button-container">
@@ -255,14 +301,14 @@
     <div class="command-container">
       <p>View Proposal By ID</p>
       <div class="copy-button-container">
-        <div class="command">{{chain.binaryName}} query gov proposal &lt;PROPOSAL_ID&gt;</div>
+        <div class="command">{{chain.binaryName}} query gov proposal {{chain.proposalId}}</div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
     </div>
     <div class="command-container">
       <p>Vote YES</p>
       <div class="copy-button-container">
-        <div class="command">{{chain.binaryName}} tx gov vote &lt;PROPOSAL_ID&gt; yes --from {{chain.walletName}}
+        <div class="command">{{chain.binaryName}} tx gov vote {{chain.proposalId}} yes --from {{chain.walletName}}
           --chain-id {{chain.chainId}} --fees {{chain.fees + chain.denomName}} -y
         </div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
@@ -271,7 +317,7 @@
     <div class="command-container">
       <p>Vote NO</p>
       <div class="copy-button-container">
-        <div class="command">{{chain.binaryName}} tx gov vote &lt;PROPOSAL_ID&gt; no --from {{chain.walletName}}
+        <div class="command">{{chain.binaryName}} tx gov vote {{chain.proposalId}} no --from {{chain.walletName}}
           --chain-id {{chain.chainId}} --fees {{chain.fees + chain.denomName}} -y
         </div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
@@ -280,7 +326,7 @@
     <div class="command-container">
       <p>Vote ABSTAIN</p>
       <div class="copy-button-container">
-        <div class="command">{{chain.binaryName}} tx gov vote &lt;PROPOSAL_ID&gt; abstain --from {{chain.walletName}}
+        <div class="command">{{chain.binaryName}} tx gov vote {{chain.proposalId}} abstain --from {{chain.walletName}}
           --chain-id {{chain.chainId}} --fees {{chain.fees + chain.denomName}} -y
         </div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
