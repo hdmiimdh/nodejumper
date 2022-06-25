@@ -28,7 +28,7 @@ export class CheatSheetComponent implements OnInit {
         activeChain.homeDirectoryName,
         savedChainInfo.walletName || "wallet",
         savedChainInfo.valoperAddress || "",
-        savedChainInfo.fees || 200
+        savedChainInfo.fees || 2000
       )
     }
   }
