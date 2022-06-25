@@ -238,7 +238,7 @@
     <div class="command-container">
       <p>Check Balance</p>
       <div class="copy-button-container">
-        <div class="command">{{chain.binaryName}} q bank balances &lt;WALLET_ADDRESS&gt;</div>
+        <div class="command">{{chain.binaryName}} q bank balances $({{chain.binaryName}} keys show {{chain.walletName}} -a)</div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
     </div>
