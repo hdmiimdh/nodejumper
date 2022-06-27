@@ -1,5 +1,14 @@
 <ng-container *ngIf="this.chain">
   <div class="row">
+    <p class="title">Search</p>
+    <div class="col col-12">
+      <div class="search-field">
+        <span class="search-icon">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </span>
+        <input [(ngModel)]="searchText" class="form-control shadow-none rounded-pill" placeholder="Search" type="search"/>
+      </div>
+    </div>
     <p class="title">Parameters</p>
     <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
       <div class="param-container">
@@ -57,37 +66,37 @@
       </div>
     </div>
   </div>
-  <div class="row">
+  <div class="row" [ngClass]="hideForSearchArray([e1be173d, e196dfc8, b0ce1e71, d341457e, c29f311f2e09]) ? 'd-none' : ''">
     <p class="title">Wallet</p>
-    <div class="command-container">
+    <div class="command-container" [ngClass]="hideForSearch(e1be173d) ? 'd-none' : ''" #e1be173d>
       <p>Add New Wallet</p>
       <div class="copy-button-container">
         <div class="command">{{chain.binaryName}} keys add {{chain.walletName}}</div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
     </div>
-    <div class="command-container">
-      <p>Recover Existing Wallet</p>
+    <div class="command-container" [ngClass]="hideForSearch(e196dfc8) ? 'd-none' : ''" #e196dfc8>
+      <p >Recover Existing Wallet</p>
       <div class="copy-button-container">
         <div class="command">{{chain.binaryName}} keys add {{chain.walletName}} --recover</div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
     </div>
-    <div class="command-container">
+    <div class="command-container" [ngClass]="hideForSearch(b0ce1e71) ? 'd-none' : ''" #b0ce1e71>
       <p>List All Wallets</p>
       <div class="copy-button-container">
         <div class="command">{{chain.binaryName}} keys list</div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
     </div>
-    <div class="command-container">
+    <div class="command-container" [ngClass]="hideForSearch(d341457e) ? 'd-none' : ''" #d341457e>
       <p>Delete Wallet</p>
       <div class="copy-button-container">
         <div class="command">{{chain.binaryName}} keys delete {{chain.walletName}}</div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
     </div>
-    <div class="command-container">
+    <div class="command-container" [ngClass]="hideForSearch(c29f311f2e09) ? 'd-none' : ''" #c29f311f2e09>
       <p>Check Wallet Balance</p>
       <div class="copy-button-container">
         <div class="command">{{chain.binaryName}} q bank balances $({{chain.binaryName}} keys show {{chain.walletName}} -a)</div>
@@ -95,7 +104,7 @@
       </div>
     </div>
   </div>
-  <div class="row">
+  <div class="row" [ngClass]="hideForSearchArray([d7fadc2a1be2, ed60b0febaf3, dae767347223, dfc1c198b2fd, b24eae45eaa7, b5fc3c18, fac604ab]) ? 'd-none' : ''">
     <p class="title">Validator</p>
     <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
       <div class="param-container">
@@ -130,7 +139,7 @@
         />
       </div>
     </div>
-    <div class="command-container">
+    <div class="command-container" [ngClass]="hideForSearch(d7fadc2a1be2) ? 'd-none' : ''" #d7fadc2a1be2>
       <p>Create New Validator</p>
       <div class="copy-button-container">
         <div class="command multiline">{{chain.binaryName}} tx staking create-validator \
@@ -152,7 +161,7 @@
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
     </div>
-    <div class="command-container">
+    <div class="command-container" [ngClass]="hideForSearch(ed60b0febaf3) ? 'd-none' : ''" #ed60b0febaf3>
       <p>Edit Existing Validator</p>
       <div class="copy-button-container">
         <div class="command multiline">{{chain.binaryName}} tx staking edit-validator \
@@ -169,7 +178,7 @@
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
     </div>
-    <div class="command-container">
+    <div class="command-container" [ngClass]="hideForSearch(dae767347223) ? 'd-none' : ''" #dae767347223>
       <p>Unjail Validator</p>
       <div class="copy-button-container">
         <div class="command">{{chain.binaryName}} tx slashing unjail --from {{chain.walletName}}
@@ -178,7 +187,7 @@
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
     </div>
-    <div class="command-container">
+    <div class="command-container" [ngClass]="hideForSearch(dfc1c198b2fd) ? 'd-none' : ''" #dfc1c198b2fd>
       <p>Jail Reason</p>
       <div class="copy-button-container">
         <div class="command">{{chain.binaryName}} query slashing signing-info $({{chain.binaryName}} tendermint
@@ -187,7 +196,7 @@
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
     </div>
-    <div class="command-container">
+    <div class="command-container" [ngClass]="hideForSearch(b24eae45eaa7) ? 'd-none' : ''" #b24eae45eaa7>
       <p>List All Active Validators</p>
       <div class="copy-button-container">
         <div class="command">{{chain.binaryName}} q staking validators -oj --limit=3000 | jq '.validators[] |
@@ -197,7 +206,7 @@
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
     </div>
-    <div class="command-container">
+    <div class="command-container" [ngClass]="hideForSearch(b5fc3c18) ? 'd-none' : ''" #b5fc3c18>
       <p>List All Inactive Validators</p>
       <div class="copy-button-container">
         <div class="command">{{chain.binaryName}} q staking validators -oj --limit=3000 | jq '.validators[] |
@@ -207,7 +216,7 @@
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
     </div>
-    <div class="command-container">
+    <div class="command-container" [ngClass]="hideForSearch(fac604ab) ? 'd-none' : ''" #fac604ab>
       <p>View Validator Details</p>
       <div class="copy-button-container">
         <div class="command">{{chain.binaryName}} q staking validator $({{chain.binaryName}} keys
@@ -217,7 +226,7 @@
       </div>
     </div>
   </div>
-  <div class="row">
+  <div class="row" [ngClass]="hideForSearchArray([d82b6728, e1f574e6, be5e3609fee2, abe0cd09436e, db5f64c9e27e]) ? 'd-none' : ''">
     <p class="title">Tokens</p>
     <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
       <div class="param-container">
@@ -252,7 +261,7 @@
         />
       </div>
     </div>
-    <div class="command-container">
+    <div class="command-container" [ngClass]="hideForSearch(d82b6728) ? 'd-none' : ''" #d82b6728>
       <p>Withdraw Commission And Rewards</p>
       <div class="copy-button-container">
         <div class="command">{{chain.binaryName}} tx distribution withdraw-all-rewards --from {{chain.walletName}}
@@ -261,7 +270,7 @@
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
     </div>
-    <div class="command-container">
+    <div class="command-container" [ngClass]="hideForSearch(e1f574e6) ? 'd-none' : ''" #e1f574e6>
       <p>Delegate</p>
       <div class="copy-button-container">
         <div class="command">{{chain.binaryName}} tx staking delegate {{chain.valoperAddress || '&lt;VALOPER_ADDRESS_RAPAM&gt;'}}
@@ -271,7 +280,7 @@
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
     </div>
-    <div class="command-container">
+    <div class="command-container" [ngClass]="hideForSearch(be5e3609fee2) ? 'd-none' : ''" #be5e3609fee2>
       <p>Redelegate</p>
       <div class="copy-button-container">
         <div class="command">{{chain.binaryName}} tx staking redelegate {{chain.valoperAddress || '&lt;VALOPER_ADDRESS_RAPAM&gt;'}} {{chain.toValoperAddress || '&lt;TO_VALOPER_ADDRESS_RAPAM&gt;'}}
@@ -281,7 +290,7 @@
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
     </div>
-    <div class="command-container">
+    <div class="command-container" [ngClass]="hideForSearch(abe0cd09436e) ? 'd-none' : ''" #abe0cd09436e>
       <p>Unbond</p>
       <div class="copy-button-container">
         <div class="command">{{chain.binaryName}} tx staking unbond {{chain.valoperAddress || '&lt;VALOPER_ADDRESS_RAPAM&gt;'}} 1000000{{chain.denomName}}
@@ -290,7 +299,7 @@
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
     </div>
-    <div class="command-container">
+    <div class="command-container" [ngClass]="hideForSearch(db5f64c9e27e) ? 'd-none' : ''" #db5f64c9e27e>
       <p>Send</p>
       <div class="copy-button-container">
         <div class="command">{{chain.binaryName}} tx bank send {{chain.walletName}} {{chain.toWalletAddress || '&lt;TO_WALLET_ADDRESS_RAPAM&gt;'}}
@@ -301,7 +310,7 @@
       </div>
     </div>
   </div>
-  <div class="row">
+  <div class="row" [ngClass]="hideForSearchArray([c8b19541, c01ee5ff, d31d502e, f4416a14, a3a86a7c]) ? 'd-none' : ''">
     <p class="title">Governance</p>
     <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
       <div class="param-container">
@@ -314,21 +323,21 @@
         />
       </div>
     </div>
-    <div class="command-container">
+    <div class="command-container" [ngClass]="hideForSearch(c8b19541) ? 'd-none' : ''" #c8b19541>
       <p>List All Proposals</p>
       <div class="copy-button-container">
         <div class="command">{{chain.binaryName}} query gov proposals</div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
     </div>
-    <div class="command-container">
+    <div class="command-container" [ngClass]="hideForSearch(c01ee5ff) ? 'd-none' : ''" #c01ee5ff>
       <p>View Proposal By ID</p>
       <div class="copy-button-container">
         <div class="command">{{chain.binaryName}} query gov proposal {{chain.proposalId}}</div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
     </div>
-    <div class="command-container">
+    <div class="command-container" [ngClass]="hideForSearch(d31d502e) ? 'd-none' : ''" #d31d502e>
       <p>Vote YES</p>
       <div class="copy-button-container">
         <div class="command">{{chain.binaryName}} tx gov vote {{chain.proposalId}} yes --from {{chain.walletName}}
@@ -337,7 +346,7 @@
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
     </div>
-    <div class="command-container">
+    <div class="command-container" [ngClass]="hideForSearch(f4416a14) ? 'd-none' : ''" #f4416a14>
       <p>Vote NO</p>
       <div class="copy-button-container">
         <div class="command">{{chain.binaryName}} tx gov vote {{chain.proposalId}} no --from {{chain.walletName}}
@@ -346,7 +355,7 @@
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
     </div>
-    <div class="command-container">
+    <div class="command-container" [ngClass]="hideForSearch(a3a86a7c) ? 'd-none' : ''" #a3a86a7c>
       <p>Vote ABSTAIN</p>
       <div class="copy-button-container">
         <div class="command">{{chain.binaryName}} tx gov vote {{chain.proposalId}} abstain --from {{chain.walletName}}
@@ -356,9 +365,9 @@
       </div>
     </div>
   </div>
-  <div class="row">
+  <div class="row" [ngClass]="hideForSearchArray([e1d6879f96e7, d7c005a09058, c6c126c83420, c9fa81f310b6, b1623a67b5e0, b8799052a2bd]) ? 'd-none' : ''">
     <p class="title">Utility</p>
-    <div class="btn-group param-container">
+    <div class="btn-group param-container" [ngClass]="hideForSearch(e1d6879f96e7) ? 'd-none' : ''">
       <button type="button" class="btn input" (click)="setPortIncrement($event)">1</button>
       <button type="button" class="btn input" (click)="setPortIncrement($event)">2</button>
       <button type="button" class="btn input" (click)="setPortIncrement($event)">3</button>
@@ -369,7 +378,7 @@
       <button type="button" class="btn input" (click)="setPortIncrement($event)">8</button>
       <button type="button" class="btn input" (click)="setPortIncrement($event)">9</button>
     </div>
-    <div class="ports-param-container">
+    <div class="ports-param-container" [ngClass]="hideForSearch(e1d6879f96e7) ? 'd-none' : ''">
       <div class="btn-group param-container header-group">
         <p class="param-row-title"></p>
         <p class="btn">gRPC</p>
@@ -401,7 +410,7 @@
         <button type="button" class="btn input" disabled>{{26660 + this.chain.portIncrement * 1000}}</button>
       </div>
     </div>
-    <div class="command-container">
+    <div class="command-container" [ngClass]="hideForSearch(e1d6879f96e7) ? 'd-none' : ''" #e1d6879f96e7>
       <p>Change Default Ports</p>
       <div class="copy-button-container">
         <div class="command">sed -i.bak -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:{{26658 + this.chain.portIncrement * 1000}}\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://127.0.0.1:{{26657 + this.chain.portIncrement * 1000}}\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:{{6060 + this.chain.portIncrement * 100}}\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:{{26656 + this.chain.portIncrement * 1000}}\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":{{26660 + this.chain.portIncrement * 1000}}\"%" $HOME/{{chain.homeDirectoryName}}/config/config.toml;<br>
@@ -409,28 +418,28 @@
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
     </div>
-    <div class="command-container">
+    <div class="command-container" [ngClass]="hideForSearch(d7c005a09058) ? 'd-none' : ''" #d7c005a09058>
       <p>Get Validator Info</p>
       <div class="copy-button-container">
         <div class="command">{{chain.binaryName}} status 2>&1 | jq .ValidatorInfo</div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
     </div>
-    <div class="command-container">
+    <div class="command-container" [ngClass]="hideForSearch(c6c126c83420) ? 'd-none' : ''" #c6c126c83420>
       <p>Get Catching Up</p>
       <div class="copy-button-container">
         <div class="command">{{chain.binaryName}} status 2>&1 | jq .SyncInfo.catching_up</div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
     </div>
-    <div class="command-container">
+    <div class="command-container" [ngClass]="hideForSearch(c9fa81f310b6) ? 'd-none' : ''" #c9fa81f310b6>
       <p>Get Latest Height</p>
       <div class="copy-button-container">
         <div class="command">{{chain.binaryName}} status 2>&1 | jq .SyncInfo.latest_block_height</div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
     </div>
-    <div class="command-container">
+    <div class="command-container" [ngClass]="hideForSearch(b1623a67b5e0) ? 'd-none' : ''" #b1623a67b5e0>
       <p>Get Peer</p>
       <div class="copy-button-container">
         <div class="command">echo $({{chain.binaryName}} tendermint show-node-id)'@'$(curl -s ifconfig.me)':'$(cat
@@ -440,7 +449,7 @@
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
     </div>
-    <div class="command-container">
+    <div class="command-container" [ngClass]="hideForSearch(b8799052a2bd) ? 'd-none' : ''" #b8799052a2bd>
       <p>Check Logs</p>
       <div class="copy-button-container">
         <div class="command">sudo journalctl -u {{chain.serviceName}} -f --no-hostname -o cat</div>
