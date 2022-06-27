@@ -28,7 +28,7 @@ export class CheatSheetComponent implements OnInit {
         activeChain.homeDirectoryName,
         savedChainInfo.walletName || 'wallet',
         savedChainInfo.valoperAddress || '',
-        savedChainInfo.fees || 200,
+        savedChainInfo.fees || 2000,
         savedChainInfo.moniker || 'Moniker',
         savedChainInfo.identity || '7226E688B46B7022', // I created demo keybase
         savedChainInfo.details || 'I\'m sexy and I know it 😉',

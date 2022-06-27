@@ -36,7 +36,7 @@
     </div>
     <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
       <div class="param-container">
-        <p class="label">Wallet</p>
+        <p class="label">Key name</p>
         <input
           class="form-control rounded-pill input"
           placeholder="Wallet name"
@@ -148,9 +148,9 @@
 --commission-max-rate=0.2 \
 --commission-rate=0.1 \
 --min-self-delegation=1 \
---gas=auto \
 --from={{chain.walletName}} \
 --fees={{chain.fees + chain.denomName}} \
+--gas=auto \
 -y
         </div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
@@ -164,9 +164,9 @@
 --identity={{chain.identity}} \
 --details="{{chain.details}}" \
 --commission-rate=0.1 \
---gas=auto \
 --from={{chain.walletName}} \
 --fees={{chain.fees + chain.denomName}} \
+--gas=auto \
 -y
         </div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
@@ -176,7 +176,7 @@
       <p>Unjail Validator</p>
       <div class="copy-button-container">
         <div class="command">{{chain.binaryName}} tx slashing unjail --from {{chain.walletName}}
-          --chain-id {{chain.chainId}} --fees {{chain.fees + chain.denomName}} -y
+          --chain-id {{chain.chainId}} --fees {{chain.fees + chain.denomName}} --gas auto -y
         </div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
@@ -211,7 +211,7 @@
       </div>
     </div>
     <div class="command-container">
-      <p>View Validator command</p>
+      <p>View Validator Details</p>
       <div class="copy-button-container">
         <div class="command">{{chain.binaryName}} q staking validator $({{chain.binaryName}} keys
           show {{chain.walletName}} --bech val -a)
@@ -226,7 +226,7 @@
       <p>Withdraw Commission And Rewards</p>
       <div class="copy-button-container">
         <div class="command">{{chain.binaryName}} tx distribution withdraw-all-rewards --from {{chain.walletName}}
-          --chain-id {{chain.chainId}} --fees {{chain.fees + chain.denomName}} -y
+          --chain-id {{chain.chainId}} --fees {{chain.fees + chain.denomName}} --gas auto -y
         </div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
@@ -236,7 +236,7 @@
       <div class="copy-button-container">
         <div class="command">{{chain.binaryName}} tx staking delegate {{chain.valoperAddress}}
           1000000{{chain.denomName}} --from {{chain.walletName}} --chain-id {{chain.chainId}}
-          --fees {{chain.fees + chain.denomName}} -y
+          --fees {{chain.fees + chain.denomName}} --gas auto -y
         </div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
@@ -246,7 +246,7 @@
       <div class="copy-button-container">
         <div class="command">{{chain.binaryName}} tx staking redelegate {{chain.valoperAddress}} &lt;TO_VALOPER_ADDRESS&gt;
           1000000{{chain.denomName}} --from {{chain.walletName}} --chain-id {{chain.chainId}}
-          --fees {{chain.fees + chain.denomName}} -y
+          --fees {{chain.fees + chain.denomName}} --gas auto -y
         </div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
@@ -255,7 +255,7 @@
       <p>Unbond</p>
       <div class="copy-button-container">
         <div class="command">{{chain.binaryName}} tx staking unbond {{chain.valoperAddress}} 1000000{{chain.denomName}}
-          --from {{chain.walletName}} --chain-id {{chain.chainId}} --fees {{chain.fees + chain.denomName}} -y
+          --from {{chain.walletName}} --chain-id {{chain.chainId}} --fees {{chain.fees + chain.denomName}} --gas auto -y
         </div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
@@ -265,7 +265,7 @@
       <div class="copy-button-container">
         <div class="command">{{chain.binaryName}} tx bank send {{chain.walletName}} &lt;TO_WALLET_ADDRESS&gt;
           1000000{{chain.denomName}} --from {{chain.walletName}} --chain-id {{chain.chainId}}
-          --fees {{chain.fees + chain.denomName}} -y
+          --fees {{chain.fees + chain.denomName}} --gas auto -y
         </div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
@@ -273,7 +273,7 @@
     <div class="command-container">
       <p>Check Balance</p>
       <div class="copy-button-container">
-        <div class="command">{{chain.binaryName}} q bank balances &lt;WALLET_ADDRESS&gt;</div>
+        <div class="command">{{chain.binaryName}} q bank balances $({{chain.binaryName}} keys show {{chain.walletName}} -a)</div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
     </div>
@@ -309,7 +309,7 @@
       <p>Vote YES</p>
       <div class="copy-button-container">
         <div class="command">{{chain.binaryName}} tx gov vote {{chain.proposalId}} yes --from {{chain.walletName}}
-          --chain-id {{chain.chainId}} --fees {{chain.fees + chain.denomName}} -y
+          --chain-id {{chain.chainId}} --fees {{chain.fees + chain.denomName}} --gas auto -y
         </div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
@@ -318,7 +318,7 @@
       <p>Vote NO</p>
       <div class="copy-button-container">
         <div class="command">{{chain.binaryName}} tx gov vote {{chain.proposalId}} no --from {{chain.walletName}}
-          --chain-id {{chain.chainId}} --fees {{chain.fees + chain.denomName}} -y
+          --chain-id {{chain.chainId}} --fees {{chain.fees + chain.denomName}} --gas auto -y
         </div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
@@ -327,7 +327,7 @@
       <p>Vote ABSTAIN</p>
       <div class="copy-button-container">
         <div class="command">{{chain.binaryName}} tx gov vote {{chain.proposalId}} abstain --from {{chain.walletName}}
-          --chain-id {{chain.chainId}} --fees {{chain.fees + chain.denomName}} -y
+          --chain-id {{chain.chainId}} --fees {{chain.fees + chain.denomName}} --gas auto -y
         </div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
