@@ -36,7 +36,7 @@
     </div>
     <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
       <div class="param-container">
-        <p class="label">Wallet</p>
+        <p class="label">Key name</p>
         <input
           class="form-control rounded-pill input"
           placeholder="Wallet name"
@@ -191,7 +191,7 @@
     <div class="command-container">
       <p>Withdraw Commission And Rewards</p>
       <div class="copy-button-container">
-        <div class="command">{{chain.binaryName}} tx distribution withdraw-all-rewards --from {{chain.walletName}}
+        <div class="command">{{chain.binaryName}} tx distribution withdraw-all-rewards --commission --from {{chain.walletName}}
           --chain-id {{chain.chainId}} --fees {{chain.fees + chain.denomName}} --gas auto -y
         </div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
