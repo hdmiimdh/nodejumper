@@ -11,8 +11,12 @@ export class ChainCheatSheet {
   identity: string;
   details: string;
   proposalId: number;
+  toValoperAddress: string;
+  toWalletAddress: string;
+  portIncrement: number;
+  serviceName: string;
 
-  constructor(id: string, chainId: string, denomName: string, binaryName: string, homeDirectoryName: string, walletName: string, valoperAddress: string, fees: number, moniker: string, identity: string, details: string, proposalId: number) {
+  constructor(id: string, chainId: string, denomName: string, binaryName: string, homeDirectoryName: string, walletName: string, valoperAddress: string, fees: number, moniker: string, identity: string, details: string, proposalId: number, toValoperAddress: string, toWalletAddress: string, portIncrement: number, serviceName: string) {
     this.id = id;
     this.chainId = chainId;
     this.denomName = denomName;
@@ -25,5 +29,9 @@ export class ChainCheatSheet {
     this.identity = identity;
     this.details = details;
     this.proposalId = proposalId;
+    this.toValoperAddress = toValoperAddress;
+    this.toWalletAddress = toWalletAddress;
+    this.portIncrement = portIncrement;
+    this.serviceName = serviceName;
   }
 }

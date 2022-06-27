@@ -88,7 +88,7 @@ reason crew zone unfold grain jungle shell before joke doll powder still aspect 
 $binaryName status 2>&1 | jq .SyncInfo.catching_up
 
 # Go to discord channel #qck-tap and paste
-$request <YOUR_WALLET_ADDRESS> rhapsody
+$request <YOUR_WALLET_ADDRESS> killerqueen
 
 # Verify the balance
 $binaryName q bank balances <YOUR_WALLET_ADDRESS>

@@ -11,6 +11,7 @@
 .param-container {
   align-items: center;
   padding-top: 15px;
+  width: 100%;
 }
 
 .param-container .label {
@@ -37,6 +38,36 @@
 .param-container .input:disabled {
   border: 1px solid var(--code-background-color);
   background-color: var(--code-background-color);
+}
+
+.param-container .btn {
+  border: 1px solid #ced4da;
+  background-color: var(--code-background-color);
+}
+
+.param-container .btn:disabled {
+  border: 1px solid #ced4da;
+}
+
+.ports-param-container {
+  margin-bottom: 10px;
+  overflow-x: auto;
+}
+
+.ports-param-container .btn {
+  width: 85px;
+  min-width: 85px;
+}
+
+.ports-param-container .header-group .btn {
+  font-size: 12px;
+  background-color: unset !important;
+  border: none !important;
+}
+
+.ports-param-container .param-container .param-row-title {
+  opacity: 0.8;
+  min-width: 140px;
 }
 
 /* command */

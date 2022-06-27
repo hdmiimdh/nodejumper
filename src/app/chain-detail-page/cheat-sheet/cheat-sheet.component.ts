@@ -16,9 +16,8 @@ export class CheatSheetComponent implements OnInit {
 
   ngOnInit(): void {
     if (this.chainService.activeChain) {
-      const activeChain = this.chainService.activeChain
-
-      const savedChainInfo = JSON.parse(localStorage.getItem(activeChain.chainId) || '{}');
+      let activeChain = this.chainService.activeChain
+      let savedChainInfo = JSON.parse(localStorage.getItem(activeChain.chainId) || '{}');
 
       this.chain = new ChainCheatSheet(
         activeChain.id,
@@ -32,20 +31,24 @@ export class CheatSheetComponent implements OnInit {
         savedChainInfo.moniker || 'Moniker',
         savedChainInfo.identity || '7226E688B46B7022', // I created demo keybase
         savedChainInfo.details || 'I\'m sexy and I know it 😉',
-        savedChainInfo.proposalId || 1
-      )
+        savedChainInfo.proposalId || 1,
+        savedChainInfo.toValoperAddress || '',
+        savedChainInfo.toWalletAddress || '',
+        savedChainInfo.portIncrement || 0,
+        activeChain.serviceName
+      );
     }
   }
 
   ngAfterViewInit(): void {
   }
 
-  handleBlur(paramName: String): void {
-    const paramKey = paramName as keyof ChainCheatSheet;
-    const value = this.chain?.[paramKey];
-    const chainId = this.chain?.chainId || 'default';
+  saveParam(paramName: String): void {
+    let paramKey = paramName as keyof ChainCheatSheet;
+    let value = this.chain?.[paramKey];
+    let chainId = this.chain?.chainId || 'default';
 
-    const savedChainInfo = JSON.parse(localStorage.getItem(chainId) || '{}');
+    let savedChainInfo = JSON.parse(localStorage.getItem(chainId) || '{}');
     savedChainInfo[paramKey] = value;
     localStorage.setItem(chainId, JSON.stringify(savedChainInfo))
   }
@@ -72,6 +75,9 @@ export class CheatSheetComponent implements OnInit {
   }
 
   unEscape(htmlStr: string): string {
+    htmlStr = htmlStr.replace(/<br (.*)>/g , "");
+    htmlStr = htmlStr.replace(/<\/pre>/g , "");
+    htmlStr = htmlStr.replace(/<pre (.*)>/g , "");
     htmlStr = htmlStr.replace(/&lt;/g , "<");
     htmlStr = htmlStr.replace(/&gt;/g , ">");
     htmlStr = htmlStr.replace(/&quot;/g , "\"");
@@ -79,8 +85,13 @@ export class CheatSheetComponent implements OnInit {
     htmlStr = htmlStr.replace(/&amp;/g , "&");
     htmlStr = htmlStr.replace(/&#123;/g , "{");
     htmlStr = htmlStr.replace(/&#125;/g , "}");
-    htmlStr = htmlStr.replace(/<\/pre>/g , "");
-    htmlStr = htmlStr.replace(/<pre (.*)>/g , "");
     return htmlStr;
+  }
+
+  setPortIncrement(event: Event): void {
+    let htmlElement = (event.target as HTMLInputElement);
+    if (this.chain) {
+      this.chain.portIncrement = parseInt(htmlElement.innerText);
+    }
   }
 }

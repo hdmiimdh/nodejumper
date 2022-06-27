@@ -41,7 +41,7 @@
           class="form-control rounded-pill input"
           placeholder="Wallet name"
           [(ngModel)]="chain.walletName"
-          (blur)="handleBlur('walletName')"
+          (blur)="saveParam('walletName')"
         />
       </div>
     </div>
@@ -52,18 +52,7 @@
           class="form-control rounded-pill input"
           placeholder="Fees amount"
           [(ngModel)]="chain.fees"
-          (blur)="handleBlur('fees')"
-        />
-      </div>
-    </div>
-    <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
-      <div class="param-container">
-        <p class="label">Valoper</p>
-        <input
-          class="form-control rounded-pill input"
-          placeholder="Valoper address"
-          [(ngModel)]="chain.valoperAddress"
-          (blur)="handleBlur('valoperAddress')"
+          (blur)="saveParam('fees')"
         />
       </div>
     </div>
@@ -98,6 +87,13 @@
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
     </div>
+    <div class="command-container">
+      <p>Check Wallet Balance</p>
+      <div class="copy-button-container">
+        <div class="command">{{chain.binaryName}} q bank balances $({{chain.binaryName}} keys show {{chain.walletName}} -a)</div>
+        <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
+      </div>
+    </div>
   </div>
   <div class="row">
     <p class="title">Validator</p>
@@ -108,7 +104,7 @@
           class="form-control rounded-pill input"
           placeholder="Moniker"
           [(ngModel)]="chain.moniker"
-          (blur)="handleBlur('moniker')"
+          (blur)="saveParam('moniker')"
         />
       </div>
     </div>
@@ -119,7 +115,7 @@
           class="form-control rounded-pill input"
           placeholder="Identity"
           [(ngModel)]="chain.identity"
-          (blur)="handleBlur('identity')"
+          (blur)="saveParam('identity')"
         />
       </div>
     </div>
@@ -130,7 +126,7 @@
           class="form-control rounded-pill input"
           placeholder="Details"
           [(ngModel)]="chain.details"
-          (blur)="handleBlur('details')"
+          (blur)="saveParam('details')"
         />
       </div>
     </div>
@@ -222,6 +218,39 @@
   </div>
   <div class="row">
     <p class="title">Tokens</p>
+    <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
+      <div class="param-container">
+        <p class="label">Valoper address</p>
+        <input
+          class="form-control rounded-pill input"
+          placeholder="Valoper address"
+          [(ngModel)]="chain.valoperAddress"
+          (blur)="saveParam('valoperAddress')"
+        />
+      </div>
+    </div>
+    <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
+      <div class="param-container">
+        <p class="label">To valoper address</p>
+        <input
+          class="form-control rounded-pill input"
+          placeholder="To valoper address"
+          [(ngModel)]="chain.toValoperAddress"
+          (blur)="saveParam('toValoperAddress')"
+        />
+      </div>
+    </div>
+    <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
+      <div class="param-container">
+        <p class="label">To wallet address</p>
+        <input
+          class="form-control rounded-pill input"
+          placeholder="To wallet address"
+          [(ngModel)]="chain.toWalletAddress"
+          (blur)="saveParam('toWalletAddress')"
+        />
+      </div>
+    </div>
     <div class="command-container">
       <p>Withdraw Commission And Rewards</p>
       <div class="copy-button-container">
@@ -234,7 +263,7 @@
     <div class="command-container">
       <p>Delegate</p>
       <div class="copy-button-container">
-        <div class="command">{{chain.binaryName}} tx staking delegate {{chain.valoperAddress}}
+        <div class="command">{{chain.binaryName}} tx staking delegate {{chain.valoperAddress || '&lt;VALOPER_ADDRESS_RAPAM&gt;'}}
           1000000{{chain.denomName}} --from {{chain.walletName}} --chain-id {{chain.chainId}}
           --fees {{chain.fees + chain.denomName}} --gas auto -y
         </div>
@@ -244,7 +273,7 @@
     <div class="command-container">
       <p>Redelegate</p>
       <div class="copy-button-container">
-        <div class="command">{{chain.binaryName}} tx staking redelegate {{chain.valoperAddress}} &lt;TO_VALOPER_ADDRESS&gt;
+        <div class="command">{{chain.binaryName}} tx staking redelegate {{chain.valoperAddress || '&lt;VALOPER_ADDRESS_RAPAM&gt;'}} {{chain.toValoperAddress || '&lt;TO_VALOPER_ADDRESS_RAPAM&gt;'}}
           1000000{{chain.denomName}} --from {{chain.walletName}} --chain-id {{chain.chainId}}
           --fees {{chain.fees + chain.denomName}} --gas auto -y
         </div>
@@ -254,7 +283,7 @@
     <div class="command-container">
       <p>Unbond</p>
       <div class="copy-button-container">
-        <div class="command">{{chain.binaryName}} tx staking unbond {{chain.valoperAddress}} 1000000{{chain.denomName}}
+        <div class="command">{{chain.binaryName}} tx staking unbond {{chain.valoperAddress || '&lt;VALOPER_ADDRESS_RAPAM&gt;'}} 1000000{{chain.denomName}}
           --from {{chain.walletName}} --chain-id {{chain.chainId}} --fees {{chain.fees + chain.denomName}} --gas auto -y
         </div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
@@ -263,17 +292,10 @@
     <div class="command-container">
       <p>Send</p>
       <div class="copy-button-container">
-        <div class="command">{{chain.binaryName}} tx bank send {{chain.walletName}} &lt;TO_WALLET_ADDRESS&gt;
+        <div class="command">{{chain.binaryName}} tx bank send {{chain.walletName}} {{chain.toWalletAddress || '&lt;TO_WALLET_ADDRESS_RAPAM&gt;'}}
           1000000{{chain.denomName}} --from {{chain.walletName}} --chain-id {{chain.chainId}}
           --fees {{chain.fees + chain.denomName}} --gas auto -y
         </div>
-        <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
-      </div>
-    </div>
-    <div class="command-container">
-      <p>Check Balance</p>
-      <div class="copy-button-container">
-        <div class="command">{{chain.binaryName}} q bank balances $({{chain.binaryName}} keys show {{chain.walletName}} -a)</div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
     </div>
@@ -287,7 +309,7 @@
           class="form-control rounded-pill input"
           placeholder="Proposal id"
           [(ngModel)]="chain.proposalId"
-          (blur)="handleBlur('proposalId')"
+          (blur)="saveParam('proposalId')"
         />
       </div>
     </div>
@@ -335,6 +357,57 @@
   </div>
   <div class="row">
     <p class="title">Utility</p>
+    <div class="btn-group param-container">
+      <button type="button" class="btn input" (click)="setPortIncrement($event)">1</button>
+      <button type="button" class="btn input" (click)="setPortIncrement($event)">2</button>
+      <button type="button" class="btn input" (click)="setPortIncrement($event)">3</button>
+      <button type="button" class="btn input" (click)="setPortIncrement($event)">4</button>
+      <button type="button" class="btn input" (click)="setPortIncrement($event)">5</button>
+      <button type="button" class="btn input" (click)="setPortIncrement($event)">6</button>
+      <button type="button" class="btn input" (click)="setPortIncrement($event)">7</button>
+      <button type="button" class="btn input" (click)="setPortIncrement($event)">8</button>
+      <button type="button" class="btn input" (click)="setPortIncrement($event)">9</button>
+    </div>
+    <div class="ports-param-container">
+      <div class="btn-group param-container header-group">
+        <p class="param-row-title"></p>
+        <p class="btn">gRPC</p>
+        <p class="btn">gRPC(web)</p>
+        <p class="btn">proxy_app</p>
+        <p class="btn">laddr(rpc)</p>
+        <p class="btn">pprof_laddr</p>
+        <p class="btn">laddr(p2p)</p>
+        <p class="btn">prometheus</p>
+      </div>
+      <div class="btn-group param-container">
+        <p class="param-row-title">Default Ports</p>
+        <button type="button" class="btn input" disabled>9090</button>
+        <button type="button" class="btn input" disabled>9091</button>
+        <button type="button" class="btn input" disabled>26658</button>
+        <button type="button" class="btn input" disabled>26657</button>
+        <button type="button" class="btn input" disabled>6060</button>
+        <button type="button" class="btn input" disabled>26656</button>
+        <button type="button" class="btn input" disabled>26660</button>
+      </div>
+      <div class="btn-group param-container">
+        <p class="param-row-title">Changed Ports</p>
+        <button type="button" class="btn input" disabled>{{9090 + this.chain.portIncrement * 100}}</button>
+        <button type="button" class="btn input" disabled>{{9091 + this.chain.portIncrement * 100}}</button>
+        <button type="button" class="btn input" disabled>{{26658 + this.chain.portIncrement * 1000}}</button>
+        <button type="button" class="btn input" disabled>{{26657 + this.chain.portIncrement * 1000}}</button>
+        <button type="button" class="btn input" disabled>{{6060 + this.chain.portIncrement * 100}}</button>
+        <button type="button" class="btn input" disabled>{{26656 + this.chain.portIncrement * 1000}}</button>
+        <button type="button" class="btn input" disabled>{{26660 + this.chain.portIncrement * 1000}}</button>
+      </div>
+    </div>
+    <div class="command-container">
+      <p>Change Default Ports</p>
+      <div class="copy-button-container">
+        <div class="command">sed -i.bak -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:{{26658 + this.chain.portIncrement * 1000}}\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://127.0.0.1:{{26657 + this.chain.portIncrement * 1000}}\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:{{6060 + this.chain.portIncrement * 100}}\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:{{26656 + this.chain.portIncrement * 1000}}\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":{{26660 + this.chain.portIncrement * 1000}}\"%" $HOME/{{chain.homeDirectoryName}}/config/config.toml;<br>
+          sed -i.bak -e "s%^address = \"0.0.0.0:9090\"%address = \"0.0.0.0:{{9090 + this.chain.portIncrement * 100}}\"%; s%^address = \"0.0.0.0:9091\"%address = \"0.0.0.0:{{9091 + this.chain.portIncrement * 100}}\"%" $HOME/{{chain.homeDirectoryName}}/config/app.toml</div>
+        <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
+      </div>
+    </div>
     <div class="command-container">
       <p>Get Validator Info</p>
       <div class="copy-button-container">
@@ -363,6 +436,13 @@
           $HOME/{{chain.homeDirectoryName}}/config/config.toml | sed -n '/Address to listen for incoming connection/&#123;n;p;&#125;'
           | sed 's/.*://; s/".*//')
         </div>
+        <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
+      </div>
+    </div>
+    <div class="command-container">
+      <p>Check Logs</p>
+      <div class="copy-button-container">
+        <div class="command">sudo journalctl -u {{chain.serviceName}} -f --no-hostname -o cat</div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
     </div>
