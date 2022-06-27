@@ -156,9 +156,10 @@
       <p>Edit Existing Validator</p>
       <div class="copy-button-container">
         <div class="command multiline">{{chain.binaryName}} tx staking edit-validator \
---chain-id={{chain.chainId}} \
+--moniker="{{chain.moniker}}" \
 --identity={{chain.identity}} \
 --details="{{chain.details}}" \
+--chain-id={{chain.chainId}} \
 --commission-rate=0.1 \
 --from={{chain.walletName}} \
 --fees={{chain.fees + chain.denomName}} \
