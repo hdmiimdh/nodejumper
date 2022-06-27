@@ -1,4 +1,4 @@
-import {Component, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Chain } from "../model/chain";
 import { ChainService } from "../service/chain.service";
 import { StateService } from "../service/state.service";
@@ -12,7 +12,7 @@ export class HomePageComponent implements OnInit {
 
   mainnetChains: Chain[] = [];
   testnetChains: Chain[] = [];
-  searchText = '';
+  searchQuery: string = '';
   chainType = 'all';
 
   constructor(public chainService: ChainService, public stateService: StateService) {
@@ -23,10 +23,14 @@ export class HomePageComponent implements OnInit {
     this.stateService.chainType.subscribe({
         next: (chainType: string) => {
           this.chainType = chainType;
-          this.applyChainTypeWithFilter(chainType, this.searchText);
+          this.applyChainTypeWithFilter(chainType, this.searchQuery);
         }
       }
     );
+  }
+
+  onSearchQueryChange(newQuery: string) {
+    this.applyChainTypeWithFilter(this.chainType, newQuery)
   }
 
   applyChainTypeWithFilter(chainType: string, searchText: string): void {

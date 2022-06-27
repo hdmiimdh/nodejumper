@@ -9,7 +9,8 @@
           class="form-control shadow-none rounded-pill"
           placeholder="Search"
           type="search"
-          [(ngModel)]="searchText"
+          [(ngModel)]="searchQuery"
+          (ngModelChange)="onSearchQueryChange($event)"
         />
       </div>
     </div>
