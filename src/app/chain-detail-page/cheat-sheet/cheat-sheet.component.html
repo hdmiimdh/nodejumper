@@ -1,14 +1,5 @@
 <ng-container *ngIf="this.chain">
   <div class="row">
-    <p class="title">Search</p>
-    <div class="col col-12">
-      <div class="search-field">
-        <span class="search-icon">
-          <i class="fa-solid fa-magnifying-glass"></i>
-        </span>
-        <input [(ngModel)]="searchText" class="form-control shadow-none rounded-pill" placeholder="Search" type="search"/>
-      </div>
-    </div>
     <p class="title">Parameters</p>
     <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
       <div class="param-container">
@@ -63,6 +54,17 @@
           [(ngModel)]="chain.fees"
           (blur)="saveParam('fees')"
         />
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <p class="title">Search</p>
+    <div class="col col-12">
+      <div class="search-field">
+        <span class="search-icon">
+          <i class="fa-solid fa-magnifying-glass"></i>
+        </span>
+        <input [(ngModel)]="searchText" class="form-control shadow-none rounded-pill" placeholder="Search" type="search"/>
       </div>
     </div>
   </div>
