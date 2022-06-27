@@ -10,7 +10,6 @@ import { HomePageComponent } from './home-page/home-page.component';
 import { ChainCardComponent } from './home-page/chain-card/chain-card.component';
 import { ChainDetailPageComponent } from './chain-detail-page/chain-detail-page.component';
 import { FormsModule } from "@angular/forms";
-import { ChainFilterPipe } from "./service/chain.filter.pipe";
 import { HighlightService } from "./service/highlight.service";
 import { HttpClientModule } from "@angular/common/http";
 import { LeftHandMenuComponent } from './chain-detail-page/left-hand-menu/left-hand-menu.component';
@@ -34,7 +33,6 @@ import { CheatSheetComponent } from './chain-detail-page/cheat-sheet/cheat-sheet
     HomePageComponent,
     ChainCardComponent,
     ChainDetailPageComponent,
-    ChainFilterPipe,
     LeftHandMenuComponent,
     SynchronizationScriptsComponent,
     AboutComponent,

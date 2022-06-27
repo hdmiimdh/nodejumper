@@ -6,7 +6,7 @@ import { Subject } from "rxjs";
 })
 export class StateService {
 
-  homePageShowTestnets = new Subject<boolean>();
+  chainType = new Subject<string>();
 
   constructor() { }
 }

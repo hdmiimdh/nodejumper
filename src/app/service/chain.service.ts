@@ -14,16 +14,32 @@ export class ChainService {
   constructor(private http: HttpClient) {
   }
 
-  getChains(showTestnets?: boolean): Chain[] {
+  getChains(chainType?: string, searchText?: string): Chain[] {
+    const lowerCaseQuery = searchText?.toLocaleLowerCase() || ""
     return CHAINS
-      .filter(chain => (chain.isTestnet || false) == (showTestnets || false))
+      .filter(chain => this.filterByType(chain, chainType))
+      .filter(chain => this.filterByQuery(chain, lowerCaseQuery))
       .sort((chain1, chain2) => {
         const chainName1 = chain1.chainName.toLowerCase();
         const chainName2 = chain2.chainName.toLowerCase();
-        if (chainName1 > chainName2) { return 1; }
-        if (chainName1 < chainName2) { return -1; }
+        if (chainName1 > chainName2) {
+          return 1;
+        }
+        if (chainName1 < chainName2) {
+          return -1;
+        }
         return 0;
       });
+  }
+
+  filterByType(chain: Chain, chainType?: string): boolean {
+    return (chainType == 'mainnet' && !chain.isTestnet || false)
+      || (chainType == 'testnet' && !!chain.isTestnet || false);
+  }
+
+  filterByQuery(chain: Chain, query: string): boolean {
+    return chain.chainName.toLocaleLowerCase().includes(query)
+      || chain.chainId.toLocaleLowerCase().includes(query)
   }
 
   getAllChains(): Chain[] {

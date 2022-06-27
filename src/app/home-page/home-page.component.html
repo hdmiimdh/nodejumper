@@ -1,30 +1,83 @@
-<ng-container *ngIf="(chains | chainFilter: searchText) as result">
+<div>
   <div class="row">
     <div class="col col-12 col-lg-6">
       <div class="search-field">
         <span class="search-icon">
           <i class="fa-solid fa-magnifying-glass"></i>
         </span>
-        <input [(ngModel)]="searchText" class="form-control shadow-none rounded-pill" placeholder="Search" type="search"/>
+        <input
+          class="form-control shadow-none rounded-pill"
+          placeholder="Search"
+          type="search"
+          [(ngModel)]="searchText"
+        />
       </div>
     </div>
     <div class="col col-12 col-sm-5 col-md-5 col-lg-3">
       <div class="testnets-toggle rounded-pill">
-        <div class="toggle-button" (click)="stateService.homePageShowTestnets.next(false)"
-             [ngClass]="!showTestnets ? 'active': ''">Mainnets</div>
-        <div class="toggle-button" (click)="stateService.homePageShowTestnets.next(true)"
-             [ngClass]="showTestnets ? 'active': ''">Testnets</div>
+        <div
+          class="toggle-button"
+          (click)="stateService.chainType.next('all')"
+          [ngClass]="chainType == 'all' ? 'active': ''"
+        >
+          All
+        </div>
+        <div
+          class="toggle-button"
+          (click)="stateService.chainType.next('mainnet')"
+          [ngClass]="chainType == 'mainnet' ? 'active': ''"
+        >
+          Mainnet
+        </div>
+        <div
+          class="toggle-button"
+          (click)="stateService.chainType.next('testnet')"
+          [ngClass]="chainType == 'testnet' ? 'active': ''"
+        >
+          Testnet
+        </div>
       </div>
     </div>
     <div class="col col-12 col-sm-7 col-md-7 col-lg-3">
-      <div class="chains-count">{{result.length}} chain(s)</div>
+      <div class="chains-count">{{mainnetChains.length + testnetChains.length}} chain(s)</div>
     </div>
   </div>
   <div class="row">
-    <div *ngFor="let chain of result" [routerLink]="['/' + chain.id + (chain.summaryDisabled ? '/installation' : '')]"
-         class="col col-12 col-sm-6 col-md-4 col-lg-3">
-      <app-chain-card [chain]="chain"></app-chain-card>
+    <ng-container *ngIf="mainnetChains">
+      <div *ngIf="mainnetChains.length > 0">
+        <div class="title-container">
+          <p class="title">Mainnet</p>
+        </div>
+        <div class="chain-cards-container">
+          <div
+            *ngFor="let chain of mainnetChains"
+            [routerLink]="['/' + chain.id + (chain.summaryDisabled ? '/installation' : '')]"
+            class="col col-12 col-sm-6 col-md-4 col-lg-3"
+          >
+            <app-chain-card [chain]="chain"></app-chain-card>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <div *ngIf="testnetChains.length > 0">
+      <div class="title-container">
+        <p class="title">Testnet</p>
+      </div>
+      <div class="chain-cards-container">
+        <div
+          *ngFor="let chain of testnetChains"
+          [routerLink]="['/' + chain.id + (chain.summaryDisabled ? '/installation' : '')]"
+          class="col col-12 col-sm-6 col-md-4 col-lg-3"
+        >
+          <app-chain-card [chain]="chain"></app-chain-card>
+        </div>
+      </div>
     </div>
-    <span *ngIf="result.length ==- 0" class="empty-result">Oops, we can't find any results.</span>
+    <div
+      class="empty-result"
+      *ngIf="mainnetChains.length ==- 0 && testnetChains.length ==- 0"
+    >
+      <p>Oops, we can't find any results.</p>
+    </div>
   </div>
-</ng-container>
+</div>

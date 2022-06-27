@@ -76,6 +76,16 @@
   margin-top: 50px;
 }
 
+.title-container {
+  padding-top: 30px;
+  padding-left: 10px;
+}
+
+.chain-cards-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+
 @media (max-width: 576px) {
   .chains-count {
     justify-content: flex-start;

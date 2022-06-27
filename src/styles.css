@@ -16,6 +16,12 @@ body p {
   margin-bottom: 0;
 }
 
+/* Text */
+
+.title {
+  font-size: 25px;
+}
+
 div.code-toolbar > .toolbar > .toolbar-item > button,
 .copy-button {
   position: absolute;
