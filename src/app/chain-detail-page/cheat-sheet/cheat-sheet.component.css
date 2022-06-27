@@ -75,6 +75,7 @@
 .param-container .input:disabled {
   border: 1px solid var(--code-background-color);
   background-color: var(--code-background-color);
+  cursor: text;
 }
 
 .param-container .btn {
