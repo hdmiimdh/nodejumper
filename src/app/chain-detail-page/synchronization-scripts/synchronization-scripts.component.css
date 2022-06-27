@@ -3,11 +3,6 @@
   padding-bottom: 15px;
 }
 
-.title {
-  font-size: 20px;
-  font-weight: 800;
-}
-
 pre {
   border-radius: var(--border-radius);
   outline: none;

@@ -18,8 +18,9 @@ body p {
 
 /* Text */
 
-.title {
+p.title {
   font-size: 25px;
+  font-weight: 800;
 }
 
 div.code-toolbar > .toolbar > .toolbar-item > button,
