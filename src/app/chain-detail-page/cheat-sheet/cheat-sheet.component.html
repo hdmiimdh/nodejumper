@@ -191,7 +191,7 @@
     <div class="command-container">
       <p>Withdraw Commission And Rewards</p>
       <div class="copy-button-container">
-        <div class="command">{{chain.binaryName}} tx distribution withdraw-all-rewards --commission --from {{chain.walletName}}
+        <div class="command">{{chain.binaryName}} tx distribution withdraw-all-rewards --from {{chain.walletName}}
           --chain-id {{chain.chainId}} --fees {{chain.fees + chain.denomName}} --gas auto -y
         </div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
