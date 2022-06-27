@@ -51,6 +51,7 @@
   padding: 10px;
   width: 100%;
   border-left: 3px solid transparent;
+  transition: all ease var(--animation-speed);
 }
 
 .menu .menu-item:hover {
