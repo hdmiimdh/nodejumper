@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { ChainService } from "../../service/chain.service";
-import {ChainCheatSheet} from "../../model/chainCheatSheet";
+import { ChainCheatSheet } from "../../model/chainCheatSheet";
+import { DOCUMENT } from "@angular/common";
 
 @Component({
   selector: 'app-cheat-sheet',
@@ -10,8 +11,10 @@ import {ChainCheatSheet} from "../../model/chainCheatSheet";
 export class CheatSheetComponent implements OnInit {
 
   chain?: ChainCheatSheet;
+  searchText = '';
 
-  constructor(public chainService: ChainService) {
+  constructor(@Inject(DOCUMENT) private document: Document,
+              public chainService: ChainService) {
   }
 
   ngOnInit(): void {
@@ -75,16 +78,16 @@ export class CheatSheetComponent implements OnInit {
   }
 
   unEscape(htmlStr: string): string {
-    htmlStr = htmlStr.replace(/<br (.*)>/g , "");
-    htmlStr = htmlStr.replace(/<\/pre>/g , "");
-    htmlStr = htmlStr.replace(/<pre (.*)>/g , "");
-    htmlStr = htmlStr.replace(/&lt;/g , "<");
-    htmlStr = htmlStr.replace(/&gt;/g , ">");
-    htmlStr = htmlStr.replace(/&quot;/g , "\"");
-    htmlStr = htmlStr.replace(/&#39;/g , "\'");
-    htmlStr = htmlStr.replace(/&amp;/g , "&");
-    htmlStr = htmlStr.replace(/&#123;/g , "{");
-    htmlStr = htmlStr.replace(/&#125;/g , "}");
+    htmlStr = htmlStr.replace(/<br (.*)>/g, "");
+    htmlStr = htmlStr.replace(/<\/pre>/g, "");
+    htmlStr = htmlStr.replace(/<pre (.*)>/g, "");
+    htmlStr = htmlStr.replace(/&lt;/g, "<");
+    htmlStr = htmlStr.replace(/&gt;/g, ">");
+    htmlStr = htmlStr.replace(/&quot;/g, "\"");
+    htmlStr = htmlStr.replace(/&#39;/g, "\'");
+    htmlStr = htmlStr.replace(/&amp;/g, "&");
+    htmlStr = htmlStr.replace(/&#123;/g, "{");
+    htmlStr = htmlStr.replace(/&#125;/g, "}");
     return htmlStr;
   }
 
@@ -93,5 +96,26 @@ export class CheatSheetComponent implements OnInit {
     if (this.chain) {
       this.chain.portIncrement = parseInt(htmlElement.innerText);
     }
+  }
+
+  hideForSearch(section: HTMLDivElement): boolean {
+    if (!this.searchText) {
+      return false;
+    }
+    let innerHTML = section.innerHTML;
+    if (!innerHTML) {
+      return false;
+    }
+    return !innerHTML.toLowerCase().includes(this.searchText);
+  }
+
+  hideForSearchArray(sectionArray: Array<HTMLDivElement>): boolean {
+    for (let i = 0; i < sectionArray.length; i++) {
+      let section = sectionArray[i];
+      if (!this.hideForSearch(section)) {
+        return false;
+      }
+    }
+    return true;
   }
 }
