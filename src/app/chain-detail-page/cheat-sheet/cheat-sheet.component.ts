@@ -106,7 +106,7 @@ export class CheatSheetComponent implements OnInit {
     if (!innerHTML) {
       return false;
     }
-    return !innerHTML.toLowerCase().includes(this.searchText);
+    return !innerHTML.toLowerCase().includes(this.searchText.toLowerCase());
   }
 
   hideForSearchArray(sectionArray: Array<HTMLDivElement>): boolean {
