@@ -42,33 +42,6 @@ input::placeholder {
   opacity: 0.5;
 }
 
-.testnets-toggle {
-  display: flex;
-  cursor: pointer;
-  overflow: hidden;
-  height: 40px;
-  box-sizing: border-box;
-  border: 1px solid var(--border-color);
-  transition: border-color var(--animation-speed) ease;
-}
-
-.testnets-toggle:hover {
-  border-color: var(--border-active-color)
-}
-
-.testnets-toggle .toggle-button {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 50%;
-  transition: all var(--animation-speed) ease;
-  user-select: none;
-}
-
-.testnets-toggle .toggle-button.active {
-  background-color: var(--button-color);
-}
-
 .chains-count {
   display: flex;
   height: 100%;

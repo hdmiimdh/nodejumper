@@ -23,6 +23,38 @@ p.title {
   font-weight: 800;
 }
 
+/* Tabs */
+
+.tabs-container {
+  display: flex;
+  cursor: pointer;
+  overflow: hidden;
+  height: 40px;
+  box-sizing: border-box;
+  border-radius: 50rem;
+  border: 1px solid var(--border-color);
+  transition: border-color var(--animation-speed) ease;
+}
+
+.tabs-container:hover {
+  border-color: var(--border-active-color)
+}
+
+.tabs-container .tab-button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  transition: all var(--animation-speed) ease;
+  user-select: none;
+}
+
+.tabs-container .tab-button.active {
+  background-color: var(--button-color);
+}
+
+/* Copy button */
+
 div.code-toolbar > .toolbar > .toolbar-item > button,
 .copy-button {
   position: absolute;
@@ -50,6 +82,8 @@ div.code-toolbar > .toolbar > .toolbar-item > button:active,
   background-color: white;
   box-shadow: none;
 }
+
+/* Tooltip */
 
 .ratio-tooltip {
   font-size: 16px !important;

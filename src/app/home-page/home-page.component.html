@@ -15,23 +15,23 @@
       </div>
     </div>
     <div class="col col-12 col-sm-5 col-md-5 col-lg-3">
-      <div class="testnets-toggle rounded-pill">
+      <div class="tabs-container">
         <div
-          class="toggle-button"
+          class="tab-button"
           (click)="stateService.chainType.next('all')"
           [ngClass]="chainType == 'all' ? 'active': ''"
         >
           All
         </div>
         <div
-          class="toggle-button"
+          class="tab-button"
           (click)="stateService.chainType.next('mainnet')"
           [ngClass]="chainType == 'mainnet' ? 'active': ''"
         >
           Mainnet
         </div>
         <div
-          class="toggle-button"
+          class="tab-button"
           (click)="stateService.chainType.next('testnet')"
           [ngClass]="chainType == 'testnet' ? 'active': ''"
         >
