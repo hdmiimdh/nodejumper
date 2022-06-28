@@ -6,7 +6,7 @@
         <p class="label">Binary</p>
         <input
           class="form-control rounded-pill input"
-          placeholder="binary"
+          placeholder="gaiad"
           [(ngModel)]="chain.binaryName"
           disabled
         />
@@ -14,10 +14,10 @@
     </div>
     <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
       <div class="param-container">
-        <p class="label">Chain id</p>
+        <p class="label">Chain ID</p>
         <input
           class="form-control rounded-pill input"
-          placeholder="Chain id"
+          placeholder="cosmoshub-4"
           [(ngModel)]="chain.chainId"
           disabled
         />
@@ -28,7 +28,7 @@
         <p class="label">Denom</p>
         <input
           class="form-control rounded-pill input"
-          placeholder="Denom name"
+          placeholder="uatom"
           [(ngModel)]="chain.denomName"
           disabled
         />
@@ -39,7 +39,7 @@
         <p class="label">Key name</p>
         <input
           class="form-control rounded-pill input"
-          placeholder="Wallet name"
+          placeholder="wallet"
           [(ngModel)]="chain.walletName"
           (blur)="saveParam('walletName')"
         />
@@ -47,10 +47,10 @@
     </div>
     <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
       <div class="param-container">
-        <p class="label">Fees</p>
+        <p class="label">Fees, {{chain.denomName}}</p>
         <input
           class="form-control rounded-pill input"
-          placeholder="Fees amount"
+          placeholder="2000"
           [(ngModel)]="chain.fees"
           (blur)="saveParam('fees')"
         />
@@ -64,7 +64,12 @@
         <span class="search-icon">
           <i class="fa-solid fa-magnifying-glass"></i>
         </span>
-        <input [(ngModel)]="searchText" class="form-control shadow-none rounded-pill" placeholder="Search" type="search"/>
+        <input
+          class="form-control shadow-none rounded-pill"
+          placeholder="unjail validator"
+          type="search"
+          [(ngModel)]="searchText"
+        />
       </div>
     </div>
   </div>
@@ -113,7 +118,7 @@
         <p class="label">Moniker</p>
         <input
           class="form-control rounded-pill input"
-          placeholder="Moniker"
+          placeholder="ex. NodeJumper"
           [(ngModel)]="chain.moniker"
           (blur)="saveParam('moniker')"
         />
@@ -124,7 +129,7 @@
         <p class="label">Identity</p>
         <input
           class="form-control rounded-pill input"
-          placeholder="Identity"
+          placeholder="FFB0AA51A2DF5954"
           [(ngModel)]="chain.identity"
           (blur)="saveParam('identity')"
         />
@@ -135,7 +140,7 @@
         <p class="label">Details</p>
         <input
           class="form-control rounded-pill input"
-          placeholder="Details"
+          placeholder="I'm sexy and I know it 😉"
           [(ngModel)]="chain.details"
           (blur)="saveParam('details')"
         />
@@ -235,7 +240,7 @@
         <p class="label">Valoper address</p>
         <input
           class="form-control rounded-pill input"
-          placeholder="Valoper address"
+          placeholder="validator operator address"
           [(ngModel)]="chain.valoperAddress"
           (blur)="saveParam('valoperAddress')"
         />
@@ -246,7 +251,7 @@
         <p class="label">To valoper address</p>
         <input
           class="form-control rounded-pill input"
-          placeholder="To valoper address"
+          placeholder="validator operator address"
           [(ngModel)]="chain.toValoperAddress"
           (blur)="saveParam('toValoperAddress')"
         />
@@ -257,7 +262,7 @@
         <p class="label">To wallet address</p>
         <input
           class="form-control rounded-pill input"
-          placeholder="To wallet address"
+          placeholder="wallet address"
           [(ngModel)]="chain.toWalletAddress"
           (blur)="saveParam('toWalletAddress')"
         />
@@ -319,7 +324,7 @@
         <p class="label">Proposal id</p>
         <input
           class="form-control rounded-pill input"
-          placeholder="Proposal id"
+          placeholder="proposal id"
           [(ngModel)]="chain.proposalId"
           (blur)="saveParam('proposalId')"
         />

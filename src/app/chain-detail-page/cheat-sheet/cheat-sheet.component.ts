@@ -32,7 +32,7 @@ export class CheatSheetComponent implements OnInit {
         savedChainInfo.valoperAddress || '',
         savedChainInfo.fees || 2000,
         savedChainInfo.moniker || 'Moniker',
-        savedChainInfo.identity || '7226E688B46B7022', // I created demo keybase
+        savedChainInfo.identity || 'FFB0AA51A2DF5954', // nodejumper keybase
         savedChainInfo.details || 'I\'m sexy and I know it 😉',
         savedChainInfo.proposalId || 1,
         savedChainInfo.toValoperAddress || '',

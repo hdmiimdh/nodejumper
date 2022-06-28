@@ -15,6 +15,7 @@
   top: 8px;
   z-index: 10;
   color: var(--border-active-color);
+  opacity: 0.6;
   cursor: pointer;
 }
 
@@ -25,8 +26,13 @@
   transition: border-color var(--animation-speed) ease;
 }
 
-.search-field input:hover, .search-field input:focus {
+.search-field input:hover,
+.search-field input:focus {
   border-color: var(--border-active-color)
+}
+
+input::placeholder {
+  opacity: 0.5;
 }
 
 .search-field input::-webkit-search-cancel-button {
