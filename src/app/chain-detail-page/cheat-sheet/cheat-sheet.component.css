@@ -62,7 +62,8 @@
 }
 
 .param-container .input:hover,
-.param-container .input:focus {
+.param-container .input:focus,
+.param-container .input.active {
   border: 1px solid var(--border-active-color);
 }
 

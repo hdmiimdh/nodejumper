@@ -92,8 +92,8 @@ export class CheatSheetComponent implements OnInit {
   }
 
   setPortIncrement(event: Event): void {
-    let htmlElement = (event.target as HTMLInputElement);
     if (this.chain) {
+      let htmlElement = (event.target as HTMLInputElement);
       this.chain.portIncrement = parseInt(htmlElement.innerText);
     }
   }
