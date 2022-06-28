@@ -37,7 +37,7 @@ export class CheatSheetComponent implements OnInit {
         savedChainInfo.proposalId || 1,
         savedChainInfo.toValoperAddress || '',
         savedChainInfo.toWalletAddress || '',
-        savedChainInfo.portIncrement || 0,
+        savedChainInfo.portIncrement || 1,
         activeChain.serviceName
       );
     }
