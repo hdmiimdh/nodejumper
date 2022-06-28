@@ -407,47 +407,89 @@
   </div>
   <div class="row" [ngClass]="hideForSearchArray([e1d6879f96e7, d7c005a09058, c6c126c83420, c9fa81f310b6, b1623a67b5e0, b8799052a2bd]) ? 'd-none' : ''">
     <p class="title">Utility</p>
-    <div class="btn-group param-container" [ngClass]="hideForSearch(e1d6879f96e7) ? 'd-none' : ''">
-      <button type="button" class="btn input" (click)="setPortIncrement($event)" [ngClass]="chain.portIncrement == 1 ? 'active': ''">1</button>
-      <button type="button" class="btn input" (click)="setPortIncrement($event)">2</button>
-      <button type="button" class="btn input" (click)="setPortIncrement($event)">3</button>
-      <button type="button" class="btn input" (click)="setPortIncrement($event)">4</button>
-      <button type="button" class="btn input" (click)="setPortIncrement($event)">5</button>
-      <button type="button" class="btn input" (click)="setPortIncrement($event)">6</button>
-      <button type="button" class="btn input" (click)="setPortIncrement($event)">7</button>
-      <button type="button" class="btn input" (click)="setPortIncrement($event)">8</button>
-      <button type="button" class="btn input" (click)="setPortIncrement($event)">9</button>
+    <div
+      class="command-container"
+      [ngClass]="hideForSearch(e1d6879f96e7) ? 'd-none' : ''"
+    >
+      <div class="tabs-container">
+        <div
+          class="tab-button"
+          *ngFor="let index of [0,1,2,3,4,5,6,7,8]"
+          [ngClass]="chain.portIncrement == index ? 'active': ''"
+          (click)="setPortIncrement(index)"
+        >
+          {{index == 0 ? "Default" : index}}
+        </div>
+      </div>
     </div>
-    <div class="ports-param-container" [ngClass]="hideForSearch(e1d6879f96e7) ? 'd-none' : ''">
-      <div class="btn-group param-container header-group">
-        <p class="param-row-title"></p>
-        <p class="btn">gRPC</p>
-        <p class="btn">gRPC(web)</p>
-        <p class="btn">proxy_app</p>
-        <p class="btn">laddr(rpc)</p>
-        <p class="btn">pprof_laddr</p>
-        <p class="btn">laddr(p2p)</p>
-        <p class="btn">prometheus</p>
+    <div class="col col-12 col-sm-6 col-md-3 col-lg-2">
+      <div class="param-container">
+        <p class="label">gRPC</p>
+        <input
+          class="form-control rounded-pill input"
+          value="{{9090 + this.chain.portIncrement * 100}}"
+          disabled
+        />
       </div>
-      <div class="btn-group param-container">
-        <p class="param-row-title">Default Ports</p>
-        <button type="button" class="btn input" disabled>9090</button>
-        <button type="button" class="btn input" disabled>9091</button>
-        <button type="button" class="btn input" disabled>26658</button>
-        <button type="button" class="btn input" disabled>26657</button>
-        <button type="button" class="btn input" disabled>6060</button>
-        <button type="button" class="btn input" disabled>26656</button>
-        <button type="button" class="btn input" disabled>26660</button>
+    </div>
+    <div class="col col-12 col-sm-6 col-md-3 col-lg-2">
+      <div class="param-container">
+        <p class="label">gRPC(web)</p>
+        <input
+          class="form-control rounded-pill input"
+          value="{{9091 + this.chain.portIncrement * 100}}"
+          disabled
+        />
       </div>
-      <div class="btn-group param-container">
-        <p class="param-row-title">Changed Ports</p>
-        <button type="button" class="btn input" disabled>{{9090 + this.chain.portIncrement * 100}}</button>
-        <button type="button" class="btn input" disabled>{{9091 + this.chain.portIncrement * 100}}</button>
-        <button type="button" class="btn input" disabled>{{26658 + this.chain.portIncrement * 1000}}</button>
-        <button type="button" class="btn input" disabled>{{26657 + this.chain.portIncrement * 1000}}</button>
-        <button type="button" class="btn input" disabled>{{6060 + this.chain.portIncrement * 100}}</button>
-        <button type="button" class="btn input" disabled>{{26656 + this.chain.portIncrement * 1000}}</button>
-        <button type="button" class="btn input" disabled>{{26660 + this.chain.portIncrement * 1000}}</button>
+    </div>
+    <div class="col col-12 col-sm-6 col-md-3 col-lg-2">
+      <div class="param-container">
+        <p class="label">proxy_app</p>
+        <input
+          class="form-control rounded-pill input"
+          value="{{26658 + this.chain.portIncrement * 100}}"
+          disabled
+        />
+      </div>
+    </div>
+    <div class="col col-12 col-sm-6 col-md-3 col-lg-2">
+      <div class="param-container">
+        <p class="label">laddr(rpc)</p>
+        <input
+          class="form-control rounded-pill input"
+          value="{{26657 + this.chain.portIncrement * 100}}"
+          disabled
+        />
+      </div>
+    </div>
+    <div class="col col-12 col-sm-6 col-md-3 col-lg-2">
+      <div class="param-container">
+        <p class="label">pprof_laddr</p>
+        <input
+          class="form-control rounded-pill input"
+          value="{{26656 + this.chain.portIncrement * 100}}"
+          disabled
+        />
+      </div>
+    </div>
+    <div class="col col-12 col-sm-6 col-md-3 col-lg-2">
+      <div class="param-container">
+        <p class="label">laddr(p2p)</p>
+        <input
+          class="form-control rounded-pill input"
+          value="{{6060 + this.chain.portIncrement * 100}}"
+          disabled
+        />
+      </div>
+    </div>
+    <div class="col col-12 col-sm-6 col-md-3 col-lg-2">
+      <div class="param-container">
+        <p class="label">prometheus</p>
+        <input
+          class="form-control rounded-pill input"
+          value="{{26660 + this.chain.portIncrement * 100}}"
+          disabled
+        />
       </div>
     </div>
     <div class="command-container" [ngClass]="hideForSearch(e1d6879f96e7) ? 'd-none' : ''" #e1d6879f96e7>

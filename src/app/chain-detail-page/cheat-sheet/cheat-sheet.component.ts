@@ -37,7 +37,7 @@ export class CheatSheetComponent implements OnInit {
         savedChainInfo.proposalId || 1,
         savedChainInfo.toValoperAddress || '',
         savedChainInfo.toWalletAddress || '',
-        savedChainInfo.portIncrement || 1,
+        savedChainInfo.portIncrement || 0,
         activeChain.serviceName,
         savedChainInfo.commissionRate || "0.10",
         savedChainInfo.commissionMaxRate || "0.20",
@@ -94,10 +94,9 @@ export class CheatSheetComponent implements OnInit {
     return htmlStr;
   }
 
-  setPortIncrement(event: Event): void {
+  setPortIncrement(portIncrement: number): void {
     if (this.chain) {
-      let htmlElement = (event.target as HTMLInputElement);
-      this.chain.portIncrement = parseInt(htmlElement.innerText);
+      this.chain.portIncrement = portIncrement;
     }
   }
 

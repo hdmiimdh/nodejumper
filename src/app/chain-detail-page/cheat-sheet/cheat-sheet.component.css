@@ -6,7 +6,7 @@
 /* search */
 .search-field {
   position: relative;
-  margin-top: 15px;
+  margin-top: 10px;
 }
 
 .search-field .search-icon {
@@ -116,10 +116,10 @@ input::placeholder {
 
 .command-container p {
   opacity: 0.8;
+  padding-bottom: 5px;
 }
 
 .command-container .command {
-  margin-top: 5px;
   padding: 1em;
   background: var(--code-background-color);
   border-radius: var(--border-radius);
