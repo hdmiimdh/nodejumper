@@ -10,5 +10,5 @@ pre {
 
 .snap-info {
   line-height: 1.9;
-  opacity: var(--icon-button-opacity);
+  opacity: var(--button-opacity);
 }

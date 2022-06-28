@@ -50,6 +50,8 @@ p.title {
 }
 
 .tabs-container .tab-button.active {
+  color: #ffffff;
+  opacity: var(--button-opacity);
   background-color: var(--button-color);
 }
 
@@ -100,16 +102,14 @@ div.code-toolbar > .toolbar > .toolbar-item > button:active,
   --animation-speed: 200ms;
 
   /* button */
-  --button-color: #e0e0e0;
-
-  /* icon button */
-  --icon-button-opacity: 0.9;
-  --icon-button-hover-opacity: 0.7;
-  --icon-button-active-opacity: 1;
+  --button-color: #212529;
+  --button-opacity: 0.9;
+  --button-opacity-hover: 0.8;
+  --button-opacity-active: 1;
 
   /* border */
   --border-color: #d0d7de;
-  --border-active-color: #111111;
+  --border-active-color: #212529;
   --border-radius: 0.5rem;
 
   /* code block */
