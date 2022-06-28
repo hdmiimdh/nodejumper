@@ -78,14 +78,14 @@
     <div class="command-container" [ngClass]="hideForSearch(e1be173d) ? 'd-none' : ''" #e1be173d>
       <p>Add New Wallet</p>
       <div class="copy-button-container">
-        <div class="command">{{chain.binaryName}} keys add {{chain.walletName || '&lt;KEY_NAME_PARAM&gt;'}}</div>
+        <div class="command">{{chain.binaryName}} keys add {{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}}</div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
     </div>
     <div class="command-container" [ngClass]="hideForSearch(e196dfc8) ? 'd-none' : ''" #e196dfc8>
       <p >Recover Existing Wallet</p>
       <div class="copy-button-container">
-        <div class="command">{{chain.binaryName}} keys add {{chain.walletName || '&lt;KEY_NAME_PARAM&gt;'}} --recover</div>
+        <div class="command">{{chain.binaryName}} keys add {{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}} --recover</div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
     </div>
@@ -99,14 +99,14 @@
     <div class="command-container" [ngClass]="hideForSearch(d341457e) ? 'd-none' : ''" #d341457e>
       <p>Delete Wallet</p>
       <div class="copy-button-container">
-        <div class="command">{{chain.binaryName}} keys delete {{chain.walletName || '&lt;KEY_NAME_PARAM&gt;'}}</div>
+        <div class="command">{{chain.binaryName}} keys delete {{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}}</div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
     </div>
     <div class="command-container" [ngClass]="hideForSearch(c29f311f2e09) ? 'd-none' : ''" #c29f311f2e09>
       <p>Check Wallet Balance</p>
       <div class="copy-button-container">
-        <div class="command">{{chain.binaryName}} q bank balances $({{chain.binaryName}} keys show {{chain.walletName || '&lt;KEY_NAME_PARAM&gt;'}} -a)</div>
+        <div class="command">{{chain.binaryName}} q bank balances $({{chain.binaryName}} keys show {{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}} -a)</div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
     </div>
@@ -185,16 +185,16 @@
         <div class="command multiline">{{chain.binaryName}} tx staking create-validator \
 --amount=1000000{{chain.denomName}} \
 --pubkey=$({{chain.binaryName}} tendermint show-validator) \
---moniker="{{chain.moniker || '&lt;MONIKER_PARAM&gt;'}}" \
---identity={{chain.identity || '&lt;IDENTITY_PARAM&gt;'}} \
---details="{{chain.details || '&lt;DETAILS_PARAM&gt;'}}" \
+--moniker="{{chain.moniker || '&lt;YOUR_MONIKER&gt;'}}" \
+--identity={{chain.identity || '&lt;YOUR_IDENTITY&gt;'}} \
+--details="{{chain.details || '&lt;YOUR_DETAILS&gt;'}}" \
 --chain-id={{chain.chainId}} \
---commission-rate={{chain.commissionRate || '&lt;COMMISION_RATE_PARAM&gt;'}} \
---commission-max-rate={{chain.commissionMaxRate || '&lt;COMMISION_MAX_RATE_PARAM&gt;'}} \
---commission-max-change-rate={{chain.commissionMaxChangeRate || '&lt;COMMISION_MAX_CHANGE_RATE_PARAM&gt;'}} \
+--commission-rate={{chain.commissionRate || '&lt;COMMISION_RATE&gt;'}} \
+--commission-max-rate={{chain.commissionMaxRate || '&lt;COMMISION_MAX_RATE&gt;'}} \
+--commission-max-change-rate={{chain.commissionMaxChangeRate || '&lt;COMMISION_MAX_CHANGE_RATE&gt;'}} \
 --min-self-delegation=1 \
---from={{chain.walletName || '&lt;KEY_NAME_PARAM&gt;'}} \
---fees={{(chain.fees || '&lt;FEES_PARAM&gt;') + chain.denomName}} \
+--from={{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}} \
+--fees={{(chain.fees || '&lt;FEES&gt;') + chain.denomName}} \
 --gas=auto \
 -y
         </div>
@@ -205,13 +205,13 @@
       <p>Edit Existing Validator</p>
       <div class="copy-button-container">
         <div class="command multiline">{{chain.binaryName}} tx staking edit-validator \
---moniker="{{chain.moniker || '&lt;MONIKER_PARAM&gt;'}}" \
---identity={{chain.identity || '&lt;IDENTITY_PARAM&gt;'}} \
---details="{{chain.details || '&lt;DETAILS_PARAM&gt;'}}" \
+--moniker="{{chain.moniker || '&lt;YOUR_MONIKER&gt;'}}" \
+--identity={{chain.identity || '&lt;YOUR_IDENTITY&gt;'}} \
+--details="{{chain.details || '&lt;YOUR_DETAILS&gt;'}}" \
 --chain-id={{chain.chainId}} \
 --commission-rate=0.1 \
---from={{chain.walletName || '&lt;KEY_NAME_PARAM&gt;'}} \
---fees={{(chain.fees || '&lt;FEES_PARAM&gt;') + chain.denomName}} \
+--from={{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}} \
+--fees={{(chain.fees || '&lt;FEES&gt;') + chain.denomName}} \
 --gas=auto \
 -y
         </div>
@@ -221,8 +221,8 @@
     <div class="command-container" [ngClass]="hideForSearch(dae767347223) ? 'd-none' : ''" #dae767347223>
       <p>Unjail Validator</p>
       <div class="copy-button-container">
-        <div class="command">{{chain.binaryName}} tx slashing unjail --from {{chain.walletName || '&lt;KEY_NAME_PARAM&gt;'}}
-          --chain-id {{chain.chainId}} --fees {{(chain.fees || '&lt;FEES_PARAM&gt;') + chain.denomName}} --gas auto -y
+        <div class="command">{{chain.binaryName}} tx slashing unjail --from {{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}}
+          --chain-id {{chain.chainId}} --fees {{(chain.fees || '&lt;FEES&gt;') + chain.denomName}} --gas auto -y
         </div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
@@ -260,7 +260,7 @@
       <p>View Validator Details</p>
       <div class="copy-button-container">
         <div class="command">{{chain.binaryName}} q staking validator $({{chain.binaryName}} keys
-          show {{chain.walletName || '&lt;KEY_NAME_PARAM&gt;'}} --bech val -a)
+          show {{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}} --bech val -a)
         </div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
@@ -304,8 +304,8 @@
     <div class="command-container" [ngClass]="hideForSearch(d82b6728) ? 'd-none' : ''" #d82b6728>
       <p>Withdraw Commission And Rewards</p>
       <div class="copy-button-container">
-        <div class="command">{{chain.binaryName}} tx distribution withdraw-all-rewards --from {{chain.walletName || '&lt;KEY_NAME_PARAM&gt;'}}
-          --chain-id {{chain.chainId}} --fees {{(chain.fees || '&lt;FEES_PARAM&gt;') + chain.denomName}} --gas auto -y
+        <div class="command">{{chain.binaryName}} tx distribution withdraw-all-rewards --from {{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}}
+          --chain-id {{chain.chainId}} --fees {{(chain.fees || '&lt;FEES&gt;') + chain.denomName}} --gas auto -y
         </div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
@@ -314,8 +314,8 @@
       <p>Delegate</p>
       <div class="copy-button-container">
         <div class="command">{{chain.binaryName}} tx staking delegate {{chain.valoperAddress || '&lt;VALOPER_ADDRESS_RAPAM&gt;'}}
-          1000000{{chain.denomName}} --from {{chain.walletName || '&lt;KEY_NAME_PARAM&gt;'}} --chain-id {{chain.chainId}}
-          --fees {{(chain.fees || '&lt;FEES_PARAM&gt;') + chain.denomName}} --gas auto -y
+          1000000{{chain.denomName}} --from {{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}} --chain-id {{chain.chainId}}
+          --fees {{(chain.fees || '&lt;FEES&gt;') + chain.denomName}} --gas auto -y
         </div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
@@ -324,8 +324,8 @@
       <p>Redelegate</p>
       <div class="copy-button-container">
         <div class="command">{{chain.binaryName}} tx staking redelegate {{chain.valoperAddress || '&lt;VALOPER_ADDRESS_RAPAM&gt;'}} {{chain.toValoperAddress || '&lt;TO_VALOPER_ADDRESS_RAPAM&gt;'}}
-          1000000{{chain.denomName}} --from {{chain.walletName || '&lt;KEY_NAME_PARAM&gt;'}} --chain-id {{chain.chainId}}
-          --fees {{(chain.fees || '&lt;FEES_PARAM&gt;') + chain.denomName}} --gas auto -y
+          1000000{{chain.denomName}} --from {{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}} --chain-id {{chain.chainId}}
+          --fees {{(chain.fees || '&lt;FEES&gt;') + chain.denomName}} --gas auto -y
         </div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
@@ -334,7 +334,7 @@
       <p>Unbond</p>
       <div class="copy-button-container">
         <div class="command">{{chain.binaryName}} tx staking unbond {{chain.valoperAddress || '&lt;VALOPER_ADDRESS_RAPAM&gt;'}} 1000000{{chain.denomName}}
-          --from {{chain.walletName || '&lt;KEY_NAME_PARAM&gt;'}} --chain-id {{chain.chainId}} --fees {{(chain.fees || '&lt;FEES_PARAM&gt;') + chain.denomName}} --gas auto -y
+          --from {{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}} --chain-id {{chain.chainId}} --fees {{(chain.fees || '&lt;FEES&gt;') + chain.denomName}} --gas auto -y
         </div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
@@ -342,9 +342,9 @@
     <div class="command-container" [ngClass]="hideForSearch(db5f64c9e27e) ? 'd-none' : ''" #db5f64c9e27e>
       <p>Send</p>
       <div class="copy-button-container">
-        <div class="command">{{chain.binaryName}} tx bank send {{chain.walletName || '&lt;KEY_NAME_PARAM&gt;'}} {{chain.toWalletAddress || '&lt;TO_WALLET_ADDRESS_RAPAM&gt;'}}
-          1000000{{chain.denomName}} --from {{chain.walletName || '&lt;KEY_NAME_PARAM&gt;'}} --chain-id {{chain.chainId}}
-          --fees {{(chain.fees || '&lt;FEES_PARAM&gt;') + chain.denomName}} --gas auto -y
+        <div class="command">{{chain.binaryName}} tx bank send {{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}} {{chain.toWalletAddress || '&lt;TO_WALLET_ADDRESS_RAPAM&gt;'}}
+          1000000{{chain.denomName}} --from {{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}} --chain-id {{chain.chainId}}
+          --fees {{(chain.fees || '&lt;FEES&gt;') + chain.denomName}} --gas auto -y
         </div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
@@ -373,15 +373,15 @@
     <div class="command-container" [ngClass]="hideForSearch(c01ee5ff) ? 'd-none' : ''" #c01ee5ff>
       <p>View Proposal By ID</p>
       <div class="copy-button-container">
-        <div class="command">{{chain.binaryName}} query gov proposal {{chain.proposalId || '&lt;PROPOSAL_ID_PARAM&gt;'}}</div>
+        <div class="command">{{chain.binaryName}} query gov proposal {{chain.proposalId || '&lt;FEES_PARAM&gt;'}}</div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
     </div>
     <div class="command-container" [ngClass]="hideForSearch(d31d502e) ? 'd-none' : ''" #d31d502e>
       <p>Vote YES</p>
       <div class="copy-button-container">
-        <div class="command">{{chain.binaryName}} tx gov vote {{chain.proposalId || '&lt;PROPOSAL_ID_PARAM&gt;'}} yes --from {{chain.walletName || '&lt;KEY_NAME_PARAM&gt;'}}
-          --chain-id {{chain.chainId}} --fees {{(chain.fees || '&lt;FEES_PARAM&gt;') + chain.denomName}} --gas auto -y
+        <div class="command">{{chain.binaryName}} tx gov vote {{chain.proposalId || '&lt;FEES_PARAM&gt;'}} yes --from {{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}}
+          --chain-id {{chain.chainId}} --fees {{(chain.fees || '&lt;FEES&gt;') + chain.denomName}} --gas auto -y
         </div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
@@ -389,8 +389,8 @@
     <div class="command-container" [ngClass]="hideForSearch(f4416a14) ? 'd-none' : ''" #f4416a14>
       <p>Vote NO</p>
       <div class="copy-button-container">
-        <div class="command">{{chain.binaryName}} tx gov vote {{chain.proposalId || '&lt;PROPOSAL_ID_PARAM&gt;'}} no --from {{chain.walletName || '&lt;KEY_NAME_PARAM&gt;'}}
-          --chain-id {{chain.chainId}} --fees {{(chain.fees || '&lt;FEES_PARAM&gt;') + chain.denomName}} --gas auto -y
+        <div class="command">{{chain.binaryName}} tx gov vote {{chain.proposalId || '&lt;FEES_PARAM&gt;'}} no --from {{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}}
+          --chain-id {{chain.chainId}} --fees {{(chain.fees || '&lt;FEES&gt;') + chain.denomName}} --gas auto -y
         </div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
@@ -398,8 +398,8 @@
     <div class="command-container" [ngClass]="hideForSearch(a3a86a7c) ? 'd-none' : ''" #a3a86a7c>
       <p>Vote ABSTAIN</p>
       <div class="copy-button-container">
-        <div class="command">{{chain.binaryName}} tx gov vote {{chain.proposalId || '&lt;PROPOSAL_ID_PARAM&gt;'}} abstain --from {{chain.walletName || '&lt;KEY_NAME_PARAM&gt;'}}
-          --chain-id {{chain.chainId}} --fees {{(chain.fees || '&lt;FEES_PARAM&gt;') + chain.denomName}} --gas auto -y
+        <div class="command">{{chain.binaryName}} tx gov vote {{chain.proposalId || '&lt;FEES_PARAM&gt;'}} abstain --from {{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}}
+          --chain-id {{chain.chainId}} --fees {{(chain.fees || '&lt;FEES&gt;') + chain.denomName}} --gas auto -y
         </div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
