@@ -38,7 +38,10 @@ export class CheatSheetComponent implements OnInit {
         savedChainInfo.toValoperAddress || '',
         savedChainInfo.toWalletAddress || '',
         savedChainInfo.portIncrement || 1,
-        activeChain.serviceName
+        activeChain.serviceName,
+        savedChainInfo.commissionRate || "0.10",
+        savedChainInfo.commissionMaxRate || "0.20",
+        savedChainInfo.commissionMaxChangeRate || "0.01"
       );
     }
   }

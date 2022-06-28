@@ -146,6 +146,39 @@
         />
       </div>
     </div>
+    <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
+      <div class="param-container">
+        <p class="label">Commission rate</p>
+        <input
+          class="form-control rounded-pill input"
+          placeholder="0.10"
+          [(ngModel)]="chain.commissionRate"
+          (blur)="saveParam('commissionRate')"
+        />
+      </div>
+    </div>
+    <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
+      <div class="param-container">
+        <p class="label">Commission max rate</p>
+        <input
+          class="form-control rounded-pill input"
+          placeholder="0.2"
+          [(ngModel)]="chain.commissionMaxRate"
+          (blur)="saveParam('commissionMaxRate')"
+        />
+      </div>
+    </div>
+    <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
+      <div class="param-container">
+        <p class="label">Commission max change rate</p>
+        <input
+          class="form-control rounded-pill input"
+          placeholder="0.1"
+          [(ngModel)]="chain.commissionMaxChangeRate"
+          (blur)="saveParam('commissionMaxChangeRate')"
+        />
+      </div>
+    </div>
     <div class="command-container" [ngClass]="hideForSearch(d7fadc2a1be2) ? 'd-none' : ''" #d7fadc2a1be2>
       <p>Create New Validator</p>
       <div class="copy-button-container">
@@ -156,9 +189,9 @@
 --identity={{chain.identity || '&lt;IDENTITY_PARAM&gt;'}} \
 --details="{{chain.details || '&lt;DETAILS_PARAM&gt;'}}" \
 --chain-id={{chain.chainId}} \
---commission-max-change-rate=0.05 \
---commission-max-rate=0.2 \
---commission-rate=0.1 \
+--commission-rate={{chain.commissionRate || '&lt;COMMISION_RATE_PARAM&gt;'}} \
+--commission-max-rate={{chain.commissionMaxRate || '&lt;COMMISION_MAX_RATE_PARAM&gt;'}} \
+--commission-max-change-rate={{chain.commissionMaxChangeRate || '&lt;COMMISION_MAX_CHANGE_RATE_PARAM&gt;'}} \
 --min-self-delegation=1 \
 --from={{chain.walletName || '&lt;KEY_NAME_PARAM&gt;'}} \
 --fees={{(chain.fees || '&lt;FEES_PARAM&gt;') + chain.denomName}} \
