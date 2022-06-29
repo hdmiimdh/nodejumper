@@ -447,7 +447,7 @@
         <p class="label">proxy_app</p>
         <input
           class="form-control rounded-pill input"
-          value="{{26658 + this.chain.portIncrement * 100}}"
+          value="{{26658 + this.chain.portIncrement * 1000}}"
           disabled
         />
       </div>
@@ -457,7 +457,7 @@
         <p class="label">laddr(rpc)</p>
         <input
           class="form-control rounded-pill input"
-          value="{{26657 + this.chain.portIncrement * 100}}"
+          value="{{26657 + this.chain.portIncrement * 1000}}"
           disabled
         />
       </div>
@@ -467,7 +467,7 @@
         <p class="label">pprof_laddr</p>
         <input
           class="form-control rounded-pill input"
-          value="{{26656 + this.chain.portIncrement * 100}}"
+          value="{{26656 + this.chain.portIncrement * 1000}}"
           disabled
         />
       </div>
@@ -487,7 +487,7 @@
         <p class="label">prometheus</p>
         <input
           class="form-control rounded-pill input"
-          value="{{26660 + this.chain.portIncrement * 100}}"
+          value="{{26660 + this.chain.portIncrement * 1000}}"
           disabled
         />
       </div>
@@ -496,7 +496,9 @@
       <p>Change Default Ports</p>
       <div class="copy-button-container">
         <div class="command">sed -i.bak -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:{{26658 + this.chain.portIncrement * 1000}}\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://127.0.0.1:{{26657 + this.chain.portIncrement * 1000}}\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:{{6060 + this.chain.portIncrement * 100}}\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:{{26656 + this.chain.portIncrement * 1000}}\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":{{26660 + this.chain.portIncrement * 1000}}\"%" $HOME/{{chain.homeDirectoryName}}/config/config.toml;<br>
-          sed -i.bak -e "s%^address = \"0.0.0.0:9090\"%address = \"0.0.0.0:{{9090 + this.chain.portIncrement * 100}}\"%; s%^address = \"0.0.0.0:9091\"%address = \"0.0.0.0:{{9091 + this.chain.portIncrement * 100}}\"%" $HOME/{{chain.homeDirectoryName}}/config/app.toml</div>
+          sed -i.bak -e "s%^address = \"0.0.0.0:9090\"%address = \"0.0.0.0:{{9090 + this.chain.portIncrement * 100}}\"%; s%^address = \"0.0.0.0:9091\"%address = \"0.0.0.0:{{9091 + this.chain.portIncrement * 100}}\"%" $HOME/{{chain.homeDirectoryName}}/config/app.toml<br>
+          sed -i.bak -e "s%^node = \"tcp://127.0.0.1:26657\"%node = \"tcp://127.0.0.1:{{26657 + this.chain.portIncrement * 1000}}\"%" $HOME/{{chain.homeDirectoryName}}/config/client.toml
+        </div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
     </div>
