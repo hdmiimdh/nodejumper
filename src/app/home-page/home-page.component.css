@@ -4,6 +4,7 @@
 
 .search-field {
   position: relative;
+  margin-left: 10px;
 }
 
 .search-field .search-icon {
@@ -57,12 +58,13 @@ input::placeholder {
 
 .title-container {
   padding-top: 30px;
-  padding-left: 13px;
+  padding-left: 20px;
 }
 
 .chain-cards-container {
   display: flex;
   flex-wrap: wrap;
+  padding: 0 10px 0 10px;
 }
 
 @media (max-width: 576px) {
