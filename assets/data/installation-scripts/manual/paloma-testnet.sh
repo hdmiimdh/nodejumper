@@ -10,27 +10,24 @@ fi
 
 go version # go version goX.XX.X linux/amd64
 
-sudo apt install -y make gcc jq git
-
 cd || return
-rm -rf deweb
-git clone https://github.com/deweb-services/deweb.git
-cd deweb || return
-git checkout v0.2
-make install
-$binaryName version # 0.2
+curl -L https://github.com/CosmWasm/wasmvm/raw/main/api/libwasmvm.x86_64.so > libwasmvm.x86_64.so
+sudo mv -f libwasmvm.x86_64.so /usr/lib/libwasmvm.x86_64.so
+curl -L paloma.tar.gz https://github.com/palomachain/paloma/releases/download/v0.2.5-prealpha/paloma_0.2.5-prealpha_Linux_x86_64.tar.gz > paloma.tar.gz
+tar -xvzf paloma.tar.gz
+rm -rf paloma.tar.gz
+sudo mv -f palomad /usr/local/bin/palomad
+$binaryName version # v0.2.5-prealpha
 
 # replace nodejumper with your own moniker, if you'd like
 $binaryName config chain-id $chainId
-$binaryName init nodejumper --chain-id $chainId
+$binaryName init nodejumper --chain-id $chainId -o
 
-cd && wget https://raw.githubusercontent.com/deweb-services/deweb/main/genesis.json
-mv -f genesis.json $HOME/$homeDirectoryName/config/genesis.json
-sha256sum $HOME/$homeDirectoryName/config/genesis.json # 13bf101d673990cb39e6af96e3c7e183da79bd89f6d249e9dc797ae81b3573c2
+curl https://raw.githubusercontent.com/palomachain/testnet/master/paloma-testnet-5/genesis.json > $HOME/$homeDirectoryName/config/genesis.json
+sha256sum $HOME/$homeDirectoryName/config/genesis.json # 922f6ae493fa9a68f88894802ab3a9507dd92b38e090a71e92be42827490ef48
 
-cd && wget https://raw.githubusercontent.com/encipher88/deweb/main/addrbook.json
-mv -f addrbook.json $HOME/$homeDirectoryName/config/addrbook.json
-sha256sum $HOME/$homeDirectoryName/config/addrbook.json # cf1692f9cf6cd3065a2b4f54bd05fa233fd17d011e183efcfd2624703d9bfa7f
+curl https://raw.githubusercontent.com/palomachain/testnet/master/paloma-testnet-5/addrbook.json > $HOME/$homeDirectoryName/config/addrbook.json
+sha256sum $HOME/$homeDirectoryName/config/addrbook.json # d2cfeb63b4c926a69d63af65f537369dcae8e96bba92a422bcdfca5203f1304c
 
 sed -i 's|^minimum-gas-prices *=.*|minimum-gas-prices = "0.0001$denomName"|g' $HOME/$homeDirectoryName/config/app.toml
 seeds=""
@@ -56,7 +53,7 @@ LimitNOFILE=10000
 WantedBy=multi-user.target
 EOF
 
-$binaryName unsafe-reset-all
+$binaryName tendermint unsafe-reset-all --home $HOME/$homeDirectoryName --keep-addr-book
 
 SNAP_RPC="$rpcServer"
 LATEST_HEIGHT=$(curl -s $SNAP_RPC/block | jq -r .result.block.header.height); \
@@ -84,7 +81,7 @@ $binaryName keys add wallet
 ## Console output
 #- name: wallet
 #  type: local
-#  address: deweb1txne45klcm3w98merz25u94d7v9mlev3wngzrz
+#  address: paloma1lfpde6scf7ulzvuq2suavav6cpmpy0rzxne0pw
 #  pubkey: '{"@type":"/cosmos.crypto.secp256k1.PubKey","key":"Auq9WzVEs5pCoZgr2WctjI7fU+lJCH0I3r6GC1oa0tc0"}'
 #  mnemonic: ""
 
@@ -94,20 +91,19 @@ kite upset hip dirt pet winter thunder slice parent flag sand express suffer che
 # Wait util the node is synced, should return FALSE
 $binaryName status 2>&1 | jq .SyncInfo.catching_up
 
-# Go to discord channel #faucet and paste
-$request <YOUR_WALLET_ADDRESS> menkar
+# Go to https://faucet.palomaswap.com and paste your wallet address
 
 # Verify the balance
 $binaryName q bank balances $($binaryName keys show wallet -a)
 
 ## Console output
 #  balances:
-#  - amount: "5000000"
-#    denom: udws
+#  - amount: "10000000"
+#    denom: ugrain
 
 # Create validator
 $binaryName tx staking create-validator \
---amount=4500000$denomName \
+--amount=9000000$denomName \
 --pubkey=$($binaryName tendermint show-validator) \
 --moniker=<YOUR_MONIKER_NAME> \
 --chain-id=$chainId \
@@ -115,7 +111,7 @@ $binaryName tx staking create-validator \
 --commission-max-rate=0.2 \
 --commission-max-change-rate=0.05 \
 --min-self-delegation=1 \
---fees=20000$denomName \
+--fees=2000$denomName \
 --from=wallet \
 -y
 

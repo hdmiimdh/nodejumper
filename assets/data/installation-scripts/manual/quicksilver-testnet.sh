@@ -91,7 +91,7 @@ $binaryName status 2>&1 | jq .SyncInfo.catching_up
 $request <YOUR_WALLET_ADDRESS> killerqueen
 
 # Verify the balance
-$binaryName q bank balances <YOUR_WALLET_ADDRESS>
+$binaryName q bank balances $($binaryName keys show wallet -a)
 
 ## Console output
 #  balances:
@@ -112,3 +112,6 @@ $binaryName tx staking create-validator \
 --gas=auto \
 --from=wallet \
 -y
+
+# Make sure you see the validator details
+$binaryName q staking validator $($binaryName keys show wallet --bech val -a)
