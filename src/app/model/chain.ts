@@ -13,6 +13,7 @@ export class Chain {
   globe: string;
   medium?: string;
   discord?: string;
+  telegram?: string;
   coingekoCoinId?: string;
   validatorUrl?: string;
   projectOverview?: string;

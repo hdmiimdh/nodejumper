@@ -31,6 +31,9 @@
     <a *ngIf="chain.discord" href="{{chain.discord}}" target="_blank">
       <span class="btn-social fa-brands fa-discord" ngbTooltip="Discord" tooltipClass="ratio-tooltip" placement="top"></span>
     </a>
+    <a *ngIf="chain.telegram" href="{{chain.telegram}}" target="_blank">
+      <span class="btn-social fa-brands fa-telegram" ngbTooltip="Telegram" tooltipClass="ratio-tooltip" placement="top"></span>
+    </a>
   </div>
   <div class="support-us">
     <a *ngIf="chain.validatorUrl" class="support-us-btn btn btn-block shadow-none" href="{{chain.validatorUrl}}" target="_blank">

@@ -331,10 +331,31 @@ export const CHAINS: Chain[] = [
     denomName: "uqck",
     denomPow: 6,
     summaryDisabled: true,
-    snapshotDisabled: false,
     newWayUnsafeResetAll: true,
     isTestnet: true,
     hardwareRequirements: "4CPU 8RAM 200GB",
     projectOverview: "THE COSMOS LIQUID STAKING ZONE"
+  },
+  {
+    id: "paloma-testnet",
+    chainName: "Paloma",
+    chainId: "paloma-testnet-5",
+    snapshotServer: "https://snapshots1-testnet.nodejumper.io",
+    rpcServer: "http://rpc1-testnet.nodejumper.io:33657",
+    rpcPeer: "dfaf45e5de50626edd48a866f0ceddf6a1aadab8@rpc1-testnet.nodejumper.io:33656",
+    serviceName: "palomad",
+    homeDirectoryName: ".paloma",
+    twitter: "https://twitter.com/paloma_chain",
+    github: "https://github.com/palomachain",
+    globe: "https://www.palomachain.com",
+    telegram: "https://t.me/palomachain",
+    validatorUrl: "https://paloma.explorers.guru/validator/palomavaloper10l2s4gue5t8tmq6deyd3ejudw9hwszt8d0v7mr",
+    denomName: "ugrain",
+    denomPow: 6,
+    summaryDisabled: true,
+    newWayUnsafeResetAll: true,
+    isTestnet: true,
+    hardwareRequirements: "4CPU 8RAM 200GB",
+    projectOverview: "Paloma is a Cosmos-SDK blockchain protocol for sending and receiving messages from any other blockchain. Paloma’s design aims to enable any developer to control any smart contract from the Paloma network. Paloma may be compared to the numerous cross-chain messaging protocols currently exploding into the cryptocurrency ecosystem, but with a few key differences."
   }
 ]
