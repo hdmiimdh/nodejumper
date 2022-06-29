@@ -313,7 +313,7 @@
     <div class="command-container" [ngClass]="hideForSearch(e1f574e6) ? 'd-none' : ''" #e1f574e6>
       <p>Delegate</p>
       <div class="copy-button-container">
-        <div class="command">{{chain.binaryName}} tx staking delegate {{chain.valoperAddress || '&lt;VALOPER_ADDRESS_RAPAM&gt;'}}
+        <div class="command">{{chain.binaryName}} tx staking delegate {{chain.valoperAddress || '&lt;YOUR_VALOPER_ADDRESS&gt;'}}
           1000000{{chain.denomName}} --from {{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}} --chain-id {{chain.chainId}}
           --fees {{(chain.fees || '&lt;FEES&gt;') + chain.denomName}} --gas auto -y
         </div>
@@ -323,7 +323,7 @@
     <div class="command-container" [ngClass]="hideForSearch(be5e3609fee2) ? 'd-none' : ''" #be5e3609fee2>
       <p>Redelegate</p>
       <div class="copy-button-container">
-        <div class="command">{{chain.binaryName}} tx staking redelegate {{chain.valoperAddress || '&lt;VALOPER_ADDRESS_RAPAM&gt;'}} {{chain.toValoperAddress || '&lt;TO_VALOPER_ADDRESS_RAPAM&gt;'}}
+        <div class="command">{{chain.binaryName}} tx staking redelegate {{chain.valoperAddress || '&lt;YOUR_VALOPER_ADDRESS&gt;'}} {{chain.toValoperAddress || '&lt;TO_VALOPER_ADDRESS&gt;'}}
           1000000{{chain.denomName}} --from {{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}} --chain-id {{chain.chainId}}
           --fees {{(chain.fees || '&lt;FEES&gt;') + chain.denomName}} --gas auto -y
         </div>
@@ -333,7 +333,7 @@
     <div class="command-container" [ngClass]="hideForSearch(abe0cd09436e) ? 'd-none' : ''" #abe0cd09436e>
       <p>Unbond</p>
       <div class="copy-button-container">
-        <div class="command">{{chain.binaryName}} tx staking unbond {{chain.valoperAddress || '&lt;VALOPER_ADDRESS_RAPAM&gt;'}} 1000000{{chain.denomName}}
+        <div class="command">{{chain.binaryName}} tx staking unbond {{chain.valoperAddress || '&lt;YOUR_VALOPER_ADDRESS&gt;'}} 1000000{{chain.denomName}}
           --from {{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}} --chain-id {{chain.chainId}} --fees {{(chain.fees || '&lt;FEES&gt;') + chain.denomName}} --gas auto -y
         </div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
@@ -342,7 +342,7 @@
     <div class="command-container" [ngClass]="hideForSearch(db5f64c9e27e) ? 'd-none' : ''" #db5f64c9e27e>
       <p>Send</p>
       <div class="copy-button-container">
-        <div class="command">{{chain.binaryName}} tx bank send {{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}} {{chain.toWalletAddress || '&lt;TO_WALLET_ADDRESS_RAPAM&gt;'}}
+        <div class="command">{{chain.binaryName}} tx bank send {{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}} {{chain.toWalletAddress || '&lt;TO_WALLET_ADDRESS&gt;'}}
           1000000{{chain.denomName}} --from {{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}} --chain-id {{chain.chainId}}
           --fees {{(chain.fees || '&lt;FEES&gt;') + chain.denomName}} --gas auto -y
         </div>
@@ -373,14 +373,14 @@
     <div class="command-container" [ngClass]="hideForSearch(c01ee5ff) ? 'd-none' : ''" #c01ee5ff>
       <p>View Proposal By ID</p>
       <div class="copy-button-container">
-        <div class="command">{{chain.binaryName}} query gov proposal {{chain.proposalId || '&lt;FEES_PARAM&gt;'}}</div>
+        <div class="command">{{chain.binaryName}} query gov proposal {{chain.proposalId || '&lt;PROPOSAL_ID&gt;'}}</div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
     </div>
     <div class="command-container" [ngClass]="hideForSearch(d31d502e) ? 'd-none' : ''" #d31d502e>
       <p>Vote YES</p>
       <div class="copy-button-container">
-        <div class="command">{{chain.binaryName}} tx gov vote {{chain.proposalId || '&lt;FEES_PARAM&gt;'}} yes --from {{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}}
+        <div class="command">{{chain.binaryName}} tx gov vote {{chain.proposalId || '&lt;PROPOSAL_ID&gt;'}} yes --from {{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}}
           --chain-id {{chain.chainId}} --fees {{(chain.fees || '&lt;FEES&gt;') + chain.denomName}} --gas auto -y
         </div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
@@ -389,7 +389,7 @@
     <div class="command-container" [ngClass]="hideForSearch(f4416a14) ? 'd-none' : ''" #f4416a14>
       <p>Vote NO</p>
       <div class="copy-button-container">
-        <div class="command">{{chain.binaryName}} tx gov vote {{chain.proposalId || '&lt;FEES_PARAM&gt;'}} no --from {{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}}
+        <div class="command">{{chain.binaryName}} tx gov vote {{chain.proposalId || '&lt;PROPOSAL_ID&gt;'}} no --from {{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}}
           --chain-id {{chain.chainId}} --fees {{(chain.fees || '&lt;FEES&gt;') + chain.denomName}} --gas auto -y
         </div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
@@ -398,7 +398,7 @@
     <div class="command-container" [ngClass]="hideForSearch(a3a86a7c) ? 'd-none' : ''" #a3a86a7c>
       <p>Vote ABSTAIN</p>
       <div class="copy-button-container">
-        <div class="command">{{chain.binaryName}} tx gov vote {{chain.proposalId || '&lt;FEES_PARAM&gt;'}} abstain --from {{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}}
+        <div class="command">{{chain.binaryName}} tx gov vote {{chain.proposalId || '&lt;PROPOSAL_ID&gt;'}} abstain --from {{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}}
           --chain-id {{chain.chainId}} --fees {{(chain.fees || '&lt;FEES&gt;') + chain.denomName}} --gas auto -y
         </div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
