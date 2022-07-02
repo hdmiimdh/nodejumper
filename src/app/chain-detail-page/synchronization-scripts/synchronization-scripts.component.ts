@@ -28,12 +28,9 @@ export class SynchronizationScriptsComponent implements OnInit {
     this.chain = this.chainService.activeChain;
     if (this.chain) {
       let id = this.chain.id;
-      let snapshotStateFileLocation = this.chain?.snapshotServer + '/' + id + '/current_state.json';
-      let headers = new HttpHeaders();
-      headers.set('Cache-Control', 'no-cache, no-store, must-revalidate, post-check=0, pre-check=0');
-      headers.set('Pragma', 'no-cache');
-      headers.set('Expires', '0');
-      this.http.get(snapshotStateFileLocation, {headers: headers})
+      let salt = (new Date()).getTime();
+      let snapshotStateFileLocation = `${this.chain?.snapshotServer}/${id}/current_state.json?${salt}`;
+      this.http.get(snapshotStateFileLocation)
         .subscribe((data: any) => {
           this.snapshotHeight = data.snapshotHeight;
           this.snapshotSize = data.snapshotSize + 'B';
