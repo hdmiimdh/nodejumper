@@ -23,10 +23,10 @@ $binaryName version # v0.2.5-prealpha
 $binaryName config chain-id $chainId
 $binaryName init nodejumper --chain-id $chainId -o
 
-curl https://raw.githubusercontent.com/palomachain/testnet/master/paloma-testnet-5/genesis.json > $HOME/$homeDirectoryName/config/genesis.json
-sha256sum $HOME/$homeDirectoryName/config/genesis.json # 922f6ae493fa9a68f88894802ab3a9507dd92b38e090a71e92be42827490ef48
+curl https://raw.githubusercontent.com/palomachain/testnet/master/paloma-testnet-6/genesis.json > $HOME/$homeDirectoryName/config/genesis.json
+sha256sum $HOME/$homeDirectoryName/config/genesis.json #
 
-curl https://raw.githubusercontent.com/palomachain/testnet/master/paloma-testnet-5/addrbook.json > $HOME/$homeDirectoryName/config/addrbook.json
+curl https://raw.githubusercontent.com/palomachain/testnet/master/paloma-testnet-6/addrbook.json > $HOME/$homeDirectoryName/config/addrbook.json
 sha256sum $HOME/$homeDirectoryName/config/addrbook.json # d2cfeb63b4c926a69d63af65f537369dcae8e96bba92a422bcdfca5203f1304c
 
 sed -i 's|^minimum-gas-prices *=.*|minimum-gas-prices = "0.0001$denomName"|g' $HOME/$homeDirectoryName/config/app.toml
