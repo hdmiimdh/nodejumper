@@ -14,9 +14,9 @@ cd || return
 rm -rf quicksilver
 git clone https://github.com/ingenuity-build/quicksilver.git
 cd quicksilver || return
-git checkout v0.4.0
+git checkout v0.4.1
 make install
-quicksilverd version # v0.4.0
+quicksilverd version # v0.4.1
 
 # replace nodejumper with your own moniker, if you'd like
 $binaryName config chain-id $chainId
