@@ -343,7 +343,7 @@ export const CHAINS: Chain[] = [
     chainId: "paloma-testnet-6",
     snapshotServer: "https://snapshots1-testnet.nodejumper.io",
     rpcServer: "http://rpc1-testnet.nodejumper.io:33657",
-    rpcPeer: "459a62f42164be63da94c09632088bfe15f49399@rpc1-testnet.nodejumper.io:33656",
+    rpcPeer: "484e0d3cc02ba868d4ad68ec44caf89dd14d1845@rpc1-testnet.nodejumper.io:33656",
     serviceName: "palomad",
     homeDirectoryName: ".paloma",
     twitter: "https://twitter.com/paloma_chain",
