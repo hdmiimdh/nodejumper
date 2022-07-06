@@ -405,24 +405,20 @@
       </div>
     </div>
   </div>
-  <div class="row" [ngClass]="hideForSearchArray([e1d6879f96e7, d7c005a09058, c6c126c83420, c9fa81f310b6, b1623a67b5e0, b8799052a2bd]) ? 'd-none' : ''">
+  <div class="row" [ngClass]="hideForSearchArray([e1d6879f96e7, d7c005a09058, c6c126c83420, c9fa81f310b6, b1623a67b5e0, afd45f16]) ? 'd-none' : ''">
     <p class="title">Utility</p>
     <div
-      class="command-container"
-      [ngClass]="hideForSearch(e1d6879f96e7) ? 'd-none' : ''"
-    >
+      class="command-container" [ngClass]="hideForSearch(e1d6879f96e7) ? 'd-none' : ''">
       <div class="tabs-container">
-        <div
-          class="tab-button"
+        <div class="tab-button"
           *ngFor="let index of [0,1,2,3,4,5,6,7,8]"
           [ngClass]="chain.portIncrement == index ? 'active': ''"
-          (click)="setPortIncrement(index)"
-        >
+          (click)="setPortIncrement(index)">
           {{index == 0 ? "Default" : index}}
         </div>
       </div>
     </div>
-    <div class="col col-12 col-sm-6 col-md-3 col-lg-2">
+    <div class="col col-12 col-sm-6 col-md-3 col-lg-2" [ngClass]="hideForSearch(e1d6879f96e7) ? 'd-none' : ''">
       <div class="param-container">
         <p class="label">gRPC</p>
         <input
@@ -432,7 +428,7 @@
         />
       </div>
     </div>
-    <div class="col col-12 col-sm-6 col-md-3 col-lg-2">
+    <div class="col col-12 col-sm-6 col-md-3 col-lg-2" [ngClass]="hideForSearch(e1d6879f96e7) ? 'd-none' : ''">
       <div class="param-container">
         <p class="label">gRPC(web)</p>
         <input
@@ -442,7 +438,7 @@
         />
       </div>
     </div>
-    <div class="col col-12 col-sm-6 col-md-3 col-lg-2">
+    <div class="col col-12 col-sm-6 col-md-3 col-lg-2" [ngClass]="hideForSearch(e1d6879f96e7) ? 'd-none' : ''">
       <div class="param-container">
         <p class="label">proxy_app</p>
         <input
@@ -452,7 +448,7 @@
         />
       </div>
     </div>
-    <div class="col col-12 col-sm-6 col-md-3 col-lg-2">
+    <div class="col col-12 col-sm-6 col-md-3 col-lg-2" [ngClass]="hideForSearch(e1d6879f96e7) ? 'd-none' : ''">
       <div class="param-container">
         <p class="label">laddr(rpc)</p>
         <input
@@ -462,7 +458,7 @@
         />
       </div>
     </div>
-    <div class="col col-12 col-sm-6 col-md-3 col-lg-2">
+    <div class="col col-12 col-sm-6 col-md-3 col-lg-2" [ngClass]="hideForSearch(e1d6879f96e7) ? 'd-none' : ''">
       <div class="param-container">
         <p class="label">pprof_laddr</p>
         <input
@@ -472,7 +468,7 @@
         />
       </div>
     </div>
-    <div class="col col-12 col-sm-6 col-md-3 col-lg-2">
+    <div class="col col-12 col-sm-6 col-md-3 col-lg-2" [ngClass]="hideForSearch(e1d6879f96e7) ? 'd-none' : ''">
       <div class="param-container">
         <p class="label">laddr(p2p)</p>
         <input
@@ -482,7 +478,7 @@
         />
       </div>
     </div>
-    <div class="col col-12 col-sm-6 col-md-3 col-lg-2">
+    <div class="col col-12 col-sm-6 col-md-3 col-lg-2" [ngClass]="hideForSearch(e1d6879f96e7) ? 'd-none' : ''">
       <div class="param-container">
         <p class="label">prometheus</p>
         <input
@@ -533,12 +529,72 @@
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
     </div>
-    <div class="command-container" [ngClass]="hideForSearch(b8799052a2bd) ? 'd-none' : ''" #b8799052a2bd>
-      <p>Check Logs</p>
+    <div class="command-container" [ngClass]="hideForSearch(afd45f16) ? 'd-none' : ''" #afd45f16>
+      <p>Remove Node</p>
       <div class="copy-button-container">
-        <div class="command">sudo journalctl -u {{chain.serviceName}} -f --no-hostname -o cat</div>
+        <div class="command">sudo systemctl stop {{chain.serviceName}}
+          && sudo systemctl disable {{chain.serviceName}}
+          && sudo rm /etc/systemd/system/{{chain.serviceName}}.service
+          && sudo systemctl daemon-reload
+          && rm -rf $HOME/{{chain.homeDirectoryName}}
+          {{chain.githubRepoName ? ('&& rm -rf $HOME/'+ chain.githubRepoName) : ''}}
+          && rm $(which {{chain.binaryName}})
+        </div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
     </div>
   </div>
+  <div class="row" [ngClass]="hideForSearchArray([c567fd801308, d40c2241, a501dcbd, edfca8b94ee8, cd12abd1ae4f, c4cb953e, ddd2b2d6]) ? 'd-none' : ''">
+      <p class="title">Service Management</p>
+      <div class="command-container" [ngClass]="hideForSearch(c567fd801308) ? 'd-none' : ''" #c567fd801308>
+        <p>Reload Services</p>
+        <div class="copy-button-container">
+          <div class="command">sudo systemctl daemon-reload</div>
+          <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
+        </div>
+      </div>
+      <div class="command-container" [ngClass]="hideForSearch(d40c2241) ? 'd-none' : ''" #d40c2241>
+        <p>Enable Service</p>
+        <div class="copy-button-container">
+          <div class="command">sudo systemctl enable {{chain.serviceName}}</div>
+          <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
+        </div>
+      </div>
+      <div class="command-container" [ngClass]="hideForSearch(a501dcbd) ? 'd-none' : ''" #a501dcbd>
+        <p>Disable Service</p>
+        <div class="copy-button-container">
+          <div class="command">sudo systemctl disable {{chain.serviceName}}</div>
+          <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
+        </div>
+      </div>
+      <div class="command-container" [ngClass]="hideForSearch(edfca8b94ee8) ? 'd-none' : ''" #edfca8b94ee8>
+        <p>Run Service</p>
+        <div class="copy-button-container">
+          <div class="command">sudo systemctl start {{chain.serviceName}}</div>
+          <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
+        </div>
+      </div>
+      <div class="command-container" [ngClass]="hideForSearch(cd12abd1ae4f) ? 'd-none' : ''" #cd12abd1ae4f>
+        <p>Stop Service</p>
+        <div class="copy-button-container">
+          <div class="command">sudo systemctl stop {{chain.serviceName}}</div>
+          <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
+        </div>
+      </div>
+      <div class="command-container" [ngClass]="hideForSearch(c4cb953e) ? 'd-none' : ''" #c4cb953e>
+        <p>Check Service Status</p>
+        <div class="copy-button-container">
+          <div class="command">sudo systemctl status {{chain.serviceName}}</div>
+          <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
+        </div>
+      </div>
+      <div class="command-container" [ngClass]="hideForSearch(ddd2b2d6) ? 'd-none' : ''" #ddd2b2d6>
+        <p>Check Service Logs</p>
+        <div class="copy-button-container">
+          <div class="command">sudo journalctl -u {{chain.serviceName}} -f --no-hostname -o cat</div>
+          <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
+        </div>
+      </div>
+  </div>
+
 </ng-container>

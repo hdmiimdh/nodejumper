@@ -41,7 +41,8 @@ export class CheatSheetComponent implements OnInit {
         activeChain.serviceName,
         savedChainInfo.commissionRate || "0.10",
         savedChainInfo.commissionMaxRate || "0.20",
-        savedChainInfo.commissionMaxChangeRate || "0.01"
+        savedChainInfo.commissionMaxChangeRate || "0.01",
+        activeChain.githubRepoName || '',
       );
     }
   }

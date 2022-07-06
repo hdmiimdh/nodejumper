@@ -17,7 +17,8 @@ export const CHAINS: Chain[] = [
     discord: "https://discord.gg/Vgbcu5Hhmz",
     validatorUrl: "https://ping.pub/rizon/staking/rizonvaloper1hy3em3nfngyntk7tre9d0626mj9swhu9ughurh",
     denomName: "uatolo",
-    denomPow: 6
+    denomPow: 6,
+    githubRepoName: 'rizon'
   },
   {
     id: "bitcanna",
@@ -36,7 +37,8 @@ export const CHAINS: Chain[] = [
     validatorUrl: "https://ping.pub/bitcanna/staking/bcnavaloper1nlyurpgk5zcg6f6dcpdt2mq9khv27ajg4px45y",
     denomName: "ubcna",
     denomPow: 6,
-    isProjectSupportUs: true
+    isProjectSupportUs: true,
+    githubRepoName: 'bcna'
   },
   {
     id: "kichain",
@@ -55,7 +57,8 @@ export const CHAINS: Chain[] = [
     coingekoCoinId: "ki",
     validatorUrl: "https://ping.pub/kichain/staking/kivaloper1q5vfka8z05t27jf4fuawpec99mvv9df90yc57a",
     denomName: "uxki",
-    denomPow: 6
+    denomPow: 6,
+    githubRepoName: 'ki-tools'
   },
   {
     id: "chihuahua",
@@ -74,7 +77,8 @@ export const CHAINS: Chain[] = [
     coingekoCoinId: "chihuahua-token",
     validatorUrl: "https://ping.pub/chihuahua/staking/chihuahuavaloper1vdsd7zqpl3af46l08xkkc2zh6qhfhk6fp3s9pu",
     denomName: "uhuahua",
-    denomPow: 6
+    denomPow: 6,
+    githubRepoName: 'chihuahua'
   },
   {
     id: "desmos",
@@ -94,7 +98,8 @@ export const CHAINS: Chain[] = [
     validatorUrl: "https://ping.pub/desmos/staking/desmosvaloper184nr4azm7kwas40yzftfxy9ma2lrm5pp5q795x",
     denomName: "udsm",
     denomPow: 6,
-    isProjectSupportUs: true
+    isProjectSupportUs: true,
+    githubRepoName: 'desmos'
   },
   {
     id: "omniflix",
@@ -114,7 +119,8 @@ export const CHAINS: Chain[] = [
     validatorUrl: "",
     projectOverview: "OmniFlix is a peer-to-peer network designed for creators and communities/DAOs to to mint, manage and monetize NFTs and social tokens across blockchain networks. Independent artists & communities can create Media Studios (Record Labels, Agencies or even your own band)& Media Communities to coordinate and collaborate.",
     denomName: "uflix",
-    denomPow: 6
+    denomPow: 6,
+    githubRepoName: 'omniflixhub'
   },
   {
     id: "starname",
@@ -135,7 +141,8 @@ export const CHAINS: Chain[] = [
     stateSyncDisabled: true,
     denomName: "uiov",
     denomPow: 6,
-    apiChainId: "iov"
+    apiChainId: "iov",
+    githubRepoName: 'starnamed'
   },
   {
     id: "osmosis",
@@ -160,7 +167,8 @@ export const CHAINS: Chain[] = [
       'tendermint set-app-version 1 --home $HOME/.osmosisd\n' +
       '\n' +
       'sudo systemctl restart osmosisd && sudo journalctl -u osmosisd -f --no-hostname -o cat',
-    newWayUnsafeResetAll: true
+    newWayUnsafeResetAll: true,
+    githubRepoName: 'osmosis'
   },
   {
     id: "galaxy",
@@ -180,7 +188,8 @@ export const CHAINS: Chain[] = [
     projectOverview: "The Galaxy protocol builds a base system for further advanced metaverse.",
     summaryDisabled: true,
     denomName: "uglx",
-    denomPow: 6
+    denomPow: 6,
+    githubRepoName: 'galaxy'
   },
   {
     id: "evmos",
@@ -199,7 +208,8 @@ export const CHAINS: Chain[] = [
     validatorUrl: "https://ping.pub/evmos/staking/evmosvaloper1hm5elxdjfx4pltn00e0tde0avhpj03tynuhkk3",
     denomName: "aevmos",
     denomPow: 18,
-    newWayUnsafeResetAll: true
+    newWayUnsafeResetAll: true,
+    githubRepoName: 'evmos'
   },
   {
     id: "another1-testnet",
@@ -221,7 +231,8 @@ export const CHAINS: Chain[] = [
     summaryDisabled: true,
     isTestnet: true,
     hardwareRequirements: "4CPU 8RAM 200GB",
-    projectOverview: "Another-1 platform is an ecosystem that aggregates users and markets using a hybrid approach making it seamless for non crypto native users. The AN1 front end is built in Vue.js and served via the browser or electron app."
+    projectOverview: "Another-1 platform is an ecosystem that aggregates users and markets using a hybrid approach making it seamless for non crypto native users. The AN1 front end is built in Vue.js and served via the browser or electron app.",
+    githubRepoName: 'anone'
   },
   {
     id: "sei-testnet",
@@ -244,7 +255,8 @@ export const CHAINS: Chain[] = [
     newWayUnsafeResetAll: true,
     isTestnet: true,
     hardwareRequirements: "4CPU 8RAM 200GB",
-    projectOverview: "Sei Network is the first orderbook-specific L1 blockchain. It is built using the Cosmos SDK and Tendermint core, and features a built-in central limit orderbook (CLOB) module. Decentralized applications building on Sei can build on top of the CLOB, and other Cosmos-based blockchains can leverage Sei's CLOB as a shared liquidity hub and create markets for any asset."
+    projectOverview: "Sei Network is the first orderbook-specific L1 blockchain. It is built using the Cosmos SDK and Tendermint core, and features a built-in central limit orderbook (CLOB) module. Decentralized applications building on Sei can build on top of the CLOB, and other Cosmos-based blockchains can leverage Sei's CLOB as a shared liquidity hub and create markets for any asset.",
+    githubRepoName: 'sei-chain'
   },
   {
     id: "dws-testnet",
@@ -265,7 +277,8 @@ export const CHAINS: Chain[] = [
     summaryDisabled: true,
     isTestnet: true,
     hardwareRequirements: "4CPU 8RAM 200GB",
-    projectOverview: "DWS (Decentralized Web Services) is a decentralized cloud infrastructure management platform. DWS will take care of all the decentralized services health and will smoothly reinstantiate any service, which will go down, DWS will control funds spendings and will notify you in Slack/Telegram/Jami about any needed fundings. Also DWS will have a nice dashboard showing all the balances, spendings and incidents happen regarding the cloud infrastructure you use."
+    projectOverview: "DWS (Decentralized Web Services) is a decentralized cloud infrastructure management platform. DWS will take care of all the decentralized services health and will smoothly reinstantiate any service, which will go down, DWS will control funds spendings and will notify you in Slack/Telegram/Jami about any needed fundings. Also DWS will have a nice dashboard showing all the balances, spendings and incidents happen regarding the cloud infrastructure you use.",
+    githubRepoName: 'deweb'
   },
   {
     id: "kujira-testnet",
@@ -288,7 +301,8 @@ export const CHAINS: Chain[] = [
     newWayUnsafeResetAll: true,
     isTestnet: true,
     hardwareRequirements: "4CPU 8RAM 200GB",
-    projectOverview: "The Cosmos Layer 1 platform for community selected projects creating true value."
+    projectOverview: "The Cosmos Layer 1 platform for community selected projects creating true value.",
+    githubRepoName: 'kujira-core'
   },
   {
     id: "uptick-testnet",
@@ -311,7 +325,8 @@ export const CHAINS: Chain[] = [
     newWayUnsafeResetAll: true,
     isTestnet: true,
     hardwareRequirements: "4CPU 8RAM 200GB",
-    projectOverview: "The Business Grade Multi-Chain NFT Infrastructure for Web 3.0."
+    projectOverview: "The Business Grade Multi-Chain NFT Infrastructure for Web 3.0.",
+    githubRepoName: 'uptick'
   },
   {
     id: "quicksilver-testnet",
@@ -334,7 +349,8 @@ export const CHAINS: Chain[] = [
     newWayUnsafeResetAll: true,
     isTestnet: true,
     hardwareRequirements: "4CPU 8RAM 200GB",
-    projectOverview: "THE COSMOS LIQUID STAKING ZONE"
+    projectOverview: "THE COSMOS LIQUID STAKING ZONE",
+    githubRepoName: 'quicksilver'
   },
   {
     id: "paloma-testnet",
@@ -356,6 +372,6 @@ export const CHAINS: Chain[] = [
     newWayUnsafeResetAll: true,
     isTestnet: true,
     hardwareRequirements: "4CPU 8RAM 200GB",
-    projectOverview: "Paloma is a Cosmos-SDK blockchain protocol for sending and receiving messages from any other blockchain. Paloma’s design aims to enable any developer to control any smart contract from the Paloma network. Paloma may be compared to the numerous cross-chain messaging protocols currently exploding into the cryptocurrency ecosystem, but with a few key differences."
+    projectOverview: "Paloma is a Cosmos-SDK blockchain protocol for sending and receiving messages from any other blockchain. Paloma’s design aims to enable any developer to control any smart contract from the Paloma network. Paloma may be compared to the numerous cross-chain messaging protocols currently exploding into the cryptocurrency ecosystem, but with a few key differences.",
   }
 ]
