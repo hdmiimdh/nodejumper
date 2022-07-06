@@ -10,8 +10,6 @@ fi
 
 go version # go version goX.XX.X linux/amd64
 
-sudo apt install -y make gcc jq git
-
 cd || return
 rm -rf deweb
 git clone https://github.com/deweb-services/deweb.git
