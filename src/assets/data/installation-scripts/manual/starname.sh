@@ -1,7 +1,7 @@
 #!/bin/bash
 
 sudo apt update
-sudo apt install -y make gcc jq curl git snapd
+sudo apt install -y make gcc jq curl git snapd build-essential
 sudo snap install lz4
 
 if [ ! -f "/usr/local/go/bin/go" ]; then
