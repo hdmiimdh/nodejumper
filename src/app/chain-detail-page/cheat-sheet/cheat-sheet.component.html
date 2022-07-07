@@ -544,7 +544,7 @@
       </div>
     </div>
   </div>
-  <div class="row" [ngClass]="hideForSearchArray([c567fd801308, d40c2241, a501dcbd, edfca8b94ee8, cd12abd1ae4f, c4cb953e, ddd2b2d6]) ? 'd-none' : ''">
+  <div class="row" [ngClass]="hideForSearchArray([c567fd801308, d40c2241, a501dcbd, edfca8b94ee8, cd12abd1ae4f, ec99f4d7, c4cb953e, ddd2b2d6]) ? 'd-none' : ''">
       <p class="title">Service Management</p>
       <div class="command-container" [ngClass]="hideForSearch(c567fd801308) ? 'd-none' : ''" #c567fd801308>
         <p>Reload Services</p>
@@ -581,6 +581,13 @@
           <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
         </div>
       </div>
+    <div class="command-container" [ngClass]="hideForSearch(ec99f4d7) ? 'd-none' : ''" #ec99f4d7>
+      <p>Restart Service</p>
+      <div class="copy-button-container">
+        <div class="command">sudo systemctl restart {{chain.serviceName}}</div>
+        <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
+      </div>
+    </div>
       <div class="command-container" [ngClass]="hideForSearch(c4cb953e) ? 'd-none' : ''" #c4cb953e>
         <p>Check Service Status</p>
         <div class="copy-button-container">
