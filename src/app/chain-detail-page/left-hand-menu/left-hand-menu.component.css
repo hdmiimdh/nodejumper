@@ -38,6 +38,7 @@
 .chain-info .details {
   font-size: 18px;
   color: var(--details-color);
+  text-align: center;
 }
 
 .menu {

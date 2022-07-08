@@ -373,5 +373,28 @@ export const CHAINS: Chain[] = [
     isTestnet: true,
     hardwareRequirements: "4CPU 8RAM 200GB",
     projectOverview: "Paloma is a Cosmos-SDK blockchain protocol for sending and receiving messages from any other blockchain. Paloma’s design aims to enable any developer to control any smart contract from the Paloma network. Paloma may be compared to the numerous cross-chain messaging protocols currently exploding into the cryptocurrency ecosystem, but with a few key differences.",
+  },
+  {
+    id: "stafihub-testnet",
+    chainName: "Stafihub",
+    chainId: "stafihub-public-testnet-3",
+    snapshotServer: "https://snapshots2-testnet.nodejumper.io",
+    rpcServer: "http://rpc2-testnet.nodejumper.io:26657",
+    rpcPeer: "4b5afbe0bd0d128f98943c0f2941976bd3fb0b9b@rpc2-testnet.nodejumper.io:26656",
+    serviceName: "stafihubd",
+    homeDirectoryName: ".stafihub",
+    twitter: "https://twitter.com/StaFiHub_",
+    github: "https://github.com/stafihub",
+    globe: "https://www.stafihub.io",
+    discord: "https://discord.gg/98GuF8AE3D",
+    validatorUrl: "https://testnet-explorer.stafihub.io/stafi-hub-testnet/staking/stafivaloper1h47kaq70270q6avhwdg74e7ejwk3et32d8r4qt",
+    denomName: "ufis",
+    denomPow: 6,
+    summaryDisabled: true,
+    newWayUnsafeResetAll: true,
+    isTestnet: true,
+    hardwareRequirements: "4CPU 8RAM 200GB",
+    projectOverview: "StaFiHub is a parallel chain developed by StaFi based on the Cosmos SDK, by implementing the rToken Protocol, StaFiHub releases liquidity of tokens staked in other chains of the Cosmos Ecosystem.",
+    githubRepoName: 'stafihub'
   }
 ]
