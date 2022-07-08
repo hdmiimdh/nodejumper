@@ -387,7 +387,7 @@ export const CHAINS: Chain[] = [
     github: "https://github.com/stafihub",
     globe: "https://www.stafihub.io",
     discord: "https://discord.gg/98GuF8AE3D",
-    validatorUrl: "https://testnet-explorer.stafihub.io/stafi-hub-testnet/staking/stafivaloper1h47kaq70270q6avhwdg74e7ejwk3et32d8r4qt",
+    validatorUrl: "https://testnet-explorer.stafihub.io/stafi-hub-testnet/staking/stafivaloper18nuuhuwywsk8at72pxk94rw27nkkf7pl8ws3kv",
     denomName: "ufis",
     denomPow: 6,
     summaryDisabled: true,
