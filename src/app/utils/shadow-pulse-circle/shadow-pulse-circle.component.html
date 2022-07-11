@@ -1,0 +1,6 @@
+<ng-container *ngIf="chain">
+  <div class="shadow-pulse-circle" *ngIf="!chain.isArchive"
+       [ngClass]="chain.isInactive ? 'inactive' : ''"
+       ngbTooltip="{{chain.inactiveReason}}"
+       tooltipClass="ratio-tooltip"></div>
+</ng-container>

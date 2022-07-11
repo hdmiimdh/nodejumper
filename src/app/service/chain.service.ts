@@ -14,32 +14,41 @@ export class ChainService {
   constructor(private http: HttpClient) {
   }
 
-  getChains(chainType?: string, searchText?: string): Chain[] {
+  getChains(chainType?: string, searchText?: string, isArchive?: boolean): Chain[] {
     const lowerCaseQuery = searchText?.toLocaleLowerCase() || ""
     return CHAINS
+      .filter(chain => this.filterByArchive(chain, isArchive))
       .filter(chain => this.filterByType(chain, chainType))
       .filter(chain => this.filterByQuery(chain, lowerCaseQuery))
       .sort((chain1, chain2) => {
-        const chainName1 = chain1.chainName.toLowerCase();
-        const chainName2 = chain2.chainName.toLowerCase();
-        if (chainName1 > chainName2) {
-          return 1;
+        if (chain1.isInactive == chain2.isInactive) {
+          const chainName1 = chain1.chainName.toLowerCase();
+          const chainName2 = chain2.chainName.toLowerCase();
+          if (chainName1 > chainName2) {
+            return 1;
+          }
+          if (chainName1 < chainName2) {
+            return -1;
+          }
+          return 0;
         }
-        if (chainName1 < chainName2) {
-          return -1;
-        }
-        return 0;
+        return chain1.isInactive ? 1 : -1;
       });
   }
 
   filterByType(chain: Chain, chainType?: string): boolean {
-    return (chainType == 'mainnet' && !chain.isTestnet || false)
+    return chainType == 'all'
+      || (chainType == 'mainnet' && !chain.isTestnet || false)
       || (chainType == 'testnet' && !!chain.isTestnet || false);
   }
 
   filterByQuery(chain: Chain, query: string): boolean {
     return chain.chainName.toLocaleLowerCase().includes(query)
       || chain.chainId.toLocaleLowerCase().includes(query)
+  }
+
+  filterByArchive(chain: Chain, isArchive?: boolean) : boolean {
+    return !!chain.isArchive === !!isArchive;
   }
 
   getAllChains(): Chain[] {

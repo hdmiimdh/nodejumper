@@ -24,6 +24,7 @@ import { NgCircleProgressModule } from "ng-circle-progress";
 import { NgbModule } from "@ng-bootstrap/ng-bootstrap";
 import { LeftHandMenuService } from "./service/left-hand-menu.service";
 import { CheatSheetComponent } from './chain-detail-page/cheat-sheet/cheat-sheet.component';
+import { ShadowPulseCircleComponent } from './utils/shadow-pulse-circle/shadow-pulse-circle.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { CheatSheetComponent } from './chain-detail-page/cheat-sheet/cheat-sheet
     AboutComponent,
     InstallationScriptsComponent,
     SummaryComponent,
-    CheatSheetComponent
+    CheatSheetComponent,
+    ShadowPulseCircleComponent
   ],
   imports: [
     BrowserModule,

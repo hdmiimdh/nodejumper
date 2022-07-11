@@ -44,10 +44,10 @@
     </div>
   </div>
   <div class="row">
-    <div class="title-container" *ngIf="mainnetChains.length > 0">
+    <div class="title-container" *ngIf="mainnetChains.length">
       <p class="title">Mainnet</p>
     </div>
-    <div class="chain-cards-container" *ngIf="mainnetChains.length > 0">
+    <div class="chain-cards-container" *ngIf="mainnetChains.length">
       <div
         *ngFor="let chain of mainnetChains"
         [routerLink]="['/' + chain.id + (chain.summaryDisabled ? '/installation' : '')]"
@@ -56,12 +56,24 @@
         <app-chain-card [chain]="chain"></app-chain-card>
       </div>
     </div>
-    <div class="title-container" *ngIf="testnetChains.length > 0">
+    <div class="title-container" *ngIf="testnetChains.length">
       <p class="title">Testnet</p>
     </div>
-    <div class="chain-cards-container" *ngIf="testnetChains.length > 0">
+    <div class="chain-cards-container" *ngIf="testnetChains.length">
       <div
         *ngFor="let chain of testnetChains"
+        [routerLink]="['/' + chain.id + (chain.summaryDisabled ? '/installation' : '')]"
+        class="col col-12 col-sm-6 col-md-4 col-lg-3"
+      >
+        <app-chain-card [chain]="chain"></app-chain-card>
+      </div>
+    </div>
+    <div class="title-container" *ngIf="archiveChains.length">
+      <p class="title">Archive</p>
+    </div>
+    <div class="chain-cards-container" *ngIf="archiveChains.length">
+      <div
+        *ngFor="let chain of archiveChains"
         [routerLink]="['/' + chain.id + (chain.summaryDisabled ? '/installation' : '')]"
         class="col col-12 col-sm-6 col-md-4 col-lg-3"
       >
