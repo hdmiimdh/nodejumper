@@ -20,7 +20,7 @@ $binaryName version # 0.4.0
 
 # replace nodejumper with your own moniker, if you'd like
 $binaryName config chain-id $chainId
-$binaryName init nodejumper --chain-id $chainId -o
+$binaryName init nodejumper --chain-id $chainId
 
 curl https://raw.githubusercontent.com/Team-Kujira/networks/master/testnet/harpoon-4.json > $HOME/.kujira/config/genesis.json
 sha256sum $HOME/.kujira/config/genesis.json # c5e258a28511b7f3f4e58993edd3b98ec7c716fe20b5c5813eec9babb696bd02
