@@ -62,6 +62,10 @@ export class ChainService {
     return this.http.get(`https://api.coingecko.com/api/v3/coins/${coingekoCoinId}/market_chart?vs_currency=usd&days=${timeIntervalDays}&interval=daily`)
   }
 
+  getChainStatus(chain: Chain) {
+    return this.http.get(`${chain.rpcServer}/status`)
+  }
+
   getUnsafeResetAllString(chain: Chain): string {
     if (chain.newWayUnsafeResetAll) {
       return this.getChainBinaryName(chain) + ' tendermint unsafe-reset-all --home $HOME/' + chain.homeDirectoryName + " --keep-addr-book";

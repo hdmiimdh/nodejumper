@@ -5,7 +5,6 @@ export class ChainCheatSheet {
   binaryName: string;
   homeDirectoryName: string;
   walletName: string;
-  valoperAddress: string;
   fees: number;
   moniker: string;
   identity: string;
@@ -21,7 +20,7 @@ export class ChainCheatSheet {
   githubRepoName: string;
 
   constructor(id: string, chainId: string, denomName: string, binaryName: string, homeDirectoryName: string,
-              walletName: string, valoperAddress: string, fees: number, moniker: string, identity: string,
+              walletName: string, fees: number, moniker: string, identity: string,
               details: string, proposalId: number, toValoperAddress: string, toWalletAddress: string,
               portIncrement: number, serviceName: string, commissionRate: string, commissionMaxRate: string,
               commissionMaxChangeRate: string, githubRepoName: string) {
@@ -31,7 +30,6 @@ export class ChainCheatSheet {
     this.binaryName = binaryName;
     this.homeDirectoryName = homeDirectoryName;
     this.walletName = walletName;
-    this.valoperAddress = valoperAddress;
     this.fees = fees;
     this.moniker = moniker;
     this.identity = identity;
