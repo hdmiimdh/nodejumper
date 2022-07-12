@@ -237,7 +237,7 @@ export const CHAINS: Chain[] = [
   {
     id: "sei-testnet",
     chainName: "Sei Protocol",
-    chainId: "sei-testnet-2",
+    chainId: "atlantic-1",
     snapshotServer: "https://snapshots1-testnet.nodejumper.io",
     rpcServer: "http://rpc1-testnet.nodejumper.io:28657",
     rpcPeer: "6a60f171e8b0c0f0c6a0e5cebd6d3d340764c2f5@rpc1-testnet.nodejumper.io:28656",
