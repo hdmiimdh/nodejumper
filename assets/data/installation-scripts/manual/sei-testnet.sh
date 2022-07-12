@@ -20,13 +20,13 @@ $binaryName version # 1.0.6beta
 
 # replace nodejumper with your own moniker, if you'd like
 $binaryName config chain-id $chainId
-$binaryName init nodejumper --chain-id $chainId -o
+$binaryName init nodejumper --chain-id $chainId
 
 curl -s https://raw.githubusercontent.com/sei-protocol/testnet/main/sei-incentivized-testnet/genesis.json > $HOME/.sei/config/genesis.json
-sha256sum $HOME/$homeDirectoryName/config/genesis.json # aec481191276a4c5ada2c3b86ac6c8aad0cea5c4aa6440314470a2217520e2cc
+sha256sum $HOME/$homeDirectoryName/config/genesis.json # 4ae7193446b53d78bb77cab1693a6ddf6c1fe58c9693ed151e71f43956fdb3f7
 
 curl -s https://raw.githubusercontent.com/sei-protocol/testnet/main/sei-incentivized-testnet/addrbook.json > $HOME/.sei/config/addrbook.json
-sha256sum $HOME/$homeDirectoryName/config/addrbook.json # 9058b83fca36c2c09fb2b7c04293382084df0960b4565090c21b65188816ffa6
+sha256sum $HOME/$homeDirectoryName/config/addrbook.json # a0b8d7c621e35d94e2187ce9b351b170104943aecfde327068524de46ed122d8
 
 sed -i 's|^minimum-gas-prices *=.*|minimum-gas-prices = "0.0001$denomName"|g' $HOME/$homeDirectoryName/config/app.toml
 seeds="df1f6617ff5acdc85d9daa890300a57a9d956e5e@sei-atlantic-1.seed.rhinostake.com:16660"
