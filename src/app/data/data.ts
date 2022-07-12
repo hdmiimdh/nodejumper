@@ -99,7 +99,8 @@ export const CHAINS: Chain[] = [
     denomName: "udsm",
     denomPow: 6,
     isProjectSupportUs: true,
-    githubRepoName: 'desmos'
+    githubRepoName: 'desmos',
+    newWayUnsafeResetAll: true,
   },
   {
     id: "omniflix",
