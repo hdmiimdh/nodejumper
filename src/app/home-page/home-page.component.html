@@ -44,10 +44,10 @@
     </div>
   </div>
   <div class="row">
-    <div class="title-container" *ngIf="mainnetChains.length">
+    <div class="title-container" *ngIf="mainnetChains.length > 0">
       <p class="title">Mainnet</p>
     </div>
-    <div class="chain-cards-container" *ngIf="mainnetChains.length">
+    <div class="chain-cards-container" *ngIf="mainnetChains.length > 0">
       <div
         *ngFor="let chain of mainnetChains"
         [routerLink]="['/' + chain.id + (chain.summaryDisabled ? '/installation' : '')]"
@@ -56,10 +56,10 @@
         <app-chain-card [chain]="chain"></app-chain-card>
       </div>
     </div>
-    <div class="title-container" *ngIf="testnetChains.length">
+    <div class="title-container" *ngIf="testnetChains.length > 0">
       <p class="title">Testnet</p>
     </div>
-    <div class="chain-cards-container" *ngIf="testnetChains.length">
+    <div class="chain-cards-container" *ngIf="testnetChains.length > 0">
       <div
         *ngFor="let chain of testnetChains"
         [routerLink]="['/' + chain.id + (chain.summaryDisabled ? '/installation' : '')]"
@@ -70,7 +70,7 @@
     </div>
     <div
       class="empty-result"
-      *ngIf="mainnetChains.length === 0 && testnetChains.length === 0"
+      *ngIf="mainnetChains.length ==- 0 && testnetChains.length ==- 0"
     >
       <p>Oops, we can't find any results.</p>
     </div>
