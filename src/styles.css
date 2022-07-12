@@ -96,10 +96,6 @@ div.code-toolbar > .toolbar > .toolbar-item > button:active,
   max-width: 400px !important;
 }
 
-.no-opacity.tooltip.show {
-  opacity: 1;
-}
-
 :root {
   --max-width: 1212px;
   --details-color: #57606a;

@@ -270,6 +270,17 @@
     <p class="title">Tokens</p>
     <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
       <div class="param-container">
+        <p class="label">Valoper address</p>
+        <input
+          class="form-control rounded-pill input"
+          placeholder="validator operator address"
+          [(ngModel)]="chain.valoperAddress"
+          (blur)="saveParam('valoperAddress')"
+        />
+      </div>
+    </div>
+    <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
+      <div class="param-container">
         <p class="label">To valoper address</p>
         <input
           class="form-control rounded-pill input"
@@ -302,7 +313,7 @@
     <div class="command-container" [ngClass]="hideForSearch(e1f574e6) ? 'd-none' : ''" #e1f574e6>
       <p>Delegate</p>
       <div class="copy-button-container">
-        <div class="command">{{chain.binaryName}} tx staking delegate $({{chain.binaryName}} keys show {{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}} --bech val -a)
+        <div class="command">{{chain.binaryName}} tx staking delegate {{chain.valoperAddress || '&lt;YOUR_VALOPER_ADDRESS&gt;'}}
           1000000{{chain.denomName}} --from {{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}} --chain-id {{chain.chainId}}
           --fees {{(chain.fees || '&lt;FEES&gt;') + chain.denomName}} --gas auto -y
         </div>
@@ -312,7 +323,7 @@
     <div class="command-container" [ngClass]="hideForSearch(be5e3609fee2) ? 'd-none' : ''" #be5e3609fee2>
       <p>Redelegate</p>
       <div class="copy-button-container">
-        <div class="command">{{chain.binaryName}} tx staking redelegate $({{chain.binaryName}} keys show {{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}} --bech val -a) {{chain.toValoperAddress || '&lt;TO_VALOPER_ADDRESS&gt;'}}
+        <div class="command">{{chain.binaryName}} tx staking redelegate {{chain.valoperAddress || '&lt;YOUR_VALOPER_ADDRESS&gt;'}} {{chain.toValoperAddress || '&lt;TO_VALOPER_ADDRESS&gt;'}}
           1000000{{chain.denomName}} --from {{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}} --chain-id {{chain.chainId}}
           --fees {{(chain.fees || '&lt;FEES&gt;') + chain.denomName}} --gas auto -y
         </div>
@@ -322,7 +333,7 @@
     <div class="command-container" [ngClass]="hideForSearch(abe0cd09436e) ? 'd-none' : ''" #abe0cd09436e>
       <p>Unbond</p>
       <div class="copy-button-container">
-        <div class="command">{{chain.binaryName}} tx staking unbond $({{chain.binaryName}} keys show {{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}} --bech val -a) 1000000{{chain.denomName}}
+        <div class="command">{{chain.binaryName}} tx staking unbond {{chain.valoperAddress || '&lt;YOUR_VALOPER_ADDRESS&gt;'}} 1000000{{chain.denomName}}
           --from {{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}} --chain-id {{chain.chainId}} --fees {{(chain.fees || '&lt;FEES&gt;') + chain.denomName}} --gas auto -y
         </div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>

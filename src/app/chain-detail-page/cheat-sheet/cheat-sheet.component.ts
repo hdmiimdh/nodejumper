@@ -29,10 +29,11 @@ export class CheatSheetComponent implements OnInit {
         this.chainService.getChainBinaryName(activeChain),
         activeChain.homeDirectoryName,
         savedChainInfo.walletName || 'wallet',
+        savedChainInfo.valoperAddress || '',
         savedChainInfo.fees || 2000,
         savedChainInfo.moniker || 'Moniker',
         savedChainInfo.identity || 'FFB0AA51A2DF5954', // nodejumper keybase
-        savedChainInfo.details || 'I\'m sexy and I know it😉',
+        savedChainInfo.details || 'I\'m sexy and I know it 😉',
         savedChainInfo.proposalId || 1,
         savedChainInfo.toValoperAddress || '',
         savedChainInfo.toWalletAddress || '',
