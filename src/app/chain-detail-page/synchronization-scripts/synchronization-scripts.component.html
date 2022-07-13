@@ -3,10 +3,15 @@
     <p class="title">RPC Server</p>
     <pre><code class="language-bash">{{chain.rpcServer}}</code></pre>
   </div>
-  <div class="row" id="peer">
-    <p class="title">Peer</p>
-    <pre><code class="language-bash">{{chain.rpcPeer}}</code></pre>
-    <pre><code class="language-bash">peers="{{chain.rpcPeer}}"
+  <div class="row" id="peers">
+    <div>
+      <p class="title">Live Peers</p>
+      <p class="snap-info">
+        number of active peers: <strong>{{this.livePeers.length || 1}}</strong>
+      </p>
+    </div>
+    <pre><code class="language-bash peers">{{chain.rpcPeer}}</code></pre>
+    <pre><code class="language-bash update-peers">peers="{{chain.rpcPeer}}"
 sed -i 's|^persistent_peers *=.*|persistent_peers = "'$peers'"|' $HOME/{{chain.homeDirectoryName}}/config/config.toml</code></pre>
   </div>
   <div class="row" *ngIf="!chain.snapshotDisabled" id="snapshot">

@@ -198,10 +198,14 @@
     padding: 25px 0;
   }
 
+  .shadow-pulse-circle {
+    right: 10px;
+    top: 10px;
+  }
+
   .chain-info,
   .social,
-  .support-us,
-  .shadow-pulse-circle {
+  .support-us {
     display: none;
   }
 }
