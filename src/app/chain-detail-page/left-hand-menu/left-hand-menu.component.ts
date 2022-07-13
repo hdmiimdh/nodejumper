@@ -47,13 +47,13 @@ export class LeftHandMenuComponent implements OnInit {
             if (timeDifferenceInSeconds > 600) { // 10 minutes
               this.chainStatus = ChainStatus.HALTED;
               this.chainStatusMessage = `Chain is halted ${this.utilsService.secondsToHumanReadableFormat(timeDifferenceInSeconds)}
-               ago, the latest block height: ${latestBlockHeight}`
+               ago, latest block height: ${latestBlockHeight}`
               return;
             }
             this.chainStatus = ChainStatus.SYNCED;
             this.chainStatusMessage = this.chain?.summaryDisabled
-              ? `Chain is synced, the latest block height: ${latestBlockHeight}`
-              : 'Chain is synced';
+              ? `Chain is up and running, latest block height: ${latestBlockHeight}`
+              : 'Chain is up and running';
           },
           error: (error: any) => {
             this.chainStatus = ChainStatus.INACTIVE;

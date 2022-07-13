@@ -37,7 +37,7 @@ sudo journalctl -u {{chain.serviceName}} -f --no-hostname -o cat</code></pre>
     <pre><code class="language-bash">sudo systemctl stop {{chain.serviceName}}
 {{this.chainService.getUnsafeResetAllString(chain)}}
 
-SNAP_RPC="{{chain.rpcServer}}"
+SNAP_RPC="{{chain.rpcServer}}:443"
 
 LATEST_HEIGHT=$(curl -s $SNAP_RPC/block | jq -r .result.block.header.height); \
 BLOCK_HEIGHT=$((LATEST_HEIGHT - 2000)); \
