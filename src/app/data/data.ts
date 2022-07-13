@@ -79,7 +79,8 @@ export const CHAINS: Chain[] = [
     denomName: "udsm",
     denomPow: 6,
     isProjectSupportUs: true,
-    githubRepoName: 'desmos'
+    githubRepoName: 'desmos',
+    newWayUnsafeResetAll: true,
   },
   {
     id: "omniflix",
@@ -220,7 +221,7 @@ export const CHAINS: Chain[] = [
     chainId: "atlantic-1",
     snapshotServer: "https://snapshots1-testnet.nodejumper.io",
     rpcServer: "https://sei-testnet.nodejumper.io",
-    rpcPeer: "6a60f171e8b0c0f0c6a0e5cebd6d3d340764c2f5@sei-testnet.nodejumper.io:28656",
+    rpcPeer: "4b5fb7390e9c64bc96f048816f472f4559fafd94@sei-testnet.nodejumper.io:28656",
     serviceName: "seid",
     homeDirectoryName: ".sei",
     twitter: "https://twitter.com/SeiNetwork",

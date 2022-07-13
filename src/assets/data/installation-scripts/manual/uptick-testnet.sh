@@ -20,7 +20,7 @@ uptickd version # v0.2.0
 
 # replace nodejumper with your own moniker, if you'd like
 $binaryName config chain-id $chainId
-$binaryName init nodejumper --chain-id $chainId -o
+$binaryName init nodejumper --chain-id $chainId
 
 curl https://raw.githubusercontent.com/UptickNetwork/uptick-testnet/main/uptick_7776-1/genesis.json > $HOME/.uptickd/config/genesis.json
 sha256sum $HOME/.uptickd/config/genesis.json # 1ca389503310668cad2a38662c7f84045699839cba48d13ce2af31956442c8b5
