@@ -90,6 +90,17 @@ kite upset hip dirt pet winter thunder slice parent flag sand express suffer che
 # Wait util the node is synced, should return FALSE
 $binaryName status 2>&1 | jq .SyncInfo.catching_up
 
+# Go to discord channel #atlantic-1-faucet and paste
+!faucet <YOUR_WALLET_ADDRESS>
+
+# Verify the balance
+$binaryName q bank balances $($binaryName keys show wallet -a)
+
+## Console output
+#  balances:
+#  - amount: "1000000"
+#    denom: usei
+
 # Create validator
 $binaryName tx staking create-validator \
 --amount=1000000$denomName \
