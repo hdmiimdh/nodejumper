@@ -1,15 +1,20 @@
 <ng-container *ngIf="this.chainService.activeChain as chain">
-  <div class="row">
+  <div class="row" id="rpc">
     <p class="title">RPC Server</p>
     <pre><code class="language-bash">{{chain.rpcServer}}</code></pre>
   </div>
-  <div class="row">
-    <p class="title">Peer</p>
-    <pre><code class="language-bash">{{chain.rpcPeer}}</code></pre>
-    <pre><code class="language-bash">peers="{{chain.rpcPeer}}"
+  <div class="row" id="peers">
+    <div>
+      <p class="title">Live Peers</p>
+      <p class="snap-info">
+        number of active peers: <strong>{{this.livePeers.length || 1}}</strong>
+      </p>
+    </div>
+    <pre><code class="language-bash peers">{{chain.rpcPeer}}</code></pre>
+    <pre><code class="language-bash update-peers">peers="{{chain.rpcPeer}}"
 sed -i 's|^persistent_peers *=.*|persistent_peers = "'$peers'"|' $HOME/{{chain.homeDirectoryName}}/config/config.toml</code></pre>
   </div>
-  <div class="row" *ngIf="!chain.snapshotDisabled">
+  <div class="row" *ngIf="!chain.snapshotDisabled" id="snapshot">
     <div>
       <p class="title">Snapshot</p>
       <p class="snap-info">
@@ -32,12 +37,12 @@ curl {{chain.snapshotServer}}/{{chain.id}}/${{ '{' }}SNAP_NAME{{ '}' }} | lz4 -d
 sudo systemctl restart {{chain.serviceName}}
 sudo journalctl -u {{chain.serviceName}} -f --no-hostname -o cat</code></pre>
   </div>
-  <div class="row code" *ngIf="!chain.stateSyncDisabled">
+  <div class="row code" *ngIf="!chain.stateSyncDisabled" id="state-sync">
     <p class="title">State Sync</p>
     <pre><code class="language-bash">sudo systemctl stop {{chain.serviceName}}
 {{this.chainService.getUnsafeResetAllString(chain)}}
 
-SNAP_RPC="{{chain.rpcServer}}"
+SNAP_RPC="{{chain.rpcServer}}:443"
 
 LATEST_HEIGHT=$(curl -s $SNAP_RPC/block | jq -r .result.block.header.height); \
 BLOCK_HEIGHT=$((LATEST_HEIGHT - 2000)); \

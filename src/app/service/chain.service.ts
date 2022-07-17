@@ -44,7 +44,7 @@ export class ChainService {
 
   filterByQuery(chain: Chain, query: string): boolean {
     return chain.chainName.toLocaleLowerCase().includes(query)
-      || chain.chainId.toLocaleLowerCase().includes(query)
+      || chain.chainId.toLocaleLowerCase().includes(query);
   }
 
   filterByArchive(chain: Chain, isArchive?: boolean) : boolean {
@@ -56,19 +56,34 @@ export class ChainService {
   }
 
   getChainSummary(apiChainId: string) {
-    return this.http.get(`${environment.baseUrl}/api/v1/${apiChainId}/summary`)
+    return this.http.get(`${environment.baseUrl}/api/v1/${apiChainId}/summary`);
   }
 
   getChainValidators(apiChainId: string) {
-    return this.http.get(`${environment.baseUrl}/api/v1/${apiChainId}/validators`)
+    return this.http.get(`${environment.baseUrl}/api/v1/${apiChainId}/validators`);
   }
 
   getCoingekoSummary(coingekoCoinId: string) {
-    return this.http.get(`https://api.coingecko.com/api/v3/coins/${coingekoCoinId}`)
+    return this.http.get(`https://api.coingecko.com/api/v3/coins/${coingekoCoinId}`);
   }
 
   getCoingekoMarketData(coingekoCoinId: string, timeIntervalDays: number) {
-    return this.http.get(`https://api.coingecko.com/api/v3/coins/${coingekoCoinId}/market_chart?vs_currency=usd&days=${timeIntervalDays}&interval=daily`)
+    return this.http.get(`https://api.coingecko.com/api/v3/coins/${coingekoCoinId}/market_chart?vs_currency=usd&days=${timeIntervalDays}&interval=daily`);
+  }
+
+  getChainStatus(chain: Chain) {
+    return this.http.get(`${chain.rpcServer}/status`);
+  }
+
+  getChainNetInfo(chain: Chain) {
+    return this.http.get(`${chain.rpcServer}/net_info`);
+  }
+
+  getChainSnapshotInfo(chain: Chain) {
+    const id = chain.id;
+    const salt = (new Date()).getTime();
+    const snapshotStateFileLocation = `${chain?.snapshotServer}/${id}/current_state.json?${salt}`;
+    return this.http.get(snapshotStateFileLocation);
   }
 
   getUnsafeResetAllString(chain: Chain): string {

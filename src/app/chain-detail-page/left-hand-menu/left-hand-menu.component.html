@@ -1,5 +1,6 @@
 <div id="left-hand-menu" class="card" *ngIf="chain">
-  <app-shadow-pulse-circle [chain]="chain"></app-shadow-pulse-circle>
+  <div class="shadow-pulse-circle {{this.chainStatus}}"
+       ngbTooltip="{{this.chainStatusMessage}}" tooltipClass="ratio-tooltip no-opacity"></div>
   <div class="mobile-menu-header">
     <img class="logo-image" src="assets/img/logo.svg" alt="NodeJumper">
     <p class="title">NodeJumper</p>

@@ -20,17 +20,17 @@ $binaryName version # 1.0.6beta
 
 # replace nodejumper with your own moniker, if you'd like
 $binaryName config chain-id $chainId
-$binaryName init nodejumper --chain-id $chainId -o
+$binaryName init nodejumper --chain-id $chainId
 
-curl https://raw.githubusercontent.com/sei-protocol/testnet/master/sei-testnet-2/genesis.json > ~/.sei/config/genesis.json
-sha256sum $HOME/$homeDirectoryName/config/genesis.json # aec481191276a4c5ada2c3b86ac6c8aad0cea5c4aa6440314470a2217520e2cc
+curl -s https://raw.githubusercontent.com/sei-protocol/testnet/main/sei-incentivized-testnet/genesis.json > $HOME/.sei/config/genesis.json
+sha256sum $HOME/$homeDirectoryName/config/genesis.json # 4ae7193446b53d78bb77cab1693a6ddf6c1fe58c9693ed151e71f43956fdb3f7
 
-curl https://raw.githubusercontent.com/sei-protocol/testnet/master/sei-testnet-2/addrbook.json > ~/.sei/config/addrbook.json
-sha256sum $HOME/$homeDirectoryName/config/addrbook.json # 9058b83fca36c2c09fb2b7c04293382084df0960b4565090c21b65188816ffa6
+curl -s https://raw.githubusercontent.com/sei-protocol/testnet/main/sei-incentivized-testnet/addrbook.json > $HOME/.sei/config/addrbook.json
+sha256sum $HOME/$homeDirectoryName/config/addrbook.json # a0b8d7c621e35d94e2187ce9b351b170104943aecfde327068524de46ed122d8
 
 sed -i 's|^minimum-gas-prices *=.*|minimum-gas-prices = "0.0001$denomName"|g' $HOME/$homeDirectoryName/config/app.toml
-seeds=""
-peers="$rpcPeer,91625e4d655d87a33fd135a91bd74a68e6c448de@167.86.109.17:26656,abf7583be5fb20b3077db8adb119dc84f1da5d22@95.216.212.199:26656,5ab0ab8ff1602aedbd953e2a9758b6a5d950231e@65.108.201.154:26656,257af61598dd3ce190bd7da84c6bcfeb5cbe9a99@65.21.143.79:21156,3506c83f8df3d3c6ef3bee9c92c9687edba3bf99@65.108.14.10:56656,1c6b5b7d880e488e87e86b0de420ad92d4cece50@149.102.158.204:12656,58dc33802d0734c3a6d19e436ce8da8c269fcf3c@38.242.133.155:26656,7562cf38f77708c949add9337bde1ff6246b98c1@88.198.150.22:26656,c5ceddb37070668f323e44d1ea8fc5890e8231d5@138.201.139.175:21006,8b26c7ad8b74608301036ffa69776caff7860f6c@139.59.112.100:26656"
+seeds="df1f6617ff5acdc85d9daa890300a57a9d956e5e@sei-atlantic-1.seed.rhinostake.com:16660"
+peers="$rpcPeer,4b5fb7390e9c64bc96f048816f472f4559fafd94@sei-testnet.nodejumper.io:28656,45b4b8ddb11e575ae11ae80da172e2d030b64479@95.217.12.131:26656,8bd7bd4cfce28f5226f422fd85845e949cf6dfd0@65.108.246.4:26656,3d9f0098ca688b92bb21aed423d131dd7facaad7@217.79.178.14:26656,edb62e1f56ebea162fbfa6d61bff8c954eefd26c@167.235.58.116:26656,b394718cacbcb13337b6903905554535154169e6@176.126.87.128:26656,8e05189591bc3a6b9cb636daf05fee7ff47e975a@64.227.40.51:26656,994e38eaf5eb6021fa0064161696fc9ffd955259@89.163.208.177:26656,aaa1da62895d2a8daaf09b235ca82a55c8d9efd7@173.212.203.238:46656,577737740332cdcef7d02c63eade18211f583558@149.102.133.116:12656,bd9641a334d6d10b5fdb55b623bab103be8ba5ff@185.231.154.243:26656,5c1ef680038d1a357b4c105fdce9e80a9553af98@149.102.138.181:26656,e772c28c8f0a36cbadc48438ab6b950f262519d4@77.37.176.99:26656,dd79c1b2ca0667505c581d62f80d5a94b1e30097@157.245.100.103:36376,ad6d30dc6805df4f48b49d9013bbb921a5713fa6@20.211.82.153:26656,ff9305a6acfaf206dbf4ee2c6e732875c59b608b@149.102.140.38:12656,62744edab552772612c150faa22929c7ad7cc4df@38.242.148.172:26656,3b5ae3a1691d4ed24e67d7fe1499bc081c3ad8b0@65.108.131.189:20956,15139786b29d53366209748f425ee42ae3e9aef0@194.163.132.127:26656,02be57dc6d6491bf272b823afb81f24d61243e1e@141.94.139.233:26656,873a358b46b07c0c7c0280397a5ad27954a10633@141.95.175.196:26656,16225e262a0d38fe73073ab199f583e4a607e471@135.181.59.162:19656,8d30215eb6947e36ffe572ea9b48409492c03494@168.119.149.188:26656"
 sed -i -e 's|^seeds *=.*|seeds = "'$seeds'"|; s|^persistent_peers *=.*|persistent_peers = "'$peers'"|' $HOME/$homeDirectoryName/config/config.toml
 
 # in case of pruning
@@ -54,7 +54,7 @@ EOF
 
 $binaryName tendermint unsafe-reset-all --home $HOME/$homeDirectoryName --keep-addr-book
 
-SNAP_RPC="$rpcServer"
+SNAP_RPC="$rpcServer:443"
 LATEST_HEIGHT=$(curl -s $SNAP_RPC/block | jq -r .result.block.header.height); \
 BLOCK_HEIGHT=$((LATEST_HEIGHT - 2000)); \
 TRUST_HASH=$(curl -s "$SNAP_RPC/block?height=$BLOCK_HEIGHT" | jq -r .result.block_id.hash)
@@ -90,7 +90,7 @@ kite upset hip dirt pet winter thunder slice parent flag sand express suffer che
 # Wait util the node is synced, should return FALSE
 $binaryName status 2>&1 | jq .SyncInfo.catching_up
 
-# Go to discord channel #faucet and paste
+# Go to discord channel #atlantic-1-faucet and paste
 !faucet <YOUR_WALLET_ADDRESS>
 
 # Verify the balance

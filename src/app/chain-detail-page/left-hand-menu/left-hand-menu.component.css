@@ -6,7 +6,7 @@
   background-color: white;
   position: fixed;
   box-shadow: rgb(100 100 111 / 20%) 0 7px 29px 0;
-  z-index: 105;
+  z-index: 105; /* higher than header z-index (100) to be able to popup tooltip on top*/
   margin-top: 15px;
 }
 
@@ -116,6 +116,28 @@
   font-weight: 600;
 }
 
+.shadow-pulse-circle {
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  position: absolute;
+  right: 15px;
+  top: 15px;
+  cursor: pointer;
+  background-color: gray;
+}
+
+.shadow-pulse-circle.synced {
+  background: rgb(120, 192, 0);
+  animation: shadow-pulse-green 1s infinite;
+}
+
+.shadow-pulse-circle.halted,
+.shadow-pulse-circle.inactive {
+  background: rgb(220, 53, 69);
+  animation: shadow-pulse-red 1s infinite;
+}
+
 @media (max-width: 576px) {
   .card {
     position: fixed;
@@ -174,6 +196,11 @@
     text-align: center;
     border-bottom: 1px solid var(--border-color);
     padding: 25px 0;
+  }
+
+  .shadow-pulse-circle {
+    right: 10px;
+    top: 10px;
   }
 
   .chain-info,

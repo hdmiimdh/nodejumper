@@ -73,7 +73,7 @@
       </div>
     </div>
   </div>
-  <div class="row" [ngClass]="hideForSearchArray([e1be173d, e196dfc8, b0ce1e71, d341457e, c29f311f2e09]) ? 'd-none' : ''">
+  <div class="row" [ngClass]="hideForSearchArray([e1be173d, e196dfc8, b0ce1e71, d341457e, c29f311f2e09]) ? 'd-none' : ''" id="wallet">
     <p class="title">Wallet</p>
     <div class="command-container" [ngClass]="hideForSearch(e1be173d) ? 'd-none' : ''" #e1be173d>
       <p>Add New Wallet</p>
@@ -111,7 +111,7 @@
       </div>
     </div>
   </div>
-  <div class="row" [ngClass]="hideForSearchArray([d7fadc2a1be2, ed60b0febaf3, dae767347223, dfc1c198b2fd, b24eae45eaa7, b5fc3c18, fac604ab]) ? 'd-none' : ''">
+  <div class="row" [ngClass]="hideForSearchArray([d7fadc2a1be2, ed60b0febaf3, dae767347223, dfc1c198b2fd, b24eae45eaa7, b5fc3c18, fac604ab]) ? 'd-none' : ''" id="validator">
     <p class="title">Validator</p>
     <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
       <div class="param-container">
@@ -266,19 +266,8 @@
       </div>
     </div>
   </div>
-  <div class="row" [ngClass]="hideForSearchArray([d82b6728, e1f574e6, be5e3609fee2, abe0cd09436e, db5f64c9e27e]) ? 'd-none' : ''">
+  <div class="row" [ngClass]="hideForSearchArray([d82b6728, e1f574e6, be5e3609fee2, abe0cd09436e, db5f64c9e27e]) ? 'd-none' : ''" id="tokens">
     <p class="title">Tokens</p>
-    <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
-      <div class="param-container">
-        <p class="label">Valoper address</p>
-        <input
-          class="form-control rounded-pill input"
-          placeholder="validator operator address"
-          [(ngModel)]="chain.valoperAddress"
-          (blur)="saveParam('valoperAddress')"
-        />
-      </div>
-    </div>
     <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
       <div class="param-container">
         <p class="label">To valoper address</p>
@@ -313,7 +302,7 @@
     <div class="command-container" [ngClass]="hideForSearch(e1f574e6) ? 'd-none' : ''" #e1f574e6>
       <p>Delegate</p>
       <div class="copy-button-container">
-        <div class="command">{{chain.binaryName}} tx staking delegate {{chain.valoperAddress || '&lt;YOUR_VALOPER_ADDRESS&gt;'}}
+        <div class="command">{{chain.binaryName}} tx staking delegate $({{chain.binaryName}} keys show {{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}} --bech val -a)
           1000000{{chain.denomName}} --from {{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}} --chain-id {{chain.chainId}}
           --fees {{(chain.fees || '&lt;FEES&gt;') + chain.denomName}} --gas auto -y
         </div>
@@ -323,7 +312,7 @@
     <div class="command-container" [ngClass]="hideForSearch(be5e3609fee2) ? 'd-none' : ''" #be5e3609fee2>
       <p>Redelegate</p>
       <div class="copy-button-container">
-        <div class="command">{{chain.binaryName}} tx staking redelegate {{chain.valoperAddress || '&lt;YOUR_VALOPER_ADDRESS&gt;'}} {{chain.toValoperAddress || '&lt;TO_VALOPER_ADDRESS&gt;'}}
+        <div class="command">{{chain.binaryName}} tx staking redelegate $({{chain.binaryName}} keys show {{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}} --bech val -a) {{chain.toValoperAddress || '&lt;TO_VALOPER_ADDRESS&gt;'}}
           1000000{{chain.denomName}} --from {{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}} --chain-id {{chain.chainId}}
           --fees {{(chain.fees || '&lt;FEES&gt;') + chain.denomName}} --gas auto -y
         </div>
@@ -333,7 +322,7 @@
     <div class="command-container" [ngClass]="hideForSearch(abe0cd09436e) ? 'd-none' : ''" #abe0cd09436e>
       <p>Unbond</p>
       <div class="copy-button-container">
-        <div class="command">{{chain.binaryName}} tx staking unbond {{chain.valoperAddress || '&lt;YOUR_VALOPER_ADDRESS&gt;'}} 1000000{{chain.denomName}}
+        <div class="command">{{chain.binaryName}} tx staking unbond $({{chain.binaryName}} keys show {{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}} --bech val -a) 1000000{{chain.denomName}}
           --from {{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}} --chain-id {{chain.chainId}} --fees {{(chain.fees || '&lt;FEES&gt;') + chain.denomName}} --gas auto -y
         </div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
@@ -405,7 +394,7 @@
       </div>
     </div>
   </div>
-  <div class="row" [ngClass]="hideForSearchArray([e1d6879f96e7, d7c005a09058, c6c126c83420, c9fa81f310b6, b1623a67b5e0, afd45f16]) ? 'd-none' : ''">
+  <div class="row" [ngClass]="hideForSearchArray([e1d6879f96e7, d7c005a09058, c6c126c83420, c9fa81f310b6, b1623a67b5e0, afd45f16]) ? 'd-none' : ''" id="utility">
     <p class="title">Utility</p>
     <div
       class="command-container" [ngClass]="hideForSearch(e1d6879f96e7) ? 'd-none' : ''">
@@ -544,7 +533,7 @@
       </div>
     </div>
   </div>
-  <div class="row" [ngClass]="hideForSearchArray([c567fd801308, d40c2241, a501dcbd, edfca8b94ee8, cd12abd1ae4f, ec99f4d7, c4cb953e, ddd2b2d6]) ? 'd-none' : ''">
+  <div class="row" [ngClass]="hideForSearchArray([c567fd801308, d40c2241, a501dcbd, edfca8b94ee8, cd12abd1ae4f, ec99f4d7, c4cb953e, ddd2b2d6]) ? 'd-none' : ''" id="service">
       <p class="title">Service Management</p>
       <div class="command-container" [ngClass]="hideForSearch(c567fd801308) ? 'd-none' : ''" #c567fd801308>
         <p>Reload Services</p>
