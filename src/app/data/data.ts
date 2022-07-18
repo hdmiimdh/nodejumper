@@ -237,9 +237,7 @@ export const CHAINS: Chain[] = [
     isTestnet: true,
     hardwareRequirements: "4CPU 8RAM 200GB",
     projectOverview: "Sei Network is the first orderbook-specific L1 blockchain. It is built using the Cosmos SDK and Tendermint core, and features a built-in central limit orderbook (CLOB) module. Decentralized applications building on Sei can build on top of the CLOB, and other Cosmos-based blockchains can leverage Sei's CLOB as a shared liquidity hub and create markets for any asset.",
-    githubRepoName: 'sei-chain',
-    isInactive: true,
-    inactiveReason: 'Chain is halted, new chain should be launched soon...'
+    githubRepoName: 'sei-chain'
   },
   {
     id: "dws-testnet",

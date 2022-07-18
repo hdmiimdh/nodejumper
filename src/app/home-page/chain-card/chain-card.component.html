@@ -1,5 +1,4 @@
 <div *ngIf="chain" class="card">
-  <app-shadow-pulse-circle [chain]="chain"></app-shadow-pulse-circle>
   <img alt="{{chain.chainName}}" src="assets/img/chain/{{chain.id.split('-')[0]}}.png">
   <div class="title">{{chain.chainName}}
     <div class="project-support" *ngIf="chain.isProjectSupportUs"
