@@ -50,7 +50,7 @@ LimitNOFILE=10000
 WantedBy=multi-user.target
 EOF
 
-$binaryName unsafe-reset-all
+$binaryName tendermint unsafe-reset-all --home $HOME/$homeDirectoryName --keep-addr-book
 
 SNAP_RPC="$rpcServer:443"
 LATEST_HEIGHT=$(curl -s $SNAP_RPC/block | jq -r .result.block.header.height); \
