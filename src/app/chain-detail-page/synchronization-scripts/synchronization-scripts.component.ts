@@ -3,6 +3,8 @@ import { Chain } from "../../model/chain";
 import { HighlightService } from "../../service/highlight.service";
 import { ChainService } from "../../service/chain.service";
 import { DOCUMENT } from "@angular/common";
+import { SnapshotData } from "../../model/snapshotData";
+import { UtilsService } from "../../service/utils.service";
 
 @Component({
   selector: 'app-synchronization-data',
@@ -11,16 +13,18 @@ import { DOCUMENT } from "@angular/common";
 })
 export class SynchronizationScriptsComponent implements OnInit {
 
-  chain?: Chain;
-  snapshotHeight = '';
-  snapshotSize = '';
-  highlighted = false;
-  livePeers: string[] = [];
   MAX_LIVE_PEERS = 200;
+
+  chain?: Chain;
+  snapshotData?: SnapshotData;
+  livePeers: string[] = [];
+
+  highlighted = false;
 
   constructor(@Inject(DOCUMENT) private document: Document,
               private highlightService: HighlightService,
-              public chainService: ChainService) {
+              public chainService: ChainService,
+              private utilsService: UtilsService) {
   }
 
   ngOnInit(): void {
@@ -47,23 +51,23 @@ export class SynchronizationScriptsComponent implements OnInit {
         );
       this.chainService.getChainSnapshotInfo(this.chain)
         .subscribe((data: any) => {
-          this.snapshotHeight = data.snapshotHeight;
-          this.snapshotSize = data.snapshotSize + 'B';
+          const snapshotHeight = data.snapshotHeight;
+          const snapshotSize = data.snapshotSize + 'B';
+          const snapshotBlockTime = this.utilsService.humanReadableTimeDifferenceString(data.snapshotBlockTime);
+          this.snapshotData = new SnapshotData(snapshotHeight, snapshotSize, snapshotBlockTime);
         });
     }
   }
 
   updateLivePeersView(): void {
     const livePeersString = this.livePeers.join(',');
-    const peers = document.getElementsByClassName('peers');
-    const peersItem = peers.item(0);
-    if (peersItem) {
-      peersItem.innerHTML = livePeersString;
+    const peersRow = document.getElementById('peers-row');
+    if (peersRow) {
+      peersRow.innerHTML = livePeersString;
     }
-    const updatePeers = document.getElementsByClassName('update-peers').item(0)?.getElementsByClassName('token string');
-    const updatePeersItem = updatePeers?.item(0);
-    if (updatePeersItem) {
-      updatePeersItem.innerHTML = `"${livePeersString}"`;
+    const updatePeersRow = document.getElementById('update-peers-row')?.getElementsByClassName('token string')?.item(0);
+    if (updatePeersRow) {
+      updatePeersRow.innerHTML = `"${livePeersString}"`;
     }
   }
 

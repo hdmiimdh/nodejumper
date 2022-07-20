@@ -10,15 +10,15 @@
         number of active peers: <strong>{{this.livePeers.length || 1}}</strong>
       </p>
     </div>
-    <pre><code class="language-bash peers">{{chain.rpcPeer}}</code></pre>
-    <pre><code class="language-bash update-peers">peers="{{chain.rpcPeer}}"
+    <pre><code class="language-bash" id="peers-row">{{chain.rpcPeer}}</code></pre>
+    <pre><code class="language-bash" id="update-peers-row">peers="{{chain.rpcPeer}}"
 sed -i 's|^persistent_peers *=.*|persistent_peers = "'$peers'"|' $HOME/{{chain.homeDirectoryName}}/config/config.toml</code></pre>
   </div>
   <div class="row" *ngIf="!chain.snapshotDisabled" id="snapshot">
     <div>
       <p class="title">Snapshot</p>
       <p class="snap-info">
-        height: <strong>{{snapshotHeight | number: '2.'}}</strong>; size: <strong>{{snapshotSize}}</strong>; pruning: <strong>custom/100/0/10</strong>; indexer: <strong>null</strong>
+        height: <strong>{{snapshotData?.snapshotHeight || '' | number: '2.'}} {{snapshotData?.snapshotBlockTime ? ('(' + snapshotData?.snapshotBlockTime + ' ago)') : ''}}</strong>; size: <strong>{{snapshotData?.snapshotSize || ''}}</strong>; pruning: <strong>custom/100/0/10</strong>; indexer: <strong>null</strong>
       </p>
     </div>
     <pre><code class="language-bash"># install lz4, if needed
