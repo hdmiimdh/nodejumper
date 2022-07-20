@@ -58,6 +58,7 @@ export const CHAINS: Chain[] = [
     validatorUrl: "https://ping.pub/kichain/staking/kivaloper1q5vfka8z05t27jf4fuawpec99mvv9df90yc57a",
     denomName: "uxki",
     denomPow: 6,
+    newWayUnsafeResetAll: true,
     githubRepoName: 'ki-tools'
   },
   {
@@ -79,8 +80,7 @@ export const CHAINS: Chain[] = [
     denomName: "udsm",
     denomPow: 6,
     isProjectSupportUs: true,
-    githubRepoName: 'desmos',
-    newWayUnsafeResetAll: true,
+    githubRepoName: 'desmos'
   },
   {
     id: "omniflix",
@@ -142,6 +142,7 @@ export const CHAINS: Chain[] = [
     validatorUrl: "https://www.mintscan.io/osmosis/validators/osmovaloper1vpqqry2dfrrrh33wrnxjj9k9xg928z646w97p6",
     denomName: "uosmo",
     denomPow: 6,
+    stateSyncDisabled: true,
     stateSyncExtraStep: '\n\n# wait for "wrong Block.Header.Version. Expected {11 0}, got {11 1}" error\n\n' +
       'cd && git clone https://github.com/tendermint/tendermint\n' +
       'cd tendermint && git checkout callum/app-version && make install\n' +
@@ -353,5 +354,28 @@ export const CHAINS: Chain[] = [
     hardwareRequirements: "4CPU 8RAM 200GB",
     projectOverview: "StaFiHub is a parallel chain developed by StaFi based on the Cosmos SDK, by implementing the rToken Protocol, StaFiHub releases liquidity of tokens staked in other chains of the Cosmos Ecosystem.",
     githubRepoName: 'stafihub'
+  },
+  {
+    id: "teritori-testnet",
+    chainName: "Teritori",
+    chainId: "teritori-testnet-v2",
+    snapshotServer: "https://snapshots2-testnet.nodejumper.io",
+    rpcServer: "https://teritori-testnet.nodejumper.io",
+    rpcPeer: "0d19829b0dd1fc324cfde1f7bc15860c896b7ac1@teritori-testnet.nodejumper.io:27656",
+    serviceName: "teritorid",
+    homeDirectoryName: ".teritorid",
+    twitter: "https://twitter.com/TeritoriNetwork",
+    github: "https://github.com/TERITORI",
+    globe: "https://teritori.com",
+    discord: "https://discord.gg/UAzKUpsZhn",
+    validatorUrl: "https://explorer.ericet.xyz/teritori/staking/torivaloper18t2j2kc08su2l2dafcanq43yxj9akpwp6gemr0",
+    denomName: "utori",
+    denomPow: 6,
+    summaryDisabled: true,
+    newWayUnsafeResetAll: true,
+    isTestnet: true,
+    hardwareRequirements: "4CPU 8RAM 200GB",
+    projectOverview: "Teritori is a multi-chain hub designed to allow IBC and non IBC communities to connect, trade services & NFTs, launch new projects & build further existing ones. The hub notably includes dApps for a daily use such as an NFT launchpad, a marketplace and social features for individuals & communities: Innovate, Trade, Organize.",
+    githubRepoName: 'teritori-chain'
   }
 ]
