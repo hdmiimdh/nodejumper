@@ -34,11 +34,11 @@ export class InstallationScriptsComponent implements OnInit {
       const chainId = this.chain.chainId
       this.automaticScriptUrl = `https://raw.githubusercontent.com/nodejumper-org/cosmos-utils/main/${chainNet}/${chainName}/${chainId}-install.sh`
 
-      this.http.get(this.automaticScriptUrl, {responseType: 'text'}).subscribe(response => {
-        this.manualScriptContent = "NODEMONIKER=<YOUR_NODE_MONIKER>\n\n"
+      this.http.get(this.automaticScriptUrl, {responseType: 'text'}).subscribe(data => {
+        this.manualScriptContent = "NODE_MONIKER=<YOUR_NODE_MONIKER>\n\n"
           .concat(
-            response
-              .split('printCyan "Building binaries..." && sleep 1')[1]
+            data
+              .split("\nsleep 1\n")[1]
               .split("printLine")[0]
               .split("\n")
               .filter(line => !line.includes("print"))
@@ -51,8 +51,8 @@ export class InstallationScriptsComponent implements OnInit {
 
       if (this.chain.isTestnet) {
         const testnetInstructionsUrl = `https://raw.githubusercontent.com/nodejumper-org/cosmos-utils/main/testnet/${chainName}/testnet-instructions.sh`
-        this.http.get(testnetInstructionsUrl, {responseType: 'text'}).subscribe(response => {
-          this.testnetInstructionsContent = response || 'TBD';
+        this.http.get(testnetInstructionsUrl, {responseType: 'text'}).subscribe(data => {
+          this.testnetInstructionsContent = data || 'TBD';
           if (this.chain) {
             this.testnetInstructionsContent = this.testnetInstructionsContent
               .replace(new RegExp('\\$chainName', 'g'), this.chain.chainName)
