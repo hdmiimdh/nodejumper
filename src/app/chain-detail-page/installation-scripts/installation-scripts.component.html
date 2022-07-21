@@ -13,8 +13,15 @@
     </div>
     <div class="row" id="manual">
       <p class="title">Manual Installation</p>
-      <pre><code
-        class="language-bash">{{manualScriptContent}}</code></pre>
+      <pre><code class="language-bash"># install dependencies, if needed
+sudo apt update
+sudo apt install -y curl git jq lz4 build-essential
+
+if [ ! -f "/usr/local/go/bin/go" ]; then
+  bash <(curl -s "https://raw.githubusercontent.com/nodejumper-org/cosmos-utils/main/utils/go_install.sh")
+  source .bash_profile
+fi</code></pre>
+      <pre><code class="language-bash">{{manualScriptContent}}</code></pre>
     </div>
     <div class="row" id="create-validator" *ngIf="chain.isTestnet">
       <p class="title">Create Validator</p>

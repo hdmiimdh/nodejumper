@@ -39,7 +39,7 @@ export class InstallationScriptsComponent implements OnInit {
       this.http.get(this.automaticScriptUrl, {responseType: 'text'}).subscribe(data => {
 
         const trimmedAutomationScriptContent = data
-          .split("\nsleep 1\n")[1]
+          .split("printCyan \"4. Building binaries...\" && sleep 1\n")[1]
           .split("printLine")[0]
           .split("\n")
           .filter(line => !line.includes("print"))
@@ -51,7 +51,6 @@ export class InstallationScriptsComponent implements OnInit {
 
         this.manualScriptContent = "#!/bin/bash\n\n"
           + "NODE_MONIKER=<YOUR_NODE_MONIKER>\n\n"
-          + this.installDependenciesString()
           + trimmedAutomationScriptContent
           + `\n\nsudo journalctl -u ${binaryName} -f --no-hostname -o cat`;
       });
@@ -63,18 +62,6 @@ export class InstallationScriptsComponent implements OnInit {
         });
       }
     }
-  }
-
-  installDependenciesString(): string {
-    return 'sudo apt update\n' +
-      'sudo apt install -y make gcc jq curl git lz4 build-essential\n' +
-      '\n' +
-      'if [ ! -f "/usr/local/go/bin/go" ]; then\n' +
-      '  bash <(curl -s "https://raw.githubusercontent.com/nodejumper-org/cosmos-utils/main/utils/go_install.sh")\n' +
-      '  source .bash_profile\n' +
-      'fi\n' +
-      '\n' +
-      'go version # go version goX.XX.X linux/amd64\n\n';
   }
 
   ngAfterViewChecked() {
