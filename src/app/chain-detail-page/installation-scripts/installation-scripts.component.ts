@@ -32,7 +32,7 @@ export class InstallationScriptsComponent implements OnInit {
       const chainNet = this.chain.isTestnet ? "testnet" : "mainnet"
       const chainName = this.chain.chainName.toLowerCase()
       const chainId = this.chain.chainId
-      this.automaticScriptUrl = `https://raw.githubusercontent.com/nodejumper-org/cosmos-utils/dev/${chainNet}/${chainName}/${chainId}-install.sh`
+      this.automaticScriptUrl = `https://raw.githubusercontent.com/nodejumper-org/cosmos-utils/main/${chainNet}/${chainName}/${chainId}-install.sh`
 
       this.http.get(this.automaticScriptUrl, {responseType: 'text'}).subscribe(data => {
         this.manualScriptContent = "NODE_MONIKER=<YOUR_NODE_MONIKER>\n\n"
@@ -50,7 +50,7 @@ export class InstallationScriptsComponent implements OnInit {
       });
 
       if (this.chain.isTestnet) {
-        const testnetInstructionsUrl = `https://raw.githubusercontent.com/nodejumper-org/cosmos-utils/dev/testnet/${chainName}/testnet-instructions.sh`
+        const testnetInstructionsUrl = `https://raw.githubusercontent.com/nodejumper-org/cosmos-utils/main/testnet/${chainName}/testnet-instructions.sh`
         this.http.get(testnetInstructionsUrl, {responseType: 'text'}).subscribe(data => {
           this.testnetInstructionsContent = data?.trim() || 'TBD';
         });
