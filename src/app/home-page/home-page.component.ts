@@ -12,6 +12,7 @@ export class HomePageComponent implements OnInit {
 
   mainnetChains: Chain[] = [];
   testnetChains: Chain[] = [];
+  archiveChains: Chain[] = [];
   searchQuery: string = '';
   chainType = 'all';
 
@@ -38,15 +39,18 @@ export class HomePageComponent implements OnInit {
       case 'mainnet':
         this.mainnetChains = this.chainService.getChains(chainType, searchText);
         this.testnetChains = [];
+        this.archiveChains = this.chainService.getChains(chainType, searchText, true);
         break;
       case 'testnet':
         this.mainnetChains = [];
         this.testnetChains = this.chainService.getChains(chainType, searchText);
+        this.archiveChains = this.chainService.getChains(chainType, searchText, true);
         break;
       case 'all':
       default:
         this.mainnetChains = this.chainService.getChains('mainnet', searchText);
         this.testnetChains = this.chainService.getChains('testnet', searchText);
+        this.archiveChains = this.chainService.getChains('all', searchText, true);
     }
   }
 }

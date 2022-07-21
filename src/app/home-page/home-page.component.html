@@ -68,6 +68,18 @@
         <app-chain-card [chain]="chain"></app-chain-card>
       </div>
     </div>
+    <div class="title-container" *ngIf="archiveChains.length">
+      <p class="title">Archive</p>
+    </div>
+    <div class="chain-cards-container" *ngIf="archiveChains.length">
+      <div
+        *ngFor="let chain of archiveChains"
+        [routerLink]="['/' + chain.id + (chain.summaryDisabled ? '/installation' : '')]"
+        class="col col-12 col-sm-6 col-md-4 col-lg-3"
+      >
+        <app-chain-card [chain]="chain"></app-chain-card>
+      </div>
+    </div>
     <div
       class="empty-result"
       *ngIf="mainnetChains.length === 0 && testnetChains.length === 0"

@@ -309,7 +309,10 @@ export const CHAINS: Chain[] = [
     isTestnet: true,
     hardwareRequirements: "4CPU 8RAM 200GB",
     projectOverview: "THE COSMOS LIQUID STAKING ZONE",
-    githubRepoName: 'quicksilver'
+    githubRepoName: 'quicksilver',
+    isArchive: true,
+    archiveReason: 'Testnet ended',
+    endedAt: '2022-07-16'
   },
   {
     id: "paloma-testnet",

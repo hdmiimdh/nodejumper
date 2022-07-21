@@ -3,6 +3,7 @@ import { CHAINS } from "../data/data";
 import { Chain } from "../model/chain";
 import { environment } from "../../environments/environment";
 import { HttpClient } from "@angular/common/http";
+import { UtilsService } from "./utils.service";
 
 @Injectable({
   providedIn: 'root'
@@ -11,12 +12,14 @@ export class ChainService {
 
   activeChain?: Chain;
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,
+              private utilsService: UtilsService) {
   }
 
-  getChains(chainType?: string, searchText?: string): Chain[] {
+  getChains(chainType?: string, searchText?: string, isArchive?: boolean): Chain[] {
     const lowerCaseQuery = searchText?.toLocaleLowerCase() || ""
     return CHAINS
+      .filter(chain => this.filterByArchive(chain, isArchive))
       .filter(chain => this.filterByType(chain, chainType))
       .filter(chain => this.filterByQuery(chain, lowerCaseQuery))
       .sort((chain1, chain2) => {
@@ -33,13 +36,18 @@ export class ChainService {
   }
 
   filterByType(chain: Chain, chainType?: string): boolean {
-    return (chainType == 'mainnet' && !chain.isTestnet || false)
+    return chainType == 'all'
+      || (chainType == 'mainnet' && !chain.isTestnet || false)
       || (chainType == 'testnet' && !!chain.isTestnet || false);
   }
 
   filterByQuery(chain: Chain, query: string): boolean {
     return chain.chainName.toLocaleLowerCase().includes(query)
       || chain.chainId.toLocaleLowerCase().includes(query);
+  }
+
+  filterByArchive(chain: Chain, isArchive?: boolean) : boolean {
+    return !!chain.isArchive === !!isArchive;
   }
 
   getAllChains(): Chain[] {
@@ -86,5 +94,14 @@ export class ChainService {
 
   getChainBinaryName(chain: Chain): string {
     return chain.binaryName || chain.serviceName;
+  }
+
+  getArchiveReason(chain: Chain): string {
+    if (chain.endedAt) {
+      const endedAtNTimeAgo = this.utilsService.humanReadableTimeDifferenceString(chain.endedAt);
+      const chainNet = chain.isTestnet ? 'Testnet' : 'Mainnet';
+      return `${chainNet} is ended ${endedAtNTimeAgo} ago`;
+    }
+    return chain.archiveReason || '';
   }
 }

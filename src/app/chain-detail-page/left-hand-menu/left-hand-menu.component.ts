@@ -19,7 +19,7 @@ export class LeftHandMenuComponent implements OnInit {
 
   constructor(@Inject(DOCUMENT) private document: Document,
               private leftHandMenuService: LeftHandMenuService,
-              private chainService: ChainService,
+              public chainService: ChainService,
               private utilsService: UtilsService) {
   }
 
@@ -35,7 +35,7 @@ export class LeftHandMenuComponent implements OnInit {
         socialIcons.item(i)?.classList.add('hide');
       }
     }
-    if (this.chain) {
+    if (this.chain && !this.chain.isArchive) {
       this.chainService.getChainStatus(this.chain)
         .subscribe({
           next: (data: any) => {

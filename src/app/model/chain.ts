@@ -29,6 +29,9 @@ export class Chain {
   isTestnet?: boolean;
   hardwareRequirements?: string;
   githubRepoName?: string;
+  isArchive?: boolean;
+  archiveReason?: string;
+  endedAt?: string;
 
   constructor(id: string, chainName: string, chainId: string, snapshotServer: string, rpcServer: string, rpcPeer: string, serviceName: string, homeDirectoryName: string, twitter: string, github: string, globe: string, denomName: string, denomPow: number) {
     this.id = id;
