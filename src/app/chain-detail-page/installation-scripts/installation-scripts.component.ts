@@ -47,7 +47,8 @@ export class InstallationScriptsComponent implements OnInit {
           .join('\n')
           .replace(new RegExp('\\$CHAIN_ID', 'g'), chainId)
           .trim()
-          .replace("\n\n\n", "\n\n");
+          .replace("\n\n\n", "\n\n")
+          .replace("\n\n\n", "\n\n"); // we need to do this twice
 
         this.manualScriptContent = "#!/bin/bash\n\n"
           + "NODE_MONIKER=<YOUR_NODE_MONIKER>\n\n"

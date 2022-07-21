@@ -1,5 +1,5 @@
 <ng-container *ngIf="this.chainService.activeChain as chain">
-  <ng-container *ngIf="manualScriptContent">
+  <ng-container *ngIf="chain.isTestnet && manualScriptContent && testnetInstructionsContent || !chain.isTestnet && manualScriptContent">
     <div class="row" id="hardware" *ngIf="chain.isTestnet">
       <p class="title">Hardware Requirements</p>
       <pre><code class="language-bash">{{chain.hardwareRequirements}}</code></pre>
