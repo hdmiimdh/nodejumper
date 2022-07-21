@@ -100,7 +100,7 @@ export class ChainService {
     if (chain.endedAt) {
       const endedAtNTimeAgo = this.utilsService.humanReadableTimeDifferenceString(chain.endedAt);
       const chainNet = chain.isTestnet ? 'Testnet' : 'Mainnet';
-      return `${chainNet} is ended ${endedAtNTimeAgo} ago`;
+      return `${chainNet} was ended ${endedAtNTimeAgo} ago`;
     }
     return chain.archiveReason || '';
   }
