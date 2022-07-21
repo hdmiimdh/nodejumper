@@ -23,8 +23,7 @@ sed -i 's|^persistent_peers *=.*|persistent_peers = "'$peers'"|' $HOME/{{chain.h
     </div>
     <pre><code class="language-bash"># install lz4, if needed
 sudo apt update
-sudo apt install snapd -y
-sudo snap install lz4</code></pre>
+sudo apt install lz4 -y</code></pre>
     <pre><code class="language-bash">sudo systemctl stop {{chain.serviceName}}
 {{this.chainService.getUnsafeResetAllString(chain)}}
 

@@ -171,6 +171,7 @@ export const CHAINS: Chain[] = [
     summaryDisabled: true,
     denomName: "uglx",
     denomPow: 6,
+    isProjectSupportUs: true,
     githubRepoName: 'galaxy'
   },
   {
