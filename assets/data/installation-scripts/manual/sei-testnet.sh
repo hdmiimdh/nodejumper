@@ -14,9 +14,9 @@ cd || return
 rm -rf sei-chain
 git clone https://github.com/sei-protocol/sei-chain.git
 cd sei-chain || return
-git checkout 1.0.6beta
+git checkout 1.0.6beta-val-count-fix
 make install
-$binaryName version # 1.0.6beta
+$binaryName version # 1.0.6beta-val-count-fix
 
 # replace nodejumper with your own moniker, if you'd like
 $binaryName config chain-id $chainId
