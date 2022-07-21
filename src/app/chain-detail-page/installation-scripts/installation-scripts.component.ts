@@ -32,7 +32,7 @@ export class InstallationScriptsComponent implements OnInit {
       const chainNet = this.chain.isTestnet ? "testnet" : "mainnet"
       const chainName = this.chain.chainName.toLowerCase()
       const chainId = this.chain.chainId
-      this.automaticScriptUrl = `https://raw.githubusercontent.com/nodejumper-org/cosmos-utils/main/${chainNet}/${chainName}/${chainId}-install.sh`
+      this.automaticScriptUrl = `https://raw.githubusercontent.com/nodejumper-org/cosmos-utils/dev/${chainNet}/${chainName}/${chainId}-install.sh`
 
       this.http.get(this.automaticScriptUrl, {responseType: 'text'}).subscribe(data => {
         this.manualScriptContent = "NODE_MONIKER=<YOUR_NODE_MONIKER>\n\n"
@@ -50,21 +50,9 @@ export class InstallationScriptsComponent implements OnInit {
       });
 
       if (this.chain.isTestnet) {
-        const testnetInstructionsUrl = `https://raw.githubusercontent.com/nodejumper-org/cosmos-utils/main/testnet/${chainName}/testnet-instructions.sh`
+        const testnetInstructionsUrl = `https://raw.githubusercontent.com/nodejumper-org/cosmos-utils/dev/testnet/${chainName}/testnet-instructions.sh`
         this.http.get(testnetInstructionsUrl, {responseType: 'text'}).subscribe(data => {
-          this.testnetInstructionsContent = data || 'TBD';
-          if (this.chain) {
-            this.testnetInstructionsContent = this.testnetInstructionsContent
-              .replace(new RegExp('\\$chainName', 'g'), this.chain.chainName)
-              .replace(new RegExp('\\$chainId', 'g'), this.chain.chainId)
-              .replace(new RegExp('\\$denomName', 'g'), this.chain.denomName)
-              .replace(new RegExp('\\$rpcServer', 'g'), this.chain.rpcServer)
-              .replace(new RegExp('\\$rpcPeer', 'g'), this.chain.rpcPeer)
-              .replace(new RegExp('\\$homeDirectoryName', 'g'), this.chain.homeDirectoryName)
-              .replace(new RegExp('\\$binaryName', 'g'), this.chainService.getChainBinaryName(this.chain))
-              .replace(new RegExp('\\$serviceName', 'g'), this.chain.serviceName)
-              .trim();
-          }
+          this.testnetInstructionsContent = data?.trim() || 'TBD';
         });
       }
     }
