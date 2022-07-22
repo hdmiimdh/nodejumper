@@ -16,6 +16,7 @@ export class InstallationScriptsComponent implements OnInit {
   testnetInstructionsContent?: string;
   chain?: Chain;
   highlighted = false;
+  chainBinaryVersion?: string;
 
   constructor(private highlightService: HighlightService,
               private http: HttpClient,
@@ -54,6 +55,11 @@ export class InstallationScriptsComponent implements OnInit {
           + "NODE_MONIKER=<YOUR_NODE_MONIKER>\n\n"
           + trimmedAutomationScriptContent
           + `\n\nsudo journalctl -u ${binaryName} -f --no-hostname -o cat`;
+
+        this.chainBinaryVersion = this.manualScriptContent.substring(
+          this.manualScriptContent.indexOf("git checkout")+"git checkout".length,
+          this.manualScriptContent.indexOf("make install")
+        ).trim()
       });
 
       if (this.chain.isTestnet) {

@@ -11,6 +11,32 @@
       </div>
       <pre><code class="language-bash">source <(curl -s {{automaticScriptUrl}})</code></pre>
     </div>
+    <div class="row" id="update">
+      <div>
+        <p class="title">Update to the latest version</p>
+      </div>
+      <div class="update-container">
+        <div class="code-container">
+          <pre><code class="language-bash">sudo systemctl stop {{chain.serviceName}}
+cd $HOME/{{chain.githubRepoName}} || cd $HOME && git clone {{chain.github}}/{{chain.githubRepoName}} && cd $HOME/{{chain.githubRepoName}}
+git fetch --all
+git checkout {{chainBinaryVersion}}
+make install
+sudo systemctl start {{chain.serviceName}}
+sudo journalctl -u {{chain.serviceName}} -f -o cat --no-hostname</code></pre>
+        </div>
+        <div class="comment-container">
+            <pre><code class="language-bash"># stop chain service
+# got to cloned chain repo dir
+# fetch latest changes
+# checkout to latest version
+# build new binary
+# start the service
+# check logs</code></pre>
+        </div>
+      </div>
+
+    </div>
     <div class="row" id="manual">
       <p class="title">Manual Installation</p>
       <pre><code class="language-bash"># install dependencies, if needed

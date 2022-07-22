@@ -12,3 +12,17 @@ pre {
   line-height: 1.9;
   opacity: var(--button-opacity);
 }
+
+.update-container {
+  display: flex;
+  width: 100%;
+}
+
+.code-container {
+  width: 63%;
+}
+
+.comment-container {
+  width: 37%;
+  padding-left: 15px;
+}
