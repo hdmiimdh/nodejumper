@@ -40,19 +40,19 @@
         <input
           class="form-control rounded-pill input"
           placeholder="wallet"
-          [(ngModel)]="chain.walletName"
+          [(ngModel)]="chain.keyName"
           (blur)="saveParam('walletName')"
         />
       </div>
     </div>
     <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
       <div class="param-container">
-        <p class="label">Fees, {{chain.denomName}}</p>
+        <p class="label">Gas prices, {{chain.denomName}}</p>
         <input
           class="form-control rounded-pill input"
-          placeholder="2000"
-          [(ngModel)]="chain.fees"
-          (blur)="saveParam('fees')"
+          placeholder="0.1"
+          [(ngModel)]="chain.gas"
+          (blur)="saveParam('gas')"
         />
       </div>
     </div>
@@ -74,39 +74,39 @@
     </div>
   </div>
   <div class="row" [ngClass]="hideForSearchArray([e1be173d, e196dfc8, b0ce1e71, d341457e, c29f311f2e09]) ? 'd-none' : ''" id="wallet">
-    <p class="title">Wallet</p>
+    <p class="title">Key</p>
     <div class="command-container" [ngClass]="hideForSearch(e1be173d) ? 'd-none' : ''" #e1be173d>
-      <p>Add New Wallet</p>
+      <p>Add New Key</p>
       <div class="copy-button-container">
-        <div class="command">{{chain.binaryName}} keys add {{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}}</div>
+        <div class="command">{{chain.binaryName}} keys add {{chain.keyName || '&lt;YOUR_KEY_NAME&gt;'}}</div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
     </div>
     <div class="command-container" [ngClass]="hideForSearch(e196dfc8) ? 'd-none' : ''" #e196dfc8>
-      <p >Recover Existing Wallet</p>
+      <p >Recover Existing Key</p>
       <div class="copy-button-container">
-        <div class="command">{{chain.binaryName}} keys add {{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}} --recover</div>
+        <div class="command">{{chain.binaryName}} keys add {{chain.keyName || '&lt;YOUR_KEY_NAME&gt;'}} --recover</div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
     </div>
     <div class="command-container" [ngClass]="hideForSearch(b0ce1e71) ? 'd-none' : ''" #b0ce1e71>
-      <p>List All Wallets</p>
+      <p>List All Keys</p>
       <div class="copy-button-container">
         <div class="command">{{chain.binaryName}} keys list</div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
     </div>
     <div class="command-container" [ngClass]="hideForSearch(d341457e) ? 'd-none' : ''" #d341457e>
-      <p>Delete Wallet</p>
+      <p>Delete Key</p>
       <div class="copy-button-container">
-        <div class="command">{{chain.binaryName}} keys delete {{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}}</div>
+        <div class="command">{{chain.binaryName}} keys delete {{chain.keyName || '&lt;YOUR_KEY_NAME&gt;'}}</div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
     </div>
     <div class="command-container" [ngClass]="hideForSearch(c29f311f2e09) ? 'd-none' : ''" #c29f311f2e09>
-      <p>Check Wallet Balance</p>
+      <p>Query Wallet Balance</p>
       <div class="copy-button-container">
-        <div class="command">{{chain.binaryName}} q bank balances $({{chain.binaryName}} keys show {{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}} -a)</div>
+        <div class="command">{{chain.binaryName}} q bank balances $({{chain.binaryName}} keys show {{chain.keyName || '&lt;YOUR_KEY_NAME&gt;'}} -a)</div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
     </div>
@@ -193,8 +193,9 @@
 --commission-max-rate={{chain.commissionMaxRate || '&lt;COMMISION_MAX_RATE&gt;'}} \
 --commission-max-change-rate={{chain.commissionMaxChangeRate || '&lt;COMMISION_MAX_CHANGE_RATE&gt;'}} \
 --min-self-delegation=1 \
---from={{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}} \
---fees={{(chain.fees || '&lt;FEES&gt;') + chain.denomName}} \
+--from={{chain.keyName || '&lt;YOUR_KEY_NAME&gt;'}} \
+--gas-prices={{(chain.gas || '&lt;GAS&gt;') + chain.denomName}} \
+--gas-adjustment=1.2 \
 --gas=auto \
 -y
         </div>
@@ -210,8 +211,9 @@
 --details="{{chain.details || '&lt;YOUR_DETAILS&gt;'}}" \
 --chain-id={{chain.chainId}} \
 --commission-rate=0.1 \
---from={{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}} \
---fees={{(chain.fees || '&lt;FEES&gt;') + chain.denomName}} \
+--from={{chain.keyName || '&lt;YOUR_KEY_NAME&gt;'}} \
+--gas-prices={{(chain.gas || '&lt;GAS&gt;') + chain.denomName}} \
+--gas-adjustment=1.2 \
 --gas=auto \
 -y
         </div>
@@ -221,8 +223,8 @@
     <div class="command-container" [ngClass]="hideForSearch(dae767347223) ? 'd-none' : ''" #dae767347223>
       <p>Unjail Validator</p>
       <div class="copy-button-container">
-        <div class="command">{{chain.binaryName}} tx slashing unjail --from {{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}}
-          --chain-id {{chain.chainId}} --fees {{(chain.fees || '&lt;FEES&gt;') + chain.denomName}} --gas auto -y
+        <div class="command">{{chain.binaryName}} tx slashing unjail --from {{chain.keyName || '&lt;YOUR_KEY_NAME&gt;'}}
+          --chain-id {{chain.chainId}} --gas-prices {{(chain.gas || '&lt;GAS&gt;') + chain.denomName}} --gas-adjustment 1.2 --gas auto -y
         </div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
@@ -260,7 +262,7 @@
       <p>View Validator Details</p>
       <div class="copy-button-container">
         <div class="command">{{chain.binaryName}} q staking validator $({{chain.binaryName}} keys
-          show {{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}} --bech val -a)
+          show {{chain.keyName || '&lt;YOUR_KEY_NAME&gt;'}} --bech val -a)
         </div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
@@ -290,11 +292,22 @@
         />
       </div>
     </div>
+    <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
+      <div class="param-container">
+        <p class="label">Amount, {{chain.denomName}}</p>
+        <input
+          class="form-control rounded-pill input"
+          placeholder="amount"
+          [(ngModel)]="chain.amount"
+          (blur)="saveParam('amount')"
+        />
+      </div>
+    </div>
     <div class="command-container" [ngClass]="hideForSearch(d82b6728) ? 'd-none' : ''" #d82b6728>
       <p>Withdraw Commission And Rewards</p>
       <div class="copy-button-container">
-        <div class="command">{{chain.binaryName}} tx distribution withdraw-all-rewards --from {{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}}
-          --chain-id {{chain.chainId}} --fees {{(chain.fees || '&lt;FEES&gt;') + chain.denomName}} --gas auto -y
+        <div class="command">{{chain.binaryName}} tx distribution withdraw-all-rewards --from {{chain.keyName || '&lt;YOUR_KEY_NAME&gt;'}}
+          --chain-id {{chain.chainId}} --gas-prices {{(chain.gas || '&lt;GAS&gt;') + chain.denomName}} --gas-adjustment 1.2 --gas auto -y
         </div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
@@ -302,9 +315,9 @@
     <div class="command-container" [ngClass]="hideForSearch(e1f574e6) ? 'd-none' : ''" #e1f574e6>
       <p>Delegate</p>
       <div class="copy-button-container">
-        <div class="command">{{chain.binaryName}} tx staking delegate $({{chain.binaryName}} keys show {{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}} --bech val -a)
-          1000000{{chain.denomName}} --from {{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}} --chain-id {{chain.chainId}}
-          --fees {{(chain.fees || '&lt;FEES&gt;') + chain.denomName}} --gas auto -y
+        <div class="command">{{chain.binaryName}} tx staking delegate $({{chain.binaryName}} keys show {{chain.keyName || '&lt;YOUR_KEY_NAME&gt;'}} --bech val -a)
+          {{chain.amount || '&lt;YOUR_AMOUNT&gt;'}}{{chain.denomName}} --from {{chain.keyName || '&lt;YOUR_KEY_NAME&gt;'}} --chain-id {{chain.chainId}}
+          --gas-prices {{(chain.gas || '&lt;GAS&gt;') + chain.denomName}} --gas-adjustment 1.2 --gas auto -y
         </div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
@@ -312,9 +325,9 @@
     <div class="command-container" [ngClass]="hideForSearch(be5e3609fee2) ? 'd-none' : ''" #be5e3609fee2>
       <p>Redelegate</p>
       <div class="copy-button-container">
-        <div class="command">{{chain.binaryName}} tx staking redelegate $({{chain.binaryName}} keys show {{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}} --bech val -a) {{chain.toValoperAddress || '&lt;TO_VALOPER_ADDRESS&gt;'}}
-          1000000{{chain.denomName}} --from {{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}} --chain-id {{chain.chainId}}
-          --fees {{(chain.fees || '&lt;FEES&gt;') + chain.denomName}} --gas auto -y
+        <div class="command">{{chain.binaryName}} tx staking redelegate $({{chain.binaryName}} keys show {{chain.keyName || '&lt;YOUR_KEY_NAME&gt;'}} --bech val -a) {{chain.toValoperAddress || '&lt;TO_VALOPER_ADDRESS&gt;'}}
+          {{chain.amount || '&lt;YOUR_AMOUNT&gt;'}}{{chain.denomName}} --from {{chain.keyName || '&lt;YOUR_KEY_NAME&gt;'}} --chain-id {{chain.chainId}}
+          --gas-prices {{(chain.gas || '&lt;GAS&gt;') + chain.denomName}} --gas-adjustment 1.2 --gas auto -y
         </div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
@@ -322,8 +335,8 @@
     <div class="command-container" [ngClass]="hideForSearch(abe0cd09436e) ? 'd-none' : ''" #abe0cd09436e>
       <p>Unbond</p>
       <div class="copy-button-container">
-        <div class="command">{{chain.binaryName}} tx staking unbond $({{chain.binaryName}} keys show {{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}} --bech val -a) 1000000{{chain.denomName}}
-          --from {{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}} --chain-id {{chain.chainId}} --fees {{(chain.fees || '&lt;FEES&gt;') + chain.denomName}} --gas auto -y
+        <div class="command">{{chain.binaryName}} tx staking unbond $({{chain.binaryName}} keys show {{chain.keyName || '&lt;YOUR_KEY_NAME&gt;'}} --bech val -a) {{chain.amount || '&lt;YOUR_AMOUNT&gt;'}}{{chain.denomName}}
+          --from {{chain.keyName || '&lt;YOUR_KEY_NAME&gt;'}} --chain-id {{chain.chainId}} --gas-prices {{(chain.gas || '&lt;GAS&gt;') + chain.denomName}} --gas-adjustment 1.2 --gas auto -y
         </div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
@@ -331,9 +344,9 @@
     <div class="command-container" [ngClass]="hideForSearch(db5f64c9e27e) ? 'd-none' : ''" #db5f64c9e27e>
       <p>Send</p>
       <div class="copy-button-container">
-        <div class="command">{{chain.binaryName}} tx bank send {{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}} {{chain.toWalletAddress || '&lt;TO_WALLET_ADDRESS&gt;'}}
-          1000000{{chain.denomName}} --from {{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}} --chain-id {{chain.chainId}}
-          --fees {{(chain.fees || '&lt;FEES&gt;') + chain.denomName}} --gas auto -y
+        <div class="command">{{chain.binaryName}} tx bank send {{chain.keyName || '&lt;YOUR_KEY_NAME&gt;'}} {{chain.toWalletAddress || '&lt;TO_WALLET_ADDRESS&gt;'}}
+          {{chain.amount || '&lt;YOUR_AMOUNT&gt;'}}{{chain.denomName}} --from {{chain.keyName || '&lt;YOUR_KEY_NAME&gt;'}} --chain-id {{chain.chainId}}
+          --gas-prices {{(chain.gas || '&lt;GAS&gt;') + chain.denomName}} --gas-adjustment 1.2 --gas auto -y
         </div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
@@ -369,8 +382,8 @@
     <div class="command-container" [ngClass]="hideForSearch(d31d502e) ? 'd-none' : ''" #d31d502e>
       <p>Vote YES</p>
       <div class="copy-button-container">
-        <div class="command">{{chain.binaryName}} tx gov vote {{chain.proposalId || '&lt;PROPOSAL_ID&gt;'}} yes --from {{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}}
-          --chain-id {{chain.chainId}} --fees {{(chain.fees || '&lt;FEES&gt;') + chain.denomName}} --gas auto -y
+        <div class="command">{{chain.binaryName}} tx gov vote {{chain.proposalId || '&lt;PROPOSAL_ID&gt;'}} yes --from {{chain.keyName || '&lt;YOUR_KEY_NAME&gt;'}}
+          --chain-id {{chain.chainId}} --gas-prices {{(chain.gas || '&lt;GAS&gt;') + chain.denomName}} --gas-adjustment 1.2 --gas auto -y
         </div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
@@ -378,8 +391,8 @@
     <div class="command-container" [ngClass]="hideForSearch(f4416a14) ? 'd-none' : ''" #f4416a14>
       <p>Vote NO</p>
       <div class="copy-button-container">
-        <div class="command">{{chain.binaryName}} tx gov vote {{chain.proposalId || '&lt;PROPOSAL_ID&gt;'}} no --from {{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}}
-          --chain-id {{chain.chainId}} --fees {{(chain.fees || '&lt;FEES&gt;') + chain.denomName}} --gas auto -y
+        <div class="command">{{chain.binaryName}} tx gov vote {{chain.proposalId || '&lt;PROPOSAL_ID&gt;'}} no --from {{chain.keyName || '&lt;YOUR_KEY_NAME&gt;'}}
+          --chain-id {{chain.chainId}} --gas-prices {{(chain.gas || '&lt;GAS&gt;') + chain.denomName}} --gas-adjustment 1.2 --gas auto -y
         </div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
@@ -387,104 +400,207 @@
     <div class="command-container" [ngClass]="hideForSearch(a3a86a7c) ? 'd-none' : ''" #a3a86a7c>
       <p>Vote ABSTAIN</p>
       <div class="copy-button-container">
-        <div class="command">{{chain.binaryName}} tx gov vote {{chain.proposalId || '&lt;PROPOSAL_ID&gt;'}} abstain --from {{chain.walletName || '&lt;YOUR_KEY_NAME&gt;'}}
-          --chain-id {{chain.chainId}} --fees {{(chain.fees || '&lt;FEES&gt;') + chain.denomName}} --gas auto -y
+        <div class="command">{{chain.binaryName}} tx gov vote {{chain.proposalId || '&lt;PROPOSAL_ID&gt;'}} abstain --from {{chain.keyName || '&lt;YOUR_KEY_NAME&gt;'}}
+          --chain-id {{chain.chainId}} --gas-prices {{(chain.gas || '&lt;GAS&gt;') + chain.denomName}} --gas-adjustment 1.2 --gas auto -y
         </div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
+      </div>
+    </div>
+  </div >
+  <div class="row" [ngClass]="hideForSearchArray([c2b141f8]) ? 'd-none' : ''" id="query">
+    <p class="title">Query</p>
+    <div class="command-container row multi-command-row" [ngClass]="hideForSearch(c2b141f8) ? 'd-none' : ''" #c2b141f8>
+      <p>Query Transaction</p>
+      <div class="command-container row m-0 p-0">
+        <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
+          <div class="param-container">
+            <p class="label">Transaction Id</p>
+            <input
+              class="form-control rounded-pill input"
+              placeholder="transaction id"
+              [(ngModel)]="chain.txId"
+              (blur)="saveParam('txId')"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="command-container">
+        <div class="copy-button-container">
+          <div class="command">{{chain.binaryName}} query tx {{chain.txId || '&lt;YOUR_TX_ID&gt;'}}</div>
+          <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
+        </div>
       </div>
     </div>
   </div>
-  <div class="row" [ngClass]="hideForSearchArray([e1d6879f96e7, d7c005a09058, c6c126c83420, c9fa81f310b6, b1623a67b5e0, afd45f16]) ? 'd-none' : ''" id="utility">
+  <div class="row" [ngClass]="hideForSearchArray([e1d6879f96e7, d7c005a09058, c6c126c83420, c9fa81f310b6, b1623a67b5e0, afd45f16, a8dd6066, adf52944]) ? 'd-none' : ''" id="utility">
     <p class="title">Utility</p>
-    <div
-      class="command-container" [ngClass]="hideForSearch(e1d6879f96e7) ? 'd-none' : ''">
-      <div class="tabs-container">
-        <div class="tab-button"
-          *ngFor="let index of [0,1,2,3,4,5,6,7,8]"
-          [ngClass]="chain.portIncrement == index ? 'active': ''"
-          (click)="setPortIncrement(index)">
-          {{index == 0 ? "Default" : index}}
-        </div>
-      </div>
-    </div>
-    <div class="col col-12 col-sm-6 col-md-3 col-lg-2" [ngClass]="hideForSearch(e1d6879f96e7) ? 'd-none' : ''">
-      <div class="param-container">
-        <p class="label">gRPC</p>
-        <input
-          class="form-control rounded-pill input"
-          value="{{9090 + this.chain.portIncrement * 100}}"
-          disabled
-        />
-      </div>
-    </div>
-    <div class="col col-12 col-sm-6 col-md-3 col-lg-2" [ngClass]="hideForSearch(e1d6879f96e7) ? 'd-none' : ''">
-      <div class="param-container">
-        <p class="label">gRPC(web)</p>
-        <input
-          class="form-control rounded-pill input"
-          value="{{9091 + this.chain.portIncrement * 100}}"
-          disabled
-        />
-      </div>
-    </div>
-    <div class="col col-12 col-sm-6 col-md-3 col-lg-2" [ngClass]="hideForSearch(e1d6879f96e7) ? 'd-none' : ''">
-      <div class="param-container">
-        <p class="label">proxy_app</p>
-        <input
-          class="form-control rounded-pill input"
-          value="{{26658 + this.chain.portIncrement * 1000}}"
-          disabled
-        />
-      </div>
-    </div>
-    <div class="col col-12 col-sm-6 col-md-3 col-lg-2" [ngClass]="hideForSearch(e1d6879f96e7) ? 'd-none' : ''">
-      <div class="param-container">
-        <p class="label">laddr(rpc)</p>
-        <input
-          class="form-control rounded-pill input"
-          value="{{26657 + this.chain.portIncrement * 1000}}"
-          disabled
-        />
-      </div>
-    </div>
-    <div class="col col-12 col-sm-6 col-md-3 col-lg-2" [ngClass]="hideForSearch(e1d6879f96e7) ? 'd-none' : ''">
-      <div class="param-container">
-        <p class="label">pprof_laddr</p>
-        <input
-          class="form-control rounded-pill input"
-          value="{{26656 + this.chain.portIncrement * 1000}}"
-          disabled
-        />
-      </div>
-    </div>
-    <div class="col col-12 col-sm-6 col-md-3 col-lg-2" [ngClass]="hideForSearch(e1d6879f96e7) ? 'd-none' : ''">
-      <div class="param-container">
-        <p class="label">laddr(p2p)</p>
-        <input
-          class="form-control rounded-pill input"
-          value="{{6060 + this.chain.portIncrement * 100}}"
-          disabled
-        />
-      </div>
-    </div>
-    <div class="col col-12 col-sm-6 col-md-3 col-lg-2" [ngClass]="hideForSearch(e1d6879f96e7) ? 'd-none' : ''">
-      <div class="param-container">
-        <p class="label">prometheus</p>
-        <input
-          class="form-control rounded-pill input"
-          value="{{26660 + this.chain.portIncrement * 1000}}"
-          disabled
-        />
-      </div>
-    </div>
-    <div class="command-container" [ngClass]="hideForSearch(e1d6879f96e7) ? 'd-none' : ''" #e1d6879f96e7>
+    <div class="command-container row multi-command-row" [ngClass]="hideForSearch(e1d6879f96e7) ? 'd-none' : ''" #e1d6879f96e7>
       <p>Change Default Ports</p>
-      <div class="copy-button-container">
-        <div class="command">sed -i.bak -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:{{26658 + this.chain.portIncrement * 1000}}\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://127.0.0.1:{{26657 + this.chain.portIncrement * 1000}}\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:{{6060 + this.chain.portIncrement * 100}}\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:{{26656 + this.chain.portIncrement * 1000}}\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":{{26660 + this.chain.portIncrement * 1000}}\"%" $HOME/{{chain.homeDirectoryName}}/config/config.toml
-          && sed -i.bak -e "s%^address = \"0.0.0.0:9090\"%address = \"0.0.0.0:{{9090 + this.chain.portIncrement * 100}}\"%; s%^address = \"0.0.0.0:9091\"%address = \"0.0.0.0:{{9091 + this.chain.portIncrement * 100}}\"%" $HOME/{{chain.homeDirectoryName}}/config/app.toml
-          && sed -i.bak -e "s%^node = \"tcp://localhost:26657\"%node = \"tcp://localhost:{{26657 + this.chain.portIncrement * 1000}}\"%" $HOME/{{chain.homeDirectoryName}}/config/client.toml
+      <div class="command-container">
+        <div class="tabs-container">
+          <div class="tab-button"
+            *ngFor="let index of [0,1,2,3,4,5,6,7,8]"
+            [ngClass]="chain.portIncrement == index ? 'active': ''"
+            (click)="setPortIncrement(index)">
+            {{index == 0 ? "Default" : index}}
+          </div>
         </div>
-        <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
+      </div>
+      <div class="command-container row m-0 p-0">
+        <div class="col col-12 col-sm-6 col-md-3 col-lg-2">
+          <div class="param-container">
+            <p class="label">gRPC</p>
+            <input
+              class="form-control rounded-pill input"
+              value="{{9090 + this.chain.portIncrement * 100}}"
+              disabled
+            />
+          </div>
+        </div>
+        <div class="col col-12 col-sm-6 col-md-3 col-lg-2">
+          <div class="param-container">
+            <p class="label">gRPC(web)</p>
+            <input
+              class="form-control rounded-pill input"
+              value="{{9091 + this.chain.portIncrement * 100}}"
+              disabled
+            />
+          </div>
+        </div>
+        <div class="col col-12 col-sm-6 col-md-3 col-lg-2">
+          <div class="param-container">
+            <p class="label">proxy_app</p>
+            <input
+              class="form-control rounded-pill input"
+              value="{{26658 + this.chain.portIncrement * 1000}}"
+              disabled
+            />
+          </div>
+        </div>
+        <div class="col col-12 col-sm-6 col-md-3 col-lg-2">
+          <div class="param-container">
+            <p class="label">laddr(rpc)</p>
+            <input
+              class="form-control rounded-pill input"
+              value="{{26657 + this.chain.portIncrement * 1000}}"
+              disabled
+            />
+          </div>
+        </div>
+        <div class="col col-12 col-sm-6 col-md-3 col-lg-2">
+          <div class="param-container">
+            <p class="label">pprof_laddr</p>
+            <input
+              class="form-control rounded-pill input"
+              value="{{26656 + this.chain.portIncrement * 1000}}"
+              disabled
+            />
+          </div>
+        </div>
+        <div class="col col-12 col-sm-6 col-md-3 col-lg-2">
+          <div class="param-container">
+            <p class="label">laddr(p2p)</p>
+            <input
+              class="form-control rounded-pill input"
+              value="{{6060 + this.chain.portIncrement * 100}}"
+              disabled
+            />
+          </div>
+        </div>
+        <div class="col col-12 col-sm-6 col-md-3 col-lg-2">
+        <div class="param-container">
+          <p class="label">prometheus</p>
+          <input
+            class="form-control rounded-pill input"
+            value="{{26660 + this.chain.portIncrement * 1000}}"
+            disabled
+          />
+        </div>
+      </div>
+      </div>
+      <div class="command-container">
+        <div class="copy-button-container">
+          <div class="command">sed -i.bak -e "s%^proxy_app = \"tcp://127.0.0.1:26658\"%proxy_app = \"tcp://127.0.0.1:{{26658 + this.chain.portIncrement * 1000}}\"%; s%^laddr = \"tcp://127.0.0.1:26657\"%laddr = \"tcp://127.0.0.1:{{26657 + this.chain.portIncrement * 1000}}\"%; s%^pprof_laddr = \"localhost:6060\"%pprof_laddr = \"localhost:{{6060 + this.chain.portIncrement * 100}}\"%; s%^laddr = \"tcp://0.0.0.0:26656\"%laddr = \"tcp://0.0.0.0:{{26656 + this.chain.portIncrement * 1000}}\"%; s%^prometheus_listen_addr = \":26660\"%prometheus_listen_addr = \":{{26660 + this.chain.portIncrement * 1000}}\"%" $HOME/{{chain.homeDirectoryName}}/config/config.toml
+            && sed -i.bak -e "s%^address = \"0.0.0.0:9090\"%address = \"0.0.0.0:{{9090 + this.chain.portIncrement * 100}}\"%; s%^address = \"0.0.0.0:9091\"%address = \"0.0.0.0:{{9091 + this.chain.portIncrement * 100}}\"%" $HOME/{{chain.homeDirectoryName}}/config/app.toml
+            && sed -i.bak -e "s%^node = \"tcp://localhost:26657\"%node = \"tcp://localhost:{{26657 + this.chain.portIncrement * 1000}}\"%" $HOME/{{chain.homeDirectoryName}}/config/client.toml
+          </div>
+          <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
+        </div>
+      </div>
+    </div>
+    <div class="command-container" [ngClass]="hideForSearch(a8dd6066) ? 'd-none' : ''" #a8dd6066>
+      <p>Update Indexer</p>
+      <div class="command-container m-0">
+        <div class="tabs-container col col-12 col-sm-12 col-md-6 col-lg-4">
+          <div
+            class="tab-button"
+            *ngFor="let indexer of ['kv', 'null']"
+            [ngClass]="chain.indexer === indexer ? 'active': ''"
+            (click)="setIndexer(indexer)">
+            {{indexer === 'kv' ? 'Default' : 'Null'}}
+          </div>
+        </div>
+      </div>
+      <div class="command-container">
+        <div class="copy-button-container">
+          <div class="command">sed -i 's|^indexer *=.*|indexer = "{{chain.indexer}}"|' $HOME/{{chain.homeDirectoryName}}/config/config.toml</div>
+          <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
+        </div>
+      </div>
+    </div>
+    <div class="command-container row multi-command-row" [ngClass]="hideForSearch(adf52944) ? 'd-none' : ''" #adf52944>
+      <p>Update Pruning</p>
+      <div class="command-container row m-0 p-0">
+        <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
+          <div class="param-container">
+            <p class="label">Pruning</p>
+            <input
+              class="form-control rounded-pill input"
+              placeholder="custom"
+              [(ngModel)]="chain.pruning"
+              (blur)="saveParam('pruning')"
+            />
+          </div>
+        </div>
+        <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
+          <div class="param-container">
+            <p class="label">Pruning keep recent</p>
+            <input
+              class="form-control rounded-pill input"
+              placeholder="100"
+              [(ngModel)]="chain.pruningKeepRecent"
+              (blur)="saveParam('pruningKeepRecent')"
+            />
+          </div>
+        </div>
+        <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
+          <div class="param-container">
+            <p class="label">Pruning keep every</p>
+            <input
+              class="form-control rounded-pill input"
+              placeholder="0"
+              [(ngModel)]="chain.pruningKeepEvery"
+              (blur)="saveParam('pruningKeepEvery')"
+            />
+          </div>
+        </div>
+        <div class="col col-12 col-sm-12 col-md-6 col-lg-4">
+          <div class="param-container">
+            <p class="label">Pruning interval</p>
+            <input
+              class="form-control rounded-pill input"
+              placeholder="10"
+              [(ngModel)]="chain.pruningInterval"
+              (blur)="saveParam('pruningInterval')"
+            />
+          </div>
+        </div>
+      </div>
+      <div class="command-container">
+        <div class="copy-button-container">
+          <div class="command">sed -i.bak -e 's|^pruning *=.*|pruning = "{{chain.pruning}}"|; s|^pruning-keep-recent *=.*|pruning-keep-recent = "{{chain.pruningKeepRecent}}"|; s|^pruning-keep-every *=.*|pruning-keep-every = "{{chain.pruningKeepEvery}}"|; s|^pruning-interval *=.*|pruning-interval = "{{chain.pruningInterval}}"|' $HOME/{{chain.homeDirectoryName}}/config/app.toml</div>
+          <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
+        </div>
       </div>
     </div>
     <div class="command-container" [ngClass]="hideForSearch(d7c005a09058) ? 'd-none' : ''" #d7c005a09058>
