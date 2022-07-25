@@ -4,6 +4,10 @@
       <p class="title">Hardware Requirements</p>
       <pre><code class="language-bash">{{chain.hardwareRequirements}}</code></pre>
     </div>
+    <div class="row" id="tasks" *ngIf="chain.isTestnet && chain.testnetTasksLink">
+      <p class="title">Tasks</p>
+      <pre><code class="language-bash" id="tasks-link"></code></pre>
+    </div>
     <div class="row" id="automatic">
       <div>
         <p class="title">Automatic Installation</p>

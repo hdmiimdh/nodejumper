@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Inject, OnInit } from '@angular/core';
 import { Chain } from "../../model/chain";
 import { HighlightService } from "../../service/highlight.service";
 import { HttpClient } from "@angular/common/http";
 import { ChainService } from "../../service/chain.service";
+import { DOCUMENT } from "@angular/common";
 
 @Component({
   selector: 'app-installation-data',
@@ -19,7 +20,8 @@ export class InstallationScriptsComponent implements OnInit {
 
   constructor(private highlightService: HighlightService,
               private http: HttpClient,
-              public chainService: ChainService) {
+              public chainService: ChainService,
+              @Inject(DOCUMENT) private document: Document) {
   }
 
   ngOnInit(): void {
@@ -70,6 +72,10 @@ export class InstallationScriptsComponent implements OnInit {
       || this.chain && this.chain.isTestnet && this.testnetInstructionsContent && this.manualScriptContent && !this.highlighted) {
       this.highlightService.highlightAll();
       this.highlighted = true;
+      const tasksLinkElement = document.getElementById('tasks-link');
+      if (tasksLinkElement) {
+        tasksLinkElement.innerHTML = `<a href="${this.chain.testnetTasksLink}" target="_blank">${this.chain.testnetTasksLink}</a>`;
+      }
     }
   }
 }
