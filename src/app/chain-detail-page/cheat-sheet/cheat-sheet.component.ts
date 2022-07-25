@@ -29,7 +29,7 @@ export class CheatSheetComponent implements OnInit {
         this.chainService.getChainBinaryName(activeChain),
         activeChain.homeDirectoryName,
         savedChainInfo.walletName || 'wallet',
-        savedChainInfo.fees || 2000,
+        savedChainInfo.gas || 0.1,
         savedChainInfo.moniker || 'Moniker',
         savedChainInfo.identity || 'FFB0AA51A2DF5954', // nodejumper keybase
         savedChainInfo.details || 'I\'m sexy and I know it😉',
@@ -42,6 +42,13 @@ export class CheatSheetComponent implements OnInit {
         savedChainInfo.commissionMaxRate || "0.20",
         savedChainInfo.commissionMaxChangeRate || "0.01",
         activeChain.githubRepoName || '',
+        savedChainInfo.amount || 1000000,
+        savedChainInfo.indexer || 'kv',
+        savedChainInfo.pruning || 'custom',
+        savedChainInfo.pruningKeepRecent || 100,
+        savedChainInfo.pruningKeepEvery || 0,
+        savedChainInfo.pruningInterval || 10,
+        savedChainInfo.txId || '',
       );
     }
   }
@@ -97,6 +104,12 @@ export class CheatSheetComponent implements OnInit {
   setPortIncrement(portIncrement: number): void {
     if (this.chain) {
       this.chain.portIncrement = portIncrement;
+    }
+  }
+
+  setIndexer(indexer: string): void {
+    if (this.chain) {
+      this.chain.indexer = indexer;
     }
   }
 

@@ -144,3 +144,8 @@ input::placeholder {
 .command-container .copy-button-container:hover .copy-button {
   opacity: 1;
 }
+
+.command-container.multi-command-row {
+  padding-top: 0;
+  padding-bottom: 0;
+}

@@ -47,6 +47,7 @@ p.title {
   width: 50%;
   transition: all var(--animation-speed) ease;
   user-select: none;
+  cursor: pointer;
 }
 
 .tabs-container .tab-button.active {
