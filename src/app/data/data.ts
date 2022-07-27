@@ -383,5 +383,28 @@ export const CHAINS: Chain[] = [
     hardwareRequirements: "4CPU 8RAM 200GB",
     projectOverview: "Teritori is a multi-chain hub designed to allow IBC and non IBC communities to connect, trade services & NFTs, launch new projects & build further existing ones. The hub notably includes dApps for a daily use such as an NFT launchpad, a marketplace and social features for individuals & communities: Innovate, Trade, Organize.",
     githubRepoName: 'teritori-chain'
+  },
+  {
+    id: "stride-testnet",
+    chainName: "Stride",
+    chainId: "STRIDE-TESTNET-2",
+    snapshotServer: "https://snapshots2-testnet.nodejumper.io",
+    rpcServer: "https://stride-testnet.nodejumper.io",
+    rpcPeer: "0d19829b0dd1fc324cfde1f7bc15860c896b7ac1@teritori-testnet.nodejumper.io:27656",
+    serviceName: "strided",
+    homeDirectoryName: ".stride",
+    twitter: "https://twitter.com/stride_zone",
+    github: "https://github.com/Stride-Labs",
+    globe: "https://stride.zone/",
+    discord: "https://discord.gg/ut6JucWWR3",
+    validatorUrl: "",
+    denomName: "ustrd",
+    denomPow: 6,
+    summaryDisabled: true,
+    newWayUnsafeResetAll: true,
+    isTestnet: true,
+    hardwareRequirements: "4CPU 8RAM 200GB",
+    projectOverview: "Stride is a blockchain (\"zone\") that provides liquidity for staked assets. Using Stride, you can earn both staking and DeFi yields across the Cosmos IBC ecosystem.",
+    githubRepoName: 'stride'
   }
 ]
