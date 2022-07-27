@@ -73,7 +73,7 @@
       </div>
     </div>
   </div>
-  <div class="row" [ngClass]="hideForSearchArray([e1be173d, e196dfc8, b0ce1e71, d341457e, c29f311f2e09]) ? 'd-none' : ''" id="wallet">
+  <div class="row" [ngClass]="hideForSearchArray([e1be173d, e196dfc8, b0ce1e71, d341457e, c29f311f2e09, d5dcf95a, c264be3d]) ? 'd-none' : ''" id="wallet">
     <p class="title">Key</p>
     <div class="command-container" [ngClass]="hideForSearch(e1be173d) ? 'd-none' : ''" #e1be173d>
       <p>Add New Key</p>
@@ -100,6 +100,20 @@
       <p>Delete Key</p>
       <div class="copy-button-container">
         <div class="command">{{chain.binaryName}} keys delete {{chain.keyName || '&lt;YOUR_KEY_NAME&gt;'}}</div>
+        <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
+      </div>
+    </div>
+    <div class="command-container" [ngClass]="hideForSearch(d5dcf95a) ? 'd-none' : ''" #d5dcf95a>
+      <p>Export Key (save to {{chain.keyName || '&lt;YOUR_KEY_NAME&gt;'}}.backup)</p>
+      <div class="copy-button-container">
+        <div class="command">{{chain.binaryName}} keys export {{chain.keyName || '&lt;YOUR_KEY_NAME&gt;'}}</div>
+        <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
+      </div>
+    </div>
+    <div class="command-container" [ngClass]="hideForSearch(c264be3d) ? 'd-none' : ''" #c264be3d>
+      <p>Import Key</p>
+      <div class="copy-button-container">
+        <div class="command">{{chain.binaryName}} keys import {{chain.keyName || '&lt;YOUR_KEY_NAME&gt;'}} {{chain.keyName || '&lt;YOUR_KEY_NAME&gt;'}}.backup</div>
         <button class="copy-button" type="button" (click)="handleCopyClick($event)">Copy</button>
       </div>
     </div>
